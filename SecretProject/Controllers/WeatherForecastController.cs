@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SecretProject.DAL.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,11 @@ namespace SecretProject.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        private sBaseContext Context { get; set; }
+        public WeatherForecastController(sBaseContext context)
+        {
+            Context = context;
+        }
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SecretProject.DAL.Contexts;
 
 namespace SecretProject
 {
@@ -28,6 +29,7 @@ namespace SecretProject
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            services.AddTransient<sBaseContext>(x => new sBaseContextFactory().CreateDbContext(null));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SecretProject.BusinessProject.Models.Nomenclature" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAAAAAAAAAAgAAACAAQABAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Models\Nomeclature\Nomenclature.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.NomenclatureGroup" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAIAgAAACQASAACAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Models\Nomeclature\NomenclatureGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.NomenclatureProperty" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAgAAACAAQAAAAAAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>Models\Nomeclature\NomenclatureProperty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.User.User" Collapsed="true">
+    <Position X="10.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\User\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.Manufacturer">
+    <Position X="1.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAgAAACAAQAACAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Models\Vendor\Manufacturer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

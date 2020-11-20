@@ -9,9 +9,18 @@ namespace SecretProject.BusinessProject.Models
     [Table("Manufacturers")]
     public class Manufacturer : DomainObject
     {
-
-
         #region Base Property
+
+        /// <summary>
+        /// Ид
+        /// <summary>
+        [Display(Name = "Ид")]
+        public virtual int Id { get; set; }
+        /// <summary>
+        /// Специальный байтовый код для параллельных запросов к бд
+        /// <summary>
+        [Display(Name = "Специальный байтовый код для параллельных запросов к бд")]
+        public virtual byte[] Timestamp { get; set; }
 
         /// <summary>
         /// Название произовдителя
@@ -37,8 +46,8 @@ namespace SecretProject.BusinessProject.Models
         /// <summary>
         /// Связанный 1с объект
         /// <summary>
-        [Display(Name = "Связанный 1с объект")]
-        public virtual ocObject OcObject { get; set; }
+        [Display(Name = "1с guid")]
+        public virtual Guid OcObject { get; set; }
 
         #endregion
 

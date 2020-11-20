@@ -2,14 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace SecretProject.BusinessProject.Models
+namespace SecretProject.BusinessProject.Measurements
 {
-    public class NomenclatureProperty : DomainObject
+    public class Measurement : DomainObject
     {
-        #region Base Property
 
+        #region Base Property
         /// <summary>
         /// Ид
         /// <summary>
@@ -22,34 +23,32 @@ namespace SecretProject.BusinessProject.Models
         public virtual byte[] Timestamp { get; set; }
 
         /// <summary>
-        /// Название свойства номенклатуры
+        /// Полное имя единицы измерения
         /// <summary>
-        [Display(Name = "Название свойства номенклатуры")]
+        [Display(Name = "Полное имя единицы измерения")]
         public virtual string Name { get; set; }
 
         /// <summary>
-        /// Тип свойства номенклатуры
+        /// Международное сокращение
         /// <summary>
-        [Display(Name = "Тип свойства номенклатуры")]
-        public virtual string Type { get; set; }
+        [Display(Name = "Международное сокращение")]
+        public virtual string InternationalName { get; set; }
 
         /// <summary>
-        /// Значение свойства номенклатуры
+        /// Идентификационный код
         /// <summary>
-        [Display(Name = "Значение свойства номенклатуры")]
-        public virtual string Value { get; set; }
+        [Display(Name = "Идентификационный код")]
+        public virtual int ocCode { get; set; }
 
-        #endregion
+        /// <summary>
+        /// Коэффициент
+        /// <summary>
+        [Display(Name = "Коэффициент")]
+        public virtual float Coefficient { get; set; }
 
-        #region Foreign keys
         #endregion
 
         #region Special Property
-        /// <summary>
-        /// Связанный 1с объект
-        /// <summary>
-        [Display(Name = "1с guid")]
-        public virtual Guid OcObject { get; set; }
         #endregion
     }
 }

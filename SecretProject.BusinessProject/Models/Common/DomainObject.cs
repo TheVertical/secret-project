@@ -6,15 +6,15 @@ using System.Text;
 
 namespace SecretProject.BusinessProject.Models
 {
-    public class DomainObject
+    public interface DomainObject
     {
         
         #region Base Property
         [Key]
         //UNDONE Задача научиться формировать последовательный guid id
-        public virtual Guid Id { get; set; }
+        int Id { get; set; }
         [Timestamp]
-        public virtual byte[] Timestamp { get; set; }
+        byte[] Timestamp { get; set; }
         #endregion
 
         #region Special Property
