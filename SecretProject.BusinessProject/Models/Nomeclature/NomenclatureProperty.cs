@@ -45,11 +45,11 @@ namespace SecretProject.BusinessProject.Models
         #endregion
 
         #region Special Property
-        /// <summary>
-        /// Связанный 1с объект
-        /// <summary>
-        [Display(Name = "1с guid")]
-        public virtual Guid OcObject { get; set; }
+        ///// <summary>
+        ///// Связанный 1с объект
+        ///// <summary>
+        //[Display(Name = "1с guid")]
+        //public virtual Guid OcObject { get; set; }
         #endregion
     }
 }

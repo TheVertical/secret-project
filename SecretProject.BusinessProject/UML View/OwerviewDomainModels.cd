@@ -3,15 +3,15 @@
   <Class Name="SecretProject.BusinessProject.Models.Nomenclature" BaseTypeListCollapsed="true">
     <Position X="3.25" Y="3.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAgCAAAAAAAAAAAgAAACAAQABAAAAAAAAAAAAAACAAA=</HashCode>
+      <HashCode>AAgCAAAAAAAgAAAgAAACAASABAAAAAAAAAAQAAACAAA=</HashCode>
       <FileName>Models\Nomeclature\Nomenclature.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SecretProject.BusinessProject.Models.NomenclatureGroup" BaseTypeListCollapsed="true">
-    <Position X="3.25" Y="5.75" Width="2.5" />
+    <Position X="3.25" Y="6.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAIAgAAACQASAACAAAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAIAgAAACQAQAACAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Models\Nomeclature\NomenclatureGroup.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -25,7 +25,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SecretProject.BusinessProject.Models.User.User" Collapsed="true">
-    <Position X="10.5" Y="3.25" Width="1.5" />
+    <Position X="1.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
       <FileName>Models\User\User.cs</FileName>
