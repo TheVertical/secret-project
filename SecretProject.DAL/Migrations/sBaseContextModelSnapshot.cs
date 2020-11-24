@@ -19,6 +19,33 @@ namespace SecretProject.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("SecretProject.BusinessProject.Measurements.Measurement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<float>("Coefficient")
+                        .HasColumnType("real");
+
+                    b.Property<string>("InternationalName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Timestamp")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("ocCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Measurement");
+                });
+
             modelBuilder.Entity("SecretProject.BusinessProject.Models.Manufacturer", b =>
                 {
                     b.Property<int>("Id")
@@ -36,9 +63,6 @@ namespace SecretProject.DAL.Migrations
 
                     b.Property<int>("NomenclatureId")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("OcObject")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("Timestamp")
                         .HasColumnType("varbinary(max)");
@@ -58,17 +82,25 @@ namespace SecretProject.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MeasurementId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<Guid>("OcObject")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("Timestamp")
                         .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MeasurementId");
 
                     b.ToTable("Nomenclatures");
                 });
@@ -85,9 +117,6 @@ namespace SecretProject.DAL.Migrations
 
                     b.Property<int>("NomenclatureId")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("OcObject")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
@@ -118,9 +147,6 @@ namespace SecretProject.DAL.Migrations
                     b.Property<int?>("NomenclatureId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("OcObject")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<byte[]>("Timestamp")
                         .HasColumnType("varbinary(max)");
 
@@ -146,6 +172,15 @@ namespace SecretProject.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Nomenclature");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomenclature", b =>
+                {
+                    b.HasOne("SecretProject.BusinessProject.Measurements.Measurement", "Measurement")
+                        .WithMany()
+                        .HasForeignKey("MeasurementId");
+
+                    b.Navigation("Measurement");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureGroup", b =>

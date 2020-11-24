@@ -5,7 +5,12 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SecretProject.BusinessProject.DataAccess;
+using SecretProject.BusinessProject.Models;
 using SecretProject.DAL.Contexts;
+using SecretProject.DAL.DataAccess;
+using SecretProject.Services;
+using System.Text.Json;
 
 namespace SecretProject
 {
@@ -29,7 +34,9 @@ namespace SecretProject
             {
                 configuration.RootPath = "ClientApp/build";
             });
-            services.AddTransient<sBaseContext>(x => new sBaseContextFactory().CreateDbContext(null));
+            services.AddSingleton<IRepository<Nomenclature>>(x => new SqlRepository<Nomenclature>());
+            services.AddScoped<VisualRedactor>();
+            services.AddScoped<JsonSerializerOptions>(x => new JsonSerializerOptions { WriteIndented = true });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,15 +66,15 @@ namespace SecretProject
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
-            });
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseReactDevelopmentServer(npmScript: "start");
+            //    }
+            //});
         }
     }
 }
