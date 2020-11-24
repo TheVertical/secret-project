@@ -9,10 +9,10 @@ namespace SecretProject.DAL.Contexts
 {
     public class sBaseContext : DbContext
     {
-        public DbSet<Nomenclature> Nomenclatures { get; set; } 
-        public DbSet<NomenclatureGroup> NomenclatureGroups { get; set; } 
-        public DbSet<NomenclatureProperty> GetNomenclatureProperties { get; set; }
-        public DbSet<Manufacturer> Manufacturers { get; set; } 
+        internal DbSet<Nomenclature> Nomenclatures { get; set; } 
+        internal DbSet<NomenclatureGroup> NomenclatureGroups { get; set; }
+        internal DbSet<NomenclatureProperty> GetNomenclatureProperties { get; set; }
+        internal DbSet<Manufacturer> Manufacturers { get; set; } 
 
         public sBaseContext(DbContextOptions options) : base(options)
         {

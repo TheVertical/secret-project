@@ -8,6 +8,23 @@ namespace SecretProject.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Measurement",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Timestamp = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InternationalName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ocCode = table.Column<int>(type: "int", nullable: false),
+                    Coefficient = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Measurement", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Nomenclatures",
                 columns: table => new
                 {
@@ -15,11 +32,19 @@ namespace SecretProject.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Timestamp = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    OcObject = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MeasurementId = table.Column<int>(type: "int", nullable: true),
+                    Amount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Nomenclatures", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Nomenclatures_Measurement_MeasurementId",
+                        column: x => x.MeasurementId,
+                        principalTable: "Measurement",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -32,7 +57,6 @@ namespace SecretProject.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OcObject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NomenclatureId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -55,8 +79,7 @@ namespace SecretProject.DAL.Migrations
                     Timestamp = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    NomenclatureId = table.Column<int>(type: "int", nullable: false),
-                    OcObject = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    NomenclatureId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,8 +101,7 @@ namespace SecretProject.DAL.Migrations
                     Timestamp = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ParentId = table.Column<int>(type: "int", nullable: true),
-                    NomenclatureId = table.Column<int>(type: "int", nullable: false),
-                    OcObject = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    NomenclatureId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -119,6 +141,11 @@ namespace SecretProject.DAL.Migrations
                 name: "IX_NomenclatureGroups_ParentId",
                 table: "NomenclatureGroups",
                 column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Nomenclatures_MeasurementId",
+                table: "Nomenclatures",
+                column: "MeasurementId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -134,6 +161,9 @@ namespace SecretProject.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Nomenclatures");
+
+            migrationBuilder.DropTable(
+                name: "Measurement");
         }
     }
 }
