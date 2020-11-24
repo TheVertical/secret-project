@@ -1,0 +1,48 @@
+//Json-макет, который будет прилетать при первой загрузке сайта
+{
+  //TODO На будущее, надо будет кэшировать Header, GrayLine, Footer
+  //Header - шапка
+  "Header": {
+    //"Parametrs" : ""
+    "VisualElements": [
+      {
+        "Id": "guid",
+        "Type": "ImageBlock",
+        "Alt": "alt",
+        "Source": "link"
+      },
+      {
+        "Id": "guid",
+        "Type": "LinksMenu",
+        "Links": [
+          {
+            "Id": "guid",
+            "Title": "title",
+            "Link": "link"
+          }
+          //...
+        ]
+      },
+      {
+        "Id": "guid",
+        "Type": "LinksMenu",
+        "Phone": "string",
+        "OpeningHours": "string"
+      }
+    ]
+  },
+  //Серая полоса
+  "GrayLine": {
+    //"VisualElements": []
+  },
+  //Основное содержимое сайта
+  "Content": {
+    //"Paremeters" : ""
+    //s"VisualElements": []
+  },
+
+  "Footer": {
+    //"Paremeters" : ""
+    //s"VisualElements": []
+  }
+}

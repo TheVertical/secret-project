@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SecretProject.BusinessProject.DataAccess;
+using SecretProject.BusinessProject.Models;
 using SecretProject.DAL.Contexts;
 using System;
 using System.Collections.Generic;
@@ -13,21 +15,18 @@ namespace SecretProject.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private sBaseContext Context { get; set; }
-        public WeatherForecastController(sBaseContext context)
-        {
-            Context = context;
-        }
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IRepository<Nomenclature> repository;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IRepository<Nomenclature> repository)
         {
             _logger = logger;
+            this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         [HttpGet]
@@ -42,5 +41,10 @@ namespace SecretProject.Controllers
             })
             .ToArray();
         }
+
+        //public IEnumerable<Nomenclature> Get()
+        //{
+
+        //}
     }
 }
