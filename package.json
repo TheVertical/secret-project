@@ -1,3 +1,7 @@
 {
-  "name": "SecretProject"
+  "name": "SecretProject",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "react-bootstrap": "^1.4.0"
+  }
 }
