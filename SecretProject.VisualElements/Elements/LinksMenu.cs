@@ -9,7 +9,7 @@ namespace SecretProject.VisualElements.Elements
     public class LinksMenu : IVisualElement
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [NotMapped]
         public string Type => this.GetType().Name;
         public IEnumerable<LinkItem> Links { get; set; }
@@ -24,14 +24,18 @@ namespace SecretProject.VisualElements.Elements
 
     public class LinkItem
     {
-        public LinkItem(Guid id, string title, string link)
+        public LinkItem()
+        {
+
+        }
+        public LinkItem(int id, string title, string link)
         {
             Id = id;
             Title = title;
             Link = link;
         }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Link { get; set; }
 

@@ -14,7 +14,7 @@ namespace SecretProject.BusinessProject.DataAccess
         void Update(object entity);
     }
     public interface IRepository<Entity>
-        where Entity : class, DomainObject
+        where Entity : class, IDomainObject
     {
         Entity GetById(int id);
         //TODO Переделать метод получения всех сущностей в интерфейсе!

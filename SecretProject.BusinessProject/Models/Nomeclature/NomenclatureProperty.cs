@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SecretProject.BusinessProject.Models
 {
-    public class NomenclatureProperty : DomainObject
+    public class NomenclatureProperty : IDomainObject
     {
         #region Base Property
 

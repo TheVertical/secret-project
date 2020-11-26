@@ -6,14 +6,8 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class CheckBoxButton : IButton, IVisualElement
+    public class CheckBoxButton : Button, IVisualElement
     {
-        [Key]
-        public Guid Id { get; set; }
-        [NotMapped]
-        public string Type => this.GetType().Name;
-        [StringLength(20)]
-        public string Title { get; set; }
         public bool IsCheck { get; set; }
         public IVisualGroup Group { get; set; }
 

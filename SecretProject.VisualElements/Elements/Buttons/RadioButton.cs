@@ -6,15 +6,8 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    class RadioButton : IButton, IVisualElement
+    class RadioButton : Button, IVisualElement
     {
-        [Key]
-        public Guid Id { get; set; }
-        [NotMapped]
-        public string Type => this.GetType().Name;
-        [StringLength(20)]
-        public string Title { get; set; }
-        public IVisualGroup Group { get; set; }
-
+        public List<RadioButton> Group { get; set; }
     }
 }

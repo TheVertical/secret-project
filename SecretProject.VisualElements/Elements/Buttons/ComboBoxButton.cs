@@ -6,15 +6,8 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class ComboBoxButton : IButton, IVisualElement
+    public class ComboBoxButton : Button, IVisualElement
     {
-        [Key]
-        public Guid Id { get; set; }
-        [NotMapped]
-        public string Type => this.GetType().Name;
-        [StringLength(20)]
-        public string Title { get; set; }
-        public IVisualGroup Children { get; set; }
-
+        public IList<ComboBoxButton> Children { get; set; } = new List<ComboBoxButton>();
     }
 }

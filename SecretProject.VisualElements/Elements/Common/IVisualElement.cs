@@ -7,7 +7,7 @@ namespace SecretProject.VisualElements.Elements
 {
     public interface IVisualElement
     {
-        Guid Id { get; set; }
+        int Id { get; set; }
         [NotMapped]
         string Type { get; }
     }

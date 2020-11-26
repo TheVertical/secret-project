@@ -7,7 +7,7 @@ using System.Text;
 namespace SecretProject.BusinessProject.Models
 {
     [Table("Manufacturers")]
-    public class Manufacturer : DomainObject
+    public class Manufacturer : IDomainObject
     {
         #region Base Property
 

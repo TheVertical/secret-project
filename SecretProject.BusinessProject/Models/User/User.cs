@@ -5,7 +5,11 @@ using System.Text;
 
 namespace SecretProject.BusinessProject.Models.User
 {
-    public class User : DomainObject
+    public enum UserStatus
+    {
+        Active,Block,Disable,NonActive
+    }
+    public class User : IDomainObject
     {
 
         #region Base Property
@@ -20,9 +24,38 @@ namespace SecretProject.BusinessProject.Models.User
         /// <summary>
         [Display(Name = "Специальный байтовый код для параллельных запросов к бд")]
         public virtual byte[] Timestamp { get; set; }
-
+        public virtual UserStatus Status { get; set; }
+        #region Authorization
+        /// <summary>
+        /// Логин
+        /// <summary>
+        [Display(Name = "Логин")]
         public virtual string Login { get; set; }
+        /// <summary>
+        /// Пароль
+        /// <summary>
+        [Display(Name = "Пароль")]
+        [StringLength(32)]
+        public virtual string Password { get; set; }
+        public virtual string Salt { get; set; }
+        #endregion
 
+        /// <summary>
+        /// Имя пользователя
+        /// <summary>
+        [Display(Name = "Имя пользователя")]
+        public virtual string FirstName { get; set; }
+        /// <summary>
+        /// Фамилия пользователя
+        /// <summary>
+        [Display(Name = "Фамилия пользователя")]
+        public virtual string LastName { get; set; }
+        /// <summary>
+        /// Электронная почта
+        /// <summary>
+        [Display(Name = "Электронная почта")]
+        public virtual string Email { get; set; }
+        public virtual Phone Phone { get; set; }
         #endregion
 
         #region Foreign keys
