@@ -1,3 +1,9 @@
 {
-  "name": "SecretProject"
+  "name": "SecretProject",
+  "dependencies": {
+    "typescript": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0"
+  }
 }
