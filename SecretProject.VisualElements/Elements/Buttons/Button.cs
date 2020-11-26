@@ -6,14 +6,14 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class Button : IVisualElement, IButton
+    public class Button : IVisualElement
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [NotMapped]
         public string Type => this.GetType().Name;
         [StringLength(20)]
         public string Title { get; set; }
-        public string ForwardingLink { get; set; }
+        public string Action { get; set; }
     }
 }

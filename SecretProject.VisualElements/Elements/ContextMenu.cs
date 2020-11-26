@@ -6,13 +6,12 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class ImageBlock : IVisualElement
+    public class ContextMenu : IVisualElement
     {
         [Key]
         public int Id { get; set; }
         [NotMapped]
         public string Type => this.GetType().Name;
-        public string Alt { get; set; }
-        public string Source { get; set; }
+
     }
 }

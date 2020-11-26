@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SecretProject.BusinessProject.Measurements
 {
-    public class Measurement : DomainObject
+    public class Measurement : IDomainObject
     {
 
         #region Base Property

@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 namespace SecretProject.DAL.DataAccess
 {
     public class SqlRepository<Entity> : IRepository<Entity>
-        where Entity : class, DomainObject
+        where Entity : class, IDomainObject
     {
 
         #region Model

@@ -9,7 +9,7 @@ namespace SecretProject.VisualElements.Elements
     public class ContactBlock : IVisualElement
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [NotMapped]
         public string Type => this.GetType().Name;
         public string Phone { get; set; }
