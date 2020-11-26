@@ -1,0 +1,20 @@
+.blockStylle{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.bigAStyle{
+    font-size: 27px;
+    color:white;
+    text-transform: none;
+}
+.smallAStyle{
+    font-size: 16px;
+    color:white;
+    text-transform: none;
+}
+.pppStyle{
+    margin:0;
+    font-size:14px;
+}

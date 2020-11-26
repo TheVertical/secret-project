@@ -1,0 +1,18 @@
+.styleForLeft{
+    background-color:blue;
+    
+}
+.styleForCenter{
+    background-color:red;
+}
+.styleForRight{
+    background-color:fuchsia;
+}
+.inlineStyle{
+    display: inline;
+}
+.globalStyle{
+    width:100%;
+    background-color:#83bde5;
+    padding: 1.5%;
+}

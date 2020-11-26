@@ -15,9 +15,7 @@ const picture=(props)=>{
     //Здесь будут функции(внутренние)
 
 return(
-<div>
-<h1>picture</h1>
-</div>
+<img src={props.src}></img>
 );
 
 }

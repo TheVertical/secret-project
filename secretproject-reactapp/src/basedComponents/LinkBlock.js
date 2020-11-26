@@ -1,5 +1,5 @@
 import React from "react"
-
+import "./LinkBlock.css"
 // Здесь будут состояния
 
 
@@ -12,20 +12,25 @@ import React from "react"
 //Здесь будет главная функция экспорта 
 const linkblock=(props)=>{
 
-    // Здесь будут состояния
-
-
-    //Здесь будут функции(внутренние)
-
-return(
-<div>
-    <h1>LinkBlock</h1>
-    <h1>DDDDDDDDDDDDDDD</h1>
-
-</div>
-);
+   let arr=[];
+   for (let key in props.Links){
+       arr.push(<a href={props.Links[key]} className="stylishAAA">{key}</a>)
+       
+   }
+   
+    return (
+        
+        <div className="blockStyle"> 
+            {arr}
+        </div>
+    
+        
+        
+        )
 
 }
+
+
 
 
 
