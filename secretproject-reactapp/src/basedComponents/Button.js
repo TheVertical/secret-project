@@ -1,5 +1,5 @@
 import React from "react"
-
+import Button from 'react-bootstrap/Button'
 // Здесь будут состояния
 
 
@@ -19,6 +19,7 @@ return(
    <h1>
        Button
    </h1>
+   <Button>НАЖАТЬ</Button>
 </div>
 );
 

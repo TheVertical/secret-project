@@ -1,32 +1,25 @@
 import React, { Children } from 'react';
-// import {
-//    Button,
-//    CheckBox,
-//    LinkBlock,
-//    Picture,
-//    Radio
-// } from "../components/"
-import Button from "../basedComponents/Button"
-import CheckBox from "../basedComponents/CheckBox"
-import LinkBlock from "../basedComponents/LinkBlock"
-import Picture from "../basedComponents/Picture"
-import Radio  from "../basedComponents/Radio"
+import Header from "./LayoutElements/Header"
+import Main from "./LayoutElements/Main"
+import Footer from "./LayoutElements/Footer"
+
+
+
 
 class Layout extends React.Component{
 
 render(props){
    return(
-      <div>
-         <Button/>
-         <CheckBox/>
-         <LinkBlock/>
-         <Picture/>
-         <Radio></Radio>
+   
+   <div>
+         <Header></Header>
+         <Main></Main>
+         <Footer></Footer>
       </div>
-   )
+   );
 }
 
 
 }
 
-export default Layout;
+export default Layout

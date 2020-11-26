@@ -7,8 +7,8 @@ import App from './App';
 
 ReactDOM.render(
 
-    <App />,
-    
+    <App/>,
+
   rootElement);
  
 
