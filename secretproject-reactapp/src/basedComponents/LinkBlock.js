@@ -24,8 +24,6 @@ const linkblock=(props)=>{
             {arr}
         </div>
     
-        
-        
         )
 
 }

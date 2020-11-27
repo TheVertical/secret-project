@@ -24,6 +24,7 @@ color: #555555;
 margin-right:15px;
 font-size: 14px;
 }
-.stylishAAA :hover{
+.stylishAAA:hover{
     color:white;
+    text-decoration: none;
 }
