@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SecretProject.BusinessProject.Models.User
@@ -55,7 +56,12 @@ namespace SecretProject.BusinessProject.Models.User
         /// <summary>
         [Display(Name = "Электронная почта")]
         public virtual string Email { get; set; }
-        public virtual Phone Phone { get; set; }
+        /// <summary>
+        /// Номер телефона в цифромов формате, ИСПОЛЬЗУЙТЕ поле Phone
+        /// </summary>
+        public string PhoneNumber { get => Phone.PhoneDigits; set => Phone.PhoneNumber = value; }
+        [NotMapped]
+        public Phone Phone = new Phone();
         #endregion
 
         #region Foreign keys

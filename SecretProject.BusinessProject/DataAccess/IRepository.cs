@@ -17,6 +17,7 @@ namespace SecretProject.BusinessProject.DataAccess
         where Entity : class, IDomainObject
     {
         Entity GetById(int id);
+        IEnumerable<Entity> Get(int count, Func<Entity, bool> pericate);
         //TODO Переделать метод получения всех сущностей в интерфейсе!
         IEnumerable<Entity> GetAll<TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending);
         void Add(Entity entity);
