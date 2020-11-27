@@ -8,6 +8,6 @@ namespace SecretProject.VisualElements.Elements
 {
     class RadioButton : Button, IVisualElement
     {
-        public List<RadioButton> Group { get; set; }
+        //public List<RadioButton> Group { get; set; }
     }
 }

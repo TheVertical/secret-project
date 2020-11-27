@@ -8,6 +8,6 @@ namespace SecretProject.VisualElements.Elements
 {
     public class ComboBoxButton : Button, IVisualElement
     {
-        public IList<ComboBoxButton> Children { get; set; } = new List<ComboBoxButton>();
+        public IList<ComboBoxButton> Items { get; set; } = new List<ComboBoxButton>();
     }
 }
