@@ -11,12 +11,24 @@ namespace SecretProject.Services
 {
     public class VisualRedactor
     {
+
+        #region Model
         private JsonSerializerOptions serializeOptions;
 
+        #endregion
+
+        #region Properties
+
+        #endregion
+
+        #region Realization
         public VisualRedactor(JsonSerializerOptions serializeOptions)
         {
             this.serializeOptions = serializeOptions ?? throw new ArgumentNullException(nameof(serializeOptions));
         }
+        #endregion
+
+        #region Class Methods
         public JsonResult GetBackbone()
         {
             /////Header
@@ -41,7 +53,7 @@ namespace SecretProject.Services
             backbone.Add("Header", header);
             Block grayLine = new Block();
             backbone.Add("GrayLine", grayLine);
-            Block content= new Block();
+            Block content = new Block();
             backbone.Add("Content", content);
             Block footer = new Block();
             backbone.Add("Footer", footer);
@@ -56,8 +68,11 @@ namespace SecretProject.Services
 
             ImageBlock logo = new ImageBlock { Id = 0, Alt = "Логотип компании", Source = "#" };
             header.AddVisualElement(logo);
-            LinksMenu linksMenu = new LinksMenu { Id = 0, Links = new List<LinkItem>{
-                new LinkItem (0,"#","Доставка и оплата_1 " ), new LinkItem(0, "#", "Доставка и оплата_2") } 
+            LinksMenu linksMenu = new LinksMenu
+            {
+                Id = 0,
+                Links = new List<LinkItem>{
+                new LinkItem (0,"#","Доставка и оплата_1 " ), new LinkItem(0, "#", "Доставка и оплата_2") }
             };
             header.AddVisualElement(linksMenu);
             ContactBlock contactblock = new ContactBlock() { Id = 0, OpeningHours = "openingHours", Phone = "8 (812) 388-4538" };
@@ -73,6 +88,14 @@ namespace SecretProject.Services
             return new JsonResult(backbone, serializeOptions);
         }
 
+        public JsonResult GetVisualElementJson(object visualElement)
+        {
+            return new JsonResult(visualElement, serializeOptions);
+        }
+        public JsonResult GetVisualElementJson(IEnumerable<object> visualElements)
+        {
+            return new JsonResult(visualElements,serializeOptions);
+        }
 #if DEBUG
         public JsonResult GetAllJsonVisualObjects()
         {
@@ -89,9 +112,11 @@ namespace SecretProject.Services
                         elements.AddVisualElement(elem);
                 }
             }
-            return new JsonResult(backbone);
+            return new JsonResult(backbone, serializeOptions);
         }
 #endif
-
+        #endregion
     }
+
+    
 }
