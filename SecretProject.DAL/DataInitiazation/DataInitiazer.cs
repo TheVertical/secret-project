@@ -10,6 +10,7 @@ namespace SecretProject.DAL.DataInitiazation
 {
     public class DataInitiazer
     {
+        #region Class Methods
         public static void InitializeData(sBaseContext context)
         {
             //var nomenclatureGroups = new List<NomenclatureGroup>
@@ -38,5 +39,6 @@ namespace SecretProject.DAL.DataInitiazation
             //        }
             //};
         }
+        #endregion
     }
 }

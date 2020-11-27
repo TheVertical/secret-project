@@ -75,7 +75,7 @@ namespace SecretProject.DAL.Migrations
                     b.ToTable("Manufacturers");
                 });
 
-            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomenclature", b =>
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomeclature.Nomenclature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,6 +84,9 @@ namespace SecretProject.DAL.Migrations
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
+
+                    b.Property<float>("Cost")
+                        .HasColumnType("real");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -95,6 +98,9 @@ namespace SecretProject.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("PromotionId")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Timestamp")
                         .HasColumnType("varbinary(max)");
 
@@ -102,7 +108,30 @@ namespace SecretProject.DAL.Migrations
 
                     b.HasIndex("MeasurementId");
 
+                    b.HasIndex("PromotionId");
+
                     b.ToTable("Nomenclatures");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomeclature.Promotion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("OfficialTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Timestamp")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("WorkTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Promotions");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureGroup", b =>
@@ -160,12 +189,67 @@ namespace SecretProject.DAL.Migrations
 
                     b.HasIndex("NomenclatureId");
 
-                    b.ToTable("GetNomenclatureProperties");
+                    b.ToTable("NomenclatureProperties");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<byte[]>("Timestamp")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.User.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Salt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Timestamp")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.Manufacturer", b =>
                 {
-                    b.HasOne("SecretProject.BusinessProject.Models.Nomenclature", "Nomenclature")
+                    b.HasOne("SecretProject.BusinessProject.Models.Nomeclature.Nomenclature", "Nomenclature")
                         .WithOne("Manufacturer")
                         .HasForeignKey("SecretProject.BusinessProject.Models.Manufacturer", "NomenclatureId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -174,18 +258,26 @@ namespace SecretProject.DAL.Migrations
                     b.Navigation("Nomenclature");
                 });
 
-            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomenclature", b =>
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomeclature.Nomenclature", b =>
                 {
                     b.HasOne("SecretProject.BusinessProject.Measurements.Measurement", "Measurement")
                         .WithMany()
                         .HasForeignKey("MeasurementId");
 
+                    b.HasOne("SecretProject.BusinessProject.Models.Nomeclature.Promotion", "Promotion")
+                        .WithMany("DiscountedProducts")
+                        .HasForeignKey("PromotionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Measurement");
+
+                    b.Navigation("Promotion");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureGroup", b =>
                 {
-                    b.HasOne("SecretProject.BusinessProject.Models.Nomenclature", "Nomenclature")
+                    b.HasOne("SecretProject.BusinessProject.Models.Nomeclature.Nomenclature", "Nomenclature")
                         .WithOne("NomenclatureGroup")
                         .HasForeignKey("SecretProject.BusinessProject.Models.NomenclatureGroup", "NomenclatureId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -202,18 +294,23 @@ namespace SecretProject.DAL.Migrations
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureProperty", b =>
                 {
-                    b.HasOne("SecretProject.BusinessProject.Models.Nomenclature", null)
+                    b.HasOne("SecretProject.BusinessProject.Models.Nomeclature.Nomenclature", null)
                         .WithMany("Properties")
                         .HasForeignKey("NomenclatureId");
                 });
 
-            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomenclature", b =>
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomeclature.Nomenclature", b =>
                 {
                     b.Navigation("Manufacturer");
 
                     b.Navigation("NomenclatureGroup");
 
                     b.Navigation("Properties");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomeclature.Promotion", b =>
+                {
+                    b.Navigation("DiscountedProducts");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureGroup", b =>

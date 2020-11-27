@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SecretProject.BusinessProject.Models;
+using SecretProject.BusinessProject.Models.Nomeclature;
+using SecretProject.BusinessProject.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,8 +13,11 @@ namespace SecretProject.DAL.Contexts
     {
         internal DbSet<Nomenclature> Nomenclatures { get; set; } 
         internal DbSet<NomenclatureGroup> NomenclatureGroups { get; set; }
-        internal DbSet<NomenclatureProperty> GetNomenclatureProperties { get; set; }
+        internal DbSet<NomenclatureProperty> NomenclatureProperties { get; set; }
         internal DbSet<Manufacturer> Manufacturers { get; set; } 
+        internal DbSet<Promotion> Promotions { get; set; }
+        internal DbSet<Order> Orders { get; set; }
+        internal DbSet<User> Users { get; set; }
 
         public sBaseContext(DbContextOptions options) : base(options)
         {

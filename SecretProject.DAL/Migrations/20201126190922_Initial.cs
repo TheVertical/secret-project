@@ -25,6 +25,55 @@ namespace SecretProject.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Timestamp = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Promotions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Timestamp = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    WorkTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OfficialTitle = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Promotions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Timestamp = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: true),
+                    Salt = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Nomenclatures",
                 columns: table => new
                 {
@@ -34,7 +83,9 @@ namespace SecretProject.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MeasurementId = table.Column<int>(type: "int", nullable: true),
-                    Amount = table.Column<int>(type: "int", nullable: false)
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    Cost = table.Column<float>(type: "real", nullable: false),
+                    PromotionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,29 +96,12 @@ namespace SecretProject.DAL.Migrations
                         principalTable: "Measurement",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GetNomenclatureProperties",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Timestamp = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NomenclatureId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GetNomenclatureProperties", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_GetNomenclatureProperties_Nomenclatures_NomenclatureId",
-                        column: x => x.NomenclatureId,
-                        principalTable: "Nomenclatures",
+                        name: "FK_Nomenclatures_Promotions_PromotionId",
+                        column: x => x.PromotionId,
+                        principalTable: "Promotions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -120,10 +154,28 @@ namespace SecretProject.DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_GetNomenclatureProperties_NomenclatureId",
-                table: "GetNomenclatureProperties",
-                column: "NomenclatureId");
+            migrationBuilder.CreateTable(
+                name: "NomenclatureProperties",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Timestamp = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NomenclatureId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NomenclatureProperties", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_NomenclatureProperties_Nomenclatures_NomenclatureId",
+                        column: x => x.NomenclatureId,
+                        principalTable: "Nomenclatures",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Manufacturers_NomenclatureId",
@@ -143,16 +195,23 @@ namespace SecretProject.DAL.Migrations
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_NomenclatureProperties_NomenclatureId",
+                table: "NomenclatureProperties",
+                column: "NomenclatureId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Nomenclatures_MeasurementId",
                 table: "Nomenclatures",
                 column: "MeasurementId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Nomenclatures_PromotionId",
+                table: "Nomenclatures",
+                column: "PromotionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "GetNomenclatureProperties");
-
             migrationBuilder.DropTable(
                 name: "Manufacturers");
 
@@ -160,10 +219,22 @@ namespace SecretProject.DAL.Migrations
                 name: "NomenclatureGroups");
 
             migrationBuilder.DropTable(
+                name: "NomenclatureProperties");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
                 name: "Nomenclatures");
 
             migrationBuilder.DropTable(
                 name: "Measurement");
+
+            migrationBuilder.DropTable(
+                name: "Promotions");
         }
     }
 }

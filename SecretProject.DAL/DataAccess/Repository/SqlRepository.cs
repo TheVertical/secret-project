@@ -27,7 +27,7 @@ namespace SecretProject.DAL.DataAccess
         }
         #endregion
 
-        #region Base Methods
+        #region Interface's Methods
         public void Add(Entity entity)
         {
             table.Add(entity);
@@ -41,6 +41,10 @@ namespace SecretProject.DAL.DataAccess
         public Entity GetById(int id)
         {
             return table.Find(id);
+        }
+        public IEnumerable<Entity> Get(int count,Func<Entity,bool> predicate)
+        {
+            return table.Where(predicate).Take(count);
         }
         //TODO Переделать метод получения всех сущностей
         public IEnumerable<Entity> GetAll<TSortField>(Expression<Func<Entity,TSortField>> orderBy,bool ascending)
@@ -65,10 +69,6 @@ namespace SecretProject.DAL.DataAccess
             context.Entry(entity).State = EntityState.Modified;
             Save();
         }
-
-        #endregion
-
-        #region Special Methods
 
         #endregion
     }
