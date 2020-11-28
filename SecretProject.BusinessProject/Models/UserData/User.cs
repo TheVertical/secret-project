@@ -73,7 +73,7 @@ namespace SecretProject.BusinessProject.Models.UserData
         /// Адреса доставки
         /// </summary>
         [Display(Name = "Адреса доставки")]
-        public IEnumerable<Adress> DeliveryAdresses { get; set; }
+        public List<Adress> DeliveryAdresses { get; set; }
 
 
         #endregion

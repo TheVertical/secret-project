@@ -45,7 +45,7 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         /// Свойства номенклатуры
         /// </summary>
         [Display(Name = "Свойства номенклатуры")]
-        public virtual ICollection<NomenclatureProperty> Properties { get; set; } = new HashSet<NomenclatureProperty>();
+        public virtual List<NomenclatureProperty> Properties { get; set; }
         /// <summary>
         /// Измерение номенклатуры (еденица измерения и т.д.)
         /// </summary>

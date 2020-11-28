@@ -34,7 +34,7 @@ namespace SecretProject.BusinessProject.Models.Order
         /// <summary>
         /// Позиции заказа
         /// </summary>
-        public IEnumerable<OrderItem> OrderItems { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
 
         private double fullCost;
         /// <summary>

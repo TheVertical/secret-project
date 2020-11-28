@@ -30,7 +30,7 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         [Display(Name = "Официальное название")]
         public virtual string OfficialTitle { get; set; }
 
-        public IEnumerable<Nomenclature> DiscountedProducts { get; set; }
+        public List<Nomenclature> DiscountedProducts { get; set; }
         #endregion
 
 
