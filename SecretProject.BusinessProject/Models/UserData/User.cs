@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace SecretProject.BusinessProject.Models.User
+namespace SecretProject.BusinessProject.Models.UserData
 {
     public enum UserStatus
     {
@@ -23,7 +23,7 @@ namespace SecretProject.BusinessProject.Models.User
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
         /// <summary>
-        [Display(Name = "Специальный байтовый код для параллельных запросов к бд")]
+        [Timestamp]
         public virtual byte[] Timestamp { get; set; }
         public virtual UserStatus Status { get; set; }
         #region Authorization
@@ -33,7 +33,7 @@ namespace SecretProject.BusinessProject.Models.User
         [Display(Name = "Логин")]
         public virtual string Login { get; set; }
         /// <summary>
-        /// Пароль
+        /// Пароль "засоленный"
         /// <summary>
         [Display(Name = "Пароль")]
         [StringLength(32)]
@@ -57,11 +57,19 @@ namespace SecretProject.BusinessProject.Models.User
         [Display(Name = "Электронная почта")]
         public virtual string Email { get; set; }
         /// <summary>
-        /// Номер телефона в цифромов формате, ИСПОЛЬЗУЙТЕ поле Phone
+        /// Основной номер телефона в цифромов формате, ИСПОЛЬЗУЙТЕ поле MainPhone
         /// </summary>
-        public string PhoneNumber { get => Phone.PhoneDigits; set => Phone.PhoneNumber = value; }
+        public string PhoneNumber { get => MainPhone.PhoneDigits; set => MainPhone.PhoneNumber = value; }
         [NotMapped]
-        public Phone Phone = new Phone();
+        public Phone MainPhone = new Phone();
+        /// <summary>
+        /// Дополнительный номер телефона в цифромов формате, ИСПОЛЬЗУЙТЕ поле AdditionalPhone
+        /// </summary>
+        public string AdditionalNumber { get => AdditionalPhone.PhoneDigits; set => AdditionalPhone.PhoneNumber = value; }
+        [NotMapped]
+        public Phone AdditionalPhone = new Phone();
+
+
         #endregion
 
         #region Foreign keys

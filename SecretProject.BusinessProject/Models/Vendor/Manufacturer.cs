@@ -20,7 +20,7 @@ namespace SecretProject.BusinessProject.Models
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
         /// <summary>
-        [Display(Name = "Специальный байтовый код для параллельных запросов к бд")]
+        [Timestamp]
         public virtual byte[] Timestamp { get; set; }
 
         /// <summary>

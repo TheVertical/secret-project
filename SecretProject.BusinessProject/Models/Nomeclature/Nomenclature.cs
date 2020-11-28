@@ -18,7 +18,7 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
         /// <summary>
-        [Display(Name = "Специальный байтовый код для параллельных запросов к бд")]
+        [Timestamp]
         public virtual byte[] Timestamp { get; set; }
         /// <summary>
         /// Название номенклатуры
@@ -58,9 +58,9 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         public virtual int Amount { get; set; }
         private float cost;
         /// <summary>
-        /// Цена товара
+        /// Оригинальная цена по номенклатуре
         /// <summary>
-        [Display(Name = "Цена товара")]
+        [Display(Name = "Оригинальная цена по номенклатуре")]
         public virtual float Cost
         {
             get
@@ -81,6 +81,7 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
             }
         }
         [NotMapped]
+        //QUESTION Может ценовую политику перенести в заказ?
         /// <summary>
         /// Ценовая политика номенклатуры
         /// <summary>
@@ -92,6 +93,9 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
 
         #region Foreign Keys
         public virtual int PromotionId { get; set; }
+        /// <summary>
+        /// Акция
+        /// </summary>
         [ForeignKey(nameof(PromotionId))]
         public virtual Promotion Promotion { get; set; }
 
