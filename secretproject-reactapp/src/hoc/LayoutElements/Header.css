@@ -27,26 +27,41 @@
 }
 .dropDownStyles{
     display:inline-flex;
+    padding: 0px;
+    margin-right: 10px;
 }
 .dropDownElementStyles{
     background-color:#555555;
 }
-.dropdown-toggle::after {
+/* .dropdown-toggle::after {
     display:none;
-}
+} */
 .btn{
     color:#555555;
     background-color:#fff;
-    margin-right:10px;
     border-color:#fff;
     border-radius: 1rem;
+  
 }
-.dropdown-menu{
-    border-radius: 1rem;
+
+.styleForMargin{
+    margin-right: 10px;
 }
-.styleForDropdownUP:active .dropdown-menu.show{
-    display:block;
+.styleForMargin{
+    margin-right: 15px;
 }
-.Dropdown1Button>*{
-    padding: 0;
+.dropdown-menu.show {
+    display: block;
+    padding: 0px;
+    border-radius:1rem 1rem 1rem 1rem;
+}
+/* .styleForAkciiISkidki{
+    border-radius:0;
+} */
+.btn-primary::after{
+    display: none;
+}
+.stylesForShopLogoAndProfileLogo{
+    display: contents;
+    
 }
