@@ -23,7 +23,7 @@ import Search from '../../containers/Search'
 class Header extends React.Component {
 
     constructor() {
-        super()
+        super();
         this.state = {
             isColumn: false,
             Links: {
@@ -39,8 +39,38 @@ class Header extends React.Component {
         }
     }
 
+<<<<<<< HEAD
     //Функции
 
+=======
+    MyVerticallyCenteredModal(props) {
+        return (
+          <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Modal heading
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h4>Centered Modal</h4>
+              <p>
+                Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                consectetur ac, vestibulum at eros.
+              </p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        );
+    }
+>>>>>>> aa554ee52eca740d4f0ad022cb510c922dd216f6
 
     render() {
         return (
@@ -171,9 +201,7 @@ class Header extends React.Component {
 
         )
 
-
     }
-
 }
 export default Header
 
