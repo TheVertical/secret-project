@@ -13,27 +13,27 @@ namespace SecretProject.BusinessProject.Models
 
         /// <summary>
         /// Ид
-        /// <summary>
+        /// </summary>
         [Display(Name = "Ид")]
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
-        /// <summary>
+        /// </summary>
         [Timestamp]
         public virtual byte[] Timestamp { get; set; }
         /// <summary>
         /// Название группы номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Название группы номенклатуры")]
         public virtual string Name { get; set; }
         /// <summary>
         /// Родительская группа
-        /// <summary>
+        /// </summary>
         [Display(Name = "Родительская группа")]
         public virtual NomenclatureGroup Parent { get; set; }
         /// <summary>
         /// Дочерние группы
-        /// <summary>
+        /// </summary>
         [Display(Name = "Дочерние группы")]
         public virtual IList<NomenclatureGroup> Childs { get; set; }
         #endregion

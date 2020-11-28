@@ -8,7 +8,7 @@ using System.Text;
 namespace SecretProject.BusinessProject.Models.Order
 {
     /// <summary>
-    /// Класс описывает детали заказа (пользователя, адресс доставки, и т.д.)
+    /// Класс описывает детали заказа (пользователь, адресс доставки, и т.д.)
     /// </summary>
     [Table("Orders.Details")]
     public class OrderDetails : IDomainObject
@@ -20,7 +20,7 @@ namespace SecretProject.BusinessProject.Models.Order
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
-        /// <summary>
+        /// </summary>
         [Timestamp]
         public virtual byte[] Timestamp { get; set; }
 
@@ -44,7 +44,20 @@ namespace SecretProject.BusinessProject.Models.Order
         [NotMapped]
         public Phone AdditionalPhone = new Phone();
 
-
+        public virtual string Country { get; set; }
+        public virtual string City { get; set; }
+        public virtual string District { get; set; }
+        public virtual string Street { get; set; }
+        public virtual int BuildNumber { get; set; }
+        /// <summary>
+        /// Подъезд
+        /// </summary>
+        public virtual byte Entrance { get; set; }
+        /// <summary>
+        /// Этаж
+        /// </summary>
+        public virtual byte Floor { get; set; }
+        public virtual int AppartmentNumber { get; set; }
 
 
         #endregion

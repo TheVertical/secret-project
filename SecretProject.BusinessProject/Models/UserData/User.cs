@@ -17,24 +17,24 @@ namespace SecretProject.BusinessProject.Models.UserData
 
         /// <summary>
         /// Ид
-        /// <summary>
+        /// </summary>
         [Display(Name = "Ид")]
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
-        /// <summary>
+        /// </summary>
         [Timestamp]
         public virtual byte[] Timestamp { get; set; }
         public virtual UserStatus Status { get; set; }
         #region Authorization
         /// <summary>
         /// Логин
-        /// <summary>
+        /// </summary>
         [Display(Name = "Логин")]
         public virtual string Login { get; set; }
         /// <summary>
         /// Пароль "засоленный"
-        /// <summary>
+        /// </summary>
         [Display(Name = "Пароль")]
         [StringLength(32)]
         public virtual string Password { get; set; }
@@ -43,17 +43,17 @@ namespace SecretProject.BusinessProject.Models.UserData
 
         /// <summary>
         /// Имя пользователя
-        /// <summary>
+        /// </summary>
         [Display(Name = "Имя пользователя")]
         public virtual string FirstName { get; set; }
         /// <summary>
         /// Фамилия пользователя
-        /// <summary>
+        /// </summary>
         [Display(Name = "Фамилия пользователя")]
         public virtual string LastName { get; set; }
         /// <summary>
         /// Электронная почта
-        /// <summary>
+        /// </summary>
         [Display(Name = "Электронная почта")]
         public virtual string Email { get; set; }
         /// <summary>
@@ -68,6 +68,12 @@ namespace SecretProject.BusinessProject.Models.UserData
         public string AdditionalNumber { get => AdditionalPhone.PhoneDigits; set => AdditionalPhone.PhoneNumber = value; }
         [NotMapped]
         public Phone AdditionalPhone = new Phone();
+
+        /// <summary>
+        /// Адреса доставки
+        /// </summary>
+        [Display(Name = "Адреса доставки")]
+        public IEnumerable<Adress> DeliveryAdresses { get; set; }
 
 
         #endregion

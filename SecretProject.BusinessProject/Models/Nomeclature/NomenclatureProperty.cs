@@ -12,30 +12,30 @@ namespace SecretProject.BusinessProject.Models
 
         /// <summary>
         /// Ид
-        /// <summary>
+        /// </summary>
         [Display(Name = "Ид")]
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
-        /// <summary>
+        /// </summary>
         [Timestamp]
         public virtual byte[] Timestamp { get; set; }
 
         /// <summary>
         /// Название свойства номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Название свойства номенклатуры")]
         public virtual string Name { get; set; }
 
         /// <summary>
         /// Тип свойства номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Тип свойства номенклатуры")]
         public virtual string Type { get; set; }
 
         /// <summary>
         /// Значение свойства номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Значение свойства номенклатуры")]
         public virtual string Value { get; set; }
 

@@ -19,13 +19,13 @@ namespace SecretProject.BusinessProject.Models.Order
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
-        /// <summary>
+        /// </summary>
         [Timestamp]
         public virtual byte[] Timestamp { get; set; }
 
         /// <summary>
         /// Связанная номенклатура
-        /// <summary>
+        /// </summary>
         [Display(Name = "Связанная номенклатура")]
         [Required]
         public virtual Nomenclature Nomenclature { get; set; }
@@ -38,18 +38,18 @@ namespace SecretProject.BusinessProject.Models.Order
         public virtual Order Order { get; set; }
 
         /// <summary>
-        /// Количество заказанное пользователем
-        /// <summary>
-        [Display(Name = "Количество заказанное пользователем")]
-        [Required]
+        /// Количество заказанное пользователем товара
+        /// </summary>
         public int actualCount { get; set; }
 
         /// <summary>
         /// Конечная цена продукта
-        /// <summary>
-        [Display(Name = "Конечная цена продукта")]
+        /// </summary>
+        [Display(Name = "Конечная цена за 1-цу товара")]
         public float Cost { get; set; }
 
+        [NotMapped]
+        public float FullCostItem => Cost * actualCount;
         #endregion
 
         #region Foreign keys

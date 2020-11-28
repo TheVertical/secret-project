@@ -14,24 +14,24 @@ namespace SecretProject.BusinessProject.Models
 
         /// <summary>
         /// Ид
-        /// <summary>
+        /// </summary>
         [Display(Name = "Ид")]
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
-        /// <summary>
+        /// </summary>
         [Timestamp]
         public virtual byte[] Timestamp { get; set; }
 
         /// <summary>
         /// Название произовдителя
-        /// <summary>
+        /// </summary>
         [Display(Name = "Название произовдителя")]
         [StringLength(50)]
         public virtual string Name { get; set; }
         /// <summary>
         /// Описание производителя
-        /// <summary>
+        /// </summary>
         [Display(Name = "Описание производителя")]
         [StringLength(50)]
         public virtual string Description { get; set; }

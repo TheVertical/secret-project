@@ -12,7 +12,7 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         #region Base Properties
         /// <summary>
         /// Ид
-        /// <summary>
+        /// </summary>
         [Display(Name = "Ид")]
         public virtual int Id { get; set; }
         /// <summary>
@@ -22,44 +22,44 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         public virtual byte[] Timestamp { get; set; }
         /// <summary>
         /// Название номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Название номенклатуры")]
         [StringLength(50)]
         public virtual string Name { get; set; }
         /// <summary>
         /// Описание
-        /// <summary>
+        /// </summary>
         [Display(Name = "Описание")]
         public virtual string Description { get; set; }
         /// <summary>
         /// Группа номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Группа номенклатуры")]
         public virtual NomenclatureGroup NomenclatureGroup { get; set; }
         /// <summary>
         /// Производитель
-        /// <summary>
+        /// </summary>
         [Display(Name = "Производитель")]
         public virtual Manufacturer Manufacturer { get; set; }
         /// <summary>
         /// Свойства номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Свойства номенклатуры")]
         public virtual ICollection<NomenclatureProperty> Properties { get; set; } = new HashSet<NomenclatureProperty>();
         /// <summary>
         /// Измерение номенклатуры (еденица измерения и т.д.)
-        /// <summary>
+        /// </summary>
         [Display(Name = "Измерение номенклатуры (еденица измерения и т.д.)")]
         public virtual Measurement Measurement { get; set; }
         /// <summary>
         /// Количество
-        /// <summary>
+        /// </summary>
         [Display(Name = "Количество")]
         public virtual int Amount { get; set; }
         private float cost;
         /// <summary>
         /// Оригинальная цена по номенклатуре
-        /// <summary>
+        /// </summary>
         [Display(Name = "Оригинальная цена по номенклатуре")]
         public virtual float Cost
         {
@@ -84,7 +84,7 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         //QUESTION Может ценовую политику перенести в заказ?
         /// <summary>
         /// Ценовая политика номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Ценовая политика номенклатуры")]
         public CostPolicy CostPolicy { get; set; }
         [NotMapped]

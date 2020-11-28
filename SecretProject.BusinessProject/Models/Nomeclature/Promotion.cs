@@ -11,22 +11,22 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         #region Base Property
         /// <summary>
         /// Ид
-        /// <summary>
+        /// </summary>
         [Display(Name = "Ид")]
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
-        /// <summary>
+        /// </summary>
         [Timestamp]
         public virtual byte[] Timestamp { get; set; }
         /// <summary>
         /// Рабочее название акции
-        /// <summary>
+        /// </summary>
         [Display(Name = "Рабочее название акции")]
         public virtual string WorkTitle { get; set; }
         /// <summary>
         /// Официальное название
-        /// <summary>
+        /// </summary>
         [Display(Name = "Официальное название")]
         public virtual string OfficialTitle { get; set; }
 
