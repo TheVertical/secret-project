@@ -1,4 +1,13 @@
 .mainStyle{
-    height:400px;
-    background-color: antiquewhite;
+    height:700px;
+    width:100%;
+    background-color:#eaeff5;
+    padding: 1%;
+}
+
+.mainStyle{
+    padding:0px;
+}
+.w-100{
+    height:600px!important;
 }

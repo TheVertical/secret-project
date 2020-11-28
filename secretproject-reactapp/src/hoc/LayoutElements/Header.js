@@ -1,24 +1,27 @@
 /* eslint react/prop-types: 0 */
 import React, { Children } from 'react';
-import { Container, Row, Col } from 'bootstrap-4-react'
+ import { Container, Row, Col } from 'bootstrap-4-react'
 // import { Picture, LinkBlock} from "../../basedComponents";
+// import Container from 'react-bootstrap/Container'
+// import Row from 'react-bootstrap/Row'
+// import Col from 'react-bootstrap/Col'
 import Picture from "../../basedComponents/Picture"
 import LinkBlock from "../../basedComponents/LinkBlock"
-import ContactSection from "../../basedComponents/ContactSection"
+import ContactSectionHeader from "../../containers/ContactSectionHeader"
 import "./Header.css"
-import logo from './logo.png'
-import profileLogo from './profileLogo.png'
-import shopLogo from './shopLogo.png'
+import logo from '../../Images/logo.png'
+import profileLogo from '../../Images/profileLogo.png'
+import shopLogo from '../../Images/shopLogo.png'
 // import { Dropdown, ButtonGroup, Button, BSpan } from 'bootstrap-4-react'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown1 from 'react-bootstrap/Dropdown'
 import Dropdown1Button from 'react-bootstrap/DropdownButton'
 import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
+import Search from '../../containers/Search'
+
 
 class Header extends React.Component {
- 
-    
+
     constructor() {
         super()
         this.state = {
@@ -37,34 +40,7 @@ class Header extends React.Component {
     }
 
     //Функции
-    // function MyVerticallyCenteredModal(props) {
-    //     return (
-    //       <Modal
-    //         {...props}
-    //         size="lg"
-    //         aria-labelledby="contained-modal-title-vcenter"
-    //         centered
-    //       >
-    //         <Modal.Header closeButton>
-    //           <Modal.Title id="contained-modal-title-vcenter">
-    //             Modal heading
-    //           </Modal.Title>
-    //         </Modal.Header>
-    //         <Modal.Body>
-    //           <h4>Centered Modal</h4>
-    //           <p>
-    //             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-    //             dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-    //             consectetur ac, vestibulum at eros.
-    //           </p>
-    //         </Modal.Body>
-    //         <Modal.Footer>
-    //           <Button onClick={props.onHide}>Close</Button>
-    //         </Modal.Footer>
-    //       </Modal>
-    //     );
-    //   }
- 
+
 
     render() {
         return (
@@ -73,15 +49,19 @@ class Header extends React.Component {
                 <div className="globalStyleTop">
                     <Container>
                         <Row className="rrrOw" >
-                            <Col col="lg">
+                            <Col col="lg" className="styleForPadding">
                                 <Picture src={logo}></Picture>
                             </Col>
                             <Col col="6">
-                                <LinkBlock Links={this.state.Links}></LinkBlock>
+                                <LinkBlock Links={this.state.Links} ></LinkBlock>
                             </Col>
                             <Col col="auto" className="styleForPadding">
-                                
-                                <ContactSection> </ContactSection>
+
+                                <ContactSectionHeader> </ContactSectionHeader>
+
+
+
+
                             </Col>
                         </Row>
                     </Container>
@@ -168,26 +148,26 @@ class Header extends React.Component {
 
                                 {/* AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */}
                             </Col>
-                            <Col col="lg">
-
+                            <Col col="6" className="styleForPadding">
+                                <Search></Search>
                             </Col>
 
-                            <Col col="lg" justify-content="flex-end" className="stylesForShopLogoAndProfileLogo styleForPadding">
+                            <Col col="lg" className="stylesForShopLogoAndProfileLogo styleForPadding">
 
-                          <Button className='styleForMargin'>
-                           <Picture src={shopLogo}></Picture>
-                          </Button>
-                          <Button className='styleForMargin'>
-                           <Picture src={profileLogo}></Picture>
-                          </Button>
-                            
+                                <Button className='styleForMargin'>
+                                    <Picture src={shopLogo}></Picture>
+                                </Button>
+                                <Button className='styleForMargin'>
+                                    <Picture src={profileLogo}></Picture>
+                                </Button>
+
                             </Col>
 
 
                         </Row>
                     </Container>
                 </div>
-            </div>
+            </div >
 
         )
 

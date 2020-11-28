@@ -18,13 +18,17 @@ const linkblock=(props)=>{
        
    }
    
-    return (
-        
-        <div className="blockStyle"> 
-            {arr}
-        </div>
     
-        )
+    
+           return(
+            <div className="blockStyle"> 
+            {arr}
+             </div>
+           )
+      
+       
+    
+        
 
 }
 

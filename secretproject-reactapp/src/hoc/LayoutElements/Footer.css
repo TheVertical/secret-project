@@ -1,0 +1,21 @@
+.globalStyleFooter{
+    width:100%;
+    background-color:white;
+    padding: 1%;
+}
+.AlignCenter{
+align-items: center;
+}
+/* Костыль(Изменить) */
+h1{
+    margin-bottom: 26px;
+}
+.form-control{
+    border-radius:1rem;
+}
+.container{
+    padding: 0px;
+}
+.styyyyleForMargin{
+    margin-top:20px;
+}

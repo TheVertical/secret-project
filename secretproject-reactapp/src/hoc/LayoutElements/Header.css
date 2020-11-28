@@ -1,16 +1,4 @@
-.styleForLeft{
-    background-color:blue;
-    
-}
-.styleForCenter{
-    background-color:red;
-}
-.styleForRight{
-    background-color:fuchsia;
-}
-.inlineStyle{
-    display: inline;
-}
+
 .globalStyleTop{
     width:100%;
     background-color:#83bde5;
@@ -45,19 +33,18 @@
 }
 
 .styleForMargin{
-    margin-right: 10px;
-}
-.styleForMargin{
     margin-right: 15px;
 }
+
 .dropdown-menu.show {
     display: block;
     padding: 0px;
     border-radius:1rem 1rem 1rem 1rem;
 }
-/* .styleForAkciiISkidki{
-    border-radius:0;
-} */
+
+.styleForPadding{
+    padding-left:0px ;
+}
 .btn-primary::after{
     display: none;
 }
