@@ -17,7 +17,8 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
 class Header extends React.Component {
-
+ 
+    
     constructor() {
         super()
         this.state = {
@@ -63,7 +64,7 @@ class Header extends React.Component {
     //       </Modal>
     //     );
     //   }
-
+ 
 
     render() {
         return (
