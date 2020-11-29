@@ -12,17 +12,16 @@ import "./LinkBlock.css"
 //Здесь будет главная функция экспорта 
 const linkblock=(props)=>{
 
-   let arr=[];
-   for (let key in props.Links){
-       arr.push(<a href={props.Links[key]} className="stylishAAA">{key}</a>)
+  //  let arr=[];
+  //  for (let key in props.Links){
+  //      arr.push(<a href={props.Links[key]} className="stylishAAA">{key}</a>)
        
-   }
+  //  }
    
-    
-    
+  
            return(
             <div className="blockStyle"> 
-            {arr}
+            {/* {arr} */}
              </div>
            )
       

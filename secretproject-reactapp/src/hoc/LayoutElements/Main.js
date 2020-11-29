@@ -3,14 +3,14 @@ import "./Main.css"
 import Carousel from 'react-bootstrap/Carousel'
 import firstSlide from '../../Images/firstSlide.jpg'
 import secondSlide from '../../Images/secondSlide.jpg'
+import Catalog_Gigiena_I_Profilaktika from '../../pages/Catalog_Gigiena_I_Profilaktika'
 
 
-export default () => {
-
-
+class Main extends React.Component{
+render(){
     return (
         <div className="mainStyle">
-            <div>
+            {/* <div>
                 <Carousel>
                     <Carousel.Item interval={1000}>
                         <img
@@ -29,8 +29,12 @@ export default () => {
                     </Carousel.Item>
                    
                 </Carousel>
-            </div>
+            </div> */}
+          <Catalog_Gigiena_I_Profilaktika></Catalog_Gigiena_I_Profilaktika>
         </div>
-    )
+       
 
+    )
+    }
 }
+export default Main

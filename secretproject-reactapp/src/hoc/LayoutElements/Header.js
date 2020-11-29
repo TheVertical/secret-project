@@ -1,11 +1,10 @@
 /* eslint react/prop-types: 0 */
 import React, { Children } from 'react';
  import { Container, Row, Col } from 'bootstrap-4-react'
-// import { Picture, LinkBlock} from "../../basedComponents";
 // import Container from 'react-bootstrap/Container'
 // import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col'
-import Picture from "../../basedComponents/Picture"
+ import Picture from "../../basedComponents/Picture"
 import LinkBlock from "../../basedComponents/LinkBlock"
 import ContactSectionHeader from "../../containers/ContactSectionHeader"
 import "./Header.css"
@@ -39,38 +38,8 @@ class Header extends React.Component {
         }
     }
 
-<<<<<<< HEAD
     //Функции
 
-=======
-    MyVerticallyCenteredModal(props) {
-        return (
-          <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-          >
-            <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title-vcenter">
-                Modal heading
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <h4>Centered Modal</h4>
-              <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros.
-              </p>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
-          </Modal>
-        );
-    }
->>>>>>> aa554ee52eca740d4f0ad022cb510c922dd216f6
 
     render() {
         return (

@@ -12,17 +12,17 @@ import "./LinkList.css"
 //Здесь будет главная функция экспорта 
 const linklist=(props)=>{
 
-   let arr=[];
-   for (let key in props.Links){
-       arr.push(<a href={props.Links[key]} className="styleForLinkListElement">{key}</a>)
+  //  let arr=[];
+  //  for (let key in props.Links){
+  //      arr.push(<a href={props.Links[key]} className="styleForLinkListElement">{key}</a>)
        
-   }
+   //}
    
     
            return(
             <div className="columnStyleForLinkList"> 
             <h3>{props.Title}</h3>
-            {arr}
+            {/* {arr} */}
              </div>
            )
       

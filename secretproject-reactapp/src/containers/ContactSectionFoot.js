@@ -2,7 +2,7 @@ import React from "react"
 import "./ContactSectionFoot.css"
 import ContactSection from "./../basedComponents/ContactSection"
 import Picture from "./../basedComponents/Picture"
-import logo from "./../Images/logo.png"
+import logo from "./../Images/LogoDown.png"
 // Здесь будут состояния
 
 
