@@ -3,7 +3,6 @@ import React from 'react'
 import './Catalog_Page.css'
 import ProductCardArray from "./../hoComplexComponents/ProductCardArray"
 // import ProductCardArray from './../hoCont/ProductCardArray'
-// import image from "./../Images/Product.jpg"
 
 class Catalog_Page extends React.Component {
 
