@@ -1,0 +1,89 @@
+{
+    "id": 0,
+    "type": "Block",
+    "visualElements": [{
+        "id": 0,
+        "type": "Banner",
+        "link": null,
+        "imageSource": null
+    }, {
+        "id": 0,
+        "type": "Block",
+        "visualElements": []
+    }, {
+        "id": 0,
+        "type": "Button",
+        "title": null,
+        "action": null
+    },
+     {
+        "isCheck": false,
+        "group": null,
+        "id": 0,
+        "type": "CheckBoxButton",
+        "title": null,
+        "action": null
+    }, 
+    {
+        "items": [],
+        "id": 0,
+        "type": "ComboBoxButton",
+        "title": null,
+        "action": null
+    }, 
+    {
+        "id": 0,
+        "type": "RadioButton",
+        "title": null,
+        "action": null
+    }, 
+    {
+        "id": 0,
+        "type": "ContactBlock",
+        "phone": null,
+        "openingHours": null
+    }, 
+    {
+        "id": 0,
+        "type": "ImageBlock",
+        "alt": null,
+        "source": null
+    }, 
+    {
+        "id": 0,
+        "type": "LinksMenu",
+        "links": null
+    },
+    {
+        "id": 0,
+        "type": "PopupMenu",
+        "items": [{
+            "title": "Title",
+            "route": "Route",
+            "items": [{
+                "title": "Title",
+                "route": "Route",
+                "items": []
+            }]
+        }, 
+        {
+            "title": "Title",
+            "route": "Route",
+            "items": [{
+                "title": "Title",
+                "route": "Route",
+                "items": []
+            }]
+        }, 
+        
+        {
+            "title": "Title",
+            "route": "Route",
+            "items": [{
+                "title": "Title",
+                "route": "Route",
+                "items": []
+            }]
+        }]
+    }]
+}

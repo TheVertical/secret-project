@@ -4,9 +4,12 @@ import { Container, Row, Col } from 'bootstrap-4-react'
 import Picture from "../../basedComponents/Picture"
 import LinkBlock from "../../basedComponents/LinkBlock"
 import Form from 'react-bootstrap/Form'
-import LinkList from '../../containers/LinkList'
-import ContactSectionFoot from '../../containers/ContactSectionFoot'
-import bottomLogo from "../../Images/bottomSecureLogo.png"
+import LinkList from '../../ComplexComponents/LinkList'
+import ContactSectionFoot from '../../ComplexComponents/ContactSectionFoot'
+// import bottomLogo from "../../Images/bottomSecureLogo.png"
+// import Container from 'react-bootstrap/Container'
+// import Row from 'react-bootstrap/Row'
+// import Col from 'react-bootstrap/Col'
 
 class Footer extends React.Component {
 
@@ -65,7 +68,7 @@ class Footer extends React.Component {
                     </Row>
                     <Row className="styyyyleForMargin">
                       <Col col="lg-auto">
-                      <Picture src={bottomLogo}></Picture>
+                      <Picture src={'./Images/bottomSecureLogo.png'}></Picture>
                       </Col>
                       <Col col="lg-auto">
                     

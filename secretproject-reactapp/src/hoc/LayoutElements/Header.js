@@ -6,21 +6,21 @@ import React, { Children } from 'react';
 // import Col from 'react-bootstrap/Col'
  import Picture from "../../basedComponents/Picture"
 import LinkBlock from "../../basedComponents/LinkBlock"
-import ContactSectionHeader from "../../containers/ContactSectionHeader"
+import ContactSectionHeader from "../../ComplexComponents/ContactSectionHeader"
 import "./Header.css"
-import logo from '../../Images/logo.png'
-import profileLogo from '../../Images/profileLogo.png'
-import shopLogo from '../../Images/shopLogo.png'
+// import logo from '../../Images/logo.png'
+// import profileLogo from '../../Images/profileLogo.png'
+// import shopLogo from '../../Images/shopLogo.png'
 // import { Dropdown, ButtonGroup, Button, BSpan } from 'bootstrap-4-react'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown1 from 'react-bootstrap/Dropdown'
 import Dropdown1Button from 'react-bootstrap/DropdownButton'
 import Button from 'react-bootstrap/Button'
-import Search from '../../containers/Search'
+import Search from '../../ComplexComponents/Search'
 
 
 class Header extends React.Component {
-
+    /*Constructors*/
     constructor() {
         super();
         this.state = {
@@ -49,7 +49,7 @@ class Header extends React.Component {
                     <Container>
                         <Row className="rrrOw" >
                             <Col col="lg" className="styleForPadding">
-                                <Picture src={logo}></Picture>
+                                <Picture src={'./Images/logo.png'}></Picture>
                             </Col>
                             <Col col="6">
                                 <LinkBlock Links={this.state.Links} ></LinkBlock>
@@ -154,10 +154,10 @@ class Header extends React.Component {
                             <Col col="lg" className="stylesForShopLogoAndProfileLogo styleForPadding">
 
                                 <Button className='styleForMargin'>
-                                    <Picture src={shopLogo}></Picture>
+                                    <Picture src={'./Images/shopLogo.png'}></Picture>
                                 </Button>
                                 <Button className='styleForMargin'>
-                                    <Picture src={profileLogo}></Picture>
+                                    <Picture src={'./Images/profileLogo.png'}></Picture>
                                 </Button>
 
                             </Col>
