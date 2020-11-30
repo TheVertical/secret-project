@@ -24,20 +24,18 @@ componentWillMount(){
     this.populateWeatherData();
 }
 async populateWeatherData() {
-    let url = 'https://secrethost.azurewebsites.net/Catalog'
+    let url = 'http://secrethost.azurewebsites.net/Catalog';
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
     this.setState({array:data,loading: false});
   }
 
-renderProductCardArray(elements){
+static renderProductCardArray(elements){
     console.log(elements);
     return(
         <div>
         {elements.map(product =>
-            // <ProductCard src = {product.ImageUrl} title = {product.Title} price = {product.Price}></ProductCard>
-            <div>{product.Title}</div>
+            <ProductCard src = "https://stommarket.ru/files/thumbs/products/hr/6c6a5476a860428.jpg" title = {product.Title} price = {product.Price}></ProductCard>
             )}
             </div>
     )
@@ -45,7 +43,6 @@ renderProductCardArray(elements){
 render(){
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-    //   : console.log(this.state.array)
         :  Catalog_Gigiena_I_Profilaktika.renderProductCardArray(this.state.array);
 
       console.log(this.state.loading)
