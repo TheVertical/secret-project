@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SecretProject.VisualElements
 {
@@ -10,6 +11,11 @@ namespace SecretProject.VisualElements
         object GetFormattedVisualElement(object element);
         object GetFormattedVisualElement(IEnumerable<object> element);
         object GetAllVisualElements();
+
+        //Task<ResultType> GetBackboneAsync<ResultType>();
+        //Task<ResultType> GetFormattedVisualElementAsync<ResultType>(object element);
+        //Task<ResultType> GetFormattedVisualElementAsync<ResultType>(IEnumerable<object> element);
+        //Task<ResultType> GetAllVisualElementsAsync<ResultType>();
     }
 
     public interface IVisualRedactor<TResult>
