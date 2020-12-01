@@ -33,23 +33,27 @@ class ProductCardArray extends React.Component {
   }
 
   static renderProductCardArray(elements) {
-    console.log(elements);
     return (
+      ProductCardArray.re(elements)
+    )
+  }
+
+  static re(elements){
+    return(
       <div className="ProductCardArray_Global">
         {elements.map(product =>
           
           <ProductCard src={product.ImageUrl} title={product.Title} price={product.Price}></ProductCard>
         )}
       </div>
-    )
+    );
   }
-
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
       : ProductCardArray.renderProductCardArray(this.state.array);
 
-    console.log(this.state.loading)
+    console.log(contents)
     return (
       <div>
         {contents}

@@ -1,22 +1,19 @@
-/* eslint react/prop-types: 0 */
+//Библиотечные зависимости
 import React, { Children } from 'react';
  import { Container, Row, Col } from 'bootstrap-4-react'
-// import Container from 'react-bootstrap/Container'
-// import Row from 'react-bootstrap/Row'
-// import Col from 'react-bootstrap/Col'
  import Picture from "../../basedComponents/Picture"
 import LinkBlock from "../../basedComponents/LinkBlock"
 import ContactSectionHeader from "../../ComplexComponents/ContactSectionHeader"
 import "./Header.css"
-// import logo from '../../Images/logo.png'
-// import profileLogo from '../../Images/profileLogo.png'
-// import shopLogo from '../../Images/shopLogo.png'
-// import { Dropdown, ButtonGroup, Button, BSpan } from 'bootstrap-4-react'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown1 from 'react-bootstrap/Dropdown'
 import Dropdown1Button from 'react-bootstrap/DropdownButton'
 import Button from 'react-bootstrap/Button'
 import Search from '../../ComplexComponents/Search'
+//Собственные зависимости
+import Block from '../../AtomicComponents/Block'
+import ContactBlock from '../../AtomicComponents/ContactBlock'
+import LinksMenu from '../../AtomicComponents/LinksMenu';
 
 
 class Header extends React.Component {
@@ -43,7 +40,6 @@ class Header extends React.Component {
 
     render() {
         return (
-
             <div>
                 <div className="globalStyleTop">
                     <Container>
@@ -52,15 +48,18 @@ class Header extends React.Component {
                                 <Picture src={'./Images/logo.png'}></Picture>
                             </Col>
                             <Col col="6">
-                                <LinkBlock Links={this.state.Links} ></LinkBlock>
+                            <LinksMenu Id = {0} Links = 
+                                {[
+                                    {Id:0,Title:"Доставка и оплата",Link:"#"},
+                                    {Id:0,Title:"Доставка и оплата",Link:"#"},
+                                    {Id:0,Title:"Доставка и оплата",Link:"#"},
+                                    {Id:0,Title:"Доставка и оплата",Link:"#"},
+                                    {Id:0,Title:"Доставка и оплата",Link:"#"},
+                                    {Id:0,Title:"Доставка и оплата",Link:"#"},
+                                ]}></LinksMenu>
                             </Col>
                             <Col col="auto" className="styleForPadding">
-
-                                <ContactSectionHeader> </ContactSectionHeader>
-
-
-
-
+                                <ContactBlock Phone="8 (953) 660-0012" OpeningHours="Пн-Чт 10:00-18:00, Пт:9:00-17:00" IsHeaderStyle={true}></ContactBlock>
                             </Col>
                         </Row>
                     </Container>
@@ -137,6 +136,7 @@ class Header extends React.Component {
 
                                     </ButtonGroup>
                                 </Dropdown1Button>
+                                <Button href = "#" value = "BB">BB</Button>
 
 
 
@@ -172,6 +172,7 @@ class Header extends React.Component {
 
     }
 }
+
 export default Header
 
 

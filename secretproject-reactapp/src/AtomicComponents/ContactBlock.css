@@ -1,0 +1,41 @@
+.blockStylle{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.bigAStyle{
+    font-size: 27px;
+    color:white;
+    text-transform: none;
+}
+.smallAStyle{
+    font-size: 16px;
+    color:white;
+    text-transform: none;
+}
+.pppStyle{
+    margin:0;
+    font-size:14px;
+}
+
+.smallAStyle:hover{
+    color:#555555;
+    text-decoration: none;
+}
+.bigAStyle:hover{
+    color: #555555;
+    text-decoration: none;
+}
+
+.bigAAStyle{
+    color:black;
+    font-size: 27px;
+    text-decoration: none;
+    text-transform: none;
+}
+.bigAAStyle:hover{
+    color:black;
+    text-decoration: none;
+    text-transform: none;
+}

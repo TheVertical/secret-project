@@ -5,15 +5,10 @@ import ProductCardArray from "./../hoComplexComponents/ProductCardArray"
 // import ProductCardArray from './../hoCont/ProductCardArray'
 
 class Catalog_Page extends React.Component {
-
-
-
   constructor() {
     super();
     this.state={}
-    }
-  
-
+  }
   
   render(){
     return(

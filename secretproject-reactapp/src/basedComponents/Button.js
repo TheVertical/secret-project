@@ -27,5 +27,4 @@ return(
 
 
 
-export default button
-
+export default button;
