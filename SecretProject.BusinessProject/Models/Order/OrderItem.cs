@@ -1,4 +1,4 @@
-﻿using SecretProject.BusinessProject.Models.Nomeclature;
+﻿using SecretProject.BusinessProject.Models.Good;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

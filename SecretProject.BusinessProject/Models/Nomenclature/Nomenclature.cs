@@ -5,8 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace SecretProject.BusinessProject.Models.Nomeclature
+namespace SecretProject.BusinessProject.Models.Good
 {
+    public enum NomenclatureStatus
+    {
+        Visible,Hidden
+    }
+
     public class Nomenclature : IDomainObject
     {
         #region Base Properties
@@ -24,22 +29,26 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         /// Название номенклатуры
         /// </summary>
         [Display(Name = "Название номенклатуры")]
-        [StringLength(50)]
+        [StringLength(100)]
         public virtual string Name { get; set; }
         /// <summary>
         /// Описание
         /// </summary>
         [Display(Name = "Описание")]
         public virtual string Description { get; set; }
+        public virtual int? NomenclatureGroupId { get; set; }
         /// <summary>
         /// Группа номенклатуры
         /// </summary>
         [Display(Name = "Группа номенклатуры")]
+        [ForeignKey(nameof(NomenclatureGroupId))]
         public virtual NomenclatureGroup NomenclatureGroup { get; set; }
+        public virtual int? ManufacturerId { get; set; }
         /// <summary>
         /// Производитель
         /// </summary>
         [Display(Name = "Производитель")]
+        [ForeignKey(nameof(ManufacturerId))]
         public virtual Manufacturer Manufacturer { get; set; }
         /// <summary>
         /// Свойства номенклатуры
@@ -65,7 +74,7 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         {
             get
             {
-                if (CostPolicy.Variation != CostVariations.None)
+                if (CostPolicy != null && CostPolicy.Variation != CostVariations.None)
                 {
                     //TODO Mock скидки
                     Discount(CostPolicy.CorrelateByProcentMock());
@@ -89,24 +98,25 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         public CostPolicy CostPolicy { get; set; }
         [NotMapped]
         public bool IsDiscounted { get; set; }
+        public NomenclatureStatus Status { get; set; }
         #endregion
 
         #region Foreign Keys
-        public virtual int PromotionId { get; set; }
+        public virtual int? PromotionId { get; set; }
         /// <summary>
         /// Акция
         /// </summary>
         [ForeignKey(nameof(PromotionId))]
         public virtual Promotion Promotion { get; set; }
 
-    #endregion
+        #endregion
 
-    #region Class Methods
-    /// <summary>
-    /// Уменьшает цену
-    /// </summary>
-    /// <param name="cost">определённая цена</param>
-    private void Discount(float sum)
+        #region Class Methods
+        /// <summary>
+        /// Уменьшает цену
+        /// </summary>
+        /// <param name="cost">определённая цена</param>
+        private void Discount(float sum)
         {
             Cost = Cost - sum;
         }
@@ -117,6 +127,14 @@ namespace SecretProject.BusinessProject.Models.Nomeclature
         private void Discount(int percent)
         {
             Cost = Cost - Cost * percent / 100;
+        }
+
+        public override string ToString()
+        {
+            return $"Nomenclature:\n" +
+                $"\tName:" + Name + "\n" +
+                "\tCost:" + Cost + "\n" +
+                "\tAmount:" + Amount;
         }
         #endregion
 

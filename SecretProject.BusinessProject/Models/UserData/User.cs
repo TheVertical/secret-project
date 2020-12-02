@@ -31,13 +31,24 @@ namespace SecretProject.BusinessProject.Models.UserData
         /// Логин
         /// </summary>
         [Display(Name = "Логин")]
+        [Required]
         public virtual string Login { get; set; }
+        private string password;
         /// <summary>
         /// Пароль "засоленный"
         /// </summary>
         [Display(Name = "Пароль")]
         [StringLength(32)]
-        public virtual string Password { get; set; }
+        [Required]
+        public virtual string Password
+        {
+            get => password; set
+            {
+                //TODO Здесь должно происходить 'засаливание' пароля
+                password = value;
+            }
+        }
+        [NotMapped]
         public virtual string Salt { get; set; }
         #endregion
 

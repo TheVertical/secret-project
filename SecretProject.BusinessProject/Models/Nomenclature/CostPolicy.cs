@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SecretProject.BusinessProject.Models.Nomeclature
+namespace SecretProject.BusinessProject.Models.Good
 {
     public enum CostVariations
     {

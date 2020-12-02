@@ -1,4 +1,4 @@
-﻿using SecretProject.BusinessProject.Models.Nomeclature;
+﻿using SecretProject.BusinessProject.Models.Good;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,9 +39,6 @@ namespace SecretProject.BusinessProject.Models
         #endregion
 
         #region Foreign keys
-        public virtual int NomenclatureId { get; set; }
-        [ForeignKey(nameof(NomenclatureId))]
-        public virtual Nomenclature Nomenclature { get; set; }
         #endregion
 
         #region Special Property

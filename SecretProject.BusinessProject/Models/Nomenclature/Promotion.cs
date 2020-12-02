@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace SecretProject.BusinessProject.Models.Nomeclature
+namespace SecretProject.BusinessProject.Models.Good
 {
     public class Promotion : IDomainObject
     {
