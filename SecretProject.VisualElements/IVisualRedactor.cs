@@ -9,6 +9,7 @@ namespace SecretProject.VisualElements
     {
         object GetBackbone();
         object GetFormattedVisualElement(object element);
+        public object GetVisualElementByName(string name);
         object GetFormattedVisualElement(IEnumerable<object> element);
         object GetAllVisualElements();
 
