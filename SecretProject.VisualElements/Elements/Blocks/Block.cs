@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SecretProject.VisualElements.Elements.Common;
 
 namespace SecretProject.VisualElements.Elements
 {
@@ -41,7 +42,7 @@ namespace SecretProject.VisualElements.Elements
             base.AddRange(c);
         }
     }
-    public class Block : IVisualElement
+    public class Block : IVisualElement, IColumnable
     {
         private int id;
 
@@ -51,6 +52,11 @@ namespace SecretProject.VisualElements.Elements
         public string Type => this.GetType().Name;
         //public string Parametrs { get; set; }
         public VisualList VisualElements { get; set; } = new VisualList();
+        public int Row { get; set; }
+        /// <summary>
+        /// Необходимое количество столбцов для отрисовки
+        /// </summary>
+        public int NeededColumns { get; set; }
         public void AddVisualElement(object element)
         {
             VisualElements.Add(element);

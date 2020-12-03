@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecretProject.VisualElements.Elements.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class Button : IVisualElement
+    public class Button : IVisualElement, IColumnable
     {
         [Key]
         public int Id { get; set; }
@@ -15,5 +16,10 @@ namespace SecretProject.VisualElements.Elements
         [StringLength(20)]
         public string Title { get; set; }
         public string Action { get; set; }
+        public int Row { get; set; }
+        /// <summary>
+        /// Необходимое количество столбцов для отрисовки
+        /// </summary>
+        public int NeededColumns { get; set; }
     }
 }
