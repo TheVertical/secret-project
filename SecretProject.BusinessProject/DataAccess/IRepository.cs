@@ -11,11 +11,14 @@ namespace SecretProject.BusinessProject.DataAccess
     {
         
         Entity GetById<Entity>(int id) where Entity : class,IDomainObject;
+        IEnumerable<Entity> Get<Entity>(int count, Expression<Func<Entity, bool>> pericate) where Entity : class, IDomainObject;
+        IEnumerable<Entity> GetAll<Entity,TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending) where Entity : class, IDomainObject;
         void Add<Entity>(Entity entity) where Entity : class,IDomainObject;
         void Remove<Entity>(Entity entity) where Entity : class,IDomainObject;
         void Save<Entity>(Entity entity) where Entity : class,IDomainObject;
-
         Task<Entity> GetByIdAsync<Entity>(int id) where Entity : class,IDomainObject;
+        Task<IEnumerable<Entity>> GetAsync<Entity>(int count, Expression<Func<Entity, bool>> pericate) where Entity : class, IDomainObject;
+        Task<IEnumerable<Entity>> GetAllAsync<Entity, TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending) where Entity : class, IDomainObject;
         Task<bool> AddAsync<Entity>(Entity entity) where Entity : class,IDomainObject;
         Task<bool> RemoveAsync<Entity>(Entity entity) where Entity : class,IDomainObject;
         Task<bool> SaveAsync<Entity>(Entity entity) where Entity : class,IDomainObject;
