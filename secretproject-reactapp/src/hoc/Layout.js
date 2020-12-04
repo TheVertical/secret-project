@@ -5,20 +5,30 @@ import Footer from "./LayoutElements/Footer"
 import './Layout.css'
 import Builder from './VisualBuilder'
 import VisualBuilder from './VisualBuilder';
-import ContactBlock from '../AtomicComponents/ContactBlock';
 
 
 class Layout extends React.Component{
 
+
+   //action = "/About"
+  static renderContent(action){
+     return (VisualBuilder.renderPage(action));
+
+  }
 render(props){
    return(
        <div>
-            <div className="globalStyleTop">
+            <div className="globalStyleWhite">
+               {/* <Header Content = {VisualBuilder.Render(props.Header)}> </Header>
+               <Cotent id ="content" Content = {VisualBuilder.Render(props.Header)}></Cotent>
+               <Footer Content = {VisualBuilder.Render(props.Header)}> </Footer> */}
                <VisualBuilder></VisualBuilder>
+
             </div>
-         <Header></Header>
+         {/* <Header></Header>
          <Main></Main>
-         <Footer></Footer>
+         <Footer></Footer> */}
+
       </div>
    );
 }

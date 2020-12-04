@@ -10,8 +10,8 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 //Собственные зависимости
-import VisualElement from '../../src/AtomicComponents/VisualElement'
-import Picture from "./../basedComponents/Picture"
+import VisualElement from './VisualElement'
+import Picture from "../basedComponents/ImageBlock"
 import "./ContactBlock.css"
 
 class ContactBlock extends React.Component{

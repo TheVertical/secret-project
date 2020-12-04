@@ -1,5 +1,5 @@
 import React from "react"
-import ProductCard from "./../ComplexComponents/ProductCard"
+import ProductCard from "./../ComplexComponents/MiniProductCard"
 import "./ProductCardArray.css"
 // import ProductCardArray from './../hoCont/ProductCardArray'
 // import image from "./../Images/Product.jpg"

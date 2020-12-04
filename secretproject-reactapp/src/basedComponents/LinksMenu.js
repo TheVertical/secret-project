@@ -1,6 +1,6 @@
 //Библиотечные зависимости
 import React from 'react'
-import linkblock from '../basedComponents/LinkBlock';
+import linkblock from '../basedComponents/LinksMenu';
 
 //Собственные зависимости
 import "./ContactBlock.css"
@@ -12,7 +12,7 @@ class LinksMenu extends React.Component{
         super();
         this.state ={
             Id: props.Id,
-            Liks: props.Links
+            Links: props.Links
         }
     }
     //Функции React
@@ -22,7 +22,7 @@ class LinksMenu extends React.Component{
     render(){
         return(
         <div className="blockStyle">
-            {this.state.Liks.map((link)=>
+            {this.state.Links.map((link)=>
             <a className="stylishAAA" key={link.Id} href={link.Link}>{link.Title}</a>
             )}
         </div>

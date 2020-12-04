@@ -1,30 +1,24 @@
-import React from "react"
-import Button from 'react-bootstrap/Button'
-// Здесь будут состояния
+import React from 'react'
 
+//Собственные зависимости
 
+//Расширяет или не расширяет React.Component?
+class ClassName {
+    constructor(props)
+    {
+        super(props);
+        this.state ={
+            
+        }
+    }
+    //Функции React
 
-//Здесь будут функции(внешние)
+    //Собственные функции класса
 
-
-
-
-//Здесь будет главная функция экспорта 
-const button=(props)=>{
-
-    //Здесь будут функции(внутренние)
-
-return(
-<div>
-   <h1>
-       Button
-   </h1>
-   <Button>НАЖАТЬ</Button>
-</div>
-);
+    render(){
+        //рендер
+    }
 
 }
 
-
-
-export default button;
+export default ClassName;

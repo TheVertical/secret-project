@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import VisualElement from '../../src/AtomicComponents/VisualElement'
+import VisualElement from './VisualElement'
 import { Container, Row, Col } from 'bootstrap-4-react'
 
 class Block extends React.Component{
@@ -7,15 +7,19 @@ class Block extends React.Component{
         super();
         this.state = {
             Id: props.Id,
+            Row: props.Row,
+            NeededColumns: props.NeededColumns,
             VisualElements: props.VisualElements
         }
     }
     render(){
         
         return(
-            <div id = "block">
-            {this.state.VisualElements.map(obj => VisualElement.renderVisualElement(obj))}
-            </div>
+            <Container id = "block">
+                <Row>
+                    {this.state.VisualElements.map(obj =><Col> {VisualElement.renderVisualElement(obj)}</Col>)}
+                </Row>
+            </Container>
         );
     }
 }
