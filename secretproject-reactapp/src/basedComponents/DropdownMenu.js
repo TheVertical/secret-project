@@ -15,14 +15,14 @@ class DropdownMenu extends React.Component{
             Dropdown: props.Dropdown
         }
     }
-
+   //Используется для вставки дочернего элемента внутрь выпадающего меню
     static InsertDropdown(element){
     return(
     element.map((value,index)=><Dropdown.Item eventKey={index}>{value.Title}</Dropdown.Item>)
     )
         
     }
-
+  //Метод проверяет наличие выпадающего меню и его дочерних элементов, вовзращает верстку
     static CheckDropdownItem(element){ 
         if (element){
             return(

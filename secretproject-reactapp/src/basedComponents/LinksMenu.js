@@ -1,31 +1,43 @@
 //Библиотечные зависимости
 import React from 'react'
 import linkblock from '../basedComponents/LinksMenu';
-
+ import "./LinkBlock.css"
 //Собственные зависимости
 import "./ContactBlock.css"
 
 //Расширяет или не расширяет React.Component?
-class LinksMenu extends React.Component{
-    constructor(props)
-    {
+class LinksMenu extends React.Component {
+    constructor(props) {
         super();
-        this.state ={
+        this.state = {
             Id: props.Id,
-            Links: props.Links
+            Links: props.Links,
+            MainTitle: props.MainTitle,
+            IsHorizontal: props.IsHorizontal
         }
     }
     //Функции React
 
     //Собственные функции класса
 
-    render(){
-        return(
-        <div className="blockStyle">
+    render() {
+       //Проверяет ориентацию - выбирает нужный стиль для верстки
+        const checkHor = () => {
+            return (
+                this.state.IsHorizontal ? "blockStyle" : "forColumnCase"
+            )
+        }
+
+        return (
+      
+        <div className={checkHor()}>
+            {this.state.MainTitle}
             {this.state.Links.map((link)=>
-            <a className="stylishAAA" key={link.Id} href={link.Link}>{link.Title}</a>
-            )}
+             <a className="stylishAAA" key={link.Id} href={link.Link}>{link.Title}</a>
+            )
+            }
         </div>
+        
         );
     }
 

@@ -80,7 +80,7 @@ class VisualElement extends React.Component {
                 return (
                     //Возвращает компонент DropdownMenu
                     <div>
-                        <LinksMenu Id={element.Id} Links={element.Links}></LinksMenu>
+                        <LinksMenu Id={element.Id} Links={element.Links} IsHorizontal={element.IsHorizontal} MainTitle={element.MainTitle}></LinksMenu>
                     </div>
                 );
             //Компонент типа BasedComponents
