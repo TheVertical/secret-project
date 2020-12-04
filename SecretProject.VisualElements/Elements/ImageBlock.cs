@@ -7,18 +7,9 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class ImageBlock : IVisualElement,IColumnable
+    public class ImageBlock : VisualElement,IVisualElement, IColumnable
     {
-        [Key]
-        public int Id { get; set; }
-        [NotMapped]
-        public string Type => this.GetType().Name;
         public string Alt { get; set; }
         public string Source { get; set; }
-        public int Row { get; set; }
-        /// <summary>
-        /// Необходимое количество столбцов для отрисовки
-        /// </summary>
-        public int NeededColumns { get; set; }
     }
 }

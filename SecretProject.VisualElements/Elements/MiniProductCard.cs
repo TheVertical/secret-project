@@ -7,17 +7,8 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class MiniProductCard : IVisualElement,IColumnable
+    public class MiniProductCard : VisualElement,IVisualElement, IColumnable
     {
-        public int Id { get; set; }
-        [NotMapped]
-        public string Type => this.GetType().Name;
         public object Model { get; set; }
-        public int Row { get; set; }
-        /// <summary>
-        /// Необходимое количество столбцов для отрисовки
-        /// </summary>
-        public int NeededColumns { get; set; }
-
     }
 }

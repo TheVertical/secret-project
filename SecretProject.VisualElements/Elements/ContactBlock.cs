@@ -7,18 +7,9 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class ContactBlock : IVisualElement, IColumnable
+    public class ContactBlock : VisualElement,IVisualElement, IColumnable
     {
-        [Key]
-        public int Id { get; set; }
-        [NotMapped]
-        public string Type => this.GetType().Name;
         public string Phone { get; set; }
         public string OpeningHours { get; set; }
-        public int Row { get; set; }
-        /// <summary>
-        /// Необходимое количество столбцов для отрисовки
-        /// </summary>
-        public int NeededColumns { get; set; }
     }
 }

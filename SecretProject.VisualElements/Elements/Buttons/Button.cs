@@ -7,19 +7,14 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class Button : IVisualElement, IColumnable
+    public class Button : VisualElement,IVisualElement, IColumnable
     {
-        [Key]
-        public int Id { get; set; }
-        [NotMapped]
-        public string Type => this.GetType().Name;
         [StringLength(20)]
         public string Title { get; set; }
+        public string Image { get; set; }
         public string Action { get; set; }
-        public int Row { get; set; }
         /// <summary>
         /// Необходимое количество столбцов для отрисовки
         /// </summary>
-        public int NeededColumns { get; set; }
     }
 }

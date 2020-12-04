@@ -9,6 +9,6 @@ namespace SecretProject.VisualElements.Elements
 {
     public class ComboBoxButton : Button, IVisualElement
     {
-        public IList<ComboBoxButton> Items { get; set; } = new List<ComboBoxButton>();
+        public DropdownMenu DropdownMenu { get; set; }
     }
 }

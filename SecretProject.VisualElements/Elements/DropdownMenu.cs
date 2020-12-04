@@ -7,12 +7,8 @@ using System.Text;
 
 namespace SecretProject.VisualElements.Elements
 {
-    public class DropdownMenu : IVisualElement
+    public class DropdownMenu : VisualElement,IVisualElement
     {
-        [Key]
-        public int Id { get; set; }
-        [NotMapped]
-        public string Type => this.GetType().Name;
         //TODO Убрать mock данные
         public List<DropdownItem> Items { get; set; } = new List<DropdownItem>() {
             new DropdownItem { Title = "Title",Route = "Route",
