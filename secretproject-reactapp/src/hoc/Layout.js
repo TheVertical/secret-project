@@ -19,15 +19,13 @@ render(props){
    return(
        <div>
             <div className="globalStyleWhite">
-               {/* <Header Content = {VisualBuilder.Render(props.Header)}> </Header>
-               <Cotent id ="content" Content = {VisualBuilder.Render(props.Header)}></Cotent>
-               <Footer Content = {VisualBuilder.Render(props.Header)}> </Footer> */}
-               <VisualBuilder></VisualBuilder>
-
+               {/* Разбиение блоков */}
+               <VisualBuilder Direction="Header"></VisualBuilder>
+               <VisualBuilder Direction="GrayLine"></VisualBuilder>
+               <VisualBuilder Direction="Content"></VisualBuilder>
+               <VisualBuilder Direction="Footer"></VisualBuilder>
             </div>
-         {/* <Header></Header>
-         <Main></Main>
-         <Footer></Footer> */}
+ 
 
       </div>
    );

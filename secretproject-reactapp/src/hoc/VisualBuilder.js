@@ -2,15 +2,17 @@ import React, { Children } from 'react';
 import { Container, Row, Col } from 'bootstrap-4-react'
 import Header from './LayoutElements/Header';
 import VisualElement from '../basedComponents/VisualElement';
+import "./LayoutElements/Main.css"
 
 //Атомарные компоненты
 import Block from '../basedComponents/Block'
 // import ContactBlock from '../../src/AtomicComponents/ContactBlock'
 // import LinksMenu from '../../src/AtomicComponents/LinksMenu'
 class VisualBuilder extends React.Component{
-    constructor(){
-        super();
-        this.state = {
+    constructor(props){
+        super(props);
+        this.state = { 
+            Direction: props.Direction,
             IsLoading : false,
             Backbone: {},
             Mock: {
@@ -418,8 +420,10 @@ class VisualBuilder extends React.Component{
     }
 
     static renderVisual(backbone){
-        return(
-            VisualElement.renderVisualElement(backbone)
+      return(
+        <div className={backbone.Style}>
+                    {  VisualElement.renderVisualElement(backbone) }
+         </div>
         );
     }
     static renderAllVisual(backbone){
@@ -437,9 +441,10 @@ class VisualBuilder extends React.Component{
       return arr
     }
     render(){
+        let direction=this.state.Direction
         let contents = this.state.IsLoading
             ? <p><em>Loading...</em></p>
-            : VisualBuilder.renderAllVisual(this.state.Mock);
+            : VisualBuilder.renderVisual(this.state.Mock[direction]);
         return(
             <div>
               {contents}
