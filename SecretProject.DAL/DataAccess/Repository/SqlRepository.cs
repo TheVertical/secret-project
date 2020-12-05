@@ -140,7 +140,6 @@ namespace SecretProject.DAL.DataAccess
         #endregion
 
         #region Realization
-        public SqlRepository() : this((new sBaseContextFactory()).CreateDbContext(null)) { }
         public SqlRepository(DbContext context)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
