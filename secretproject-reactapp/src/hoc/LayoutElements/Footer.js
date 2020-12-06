@@ -6,7 +6,7 @@ import LinkBlock from "../../basedComponents/LinksMenu"
 import Form from 'react-bootstrap/Form'
 import LinkList from '../../ComplexComponents/LinkList'
 import ContactSectionFoot from '../../ComplexComponents/ContactSectionFoot'
-import VisualElement from '../../basedComponents/VisualElement'
+import VisualElement from '../../basedComponents/VisualFactory'
 
 // import bottomLogo from "../../Images/bottomSecureLogo.png"
 // import Container from 'react-bootstrap/Container'
