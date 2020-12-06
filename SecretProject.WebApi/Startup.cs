@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject.DataAccess;
-using SecretProject.BusinessProject.Models.Nomeclature;
+using SecretProject.BusinessProject.Models.Good;
+using SecretProject.DAL.Contexts;
 using SecretProject.DAL.DataAccess;
 using SecretProject.Services;
 using SecretProject.VisualElements;
@@ -32,9 +34,12 @@ namespace SecretProject.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<JsonSerializerOptions>(f => new JsonSerializerOptions() { WriteIndented = true});
+            //TODO Это мок опции
+            services.AddScoped<JsonSerializerOptions>(f => new JsonSerializerOptions() { WriteIndented = true, });
             services.AddScoped<IVisualRedactor, MockJsonVisualRedactor>();
-            services.AddScoped<IRepository<Nomenclature>,SqlRepository<Nomenclature>>();
+
+            services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbRemote")));
+            services.AddScoped<IRepository,SqlRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +48,10 @@ namespace SecretProject.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseRouting();

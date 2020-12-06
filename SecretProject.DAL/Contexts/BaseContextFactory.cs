@@ -12,7 +12,8 @@ namespace SecretProject.DAL.Contexts
     {
         public sBaseContext CreateDbContext(string connectionString)
         {
-            string[] ar = new string[1] { connectionString };
+            string[] ar = new string[1];
+            ar[0] = connectionString;
             return CreateDbContext(ar);
         }
         public sBaseContext CreateDbContext(string[] args)

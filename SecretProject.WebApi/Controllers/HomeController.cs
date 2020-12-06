@@ -24,10 +24,14 @@ namespace SecretProject.Controllers
             this.visualRedactor = visualRedactor;
         }
 
-        [HttpGet(Name ="Get")]
         public JsonResult Get()
         {
             return visualRedactor.GetBackbone() as JsonResult;
+        }
+
+        public JsonResult Error()
+        {
+            return null;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using SecretProject.BusinessProject.Models.Nomeclature;
+﻿using SecretProject.BusinessProject.Models.Good;
 using SecretProject.VisualElements.Elements;
 using System;
 using System.Collections.Generic;
@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace SecretProject.WebApi.ViewModels
 {
-    public class NomenclatureViewModel : IVisualElement
+    public class NomenclatureViewModel : IViewModel
     {
         public NomenclatureViewModel(Nomenclature domain)
         {
+            Id = domain.Id;
             Title = domain.Name;
             Description = domain.Description;
             Price = domain.Cost;

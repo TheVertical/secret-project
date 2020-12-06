@@ -10,12 +10,10 @@ namespace SecretProject.WebApi.Controllers
 {
 #if DEBUG
     [ApiController]
-    //[Route("[controller]")]
-    //[Route("[controller]/[action]")]
-    public class VEController : Controller
+    public class VEController : ControllerBase,IDisposable
     {
-        private readonly ILogger<VEController> logger;
-        private readonly IVisualRedactor visualRedactor;
+        private ILogger<VEController> logger;
+        private IVisualRedactor visualRedactor;
 
         public VEController(ILogger<VEController> logger, IVisualRedactor visualRedactor)
         {
@@ -23,17 +21,31 @@ namespace SecretProject.WebApi.Controllers
             this.visualRedactor = visualRedactor;
         }
 
-        [Route("[controller]")]
-        public JsonResult GetBackbone()
+        [Route("visual/backbone")]
+        public IActionResult GetBackbone()
         {
             return visualRedactor.GetBackbone() as JsonResult;
         }
-
-        //[HttpGet(Name = "ES")]
-        [Route("[controller]/es")]
+        [Route("visual/all")]
         public JsonResult GetAllVisualElements()
         {
             return visualRedactor.GetAllVisualElements() as JsonResult;
+        }
+        [HttpGet("visual/{id}")]
+        public JsonResult GetAVisualElement(string id)
+        {
+            return visualRedactor.GetVisualElementByName(id) as JsonResult;
+        }
+        [HttpGet("visual/viewmodels")]
+        public JsonResult GetJsonElement()
+        {
+            return visualRedactor.GetAllViewModels() as JsonResult;
+        }
+
+        public void Dispose()
+        {
+            logger = null;
+            visualRedactor = null;
         }
     }
 #endif
