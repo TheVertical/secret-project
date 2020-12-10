@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
 import "./Main.css"
-// import Carousel from 'react-bootstrap/Carousel'
+import Carousel from 'react-bootstrap/Carousel'
 // import firstSlide from '../../Images/firstSlide.jpg'
 // import secondSlide from '../../Images/secondSlide.jpg'
 import Catalog_Page from '../../pages/Catalog_Page'

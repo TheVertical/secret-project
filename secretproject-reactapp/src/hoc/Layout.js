@@ -9,7 +9,7 @@ import {Switch,Route} from "react-router-dom"
 import "./LayoutElements/Main.css"
 import Page404 from '../pages/page404'
 import SuccessfulRegistration from '../pages/SuccessfulRegistration'
-import { Button } from 'bootstrap-4-react';
+import { Button } from 'react-bootstrap';
 import MainPage from '../pages/MainPage';
 
 class Layout extends React.Component{

@@ -11,11 +11,9 @@ import MiniProductCard from '../ComplexComponents/MiniProductCard'
 import Header from '../hoc/LayoutElements/Header'
 import Footer from '../hoc/LayoutElements/Header'
 import LinkList from '../ComplexComponents/LinkList'
-import ContactSectionFoot from '../ComplexComponents/ContactSectionFoot'
-import ContactSectionHeader from '../ComplexComponents/ContactSectionHeader'
 import DropdownMenu from './DropdownMenu'
 
-import { Button } from 'react-bootstrap';
+import { Button } from 'bootstrap-4-react';
 
 class VisualFactory extends React.Component {
     static renderVisualElement(element) {

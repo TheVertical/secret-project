@@ -1,7 +1,6 @@
 //Библиотечные зависимости
 import React, { Children } from 'react';
-// import { Container } from 'reactstrap';
-import ContactSectionHeader from "../../ComplexComponents/ContactSectionHeader"
+import { Container } from 'bootstrap-4-react';
 import "./Header.css"
 //Собственные зависимости
 
