@@ -31,16 +31,9 @@ namespace SecretProject.BusinessProject.Models.Order
         public virtual Nomenclature Nomenclature { get; set; }
 
         /// <summary>
-        /// Заказ
-        /// </summary>
-        [ForeignKey(nameof(OrderId))]
-        [Required]
-        public virtual Order Order { get; set; }
-
-        /// <summary>
         /// Количество заказанное пользователем товара
         /// </summary>
-        public int actualCount { get; set; }
+        public int ActualCount { get; set; }
 
         /// <summary>
         /// Конечная цена продукта
@@ -49,7 +42,7 @@ namespace SecretProject.BusinessProject.Models.Order
         public float Cost { get; set; }
 
         [NotMapped]
-        public float FullCostItem => Cost * actualCount;
+        public float FullCostItem => Cost * ActualCount;
         #endregion
 
         #region Foreign keys

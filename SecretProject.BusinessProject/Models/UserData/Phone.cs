@@ -10,6 +10,8 @@ namespace SecretProject.BusinessProject.Models.UserData
             get => phoneNumber;
             set
             {
+                if (value == null)
+                    return;
                 PhoneFormatter formatter = new PhoneFormatter(PhoneFormat);
                 phoneNumber = formatter.FormatString(value);
                 formatter.Format = PhoneFormat.DigitsTen;

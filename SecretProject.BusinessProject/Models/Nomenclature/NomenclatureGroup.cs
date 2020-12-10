@@ -36,6 +36,11 @@ namespace SecretProject.BusinessProject.Models
         /// </summary>
         [Display(Name = "Дочерние группы")]
         public virtual IList<NomenclatureGroup> Childs { get; set; }
+        /// <summary>
+        /// Статус видимости
+        /// </summary>
+        [Display(Name = "Статус видимости")]
+        public VisibleStatus Status { get; set; }
         #endregion
 
         #region Foreign keys

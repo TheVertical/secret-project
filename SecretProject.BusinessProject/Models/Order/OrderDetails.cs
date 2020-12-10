@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
 namespace SecretProject.BusinessProject.Models.Order
@@ -13,6 +14,8 @@ namespace SecretProject.BusinessProject.Models.Order
     [Table("Orders.Details")]
     public class OrderDetails : IDomainObject
     {
+        #region Model
+
         #region Base Property
 
         [Key]
@@ -23,12 +26,17 @@ namespace SecretProject.BusinessProject.Models.Order
         /// </summary>
         [Timestamp]
         public virtual byte[] Timestamp { get; set; }
-
-        [ForeignKey(nameof(Id))]
-        public Order Order { get; set; }
-
+        private User user;
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; }
+        public User User
+        {
+            get => user;
+            set
+            {
+                GetInfoDataByUser(value);
+                user = value;
+            }
+        }
         [Display(Name = "Имя")]
         public string FirstNameCustomer { get; set; }
         [Display(Name = "Фамилия")]
@@ -43,7 +51,7 @@ namespace SecretProject.BusinessProject.Models.Order
         public string AdditionalNumber { get => AdditionalPhone.PhoneDigits; set => AdditionalPhone.PhoneNumber = value; }
         [NotMapped]
         public Phone AdditionalPhone = new Phone();
-
+        public bool IsWithDelivery { get; set; }
         public virtual string Country { get; set; }
         public virtual string City { get; set; }
         public virtual string District { get; set; }
@@ -58,7 +66,8 @@ namespace SecretProject.BusinessProject.Models.Order
         /// </summary>
         public virtual byte Floor { get; set; }
         public virtual int AppartmentNumber { get; set; }
-
+        public virtual string BuildLiteral { get; set; }
+        public virtual int BuildCorps { get; set; }
 
         #endregion
 
@@ -66,5 +75,34 @@ namespace SecretProject.BusinessProject.Models.Order
         #region Foreign keys
         public int? UserId { get; set; }
         #endregion
+
+
+
+        #endregion
+        #region Class Methods
+        public void GetInfoDataByUser(User user)
+        {
+            Adress defaultAdress = user.DeliveryAdresses.Where(a => a.Id == user.DefaultDeliveryAdressId).FirstOrDefault() ?? user.DeliveryAdresses.FirstOrDefault() ?? throw new Exception("User haven't any adress!");
+
+            FirstNameCustomer = user.FirstName;
+            LastNameCustomer = user.LastName;
+            Country = defaultAdress.Country;
+            City = defaultAdress.City;
+            District = defaultAdress.District;
+            Street = defaultAdress.Street;
+            BuildNumber = defaultAdress.BuildNumber;
+            Entrance = defaultAdress.Entrance;
+            Floor = defaultAdress.Floor;
+            AppartmentNumber = defaultAdress.AppartmentNumber;
+            MainPhone = user.MainPhone;
+            AdditionalPhone = user.AdditionalPhone;
+        }
+
+        private void GetUserFromInfoData()
+        {
+
+        }
+        #endregion
+
     }
 }

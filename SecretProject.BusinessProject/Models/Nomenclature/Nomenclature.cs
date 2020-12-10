@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SecretProject.BusinessProject.Models.Good
 {
-    public enum NomenclatureStatus
+    public enum VisibleStatus
     {
         Visible,Hidden
     }
@@ -89,6 +89,12 @@ namespace SecretProject.BusinessProject.Models.Good
                 cost = value;
             }
         }
+        /// <summary>
+        /// Цена со скидкой
+        /// </summary>
+        [Display(Name = "Цена со скидкой")]
+        //[System.Diagnostics.CodeAnalysis.AllowNull]
+        public virtual float DiscountedCost { get; set; }
         [NotMapped]
         //QUESTION Может ценовую политику перенести в заказ?
         /// <summary>
@@ -98,7 +104,11 @@ namespace SecretProject.BusinessProject.Models.Good
         public CostPolicy CostPolicy { get; set; }
         [NotMapped]
         public bool IsDiscounted { get; set; }
-        public NomenclatureStatus Status { get; set; }
+        /// <summary>
+        /// Статус видимости
+        /// </summary>
+        [Display(Name = "Статус видимости")]
+        public VisibleStatus Status { get; set; }
         #endregion
 
         #region Foreign Keys
@@ -106,8 +116,6 @@ namespace SecretProject.BusinessProject.Models.Good
         /// <summary>
         /// Акция
         /// </summary>
-        [ForeignKey(nameof(PromotionId))]
-        public virtual Promotion Promotion { get; set; }
 
         #endregion
 
@@ -116,17 +124,21 @@ namespace SecretProject.BusinessProject.Models.Good
         /// Уменьшает цену
         /// </summary>
         /// <param name="cost">определённая цена</param>
-        private void Discount(float sum)
+        //TODO Убрать методы уценения, сейчас это сделано для объекта Promotion, который с помошьюе этого метода уценяет номеклатуру
+        public void Discount(float sum)
         {
-            Cost = Cost - sum;
+            IsDiscounted = true;
+            DiscountedCost =  Cost - sum;
         }
         /// <summary>
         /// Уменьшает цену
         /// </summary>
         /// <param name="percent">определенный процент</param>
-        private void Discount(int percent)
+        //TODO Убрать методы уценения, сейчас это сделано для объекта Promotion, который с помошьюе этого метода уценяет номеклатуру 
+        public void Discount(int percent)
         {
-            Cost = Cost - Cost * percent / 100;
+            IsDiscounted = true;
+            DiscountedCost =  Cost - Cost * percent / 100;
         }
 
         public override string ToString()

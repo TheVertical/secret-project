@@ -1,6 +1,7 @@
 ﻿using SecretProject.BusinessProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,6 @@ namespace SecretProject.BusinessProject.DataAccess
 {
     public interface IRepository
     {
-        
-        Entity GetById<Entity>(int id) where Entity : class,IDomainObject;
         IEnumerable<Entity> Get<Entity>(int count, Expression<Func<Entity, bool>> pericate) where Entity : class, IDomainObject;
         IEnumerable<Entity> GetAll<Entity,TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending) where Entity : class, IDomainObject;
         void Add<Entity>(Entity entity) where Entity : class,IDomainObject;

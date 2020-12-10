@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 
 namespace SecretProject.BusinessProject.Models.Good
@@ -29,11 +30,24 @@ namespace SecretProject.BusinessProject.Models.Good
         /// </summary>
         [Display(Name = "Официальное название")]
         public virtual string OfficialTitle { get; set; }
-
-        public List<Nomenclature> DiscountedProducts { get; set; }
+        public virtual List<Nomenclature> DiscountedNomenclatures { get; set; }
         #endregion
 
-
+        public void DiscountNomenclature(Nomenclature nomenclature,int percent)
+        {
+            nomenclature.Discount(percent);
+            DiscountedNomenclatures.Add(nomenclature);
+        }
+        public void DiscountNomenclature(IEnumerable<Nomenclature> nomenclatures, int percent)
+        {
+            nomenclatures.ToList().ForEach(nom => nom.Discount(percent));
+            DiscountedNomenclatures.AddRange(nomenclatures);
+        }
+        public void DiscountNomenclature(Nomenclature nomenclature, float sum)
+        {
+            nomenclature.Discount(sum);
+            DiscountedNomenclatures.Add(nomenclature);
+        }
         #region Foreign keys
         //Внешние ключи
         #endregion

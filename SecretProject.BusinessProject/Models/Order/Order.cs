@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -25,11 +26,12 @@ namespace SecretProject.BusinessProject.Models.Order
         /// Дата и время создания заказа
         /// <summary>
         [Display(Name = "Дата и время создания заказа")]
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public virtual DateTime DateCreated { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public virtual DateTime? DateCreated { get; set; } = DateTime.Now;
         /// <summary>
         /// Детали заказа (пользователь, адресс доставки, и т.д.)
         /// </summary>
+        [ForeignKey(nameof(OrderDetailsId))]
         public OrderDetails OrderDetails { get; set; }
         /// <summary>
         /// Позиции заказа
@@ -55,9 +57,15 @@ namespace SecretProject.BusinessProject.Models.Order
 
         [Display(Name = "Статус заказа")]
         public OrderState Status { get; set; }
+        /// <summary>
+        /// Метод оплаты
+        /// </summary>
+        [Display(Name = "Метод оплаты")]
+        public PaymentMethod PaymentMethod { get; set; }
         #endregion
 
         #region Foreign keys
+        public int OrderDetailsId { get; set; }
         #endregion
 
         #region Special Property

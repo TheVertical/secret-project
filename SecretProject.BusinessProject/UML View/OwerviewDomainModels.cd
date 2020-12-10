@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="SecretProject.BusinessProject.Models.GoodGroup" BaseTypeListCollapsed="true">
+  <Class Name="SecretProject.BusinessProject.Models.NomenclatureGroup" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAIAAAAACQAQAACAAAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAACAAAEAAAAAIAAAAACQAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Nomenclature\NomenclatureGroup.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="SecretProject.BusinessProject.Models.GoodProperty" BaseTypeListCollapsed="true">
+  <Class Name="SecretProject.BusinessProject.Models.NomenclatureProperty" BaseTypeListCollapsed="true">
     <Position X="2.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAACAAQAAAAAAAAAAQAgAAAAAAA=</HashCode>
@@ -16,18 +16,10 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="SecretProject.BusinessProject.Models.User.User">
-    <Position X="5.25" Y="2.25" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AABCAEAEICAQAAAAAAACQAAAAAAAAAACAAAQAAAAAAg=</HashCode>
-      <FileName>Models\User\User.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="SecretProject.BusinessProject.Models.Manufacturer">
     <Position X="0.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAAAAAAACAAQAACAAAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAACAAAAAAAgAAAAAAACAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Vendor\Manufacturer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -35,17 +27,72 @@
   <Class Name="SecretProject.BusinessProject.Models.Good.Nomenclature">
     <Position X="2.25" Y="3.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAgCAEACABAgAAAAAAACABSABAAQAAACAgAQAAACAAA=</HashCode>
+      <HashCode>AAhCAEAGAAggAAAEAAACABSABAEQAAACAgAQAAACAAA=</HashCode>
       <FileName>Models\Nomenclature\Nomenclature.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Enum Name="SecretProject.BusinessProject.Models.User.UserStatus">
-    <Position X="5.25" Y="0.5" Width="2" />
+  <Class Name="SecretProject.BusinessProject.Models.Order.Order" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAAEAAAAAAAAAAAAAAAAAAAgAAAgAAAAAAA=</HashCode>
-      <FileName>Models\User\User.cs</FileName>
+      <HashCode>AAADAAAEAAECAAAAAhACAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\Order\Order.cs</FileName>
     </TypeIdentifier>
-  </Enum>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.Order.OrderDetails" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEDEUAIMAAUQAgIAAECQAgAgAIAIAAAAAIAAAAAARA=</HashCode>
+      <FileName>Models\Order\OrderDetails.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.Order.OrderItem" BaseTypeListCollapsed="true">
+    <Position X="13" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAECAAAAAAAAAAQAAAACABAAACAAAQAAAAAAAAAAQAA=</HashCode>
+      <FileName>Models\Order\OrderItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.Good.CostPolicy">
+    <Position X="5.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAQBAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Nomenclature\CostPolicy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.Good.Promotion" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBAAAAABgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Models\Nomenclature\Promotion.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.UserData.Adress" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAQAIIEAAQAgIAAAKAAgAgAIAAAAAAAJAAAAAABA=</HashCode>
+      <FileName>Models\UserData\Adress.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.UserData.Phone">
+    <Position X="2.25" Y="8.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAEAAAAQAAAAAACAAAAA=</HashCode>
+      <FileName>Models\UserData\Phone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecretProject.BusinessProject.Models.UserData.User" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="6" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAFAEICAQAAAAAAACQAAACAAAAAACAAAQAgAAAAg=</HashCode>
+      <FileName>Models\UserData\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.167" />
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -23,6 +23,7 @@ namespace SecretProject.BusinessProject.Models.UserData
         public  User User { get; set; }
         public virtual string Country { get; set; }
         public virtual string City { get; set; }
+        public virtual int OKATOCod { get; set; }
         public virtual string District { get; set; }
         public virtual string Street { get; set; }
         public virtual int BuildNumber { get; set; }
@@ -36,8 +37,9 @@ namespace SecretProject.BusinessProject.Models.UserData
         public virtual byte Floor { get; set; }
         public virtual int AppartmentNumber { get; set; }
         public virtual string BuildLiteral { get; set; }
+        public virtual int BuildCorps { get;set; }
         /// <summary>
-        /// Широта в градусах
+        /// Широта в градусах 
         /// </summary>
         public virtual float Latitude { get; set; }
         /// <summary>

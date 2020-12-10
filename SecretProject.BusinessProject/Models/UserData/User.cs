@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,7 +18,7 @@ namespace SecretProject.BusinessProject.Models.UserData
         /// <summary>
         /// Ид
         /// </summary>
-        [Display(Name = "Ид")]
+        [Key,Display(Name = "Ид")]
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
@@ -38,8 +38,9 @@ namespace SecretProject.BusinessProject.Models.UserData
         /// Пароль "засоленный"
         /// </summary>
         [Display(Name = "Пароль")]
-        [StringLength(32)]
         [Required]
+        [DataType(DataType.Password)]
+        [StringLength(100,ErrorMessage = "Поле {0} должно иметь минимум {2} и максимум {1} символов.", MinimumLength = 5)]
         public virtual string Password
         {
             get => password; set
@@ -79,7 +80,7 @@ namespace SecretProject.BusinessProject.Models.UserData
         public string AdditionalNumber { get => AdditionalPhone.PhoneDigits; set => AdditionalPhone.PhoneNumber = value; }
         [NotMapped]
         public Phone AdditionalPhone = new Phone();
-
+        public int DefaultDeliveryAdressId { get; set; }
         /// <summary>
         /// Адреса доставки
         /// </summary>

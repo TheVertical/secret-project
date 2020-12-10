@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SecretProject.BusinessProject.Models
@@ -14,6 +15,7 @@ namespace SecretProject.BusinessProject.Models
         /// Ид
         /// </summary>
         [Display(Name = "Ид")]
+        [Key]
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
