@@ -14,6 +14,7 @@ using SecretProject.BusinessProject.Models.Good;
 using System.Linq;
 using SecretProject.VisualElements;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SecretProject.WebApi.Controllers
 {
@@ -24,54 +25,83 @@ namespace SecretProject.WebApi.Controllers
         private ILogger<CatalogController> logger;
         private IVisualRedactor visualRedactor;
         private IRepository repository;
+        private readonly DbContext context;
 
-        public CatalogController(ILogger<CatalogController> logger, IVisualRedactor visualRedactor, IRepository repository)
+        public CatalogController(ILogger<CatalogController> logger, IVisualRedactor visualRedactor, IRepository repository,DbContext context)
         {
             this.logger = logger;
             this.visualRedactor = visualRedactor;
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        [HttpGet,Route("categories/{id:int}")]
-        public IActionResult GetCategories(int? id)
+        [HttpGet]
+        [Route("categories")]
+        [Route("categories/{id:int}")]
+        public async Task<IActionResult> GetCategories(int? id)
         {
             if (id == null)
             {
-                var groups = repository.GetAll<NomenclatureGroup, int>(group => group.Id, true).Select(g => new NomenclatureGroupViewModel(g));
-
-                if (groups == null)
-                    BadRequest();
-                return visualRedactor.GetFormattedElement(groups) as JsonResult;
+                var groups = await repository.GetAllAsync<NomenclatureGroup, int>(group => group.Id, true);
+                var groupViewModels = groups.Select(g => new NomenclatureGroupViewModel(g));
+                if (groupViewModels == null)
+                    return BadRequest();
+                return visualRedactor.GetFormattedElement(groupViewModels) as JsonResult;
             }
-            var group = new NomenclatureGroupViewModel( repository.GetById<NomenclatureGroup>(id.Value));
-            return visualRedactor.GetFormattedElement(group) as JsonResult;
+            NomenclatureGroupViewModel categoryViewModel = new NomenclatureGroupViewModel(await repository.GetByIdAsync<NomenclatureGroup>(id.Value));
+            return visualRedactor.GetFormattedElement(categoryViewModel) as JsonResult;
 
         }
-        [HttpGet,Route("{categories}")]
-        public JsonResult GetProduct(int id)
+
+        [HttpGet]
+        [Route("product/{id:int}")]
+        public async Task<JsonResult> GetProducts(int? id)
         {
-            var nomViewModel = repository.GetById<Nomenclature>(id);
-            return visualRedactor.GetFormattedElement(nomViewModel) as JsonResult;
+            int _id = id != null ? id.Value : 1;
+            NomenclatureViewModel vm =  new NomenclatureViewModel(await repository.GetByIdAsync<Nomenclature>(_id));
+            return visualRedactor.GetFormattedElement(vm) as JsonResult;
         }
 
-        //[HttpGet("{}")]
-        public async Task<JsonResult> GetProducts(int? count = 20)
+        [HttpGet]
+        [Route("{category:alpha}/{count:int}")]
+        public async Task<IActionResult> GetProduct([FromRoute]string category, [FromRoute] int? count)
         {
-            var result = await repository.GetAllAsync<Nomenclature,bool>(nom => nom.Amount > 0,false);
-            return visualRedactor.GetFormattedElement(result) as JsonResult;
+            IEnumerable<Nomenclature> noms = null;
+            int amount = count != null && count < 20 ? count.Value : 20;
+            noms = await repository.GetAsync<Nomenclature>(amount, nom => nom.NomenclatureGroup.Name == category);
+            return visualRedactor.GetFormattedElement(noms) as JsonResult;
         }
-        [HttpPost("all")]
-        public async Task<JsonResult> GetProducts()
+        [HttpGet]
+        [Route("product")]
+        public async Task<IActionResult> GetPoducts([FromQuery]string category,[FromQuery] int? count)
         {
-            var result = await repository.GetAllAsync<Nomenclature,bool>(nom => nom.ManufacturerId != null, true);
-            return visualRedactor.GetFormattedElement(result) as JsonResult;
+            IEnumerable<Nomenclature> noms = null;
+            int amount = count != null && count < 20 ? count.Value : 20;
+            if (!String.IsNullOrEmpty(category))
+                noms = await repository.GetAsync<Nomenclature>(amount, nom => nom.NomenclatureGroup.Name == category);
+            else
+                return BadRequest();
+            return visualRedactor.GetFormattedElement(noms) as JsonResult;
         }
 
-        //[HttpGet(Name = "SpecialsProducts")]
-        public JsonResult GetDiscountedProducts()
+        [HttpGet]
+        [Route("product/discounted")]
+        public async Task<IActionResult> GetDiscountedProducts([FromQuery] string promotion, [FromQuery] int? count)
         {
-            var nomViewModels = repository.GetAll<Nomenclature,bool>(nom => nom.Promotion != null,false).Select(nom => new NomenclatureViewModel(nom));
-            return visualRedactor.GetFormattedElement(nomViewModels) as JsonResult;
+            IEnumerable<Nomenclature> noms = null;
+            int amount = count != null && count < 20 ? count.Value : 20;
+            if (!String.IsNullOrEmpty(promotion))
+            {
+                //var promotions = await repository.GetAsync<Promotion>(amount,prom => prom.WorkTitle == promotion);
+                var promotions = await context.Set<Promotion>().Where(prom => prom.WorkTitle == promotion).Include("DiscountedNomenclatures").Take(1).ToListAsync();
+                var prom = promotions.FirstOrDefault();
+                if (prom == null)
+                    return BadRequest();
+                noms = prom.DiscountedNomenclatures;
+            }
+            else
+                return BadRequest();
+            return visualRedactor.GetFormattedElement(noms) as JsonResult;
         }
 
         public void Dispose()
