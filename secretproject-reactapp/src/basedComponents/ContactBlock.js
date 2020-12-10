@@ -1,11 +1,11 @@
 //Библиотечные зависимости
 import React from 'react'
-import Col from 'react-bootstrap/Col'
+import Col from 'bootstrap-4-react'
 import { Modal, Button } from 'bootstrap-4-react';
 import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
 
 //Собственные зависимости
-import VisualElement from './VisualFactory'
+import VisualElement from './VisualElement'
 import Picture from "../basedComponents/ImageBlock"
 import "./ContactBlock.css"
 

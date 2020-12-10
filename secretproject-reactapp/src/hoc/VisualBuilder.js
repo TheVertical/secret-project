@@ -1,7 +1,7 @@
 import React, { Children } from 'react';
 import { Container, Row, Col } from 'bootstrap-4-react'
 import Header from './LayoutElements/Header';
-import VisualFactory from '../basedComponents/VisualFactory';
+import VisualElement from '../basedComponents/VisualElement';
 import "./LayoutElements/Main.css"
 
 //Атомарные компоненты
@@ -460,17 +460,16 @@ class VisualBuilder extends React.Component {
   }
 
 
+// class VisualBuilder {
+//   static renderVisual(Element) {
+//     let content = VisualFactory.renderVisualElement(Element);
+//     return (
+//       <div>
+//         <Container>{content}</Container>
+//       </div>
 
-class VisualBuilder {
-  static renderVisual(Element) {
-    let content = VisualFactory.renderVisualElement(Element);
-    return (
-      <div>
-        <Container>{content}</Container>
-      </div>
-
-    );
-  }
+//     );
+//   }
 
 
 }

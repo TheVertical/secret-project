@@ -1,7 +1,7 @@
 //Библиотечные зависимости
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
+// import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+// import { Link } from 'react-router-dom';
  import "./LinkBlock.css"
 //Собственные зависимости
 import "./ContactBlock.css"

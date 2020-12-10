@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import VisualElement from './VisualFactory'
+import VisualElement from './VisualElement'
 import { Container, Row, Col } from 'bootstrap-4-react'
 
 class Block extends React.Component{

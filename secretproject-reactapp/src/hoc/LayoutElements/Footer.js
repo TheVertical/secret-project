@@ -3,10 +3,10 @@ import './Footer.css';
 import { Container, Row, Col } from 'bootstrap-4-react'
 import Picture from "../../basedComponents/ImageBlock"
 import LinkBlock from "../../basedComponents/LinksMenu"
-import Form from 'react-bootstrap/Form'
+// import Form from 'react-bootstrap/Form'
 import LinkList from '../../ComplexComponents/LinkList'
 import ContactSectionFoot from '../../ComplexComponents/ContactSectionFoot'
-import VisualElement from '../../basedComponents/VisualFactory'
+import VisualElement from '../../basedComponents/VisualElement'
 
 // import bottomLogo from "../../Images/bottomSecureLogo.png"
 // import Container from 'react-bootstrap/Container'

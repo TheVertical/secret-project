@@ -1,7 +1,7 @@
 import React from 'react'
-import { Row, Col } from 'bootstrap-4-react'
+import { Row, Col, Container } from 'bootstrap-4-react'
 // import Bootstrap, { Carousel, BImg } from 'bootstrap-4-react';
-import { Button, Container } from "react-bootstrap"
+import { Button} from "react-bootstrap"
 import './MainPage.css'
 import ".././hoc/LayoutElements/Main.css"
 import { NavLink } from 'react-router-dom'
@@ -84,6 +84,7 @@ class MainPage extends React.Component {
 
 
           <img src="./Images/BannerProduct3.jpg" ></img>
+
 
 
         </Slider>

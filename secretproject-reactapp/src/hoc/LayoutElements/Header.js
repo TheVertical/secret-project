@@ -1,6 +1,6 @@
 //Библиотечные зависимости
 import React, { Children } from 'react';
-import { Container } from 'reactstrap';
+// import { Container } from 'reactstrap';
 import ContactSectionHeader from "../../ComplexComponents/ContactSectionHeader"
 import "./Header.css"
 //Собственные зависимости
