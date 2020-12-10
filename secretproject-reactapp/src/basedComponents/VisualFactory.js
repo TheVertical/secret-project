@@ -17,7 +17,7 @@ import DropdownMenu from './DropdownMenu'
 
 import { Button } from 'react-bootstrap';
 
-class VisualElement extends React.Component {
+class VisualFactory extends React.Component {
     static renderVisualElement(element) {
         const TYPE = element.Type;
 
@@ -96,4 +96,4 @@ class VisualElement extends React.Component {
 
     }
 }
-export default VisualElement;
+export default VisualFactory;

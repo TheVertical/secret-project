@@ -5,7 +5,7 @@ import { Modal, Button } from 'bootstrap-4-react';
 import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
 
 //Собственные зависимости
-import VisualElement from './VisualElement'
+import VisualElement from './VisualFactory'
 import Picture from "../basedComponents/ImageBlock"
 import "./ContactBlock.css"
 
