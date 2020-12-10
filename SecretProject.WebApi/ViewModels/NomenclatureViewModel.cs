@@ -16,8 +16,12 @@ namespace SecretProject.WebApi.ViewModels
             Id = domain.Id;
             Title = domain.Name;
             Description = domain.Description;
-            Price = domain.Cost;
-            IsDiscouted = domain.IsDiscounted;
+            OriginalPrice = domain.Cost;
+            if(domain.IsDiscounted)
+            {
+                DiscountedPrice = domain.DiscountedCost;
+                IsDiscouted = domain.IsDiscounted;
+            }
             IsInStock = domain.Amount > 0;
             //TODO Можно у номенклатуры добавить поля популярности и даты добавления в каталог
             IsNew = false;
@@ -30,7 +34,8 @@ namespace SecretProject.WebApi.ViewModels
 
         public string Title { get; set; }
         public string Description { get; set; }
-        public float Price { get; set; }
+        public float OriginalPrice { get; set; }
+        public float DiscountedPrice { get; set; }
         public string ImageUrl { get; set; }
         public bool IsDiscouted { get; set; }
         public bool IsNew { get; set; }
