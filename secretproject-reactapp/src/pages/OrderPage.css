@@ -1,0 +1,19 @@
+.OrderPage_OrderBlockStyle{
+    background-color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+}
+.OrderPage_OrderBlockStyle .row{
+     flex-direction: column;
+}
+.OrderPage_ImageStyle{
+    width: 700px;
+}
+.OrderPage_InsideRow .row{
+display: block;
+}
+
+/* .col.OrderPage_OrderBlockStyle{
+    flex-direction: row;
+} */

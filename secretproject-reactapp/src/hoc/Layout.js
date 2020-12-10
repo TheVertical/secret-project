@@ -11,6 +11,8 @@ import Page404 from '../pages/page404'
 import SuccessfulRegistration from '../pages/SuccessfulRegistration'
 import { Button } from 'react-bootstrap';
 import MainPage from '../pages/MainPage';
+import OrderPage from '../pages/OrderPage';
+import Catalog_Page from '../pages/Catalog_Page'
 
 class Layout extends React.Component{
    render(){
@@ -27,8 +29,8 @@ class Layout extends React.Component{
                   {/* <Route path="" exact render={()=>{<MainPage></MainPage>}}></Route> */}
                   <Route path="/" exact render={()=><MainPage></MainPage>}></Route>
                   <Route path="/first" exact render={()=><MainPage></MainPage>}></Route>
-                  <Route path="/second" exact render={()=><h1 className="mainStyle">Second</h1>}></Route>
-                  <Route path="/third" exact render={()=><h1 className="mainStyle">Third</h1>}></Route>
+                  <Route path="/second" exact render={()=><OrderPage></OrderPage>}></Route>
+                  <Route path="/third" exact render={()=><Catalog_Page></Catalog_Page>}></Route>
                   <Route path="/fourth" exact render={()=><h1 className="mainStyle">Fourth</h1>}></Route>
                   <Route path="/fifth" exact render={()=><SuccessfulRegistration></SuccessfulRegistration>}></Route>
                   <Route render={()=><Page404 className="mainStyle"></Page404>}></Route>
