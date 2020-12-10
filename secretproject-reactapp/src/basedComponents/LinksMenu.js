@@ -4,6 +4,7 @@ import linkblock from '../basedComponents/LinksMenu';
  import "./LinkBlock.css"
 //Собственные зависимости
 import "./ContactBlock.css"
+import {NavLink} from "react-router-dom"
 
 //Расширяет или не расширяет React.Component?
 class LinksMenu extends React.Component {
@@ -33,7 +34,7 @@ class LinksMenu extends React.Component {
         <div className={checkHor()}>
             {this.state.MainTitle}
             {this.state.Links.map((link)=>
-             <a className="stylishAAA" key={link.Id} href={link.Link}>{link.Title}</a>
+             <NavLink className="stylishAAA" key={link.Id} to={link.Link}>{link.Title}</NavLink>
             )
             }
         </div>

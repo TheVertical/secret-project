@@ -7,3 +7,10 @@
 .ProductCardArray_Global>*{
     margin-right:15px
 }
+
+.ProductCardArray_Col{
+    margin-bottom:20px;
+}
+.col.ProductCardArray_Col {
+    padding-left: 26px;
+}

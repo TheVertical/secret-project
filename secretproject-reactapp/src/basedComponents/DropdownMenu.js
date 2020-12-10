@@ -3,7 +3,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Button from 'react-bootstrap/Button'
-
+import NavLink from "react-router-dom"
 
 class DropdownMenu extends React.Component{
     
@@ -18,7 +18,8 @@ class DropdownMenu extends React.Component{
    //Используется для вставки дочернего элемента внутрь выпадающего меню
     static InsertDropdown(element){
     return(
-    element.map((value,index)=><Dropdown.Item eventKey={index}>{value.Title}</Dropdown.Item>)
+    element.map((value,index)=>
+    <Dropdown.Item eventKey={index}>{value.Title}</Dropdown.Item>)
     )
         
     }

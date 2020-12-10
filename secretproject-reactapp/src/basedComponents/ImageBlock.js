@@ -1,5 +1,5 @@
 import React from "react"
-
+import {NavLink} from "react-router-dom"
 // Здесь будут состояния
 
 
@@ -15,7 +15,10 @@ const picture=(props)=>{
     //Здесь будут функции(внутренние)
 
 return(
-<img src={props.src}></img>
+<NavLink to={props.Links}>
+ <img src={props.src}></img>
+</NavLink>
+
 );
 
 }
