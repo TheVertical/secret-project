@@ -47,7 +47,8 @@ namespace SecretProject.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Timestamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ParentId = table.Column<int>(type: "int", nullable: true)
+                    ParentId = table.Column<int>(type: "int", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,22 +59,6 @@ namespace SecretProject.DAL.Migrations
                         principalTable: "NomenclatureGroups",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Timestamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FullCost = table.Column<double>(type: "float", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,12 +85,13 @@ namespace SecretProject.DAL.Migrations
                     Timestamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdditionalNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AdditionalNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DefaultDeliveryAdressId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,6 +112,7 @@ namespace SecretProject.DAL.Migrations
                     MeasurementId = table.Column<int>(type: "int", nullable: true),
                     Amount = table.Column<int>(type: "int", nullable: false),
                     Cost = table.Column<float>(type: "real", nullable: false),
+                    DiscountedCost = table.Column<float>(type: "real", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     PromotionId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -162,12 +149,14 @@ namespace SecretProject.DAL.Migrations
                 name: "Orders.Details",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Timestamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
                     FirstNameCustomer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastNameCustomer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AdditionalNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsWithDelivery = table.Column<bool>(type: "bit", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     District = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -176,17 +165,13 @@ namespace SecretProject.DAL.Migrations
                     Entrance = table.Column<byte>(type: "tinyint", nullable: false),
                     Floor = table.Column<byte>(type: "tinyint", nullable: false),
                     AppartmentNumber = table.Column<int>(type: "int", nullable: false),
+                    BuildLiteral = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BuildCorps = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders.Details", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders.Details_Orders_Id",
-                        column: x => x.Id,
-                        principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders.Details_Users_UserId",
                         column: x => x.UserId,
@@ -204,6 +189,7 @@ namespace SecretProject.DAL.Migrations
                     Timestamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OKATOCod = table.Column<int>(type: "int", nullable: false),
                     District = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BuildNumber = table.Column<int>(type: "int", nullable: false),
@@ -211,6 +197,7 @@ namespace SecretProject.DAL.Migrations
                     Floor = table.Column<byte>(type: "tinyint", nullable: false),
                     AppartmentNumber = table.Column<int>(type: "int", nullable: false),
                     BuildLiteral = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BuildCorps = table.Column<int>(type: "int", nullable: false),
                     Latitude = table.Column<float>(type: "real", nullable: false),
                     Longitude = table.Column<float>(type: "real", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
@@ -250,13 +237,37 @@ namespace SecretProject.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Timestamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FullCost = table.Column<double>(type: "float", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
+                    OrderDetailsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Orders.Details_OrderDetailsId",
+                        column: x => x.OrderDetailsId,
+                        principalTable: "Orders.Details",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders.Items",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Timestamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
-                    actualCount = table.Column<int>(type: "int", nullable: false),
+                    ActualCount = table.Column<int>(type: "int", nullable: false),
                     Cost = table.Column<float>(type: "real", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     NomenclatureId = table.Column<int>(type: "int", nullable: false)
@@ -309,6 +320,11 @@ namespace SecretProject.DAL.Migrations
                 column: "PromotionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_OrderDetailsId",
+                table: "Orders",
+                column: "OrderDetailsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders.Details_UserId",
                 table: "Orders.Details",
                 column: "UserId");
@@ -335,9 +351,6 @@ namespace SecretProject.DAL.Migrations
                 name: "NomenclatureProperties");
 
             migrationBuilder.DropTable(
-                name: "Orders.Details");
-
-            migrationBuilder.DropTable(
                 name: "Orders.Items");
 
             migrationBuilder.DropTable(
@@ -350,9 +363,6 @@ namespace SecretProject.DAL.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Manufacturers");
 
             migrationBuilder.DropTable(
@@ -363,6 +373,12 @@ namespace SecretProject.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Promotions");
+
+            migrationBuilder.DropTable(
+                name: "Orders.Details");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

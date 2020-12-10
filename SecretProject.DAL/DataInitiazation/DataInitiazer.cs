@@ -7,6 +7,8 @@ using System.Linq;
 using SecretProject.BusinessProject.Measurements;
 using SecretProject.BusinessProject.Models.Good;
 using SecretProject.BusinessProject.Models.UserData;
+using SecretProject.BusinessProject.Models.Order;
+using System.IO;
 
 namespace SecretProject.DAL.DataInitiazation
 {
@@ -51,12 +53,12 @@ namespace SecretProject.DAL.DataInitiazation
                 {
                     Name= @"Clean Polish паста 50 гр. №360 (Hawe Neos Dental)",
                     NomenclatureGroup = context.NomenclatureGroups.FirstOrDefault(g => g.Name == "Гигиена и профилактика"),
-                    
+
                     Manufacturer = context.Manufacturers.FirstOrDefault(m => m.Name == "KERR"),
 
                     Description = "Паста полировочная стоматологическая: Cleanpolish на основе минералов из породы риолитов для чистки и полировки зубов, а также для предварительной полировки пломб из золота, амальгамы и композитов. Без фтора и анисово й отдушки. Цвет зеленый. Упаковка 50 г пасты в тюбике.",
                     Cost = 567,
-                    Status = NomenclatureStatus.Visible,
+                    Status = VisibleStatus.Visible,
                     Amount = 356,
                     Measurement = null
                 },
@@ -64,12 +66,12 @@ namespace SecretProject.DAL.DataInitiazation
                 {
                     Name= @"Cleanic без фторида 100г. тестовая уп. 3230",
                     NomenclatureGroup = context.NomenclatureGroups.FirstOrDefault(g => g.Name == "Гигиена и профилактика"),
-                    
+
                     Manufacturer = context.Manufacturers.FirstOrDefault(m => m.Name == "KERR"),
 
                     Description = "Cleanic – универсальная паста для чистки и полировки. Паста Cleanic имеет изменяемую абразию: при нагрузке превращается из грубой в мелкозернистую и во время работы становится полировальной пастой с эффектом блеска. Она отвечает важнейшим требованиям к современной пасте: высокая чистящая способность, оптимальная полировка, минимальная абразия. Применение данной пасты для чистки и полировки одновременно позволяет значительно экономить время.",
                     Cost = 1700,
-                    Status = NomenclatureStatus.Visible,
+                    Status = VisibleStatus.Visible,
                     Amount = 5,
                     Measurement = null
                 },
@@ -78,13 +80,13 @@ namespace SecretProject.DAL.DataInitiazation
                 {
                     Name= @"Альвостаз губка (Йодоформ) гемостатический и антисептический компресс для альвеол(Омега)",
                     NomenclatureGroup = context.NomenclatureGroups.FirstOrDefault(g => g.Name == "Дезинфекция"),
-                    
+
                     Manufacturer = context.Manufacturers.FirstOrDefault(m => m.Name == "Омега"),
                     #region описание
 
                     Description = "Губка Альвостаз предназначается для лечения альвеолита, а также используется в качестве средства профилактики возможных осложнений после оперативного вмешательства, связанного с удалением зубов. Специальный препарат для альвеол обладает антисептическим действием и способствует остановке кровотечения. Коллагеновые кровоостанавливающие губки пропитаны специальным лекарственным раствором. Размер каждой из них составляет один квадратный сантиметр.",
                     Cost = 647,
-                    Status = NomenclatureStatus.Visible,
+                    Status = VisibleStatus.Visible,
                     Amount = 0,
 	                #endregion
 
@@ -94,7 +96,7 @@ namespace SecretProject.DAL.DataInitiazation
                 {
                     Name= @"Глассин Рест 10 гр+8г (Омега) стеклополиалкилатный пломбировочный материал химического отвердения",
                     NomenclatureGroup = context.NomenclatureGroups.FirstOrDefault(g => g.Name == "Дезинфекция"),
-                    
+
                     Manufacturer = context.Manufacturers.FirstOrDefault(m => m.Name == "Омега"),
                     #region описание
                     Description = @"Стеклоиономерный пломбировочный материал химического отвердения
@@ -115,7 +117,7 @@ namespace SecretProject.DAL.DataInitiazation
 Цвета — А2; А3; В1; В2 В3; С2",
                     #endregion
                     Cost = 720,
-                    Status = NomenclatureStatus.Visible,
+                    Status = VisibleStatus.Visible,
                     Amount = 8,
                     Measurement = null
                 },
@@ -132,7 +134,7 @@ namespace SecretProject.DAL.DataInitiazation
 Зубы Bonartic® II NFC+ сочетают в себе использование физиологических законов природы и эстетическо- морфологических требований с целью создания превосходного зубного протеза. Карт-форма для заказа зубов",
                     #endregion
                     Cost = 2400,
-                    Status = NomenclatureStatus.Visible,
+                    Status = VisibleStatus.Visible,
                     Amount = 10,
                     Measurement = null
                 },
@@ -154,7 +156,7 @@ namespace SecretProject.DAL.DataInitiazation
 Запрещается использовать материал для полостей глубиной поражения от D2 до D3* или дефектов эмали, а также в цервикальных отделах с тонким слоем эмали или открытым дентином.",
                     #endregion
                     Cost = 5300,
-                    Status = NomenclatureStatus.Visible,
+                    Status = VisibleStatus.Visible,
                     Amount = 10,
                     Measurement = null
                 },
@@ -164,8 +166,59 @@ namespace SecretProject.DAL.DataInitiazation
 
             var users = new List<User>
             {
-                new User{FirstName = "Данила",LastName="Потапов",Login="danila351960@yandex.ru",Password="potapov2222",MainPhone = new Phone(){ PhoneNumber = "79536600012"},Status = UserStatus.Active}
+                new User{FirstName = "Данила",LastName="Потапов",Login="danila351960@yandex.ru",Password="potapov2222",MainPhone = new Phone(){ PhoneNumber = "79536600012"},Status = UserStatus.Active,
+                    DeliveryAdresses = new List<Adress>
+                    {
+                        new Adress
+                        {
+                            Country = "Россия",
+                            City = "Санкт-Петербург",
+                            OKATOCod = 40,
+                            District = "Невский",
+                            Street = "Российский пр-кт",
+                            BuildNumber = 3,
+                            BuildCorps = 1,
+                            Entrance = 1,
+                            Floor = 3,
+                            AppartmentNumber = 12,
+                            Latitude = 59.923184f,
+                            Longitude = 30.472759f,
+                        }
+                    }
+                }
             };
+            context.Users.AddRange(users);
+
+            var promotion = new Promotion { OfficialTitle = "Специальные предложения!", WorkTitle = "Спец",
+                DiscountedNomenclatures = new List<Nomenclature>()
+            };
+            var nomec = context.Nomenclatures.ToList();
+            promotion.DiscountNomenclature(nomec, 10);
+            context.Add(promotion);
+            context.SaveChanges();
+
+
+            var orders = new List<Order>
+            {
+                new Order
+                {
+                    OrderDetails = new OrderDetails
+                    {
+                        UserId = 1,
+                        IsWithDelivery = true,
+                    },
+                    PaymentMethod = PaymentMethod.Bill,
+                    Status = OrderState.Confirmed,
+                    OrderItems = new List<OrderItem>
+                    {
+                        new OrderItem { NomenclatureId = 2,ActualCount = 2, },
+                        new OrderItem { NomenclatureId = 3,ActualCount = 1, },
+                    }
+                }
+            };
+            context.Orders.AddRange(orders);
+            context.SaveChanges();
+
             context.Database.OpenConnection();
             try
             {
@@ -177,6 +230,28 @@ namespace SecretProject.DAL.DataInitiazation
         {
             context.Database.EnsureDeleted();
             context.Database.Migrate();
+            context.Database.ExecuteSqlRaw("CREATE TRIGGER Order_INSERT_TRIGGER ON Orders"
+                                            + " AFTER INSERT"
+                                            + " AS"
+                                            + " BEGIN"
+                                            + " SET NOCOUNT ON;"
+                                            + " IF((SELECT TRIGGER_NESTLEVEL()) > 1) RETURN;"
+                                            + " DECLARE @Id INT"
+                                            + " SELECT @Id = INSERTED.Id"
+                                            + " FROM INSERTED"
+                                            + " UPDATE dbo.Orders"
+                                            + " SET DateCreated = GETDATE()"
+                                            + " WHERE Id = @Id"
+                                            + " END");
+        }
+        public  static void Main(string[] args)
+        {
+            sBaseContextFactory factory = new sBaseContextFactory();
+            using (sBaseContext context = factory.CreateDbContext("server=DESKTOP-P7SS3RO;database=SecretDb;Integrated Security=True;App=EntityFramework"))
+            {
+                RecreateDatabase(context);
+                InitializeData(context);
+            }
         }
         #endregion
     }

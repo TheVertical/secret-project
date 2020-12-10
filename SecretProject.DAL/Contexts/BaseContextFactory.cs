@@ -20,7 +20,13 @@ namespace SecretProject.DAL.Contexts
         {
             //0-ой элемент args - это строка подключения в данном методе
             var optionsBuilder = new DbContextOptionsBuilder<sBaseContext>();
-            var connectionString = args[0];
+            string connectionString = "";
+            //TODO Строка находится прямо в коде,потому что запрашивается при использовании команды dotnet ef migrations ...
+            //Подумать, как это испоавить
+            if (args == null || args.Length == 0)
+                connectionString = "server=DESKTOP-P7SS3RO;database=SecretDb;Integrated Security=True;App=EntityFramework";
+            else
+                connectionString = args[0];
             optionsBuilder.UseSqlServer(connectionString, options => options.EnableRetryOnFailure());
             //.ConfigureWarnings(warning => warning.Throw(RelationalEventId.QueryClientEvaluationWarning));
             return new sBaseContext(optionsBuilder.Options);

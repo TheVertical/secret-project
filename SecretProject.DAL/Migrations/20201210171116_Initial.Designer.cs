@@ -10,7 +10,7 @@ using SecretProject.DAL.Contexts;
 namespace SecretProject.DAL.Migrations
 {
     [DbContext(typeof(sBaseContext))]
-    [Migration("20201202165238_Initial")]
+    [Migration("20201210171116_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,6 +63,9 @@ namespace SecretProject.DAL.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("DiscountedCost")
+                        .HasColumnType("real");
 
                     b.Property<int?>("ManufacturerId")
                         .HasColumnType("int");
@@ -162,6 +165,9 @@ namespace SecretProject.DAL.Migrations
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
@@ -212,12 +218,18 @@ namespace SecretProject.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime?>("DateCreated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
                     b.Property<double>("FullCost")
                         .HasColumnType("float");
+
+                    b.Property<int>("OrderDetailsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -229,19 +241,29 @@ namespace SecretProject.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OrderDetailsId");
+
                     b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.OrderDetails", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("AdditionalNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("AppartmentNumber")
                         .HasColumnType("int");
+
+                    b.Property<int>("BuildCorps")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BuildLiteral")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BuildNumber")
                         .HasColumnType("int");
@@ -263,6 +285,9 @@ namespace SecretProject.DAL.Migrations
 
                     b.Property<byte>("Floor")
                         .HasColumnType("tinyint");
+
+                    b.Property<bool>("IsWithDelivery")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastNameCustomer")
                         .HasColumnType("nvarchar(max)");
@@ -295,6 +320,9 @@ namespace SecretProject.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("ActualCount")
+                        .HasColumnType("int");
+
                     b.Property<float>("Cost")
                         .HasColumnType("real");
 
@@ -308,9 +336,6 @@ namespace SecretProject.DAL.Migrations
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
-
-                    b.Property<int>("actualCount")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -329,6 +354,9 @@ namespace SecretProject.DAL.Migrations
                         .UseIdentityColumn();
 
                     b.Property<int>("AppartmentNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BuildCorps")
                         .HasColumnType("int");
 
                     b.Property<string>("BuildLiteral")
@@ -358,6 +386,9 @@ namespace SecretProject.DAL.Migrations
                     b.Property<float>("Longitude")
                         .HasColumnType("real");
 
+                    b.Property<int>("OKATOCod")
+                        .HasColumnType("int");
+
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
@@ -386,6 +417,9 @@ namespace SecretProject.DAL.Migrations
                     b.Property<string>("AdditionalNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DefaultDeliveryAdressId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -401,8 +435,8 @@ namespace SecretProject.DAL.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -434,8 +468,8 @@ namespace SecretProject.DAL.Migrations
                         .WithMany()
                         .HasForeignKey("NomenclatureGroupId");
 
-                    b.HasOne("SecretProject.BusinessProject.Models.Good.Promotion", "Promotion")
-                        .WithMany("DiscountedProducts")
+                    b.HasOne("SecretProject.BusinessProject.Models.Good.Promotion", null)
+                        .WithMany("DiscountedNomenclatures")
                         .HasForeignKey("PromotionId");
 
                     b.Navigation("Manufacturer");
@@ -443,8 +477,6 @@ namespace SecretProject.DAL.Migrations
                     b.Navigation("Measurement");
 
                     b.Navigation("NomenclatureGroup");
-
-                    b.Navigation("Promotion");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureGroup", b =>
@@ -463,19 +495,22 @@ namespace SecretProject.DAL.Migrations
                         .HasForeignKey("NomenclatureId");
                 });
 
-            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.OrderDetails", b =>
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.Order", b =>
                 {
-                    b.HasOne("SecretProject.BusinessProject.Models.Order.Order", "Order")
-                        .WithOne("OrderDetails")
-                        .HasForeignKey("SecretProject.BusinessProject.Models.Order.OrderDetails", "Id")
+                    b.HasOne("SecretProject.BusinessProject.Models.Order.OrderDetails", "OrderDetails")
+                        .WithMany()
+                        .HasForeignKey("OrderDetailsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.OrderDetails", b =>
+                {
                     b.HasOne("SecretProject.BusinessProject.Models.UserData.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-
-                    b.Navigation("Order");
 
                     b.Navigation("User");
                 });
@@ -488,15 +523,13 @@ namespace SecretProject.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SecretProject.BusinessProject.Models.Order.Order", "Order")
+                    b.HasOne("SecretProject.BusinessProject.Models.Order.Order", null)
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Nomenclature");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.UserData.Adress", b =>
@@ -517,7 +550,7 @@ namespace SecretProject.DAL.Migrations
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.Good.Promotion", b =>
                 {
-                    b.Navigation("DiscountedProducts");
+                    b.Navigation("DiscountedNomenclatures");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureGroup", b =>
@@ -527,8 +560,6 @@ namespace SecretProject.DAL.Migrations
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.Order", b =>
                 {
-                    b.Navigation("OrderDetails");
-
                     b.Navigation("OrderItems");
                 });
 
