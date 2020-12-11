@@ -15,6 +15,7 @@ import OrderPage from '../pages/OrderPage';
 import Catalog_Page from '../pages/Catalog_Page'
 
 class Layout extends React.Component{
+   
    render(){
      
       return (

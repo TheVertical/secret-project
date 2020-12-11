@@ -5,4 +5,40 @@
 }
 .Catalog_Page_H1{
     margin-bottom: 0;
+    padding: 0 12px;
 }
+.Catalog_Page_TitleRow{
+   padding: 0 12px;
+   margin-bottom: 20px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.Catalog_Page_TitleRowDiv{
+    display: flex;
+    align-items: center;
+}
+
+.Catalog_Page_SVG_SpisokStyle{
+  content:" ";
+  mask-image:url("./listImage.svg");
+  background-color: gray;
+  opacity: 0.7;
+  width:20px;
+  height:20px;  
+}
+
+.Catalog_Page_SortButtonStyle button.dropdown-toggle.btn.btn-primary{
+    background-color: rgba(255,255,255,0);
+    border:0;
+}
+.Catalog_Page_SortButtonStyle button.dropdown-toggle.btn.btn-primary:focus,.Catalog_Page_SortButtonStyle button.dropdown-toggle.btn.btn-primary:hover,.Catalog_Page_SortButtonStyle button.dropdown-toggle.btn.btn-primary:target{
+    color:black;
+    border:0;
+}
+
+.Catalog_Page_NoneDisplay{
+    display:none;
+}
+
+

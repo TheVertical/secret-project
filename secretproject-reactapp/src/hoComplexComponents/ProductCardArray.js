@@ -42,6 +42,8 @@ class ProductCardArray extends React.Component {
       //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
       //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>
       ],
+      
+   
     }
   }
 
