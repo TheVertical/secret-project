@@ -2,10 +2,10 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Badge from 'react-bootstrap/Badge'
-// import img_src from '../Images/Product.jpg'
+import {connect} from "react-redux"
 import './ProductCard.css'
-
-
+import rootStore from "../redux/rootStore"
+// import rootStore from "../redux/rootReducer"
 
 
 //Собственные зависимости
@@ -21,20 +21,58 @@ class MiniProductCard extends React.Component{
             Price: props.Price,
             ImageUrl: props.ImageUrl,
             Type: props.Type,
-            VisualElements: []
+            VisualElements: [],
+            Style:"",
+            ImageStyle:"",
+            width:'16rem'
         }
     }
     //Функции React
 
     //Собственные функции класса
+    // static GetInlineStyle=()=>{
+    //   this.SetInlineStyle()
+    // }  
+
+    SetInlineStyle(){
+      if(this.props.isInline){
+        this.setState({
+          Style:"ProductCard_InlineStyle",
+          width:"100%",
+          ImageStyle:"ProductCard_ImageStyle"
+      }
+      );
+      }
+      else{
+        this.setState({
+          Style:"",
+          ImageStyle:"",
+          width:'16rem'
+      }
+      );
+      }
+  //     this.setState({
+  //     Style:"ProductCard_InlineStyle",
+  //     width:"100%",
+  //     ImageStyle:"ProductCard_ImageStyle"
+  
+  // });
+
+   }
+
 
     render(props){
+      // this.SetInlineStyle()
+      let store=rootStore()
+      store.subscribe(()=>{this.SetInlineStyle()})
+      console.log(this.state.Style)
       return(
-      <Card style={{ width: '16rem' }}>
+      <Card style={{ width: this.state.width }} className={this.state.Style}>
+      {this.SetInlineStyle.bind(this)}
       <Badge pill variant="primary">
         Есть в наличии
       </Badge>{' '}
-      <Card.Img variant="top" src={this.state.ImageUrl} />
+      <Card.Img variant="top" src={this.state.ImageUrl} className={this.state.ImageStyle}/>
       <Card.Body>
       <Card.Text>
          {this.state.Title} 
@@ -46,11 +84,20 @@ class MiniProductCard extends React.Component{
       </Card.Title>
         <Button variant="primary">Купить</Button>
       </Card.Body>
+    
+    <Button onClick= {this.SetInlineStyle.bind(this)}></Button>
+    
     </Card>
-      )
+     
+     )
       //рендер
     }
 
 }
+function mapStatetoProps(state){
+  return{
+    isInline:state.isInline
+  }
+}
 
-export default MiniProductCard
+export default connect(mapStatetoProps)(MiniProductCard)

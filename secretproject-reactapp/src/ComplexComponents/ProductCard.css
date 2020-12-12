@@ -19,3 +19,13 @@
     justify-content: space-between;
     align-items: center;
 }
+.ProductCard_InlineStyle{
+    display:flex;
+    flex-direction: row;
+}
+.ProductCard_ImageStyle{
+    width:8rem;
+}
+span.badge.badge-pill.badge-primary{
+    display: inline-table;
+}

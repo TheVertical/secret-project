@@ -417,7 +417,7 @@ class VisualBuilder extends React.Component {
   async getBackbone() {
     let url = 'https://secrethost.azurewebsites.net/visual/backbone'
     let response = await fetch(url); 
-    let json = await response.json();
+    // let json = await response.json();
     // this.setState({Mock:json})
   }
 
