@@ -245,7 +245,7 @@ namespace SecretProject.Services
         public object GetFormattedElement(object element)
         {
 
-            return ;
+            return null;
         }
 
         public object GetFormattedElement(IEnumerable<object> element)
