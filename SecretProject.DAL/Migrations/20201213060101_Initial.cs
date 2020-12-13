@@ -278,7 +278,8 @@ namespace SecretProject.DAL.Migrations
                     FullCost = table.Column<double>(type: "float", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
-                    OrderDetailsId = table.Column<int>(type: "int", nullable: false)
+                    OrderDetailsId = table.Column<int>(type: "int", nullable: false),
+                    PromotionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

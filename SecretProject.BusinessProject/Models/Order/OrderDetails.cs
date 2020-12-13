@@ -97,11 +97,6 @@ namespace SecretProject.BusinessProject.Models.Order
             MainPhone = user.MainPhone;
             AdditionalPhone = user.AdditionalPhone;
         }
-
-        private void GetUserFromInfoData()
-        {
-
-        }
         #endregion
 
     }

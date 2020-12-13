@@ -2,14 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject.DataAccess;
+using SecretProject.BusinessProject.Models.Good;
 using SecretProject.BusinessProject.Models.Order;
+using SecretProject.BusinessProject.Models.UserData;
 using SecretProject.VisualElements;
+using SecretProject.WebApi.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace SecretProject.WebApi.Controllers
 {
@@ -36,17 +36,70 @@ namespace SecretProject.WebApi.Controllers
         [Route("details/{id:int}")]
         public async Task<IActionResult> GetOrderDetails(int id)
         {
-            var order =(await context.Set<Order>().Include(o => o.OrderDetails).Include(o => o.OrderItems).Where(o => o.Id == id).ToListAsync()).FirstOrDefault();
+            var order = (await context.Set<Order>().Include(o => o.OrderDetails).Include(o => o.OrderItems).Where(o => o.Id == id).ToListAsync()).FirstOrDefault();
             if (order == null)
                 return BadRequest();
             return visualRedactor.GetFormattedElement(order) as JsonResult;
         }
         [HttpPost]
         [Route("accept")]
-        public IActionResult RegisterOrder([FromBody]string json)
+        [Consumes("application/json")]
+        public async Task<IActionResult> RegisterOrder([FromBody] OrderViewModel orderViewModel)
         {
-            //JsonDocument.Parse(json);
-            return BadRequest();
+            if (orderViewModel == null)
+                return BadRequest();
+            if (orderViewModel.OrderItems == null || orderViewModel.OrderItems.Count == 0)
+                return BadRequest();
+
+            Order order = new Order();
+            OrderDetails details = new OrderDetails();
+            foreach (var item in orderViewModel.OrderItems)
+            {
+                if (item.ActualCount <= 0)
+                    return BadRequest();
+
+                Nomenclature nomenclature = await context.Set<Nomenclature>().FindAsync(item.NomenclatureId);
+
+                if (nomenclature == null)
+                    return BadRequest();
+
+                if (nomenclature.Amount < item.ActualCount)
+                {
+                    //TODO Что делать если количество заказанное пользователем больше того, которое есть на складе;
+                }
+                OrderItem orderItem = new OrderItem(nomenclature,item.ActualCount);
+                order.OrderItems.Add(orderItem);
+            }
+
+            if (orderViewModel.UserId != null)
+            {
+                User user = await context.Set<User>().Include(u => u.DeliveryAdresses).Where(u => u.Id == orderViewModel.UserId).FirstOrDefaultAsync();
+                details.GetInfoDataByUser(user);
+            }
+            else
+            {
+                details.FirstNameCustomer = orderViewModel.Info.FirstNameCustomer;
+                details.LastNameCustomer = orderViewModel.Info.LastNameCustomer;
+
+                details.IsWithDelivery = orderViewModel.Info.IsWithDelivery;
+
+                details.PhoneNumber = orderViewModel.Info.PhoneNumber;
+                details.AdditionalNumber = orderViewModel.Info.AdditionalNumber;
+
+                details.City = orderViewModel.Info.City;
+                details.Street = orderViewModel.Info.Street;
+                details.BuildNumber = orderViewModel.Info.BuildNumber;
+                details.BuildLiteral = orderViewModel.Info.BuildLiteral;
+                details.Entrance = orderViewModel.Info.Entrance;
+                details.Floor = orderViewModel.Info.Floor;
+                details.AppartmentNumber = orderViewModel.Info.AppartmentNumber;
+            }
+            order.OrderDetails = details;
+            order.PaymentMethod = orderViewModel.PaymentMethod;
+            order.Status = orderViewModel.Status;
+            await context.Set<Order>().AddAsync(order);
+            context.SaveChanges();
+            return Ok();
         }
     }
 }

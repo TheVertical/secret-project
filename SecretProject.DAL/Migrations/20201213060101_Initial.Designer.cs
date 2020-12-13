@@ -10,7 +10,7 @@ using SecretProject.DAL.Contexts;
 namespace SecretProject.DAL.Migrations
 {
     [DbContext(typeof(sBaseContext))]
-    [Migration("20201213041351_Initial")]
+    [Migration("20201213060101_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -255,6 +255,9 @@ namespace SecretProject.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PromotionId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")

@@ -1,11 +1,6 @@
 ﻿using SecretProject.BusinessProject.Models.Good;
-using SecretProject.VisualElements.Elements;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SecretProject.WebApi.ViewModels
 {
@@ -17,7 +12,7 @@ namespace SecretProject.WebApi.ViewModels
             Title = domain.Name;
             Description = domain.Description;
             OriginalPrice = domain.Cost;
-            if(domain.IsDiscounted)
+            if (domain.IsDiscounted)
             {
                 DiscountedPrice = domain.DiscountedCost;
                 IsDiscouted = domain.IsDiscounted;

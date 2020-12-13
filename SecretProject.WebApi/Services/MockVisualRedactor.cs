@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.WebApi.Services
 {
-    public class MockJsonVisualRedactor : IVisualRedactor,IDisposable
+    public class MockJsonVisualRedactor : IVisualRedactor, IDisposable
     {
         private readonly IRepository repository;
 
@@ -35,7 +35,7 @@ namespace SecretProject.WebApi.Services
         #endregion
 
         #region Realization
-        public MockJsonVisualRedactor(IRepository repository,ILogger<MockJsonVisualRedactor> logger, JsonSerializerOptions serializeOptions)
+        public MockJsonVisualRedactor(IRepository repository, ILogger<MockJsonVisualRedactor> logger, JsonSerializerOptions serializeOptions)
         {
             this.repository = repository;
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -76,7 +76,7 @@ namespace SecretProject.WebApi.Services
 
                 }
             }
-            return new JsonResult(elements,serializeOptions);
+            return new JsonResult(elements, serializeOptions);
         }
         public object GetAllViewModels()
         {
@@ -137,11 +137,12 @@ namespace SecretProject.WebApi.Services
             };
             header.AddVisualElement(linksMenu);
 
-            ContactBlock contactblock = new ContactBlock() {
+            ContactBlock contactblock = new ContactBlock()
+            {
                 Id = 0,
                 NeededColumns = 2,
                 OpeningHours = "Пн-Чт:10:00 - 18:00, Пт:10:00 - 17:00",
-                Phone = "8 (812) 388-4538" 
+                Phone = "8 (812) 388-4538"
             };
             header.AddVisualElement(contactblock);
             #endregion
@@ -150,23 +151,23 @@ namespace SecretProject.WebApi.Services
             Block grayLine = new Block();
             #region блоки
             DropdownMenu dropdownMenu = new DropdownMenu();
-            var categories = repository.GetAll<NomenclatureGroup,bool>(nom => nom.Parent == null,true);
+            var categories = repository.GetAll<NomenclatureGroup, bool>(nom => nom.Parent == null, true);
 
             foreach (var car in categories)
             {
-                dropdownMenu.Items.Add(new DropdownItem { Title = car.Name, Route = "#" ,Items = null});
+                dropdownMenu.Items.Add(new DropdownItem { Title = car.Name, Route = "#", Items = null });
             }
 
-            ComboBoxButton catalog = new ComboBoxButton     { Id = 0, Title = "Каталог",Action ="#", NeededColumns = 2,DropdownMenu = dropdownMenu};
+            ComboBoxButton catalog = new ComboBoxButton { Id = 0, Title = "Каталог", Action = "#", NeededColumns = 2, DropdownMenu = dropdownMenu };
             grayLine.AddVisualElement(catalog);
-            ComboBoxButton learning = new ComboBoxButton    { Id = 1, Title = "Каталог",Action ="#", NeededColumns = 2,DropdownMenu = null};
+            ComboBoxButton learning = new ComboBoxButton { Id = 1, Title = "Каталог", Action = "#", NeededColumns = 2, DropdownMenu = null };
             grayLine.AddVisualElement(learning);
-            ComboBoxButton implanting = new ComboBoxButton  { Id = 2, Title = "Каталог",Action ="#",  NeededColumns = 2,DropdownMenu = null};
+            ComboBoxButton implanting = new ComboBoxButton { Id = 2, Title = "Каталог", Action = "#", NeededColumns = 2, DropdownMenu = null };
             grayLine.AddVisualElement(implanting);
 
-            Button basket = new Button                      { Id = 3, Image = "shopLogo", Action = "#", NeededColumns = 1 };
+            Button basket = new Button { Id = 3, Image = "shopLogo", Action = "#", NeededColumns = 1 };
             grayLine.AddVisualElement(basket);
-            Button auth = new Button                        { Id = 4, Image = "profileLogo", Action = "#", NeededColumns = 1 };
+            Button auth = new Button { Id = 4, Image = "profileLogo", Action = "#", NeededColumns = 1 };
             grayLine.AddVisualElement(auth);
 
             #endregion
@@ -174,7 +175,7 @@ namespace SecretProject.WebApi.Services
 
             Block footer = new Block();
             #region блоки
-            Label stayOnLink = new Label() { Id = 0,NeededColumns = 6, Text = "Оставайтесь на связи" };
+            Label stayOnLink = new Label() { Id = 0, NeededColumns = 6, Text = "Оставайтесь на связи" };
             footer.AddVisualElement(stayOnLink);
 
             LinksMenu links = new LinksMenu
@@ -188,7 +189,7 @@ namespace SecretProject.WebApi.Services
                     new LinkItem (0,"Войти","#"),
                     new LinkItem (1,"Создать учётную запись","#"),
                 }
-                
+
             };
             footer.AddVisualElement(links);
 
@@ -297,7 +298,7 @@ namespace SecretProject.WebApi.Services
                                     continue;
                             }
                         }
-                        result = new JsonResult(elem,serializeOptions);
+                        result = new JsonResult(elem, serializeOptions);
                         break;
                     }
                     catch (Exception ex) { logger.Log(LogLevel.Debug, ex.Message); }
@@ -344,7 +345,7 @@ namespace SecretProject.WebApi.Services
 
                 }
             }
-            var result = new JsonResult(elements,serializeOptions);
+            var result = new JsonResult(elements, serializeOptions);
             return result;
         }
 

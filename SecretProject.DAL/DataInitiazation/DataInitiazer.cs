@@ -217,7 +217,7 @@ namespace SecretProject.DAL.DataInitiazation
                     },
                     PaymentMethod = PaymentMethod.Bill,
                     Status = OrderState.Confirmed,
-                    OrderItems = new List<OrderItem>
+                    OrderItems = new System.Collections.ObjectModel.ObservableCollection<OrderItem>
                     {
                         new OrderItem { NomenclatureId = 2,ActualCount = 2, },
                         new OrderItem { NomenclatureId = 3,ActualCount = 1, },

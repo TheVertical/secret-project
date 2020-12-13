@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,6 +14,12 @@ namespace SecretProject.BusinessProject.Models.Order
     [Table("Orders")]
     public class Order : IDomainObject
     {
+        public Order()
+        {
+            OrderItems.CollectionChanged += OrderItems_CollectionChanged;
+        }
+
+        
         #region Base Property
         [Key]
         [Display(Name = "Ид")]
@@ -28,15 +35,22 @@ namespace SecretProject.BusinessProject.Models.Order
         [Display(Name = "Дата и время создания заказа")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public virtual DateTime? DateCreated { get; set; } = DateTime.Now;
+        private OrderDetails orderDetails;
         /// <summary>
         /// Детали заказа (пользователь, адресс доставки, и т.д.)
         /// </summary>
         [ForeignKey(nameof(OrderDetailsId))]
-        public OrderDetails OrderDetails { get; set; }
+        public OrderDetails OrderDetails {
+            get => orderDetails; 
+            set 
+            {
+                orderDetails = value;
+            } 
+        }
         /// <summary>
         /// Позиции заказа
         /// </summary>
-        public List<OrderItem> OrderItems { get; set; }
+        public ObservableCollection<OrderItem> OrderItems { get; set; } = new ObservableCollection<OrderItem>();
 
         private double fullCost;
         /// <summary>
@@ -65,11 +79,30 @@ namespace SecretProject.BusinessProject.Models.Order
         #endregion
 
         #region Foreign keys
-        public int OrderDetailsId { get; set; }
+        public int OrderDetailsId { get; set; } = default;
+        /// <summary>
+        /// Id применяемой акции
+        /// </summary>
+        public virtual int? PromotionId { get; set; } = default;
+
         #endregion
 
         #region Special Property
 
+        #endregion
+        #region Class Methods
+        private void RecalculateFullCost()
+        {
+            float fullcost = 0;
+            OrderItems?.ToList().ForEach(i => fullcost += i.FullCostItem);
+            FullCost = fullcost;
+        }
+        #endregion
+        #region Class Event Handlers
+        private void OrderItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            RecalculateFullCost();
+        }
         #endregion
     }
     public enum OrderState

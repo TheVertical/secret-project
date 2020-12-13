@@ -112,10 +112,7 @@ namespace SecretProject.BusinessProject.Models.Good
         #endregion
 
         #region Foreign Keys
-        public virtual int? PromotionId { get; set; }
-        /// <summary>
-        /// Акция
-        /// </summary>
+        
 
         #endregion
 

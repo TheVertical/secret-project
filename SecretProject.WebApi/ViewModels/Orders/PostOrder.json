@@ -1,0 +1,30 @@
+{
+  "UserId": 1,
+  "Info": {
+    "FirstNameCustomer": "Данила",
+    "LastNameCustomer": "Потапов",
+    "IsWithDelivery": true,
+    "PhoneNumber": "79536600012",
+    "AdditionalNumber": "79530000000",
+    "City": "Санкт-Петербург",
+    "Street": "Российский пр-кт",
+    "BuildNumber": 3,
+    "Entrance": 1,
+    "Floor": 3,
+    "AppartmentNumber": 12,
+    "BuildLiteral": "a"
+  },
+  "State": 0,
+  "PaymentMethod": 0,
+  "OrderItems": [
+    {
+      "NomenclatureId": 2,
+      "ActtualCount": 3
+    },
+    {
+      "NomenclatureId": 3,
+      "ActualCount": 3
+    }
+  ],
+  "FullCost": 4213
+}

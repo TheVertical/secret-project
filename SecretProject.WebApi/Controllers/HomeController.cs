@@ -1,12 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SecretProject.VisualElements.Elements;
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using SecretProject.Services;
 using SecretProject.VisualElements;
 
 namespace SecretProject.Controllers

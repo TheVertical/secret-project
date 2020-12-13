@@ -1,11 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SecretProject.WebApi
 {
@@ -22,5 +16,26 @@ namespace SecretProject.WebApi
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+        //return Host.CreateDefaultBuilder(args)
+        //        .ConfigureWebHostDefaults(webBuilder =>
+        //        {
+        //    webBuilder.UseKestrel()
+        //    .UseContentRoot(Directory.GetCurrentDirectory())
+        //    .ConfigureAppConfiguration((hostingContext, config) =>
+        //    {
+        //        config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+        //        config.AddEnvironmentVariables("Development");
+        //        if (args != null)
+        //            config.AddCommandLine(args);
+        //    })
+        //    .ConfigureLogging((hostingContext, logging) =>
+        //    {
+        //        logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+        //        logging.AddConsole();
+        //        logging.AddDebug();
+        //    })
+        //    .UseIISIntegration()
+        //    .UseStartup<Startup>();
+        //});
     }
 }

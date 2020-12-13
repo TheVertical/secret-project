@@ -1,33 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SecretProject.VisualElements.Elements;
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using SecretProject.Services;
 using SecretProject.BusinessProject.DataAccess;
 using SecretProject.BusinessProject.Models;
-using SecretProject.WebApi.ViewModels;
 using SecretProject.BusinessProject.Models.Good;
-using System.Linq;
 using SecretProject.VisualElements;
+using SecretProject.WebApi.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace SecretProject.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]/")]
-    public class CatalogController : ControllerBase,IDisposable
+    public class CatalogController : ControllerBase, IDisposable
     {
         private ILogger<CatalogController> logger;
         private IVisualRedactor visualRedactor;
         private IRepository repository;
         private readonly DbContext context;
 
-        public CatalogController(ILogger<CatalogController> logger, IVisualRedactor visualRedactor, IRepository repository,DbContext context)
+        public CatalogController(ILogger<CatalogController> logger, IVisualRedactor visualRedactor, IRepository repository, DbContext context)
         {
             this.logger = logger;
             this.visualRedactor = visualRedactor;
