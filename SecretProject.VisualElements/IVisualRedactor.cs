@@ -7,17 +7,13 @@ namespace SecretProject.VisualElements
 {
     public interface IVisualRedactor
     {
+        bool Clear(string page);
         object GetBackbone();
         object GetAllViewModels();
         object GetFormattedElement(object element);
         public object GetVisualElementByName(string name);
         object GetFormattedElement(IEnumerable<object> element);
         object GetAllVisualElements();
-
-        //Task<ResultType> GetBackboneAsync<ResultType>();
-        //Task<ResultType> GetFormattedVisualElementAsync<ResultType>(object element);
-        //Task<ResultType> GetFormattedVisualElementAsync<ResultType>(IEnumerable<object> element);
-        //Task<ResultType> GetAllVisualElementsAsync<ResultType>();
     }
 
     public interface IVisualRedactor<TResult>

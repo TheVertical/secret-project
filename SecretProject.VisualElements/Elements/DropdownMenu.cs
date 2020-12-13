@@ -10,17 +10,7 @@ namespace SecretProject.VisualElements.Elements
     public class DropdownMenu : VisualElement,IVisualElement
     {
         //TODO Убрать mock данные
-        public List<DropdownItem> Items { get; set; } = new List<DropdownItem>() {
-            new DropdownItem { Title = "Title",Route = "Route",
-            Items = new List<DropdownItem>() { new DropdownItem { Title = "Title", Route = "Route"} }
-            },
-            new DropdownItem { Title = "Title",Route = "Route",
-            Items = new List<DropdownItem>() { new DropdownItem { Title = "Title", Route = "Route"} }
-            },
-            new DropdownItem { Title = "Title",Route = "Route",
-            Items = new List<DropdownItem>() { new DropdownItem { Title = "Title", Route = "Route"} }
-            },
-        };
+        public List<DropdownItem> Items { get; set; } = new List<DropdownItem>();
     }
 
     public class DropdownItem

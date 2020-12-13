@@ -11,13 +11,14 @@ namespace SecretProject.VisualElements.Elements
     {
         public string MainTitle { get; set; }
         public bool IsHorizontal { get; set; }
-        public IEnumerable<LinkItem> Links { get; set; }
+        public List<LinkItem> Links { get; set; } = new List<LinkItem>();
         public LinksMenu()
         {
         }
         public LinksMenu(IEnumerable<LinkItem> links)
         {
-            Links = links;
+            Links = new List<LinkItem>();
+            Links.AddRange(links);
         }
     }
 
