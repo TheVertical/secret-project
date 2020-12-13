@@ -52,38 +52,42 @@ namespace SecretProject.WebApi.Controllers
             return visualRedactor.GetFormattedElement(categoryViewModel) as JsonResult;
 
         }
-
         [HttpGet]
         [Route("product/{id:int}")]
         public async Task<JsonResult> GetProducts(int? id)
         {
             int _id = id != null ? id.Value : 1;
-            NomenclatureViewModel vm =  new NomenclatureViewModel(await repository.GetByIdAsync<Nomenclature>(_id));
+            NomenclatureViewModel vm = new NomenclatureViewModel(await repository.GetByIdAsync<Nomenclature>(_id));
             return visualRedactor.GetFormattedElement(vm) as JsonResult;
         }
 
-        [HttpGet]
-        [Route("{category:alpha}/{count:int}")]
-        public async Task<IActionResult> GetProduct([FromRoute]string category, [FromRoute] int? count)
+        private async Task<IEnumerable<Nomenclature>> GetNomeclature(int categoryId,int amount = 20)
         {
-            IEnumerable<Nomenclature> noms = null;
-            int amount = count != null && count < 20 ? count.Value : 20;
-            noms = await repository.GetAsync<Nomenclature>(amount, nom => nom.NomenclatureGroup.Name == category);
-            return visualRedactor.GetFormattedElement(noms) as JsonResult;
+            NomenclatureGroup group = await repository.GetByIdAsync<NomenclatureGroup>(categoryId);
+            if(group.Childs == null)
+            {
+                IEnumerable<Nomenclature> noms = null;
+                noms = await repository.GetAsync<Nomenclature>(amount, nom => nom.Id == categoryId);
+                return noms;
+            }
+            return null;
+
         }
+        /// <summary>
+        /// Получить номенклатуры по конткретной категории!
+        /// </summary>
+        /// <param name="categoryId">ид категории</param>
+        /// <param name="count">количество (не более 20 за раз)</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("product")]
-        public async Task<IActionResult> GetPoducts([FromQuery]string category,[FromQuery] int? count)
+        public async Task<IActionResult> GetPoducts([FromQuery]int categoryId,[FromQuery] int? count)
         {
             IEnumerable<Nomenclature> noms = null;
             int amount = count != null && count < 20 ? count.Value : 20;
-            if (!String.IsNullOrEmpty(category))
-                noms = await repository.GetAsync<Nomenclature>(amount, nom => nom.NomenclatureGroup.Name == category);
-            else
-                return BadRequest();
+            noms = await repository.GetAsync<Nomenclature>(amount, nom => nom.Id == categoryId);
             return visualRedactor.GetFormattedElement(noms) as JsonResult;
         }
-
         [HttpGet]
         [Route("product/discounted")]
         public async Task<IActionResult> GetDiscountedProducts([FromQuery] string promotion, [FromQuery] int? count)

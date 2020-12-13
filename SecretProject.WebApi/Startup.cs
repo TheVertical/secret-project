@@ -35,10 +35,11 @@ namespace SecretProject.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging();
             services.AddControllers();
             //TODO Это мок опции
             services.AddScoped<JsonSerializerOptions>(f => new JsonSerializerOptions() { WriteIndented = true, });
-            services.AddScoped<IVisualRedactor, MockJsonVisualRedactor>();
+            services.AddScoped<IVisualRedactor, VisualRedactor>();
             //Configuration.
             services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
             services.AddScoped<sBaseContext,sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));

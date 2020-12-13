@@ -22,6 +22,13 @@ namespace SecretProject.WebApi.Services
         private readonly IRepository repository;
 
         #region Model
+        //Home
+        //Каталог
+        //Страница товара
+        //Страница успешной регистрации
+        //Корзина
+        //404
+
         private ILogger<MockJsonVisualRedactor> logger;
         private JsonSerializerOptions serializeOptions;
 
@@ -109,7 +116,7 @@ namespace SecretProject.WebApi.Services
 
             Block header = new Block();
             #region блоки
-            ImageBlock logo = new ImageBlock { Id = 0, Alt = "Логотип компании", Source = "#",NeededColumns = 3 };
+            ImageBlock logo = new ImageBlock { Id = 0, Alt = "Логотип компании", Source = "./Images/logo.png", NeededColumns = 3 };
             header.AddVisualElement(logo);
             LinksMenu linksMenu = new LinksMenu
             {
@@ -118,9 +125,9 @@ namespace SecretProject.WebApi.Services
                 NeededColumns = 3,
                 Links = new List<LinkItem>
                 {
-                    new LinkItem (0,"Доставка и оплата","#"),
-                    new LinkItem (1,"Возврат","#"),
-                    new LinkItem (2,"Пункт самовывоза","#"),
+                    new LinkItem (0,"Доставка и оплата","/first"),
+                    new LinkItem (1,"Возврат","/second"),
+                    new LinkItem (2,"Пункт самовывоза","/"),
                     new LinkItem (3,"Контакты","#"),
                     new LinkItem (4,"Контакты","#"),
                     new LinkItem (5,"Новости","#"),
@@ -164,17 +171,6 @@ namespace SecretProject.WebApi.Services
 
             #endregion
             backbone.Add("GrayLine", grayLine);
-
-            Block content = new Block();
-            #region блоки
-            var productViewModels = repository.GetAll<Nomenclature, bool>(nom => true, true).Select(nom => new NomenclatureViewModel(nom));
-            foreach (var pr in productViewModels) 
-            {
-                MiniProductCard minicard = new MiniProductCard {Model = pr,NeededColumns = 6 };
-                content.AddVisualElement(minicard);
-            }
-            #endregion
-            backbone.Add("Content", content);
 
             Block footer = new Block();
             #region блоки
@@ -356,6 +352,11 @@ namespace SecretProject.WebApi.Services
         {
             serializeOptions = null;
             logger = null;
+        }
+
+        public bool Clear(string page)
+        {
+            throw new NotImplementedException();
         }
         //public async Task<ResultType> GetBackboneAsync<ResultType>()
         //{
