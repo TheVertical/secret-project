@@ -8,6 +8,22 @@ namespace SecretProject.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Timestamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WorkHours = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Manufacturers",
                 columns: table => new
                 {
@@ -59,6 +75,21 @@ namespace SecretProject.DAL.Migrations
                         principalTable: "NomenclatureGroups",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OfficialTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WorkTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PageLink = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -348,10 +379,16 @@ namespace SecretProject.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Companies");
+
+            migrationBuilder.DropTable(
                 name: "NomenclatureProperties");
 
             migrationBuilder.DropTable(
                 name: "Orders.Items");
+
+            migrationBuilder.DropTable(
+                name: "Pages");
 
             migrationBuilder.DropTable(
                 name: "Users.DeliveryAdresses");

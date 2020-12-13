@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SecretProject.BusinessProject.Measurements;
 using SecretProject.BusinessProject.Models;
+using SecretProject.BusinessProject.Models.Common;
 using SecretProject.BusinessProject.Models.Good;
 using SecretProject.BusinessProject.Models.Order;
 using SecretProject.BusinessProject.Models.UserData;
+using SecretProject.VisualElements.Pages;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +15,9 @@ namespace SecretProject.DAL.Contexts
 {
     public class sBaseContext : DbContext
     {
+        #region BaseSettings
+        internal DbSet<Company> Companies { get; set; }
+        #endregion
         #region Nomenclature
         internal DbSet<Nomenclature> Nomenclatures { get; set; } 
         internal DbSet<NomenclatureGroup> NomenclatureGroups { get; set; }
@@ -29,7 +34,9 @@ namespace SecretProject.DAL.Contexts
         #region User
         internal DbSet<User> Users { get; set; }
         internal DbSet<Adress> Adresses { get; set; }
-
+        #endregion
+        #region MyRegion
+        public DbSet<Page> Pages { get; set; }
         #endregion
 
         public sBaseContext(DbContextOptions options) : base(options)

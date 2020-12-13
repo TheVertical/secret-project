@@ -46,6 +46,32 @@ namespace SecretProject.DAL.Migrations
                     b.ToTable("Measurements");
                 });
 
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Common.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("WorkHours")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+                });
+
             modelBuilder.Entity("SecretProject.BusinessProject.Models.Good.Nomenclature", b =>
                 {
                     b.Property<int>("Id")
@@ -450,6 +476,27 @@ namespace SecretProject.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SecretProject.VisualElements.Pages.Page", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("OfficialTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PageLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pages");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.Good.Nomenclature", b =>

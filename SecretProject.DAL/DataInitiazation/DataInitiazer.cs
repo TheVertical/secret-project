@@ -9,6 +9,8 @@ using SecretProject.BusinessProject.Models.Good;
 using SecretProject.BusinessProject.Models.UserData;
 using SecretProject.BusinessProject.Models.Order;
 using System.IO;
+using SecretProject.VisualElements.Pages;
+using SecretProject.BusinessProject.Models.Common;
 
 namespace SecretProject.DAL.DataInitiazation
 {
@@ -17,6 +19,12 @@ namespace SecretProject.DAL.DataInitiazation
         #region Class Methods
         public static void InitializeData(sBaseContext context)
         {
+            var company = new Company
+            {
+                Name = "Olimp-dental",
+                WorkHours = "Пн-Чт:10:00 - 18:00, Пт:10:00 - 17:00",
+                WorkPhone = new Phone() { PhoneNumber = "8 (812) 388-4538" }
+            };
             var nomenclatureGroups = new List<NomenclatureGroup>
             {
                 new NomenclatureGroup { Name = "Гигиена и профилактика",Childs = null,Parent = null},
@@ -217,6 +225,17 @@ namespace SecretProject.DAL.DataInitiazation
                 }
             };
             context.Orders.AddRange(orders);
+
+            List<Page> pages = new List<Page> 
+            {
+                new Page{OfficialTitle = "Доставка и оплата",WorkTitle="DeliveryAndPlay",PageLink="pages/home"},
+                new Page{OfficialTitle = "Возврат",WorkTitle="Return",PageLink="pages/return"},
+                new Page{OfficialTitle = "Пункт самовывоза",WorkTitle="PickupPoint",PageLink="pages/pickuppoint"},
+                new Page{OfficialTitle = "Контакты",WorkTitle="Contacts",PageLink="pages/contacts"},
+                new Page{OfficialTitle = "Новости",WorkTitle="News",PageLink="pages/news"},
+                new Page{OfficialTitle = "Отзывы",WorkTitle="Reviews",PageLink="pages/Reviews"}
+            };
+            context.Pages.AddRange(pages);
             context.SaveChanges();
 
             context.Database.OpenConnection();
