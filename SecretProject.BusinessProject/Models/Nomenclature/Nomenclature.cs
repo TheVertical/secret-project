@@ -77,7 +77,7 @@ namespace SecretProject.BusinessProject.Models.Good
                 if (CostPolicy != null && CostPolicy.Variation != CostVariations.None)
                 {
                     //TODO Mock скидки
-                    Discount(CostPolicy.CorrelateByProcentMock());
+                    //Discount(CostPolicy.CorrelateByProcentMock());
                     IsDiscounted = true;
                 }
 
