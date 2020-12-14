@@ -12,17 +12,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 class MainPage extends React.Component {
-
   constructor() {
     super();
     this.state = {}
   }
 
-
-
-
-
-
+  componentDidMount(){
+  }
   render() {
 
     const settings1 = {
@@ -73,23 +69,12 @@ class MainPage extends React.Component {
         }
       ]
     };
-
     return (
       <div className="mainStyle MainPage_Global">
-
-
         <Slider {...settings1}>
-
           <img src="./Images/BannerProduct1.jpg" ></img>
-
-
           <img src="./Images/BannerProduct3.jpg" ></img>
-
-
         </Slider>
-
-
-
         <Container className="MainPage_GlobalBottom">
           <Row>
             <h1 className="MainPage_h1Style">Специальные предложения!</h1>
@@ -156,30 +141,10 @@ class MainPage extends React.Component {
               </NavLink>
                 </Col>
               </Row>
-             
             </Container>
-          
         </Container>
-
-
-
-
-
-
-
-
       </div>
-
-
-
-
-
-
     )
-
-
-
   }
-
 }
 export default MainPage
