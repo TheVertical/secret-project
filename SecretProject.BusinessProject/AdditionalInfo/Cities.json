@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "Санкт-Петербург",
+    "RUShortName": "СПБ",
+    "ENGShortName": "SPB",
+    "OKATOCod": 40,
+    "OKTMOCod": 40000000
+  },
+  {
+    "Name": "Москва",
+    "RUShortName": "МСК",
+    "ENGShortName": "MSC",
+    "OKATOCod": 45,
+    "OKTMOCod": 45000000
+  }
+]

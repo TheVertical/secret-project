@@ -1,15 +1,18 @@
 ﻿using QS.Utilities.Numeric;
 
-namespace SecretProject.BusinessProject.Models.User
+namespace SecretProject.BusinessProject.Models.UserData
 {
     public class Phone
     {
+        public PhoneFormat PhoneFormat = PhoneFormat.RussiaOnlyHyphenated;
         private string phoneNumber;
         public string PhoneNumber {
             get => phoneNumber;
             set
             {
-                PhoneFormatter formatter = new PhoneFormatter(PhoneFormat.RussiaOnlyHyphenated);
+                if (value == null)
+                    return;
+                PhoneFormatter formatter = new PhoneFormatter(PhoneFormat);
                 phoneNumber = formatter.FormatString(value);
                 formatter.Format = PhoneFormat.DigitsTen;
                 PhoneDigits = formatter.FormatString(value);

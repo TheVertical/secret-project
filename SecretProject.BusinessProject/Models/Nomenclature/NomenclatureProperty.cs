@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SecretProject.BusinessProject.Models
@@ -12,30 +13,31 @@ namespace SecretProject.BusinessProject.Models
 
         /// <summary>
         /// Ид
-        /// <summary>
+        /// </summary>
         [Display(Name = "Ид")]
+        [Key]
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
-        /// <summary>
-        [Display(Name = "Специальный байтовый код для параллельных запросов к бд")]
+        /// </summary>
+        [Timestamp]
         public virtual byte[] Timestamp { get; set; }
 
         /// <summary>
         /// Название свойства номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Название свойства номенклатуры")]
         public virtual string Name { get; set; }
 
         /// <summary>
         /// Тип свойства номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Тип свойства номенклатуры")]
         public virtual string Type { get; set; }
 
         /// <summary>
         /// Значение свойства номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Значение свойства номенклатуры")]
         public virtual string Value { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecretProject.BusinessProject.Models.Good;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,35 +13,37 @@ namespace SecretProject.BusinessProject.Models
 
         /// <summary>
         /// Ид
-        /// <summary>
+        /// </summary>
         [Display(Name = "Ид")]
         public virtual int Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
-        /// <summary>
-        [Display(Name = "Специальный байтовый код для параллельных запросов к бд")]
+        /// </summary>
+        [Timestamp]
         public virtual byte[] Timestamp { get; set; }
         /// <summary>
         /// Название группы номенклатуры
-        /// <summary>
+        /// </summary>
         [Display(Name = "Название группы номенклатуры")]
         public virtual string Name { get; set; }
         /// <summary>
         /// Родительская группа
-        /// <summary>
+        /// </summary>
         [Display(Name = "Родительская группа")]
         public virtual NomenclatureGroup Parent { get; set; }
         /// <summary>
         /// Дочерние группы
-        /// <summary>
+        /// </summary>
         [Display(Name = "Дочерние группы")]
         public virtual IList<NomenclatureGroup> Childs { get; set; }
+        /// <summary>
+        /// Статус видимости
+        /// </summary>
+        [Display(Name = "Статус видимости")]
+        public VisibleStatus Status { get; set; }
         #endregion
 
         #region Foreign keys
-        public virtual int NomenclatureId { get; set; }
-        [ForeignKey(nameof(NomenclatureId))]
-        public virtual Nomenclature Nomenclature { get; set; }
         #endregion
 
         #region Special Property

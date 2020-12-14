@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecretProject.VisualElements.Elements.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,6 +9,6 @@ namespace SecretProject.VisualElements.Elements
 {
     class RadioButton : Button, IVisualElement
     {
-        public List<RadioButton> Group { get; set; }
+        //public List<RadioButton> Group { get; set; }
     }
 }
