@@ -55,34 +55,32 @@ namespace SecretProject.WebApi.Controllers
             NomenclatureViewModel vm = new NomenclatureViewModel(await repository.GetByIdAsync<Nomenclature>(_id));
             return visualRedactor.GetFormattedElement(vm) as JsonResult;
         }
-
-        private async Task<IEnumerable<Nomenclature>> GetNomeclature(int categoryId,int amount = 20)
-        {
-            NomenclatureGroup group = await repository.GetByIdAsync<NomenclatureGroup>(categoryId);
-            if(group.Childs == null)
-            {
-                IEnumerable<Nomenclature> noms = null;
-                noms = await repository.GetAsync<Nomenclature>(amount, nom => nom.Id == categoryId);
-                return noms;
-            }
-            return null;
-
-        }
         /// <summary>
-        /// Получить номенклатуры по конткретной категории!
+        /// Получить номенклатуры по фильтрам
         /// </summary>
         /// <param name="categoryId">ид категории</param>
         /// <param name="count">количество (не более 20 за раз)</param>
         /// <returns></returns>
         [HttpGet]
         [Route("product")]
-        public async Task<IActionResult> GetPoducts([FromQuery]int categoryId,[FromQuery] int? count)
+        public async Task<IActionResult> GetPoducts([FromQuery]int? manufacturerId,[FromQuery]int? categoryId,[FromQuery] int? count)
         {
             IEnumerable<Nomenclature> noms = null;
             int amount = count != null && count < 20 ? count.Value : 20;
-            noms = await repository.GetAsync<Nomenclature>(amount, nom => nom.Id == categoryId);
+            IQueryable<Nomenclature> query = context.Set<Nomenclature>().Take(amount);
+            if (manufacturerId != null)
+                query = query.Where(p => p.ManufacturerId == manufacturerId);
+            if (categoryId != null)
+                query = query.Where(p => p.NomenclatureGroupId == categoryId);
+            noms = await query.ToListAsync(); 
             return visualRedactor.GetFormattedElement(noms) as JsonResult;
         }
+        /// <summary>
+        /// Получить номенклатуры по определенной акцие
+        /// </summary>
+        /// <param name="promotion">рабочее название скидки</param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("product/discounted")]
         public async Task<IActionResult> GetDiscountedProducts([FromQuery] string promotion, [FromQuery] int? count)

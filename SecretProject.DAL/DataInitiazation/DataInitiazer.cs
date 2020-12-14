@@ -263,15 +263,6 @@ namespace SecretProject.DAL.DataInitiazation
                                             + " WHERE Id = @Id"
                                             + " END");
         }
-        public  static void Main(string[] args)
-        {
-            sBaseContextFactory factory = new sBaseContextFactory();
-            using (sBaseContext context = factory.CreateDbContext("server=DESKTOP-P7SS3RO;database=SecretDb;Integrated Security=True;App=EntityFramework"))
-            {
-                RecreateDatabase(context);
-                InitializeData(context);
-            }
-        }
         #endregion
     }
 }

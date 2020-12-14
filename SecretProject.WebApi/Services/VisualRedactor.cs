@@ -9,6 +9,7 @@ using SecretProject.VisualElements;
 using SecretProject.VisualElements.Elements;
 using SecretProject.VisualElements.Pages;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -42,15 +43,7 @@ namespace SecretProject.Services
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public object GetAllViewModels()
-        {
-            throw new NotImplementedException();
-        }
-
-        public object GetAllVisualElements()
-        {
-            throw new NotImplementedException();
-        }
+        
         #endregion
 
         #region Class Methods
@@ -213,6 +206,74 @@ namespace SecretProject.Services
         }
         #endregion
         #region Interface's Methods
+        public object GetAllViewModels()
+        {
+            Dictionary<string, object> backbone = new Dictionary<string, object>();
+            ArrayList list = new ArrayList();
+            backbone.Add("Models", list);
+
+            Assembly visualAssembly = Assembly.GetAssembly(typeof(Block));
+
+            foreach (Type type in visualAssembly.GetTypes())
+            {
+                if (!type.IsInterface && !type.IsAbstract && type.GetInterface("IViewModel") != null)
+                {
+                    try
+                    {
+                        var elem = visualAssembly.CreateInstance(type.FullName);
+                        if (elem != null)
+                        {
+                            foreach (PropertyInfo prop in type.GetProperties())
+                            {
+                                var setMethod = prop.GetSetMethod(false);
+                                if (setMethod == null)
+                                    continue;
+                            }
+                            list.Add(elem);
+                        }
+                    }
+                    catch (Exception ex) { logger.Log(LogLevel.Debug, ex.Message); }
+
+                }
+            }
+            return new JsonResult(list, settings);
+        }
+
+        public object GetAllVisualElements()
+        {
+            Dictionary<string, object> backbone = new Dictionary<string, object>();
+            Block elements = new Block();
+            backbone.Add("Elements", elements);
+
+            Assembly visualAssembly = Assembly.GetAssembly(typeof(Block));
+
+            foreach (Type type in visualAssembly.GetTypes())
+            {
+                if (!type.IsInterface && !type.IsAbstract && type.GetInterface("IVisualElement") != null)
+                {
+                    try
+                    {
+                        var elem = visualAssembly.CreateInstance(type.FullName);
+                        if (elem != null)
+                        {
+                            logger.Log(LogLevel.Debug, $"Visual element of {type.Name} type.");
+                            foreach (PropertyInfo prop in type.GetProperties())
+                            {
+                                logger.Log(LogLevel.Debug, $"It is setted default value to property {prop.Name}");
+                                var setMethod = prop.GetSetMethod(false);
+                                if (setMethod == null)
+                                    continue;
+                            }
+                            elements.AddVisualElement(elem);
+                        }
+                    }
+                    catch (Exception ex) { logger.Log(LogLevel.Debug, ex.Message); }
+
+                }
+            }
+            return new JsonResult(elements, settings);
+        }
+
         public bool Clear(string page)
         {
             logger.LogDebug($"Try clear {page}.json");
@@ -244,18 +305,44 @@ namespace SecretProject.Services
 
         public object GetFormattedElement(object element)
         {
-
-            return null;
+            return new JsonResult(element, settings);
         }
 
         public object GetFormattedElement(IEnumerable<object> element)
         {
-            throw new NotImplementedException();
+            return new JsonResult(element, settings);
         }
 
         public object GetVisualElementByName(string name)
         {
-            throw new NotImplementedException();
+            Assembly visualAssembly = Assembly.GetAssembly(typeof(Block));
+            JsonResult result = null;
+            foreach (Type type in visualAssembly.GetTypes())
+            {
+                if (!type.IsInterface && !type.IsAbstract && type.GetInterface("IVisualElement") != null && type.Name.Contains(name))
+                {
+                    try
+                    {
+                        var elem = visualAssembly.CreateInstance(type.FullName);
+                        if (elem != null)
+                        {
+                            logger.Log(LogLevel.Debug, $"Visual element of {type.Name} type.");
+                            foreach (PropertyInfo prop in type.GetProperties())
+                            {
+                                logger.Log(LogLevel.Debug, $"It is setted default value to property {prop.Name}");
+                                var setMethod = prop.GetSetMethod(false);
+                                if (setMethod == null)
+                                    continue;
+                            }
+                        }
+                        result = new JsonResult(elem, settings);
+                        break;
+                    }
+                    catch (Exception ex) { logger.Log(LogLevel.Debug, ex.Message); }
+
+                }
+            }
+            return result;
         }
         #endregion
 

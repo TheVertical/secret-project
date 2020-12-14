@@ -10,7 +10,7 @@ using SecretProject.DAL.Contexts;
 namespace SecretProject.DAL.Migrations
 {
     [DbContext(typeof(sBaseContext))]
-    [Migration("20201213060101_Initial")]
+    [Migration("20201214150326_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -481,6 +481,28 @@ namespace SecretProject.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SecretProject.VisualElements.Elements.Banner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ImageSource")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NeededColumns")
+                        .HasMaxLength(20)
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("SecretProject.VisualElements.Pages.Page", b =>

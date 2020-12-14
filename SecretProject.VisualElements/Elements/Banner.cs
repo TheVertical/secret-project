@@ -9,6 +9,7 @@ namespace SecretProject.VisualElements.Elements
 {
     public class Banner : VisualElement, IVisualElement,IColumnable
     {
+        public int Id { get; set; }
         public string Link { get; set; }
         public string ImageSource { get; set; }
 

@@ -481,6 +481,28 @@ namespace SecretProject.DAL.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("SecretProject.VisualElements.Elements.Banner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ImageSource")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NeededColumns")
+                        .HasMaxLength(20)
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
+                });
+
             modelBuilder.Entity("SecretProject.VisualElements.Pages.Page", b =>
                 {
                     b.Property<int>("Id")

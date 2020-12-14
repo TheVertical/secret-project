@@ -6,6 +6,7 @@ using SecretProject.BusinessProject.Models.Common;
 using SecretProject.BusinessProject.Models.Good;
 using SecretProject.BusinessProject.Models.Order;
 using SecretProject.BusinessProject.Models.UserData;
+using SecretProject.VisualElements.Elements;
 using SecretProject.VisualElements.Pages;
 using System;
 using System.Collections.Generic;
@@ -35,8 +36,9 @@ namespace SecretProject.DAL.Contexts
         internal DbSet<User> Users { get; set; }
         internal DbSet<Adress> Adresses { get; set; }
         #endregion
-        #region MyRegion
+        #region Design elements
         public DbSet<Page> Pages { get; set; }
+        public DbSet<Banner> Banners { get; set; }
         #endregion
 
         public sBaseContext(DbContextOptions options) : base(options)
