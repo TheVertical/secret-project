@@ -1,5 +1,6 @@
 import React from "react"
 import {NavLink} from "react-router-dom"
+import "./ImageBlock.css"
 // Здесь будут состояния
 
 
@@ -16,7 +17,7 @@ const picture=(props)=>{
 
 return(
 <NavLink to={props.Links}>
- <img src={props.src}></img>
+ <img src={props.src} className="ImageBlock_Style"></img>
 </NavLink>
 
 );

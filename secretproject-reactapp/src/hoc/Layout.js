@@ -13,6 +13,10 @@ import { Button } from 'react-bootstrap';
 import MainPage from '../pages/MainPage';
 import OrderPage from '../pages/OrderPage';
 import Catalog_Page from '../pages/Catalog_Page'
+import Cart from '../pages/Cart'
+import OrderRegistration from '../pages/OrderRegistration'
+
+
 
 class Layout extends React.Component{
    
@@ -29,11 +33,13 @@ class Layout extends React.Component{
                <Switch>
                   {/* <Route path="" exact render={()=>{<MainPage></MainPage>}}></Route> */}
                   <Route path="/" exact render={()=><MainPage></MainPage>}></Route>
-                  <Route path="/first" exact render={()=><MainPage></MainPage>}></Route>
-                  <Route path="/second" exact render={()=><OrderPage></OrderPage>}></Route>
-                  <Route path="/third" exact render={()=><Catalog_Page></Catalog_Page>}></Route>
+                  <Route path="/main" exact render={()=><MainPage></MainPage>}></Route>
+                  <Route path="/catalog/:id" exact render={()=><OrderPage></OrderPage>}></Route>
+                  <Route path="/catalog" exact render={()=><Catalog_Page></Catalog_Page>}></Route>
                   <Route path="/fourth" exact render={()=><h1 className="mainStyle">Fourth</h1>}></Route>
-                  <Route path="/fifth" exact render={()=><SuccessfulRegistration></SuccessfulRegistration>}></Route>
+                  <Route path="/succesful_registration" exact render={()=><SuccessfulRegistration></SuccessfulRegistration>}></Route>
+                  <Route path="/cart" exact render={()=><Cart></Cart>}></Route>
+                  <Route path="/seventh" exact render={()=><OrderRegistration></OrderRegistration>}></Route>
                   <Route render={()=><Page404 className="mainStyle"></Page404>}></Route>
                </Switch>
                

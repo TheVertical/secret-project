@@ -17,73 +17,29 @@ class ProductCardArray extends React.Component {
     // Здесь будут состояния
     this.state = {
       array: [ 
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col> ,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard></Col>
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>, 
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>,
-      //   <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki" Price="666"></MiniProductCard>
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki1" Price="100"></MiniProductCard></Col> ,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki2" Price="200"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki3" Price="300"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki4" Price="400"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki5" Price="500"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki6" Price="600"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki7" Price="700"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki8" Price="800"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki9" Price="900"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki11" Price="350"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki22" Price="450"></MiniProductCard></Col>,
+      <Col className="ProductCardArray_Col"> <MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki33" Price="550"></MiniProductCard></Col>
+    
       ],
       
    
     }
   }
 
-  // componentDidMount() {
-  //   this.populateWeatherData();
-  // }
-  
-  // async populateWeatherData() {
-  //   let url = 'https://secrethost.azurewebsites.net/Catalog'
-  //   const response = await fetch(url);
-  //   let json = await response.json();
-
-  //   this.setState({ array: json, loading: false });
-  // }
-
-  // static renderProductCardArray(elements) {
-  //   return (
-  //     ProductCardArray.re(elements)
-  //   )
-  // }
-
-  // static re(elements){
-  //   return(
-  //     <div className="ProductCardArray_Global">
-  //       {elements.map(product =>
-          
-  //         <ProductCard src={product.ImageUrl} title={product.Title} price={product.Price}></ProductCard>
-  //       )}
-  //     </div>
-  //   );
-  // }
 
    
 
   render() {
-    // let contents = this.state.loading
-    //   ? <p><em>Loading...</em></p>
-    //   : ProductCardArray.renderProductCardArray(this.state.array);
-
-    // console.log(contents)
     return( 
     <div>
    

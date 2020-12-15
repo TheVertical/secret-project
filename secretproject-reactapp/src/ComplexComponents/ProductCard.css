@@ -22,9 +22,20 @@
 .ProductCard_InlineStyle{
     display:flex;
     flex-direction: row;
+    width:100%
 }
-.ProductCard_ImageStyle{
+
+.ProductCard_BlockStyle{
+    display:flex;
+    flex-direction: column;
+    width:16rem;
+}
+
+.ProductCard_ImageInlineStyle{
     width:8rem;
+}
+.ProductCard_ImageBlockStyle{
+    width:100%;
 }
 span.badge.badge-pill.badge-primary{
     display: inline-table;
