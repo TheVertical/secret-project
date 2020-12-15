@@ -7,7 +7,7 @@ import { Button, Container } from "react-bootstrap"
 import './OrderPage.css'
 import ".././hoc/LayoutElements/Main.css"
 import { NavLink } from 'react-router-dom'
-// import ProductCardArray from './../hoCont/ProductCardArray'
+import {connect} from "react-redux"
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
@@ -17,6 +17,8 @@ import DropdownItem from 'react-bootstrap/esm/DropdownItem'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Pagination from 'react-bootstrap/Pagination'
 import PageItem from 'react-bootstrap/PageItem'
+import MiniProductCard from "../ComplexComponents/MiniProductCard"
+
 
 class Catalog_Page extends React.Component {
   constructor() {
@@ -60,7 +62,7 @@ class Catalog_Page extends React.Component {
             <span>Найдено товаров: 50</span>
             <div className="Catalog_Page_TitleRowDiv">
               <span>Сортировать по: </span>
-              <DropdownButton as={ButtonGroup} title={this.state.sortStyle} className="Catalog_Page_SortButtonStyle">
+              <DropdownButton as={ButtonGroup} title={this.state.sortStyle} className="Catalog_Page_SortButtonStyle" >
                 <DropdownItem eventKey="1" onClick={() => { this.setState({ sortStyle: "Убыванию цены" }) }}>Убыванию цены</DropdownItem>
                 <DropdownItem eventKey="2" onClick={() => { this.setState({ sortStyle: "Возрастанию цены" }) }}>Возрастанию цены</DropdownItem>
                 <DropdownItem eventKey="3" onClick={() => { this.setState({ sortStyle: "По новинкам" }) }}>По новинкам</DropdownItem>
@@ -68,6 +70,8 @@ class Catalog_Page extends React.Component {
               </DropdownButton>
               <div className="Catalog_Page_SVG_SpisokStyle"></div>
               <div></div>
+              <button onClick={this.props.onSetInline}>A</button>
+              <button onClick={this.props.onSetBlock}>B</button>
             </div>
           </Row>
           <Row>
@@ -111,4 +115,11 @@ class Catalog_Page extends React.Component {
   }
 
 }
-export default Catalog_Page
+
+function mapDispatchToProps(dispatch){
+  return {
+    onSetInline:()=>dispatch({type:"InlineTrue"}),
+    onSetBlock:()=>dispatch({type:"InlineFalse"})
+  }
+}
+export default connect(null,mapDispatchToProps)(Catalog_Page)
