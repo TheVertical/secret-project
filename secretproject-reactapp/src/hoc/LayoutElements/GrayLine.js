@@ -5,7 +5,7 @@ import "./Header.css"
 //Собственные зависимости
 
 
-class Header extends React.Component {
+class GrayLine extends React.Component {
     /*Constructors*/
     constructor(props) {
         super(props)
@@ -19,13 +19,10 @@ class Header extends React.Component {
 
     render() {
         return (
-            <div className ="globalStyleTop">{this.state.Content}</div>
+        <div className ="globalStyleBottom">{this.state.Content}</div>
         );
 
     }
 }
 
-export default Header
-
-
-
+export default GrayLine

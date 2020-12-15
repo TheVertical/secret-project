@@ -18,8 +18,8 @@ import { NavLink } from 'react-router-dom';
 
 class VisualFactory extends React.Component {
     static renderVisualElement(element) {
+        console.log(element);
         const TYPE = element.Type;
-
         switch (TYPE) {
             //Компонент типа ComplexComponents - Вызывает рекурсию
 
@@ -89,7 +89,7 @@ class VisualFactory extends React.Component {
                 return (
                     //Возвращает компонент DropdownMenu
                     <div>
-                        <ImageBlock Id={element.Id} Links={element.Links} src={element.Source}></ImageBlock>
+                        <ImageBlock Id={element.Id} Alt={element.Alt} Source={element.Source}></ImageBlock>
                     </div>
                 );
 

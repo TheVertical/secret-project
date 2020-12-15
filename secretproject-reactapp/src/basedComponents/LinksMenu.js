@@ -5,7 +5,7 @@ import React, { Component } from 'react';
  import "./LinkBlock.css"
 //Собственные зависимости
 import "./ContactBlock.css"
-import {NavLink} from "react-router-dom"
+import {Link, NavLink} from "react-router-dom"
 
 //Расширяет или не расширяет React.Component?
 class LinksMenu extends React.Component {
@@ -21,41 +21,28 @@ class LinksMenu extends React.Component {
     //Функции React
 
     //Собственные функции класса
-
+    checkHor(){
+      return (
+        //TODO Здесь не правильно сделано, надо наоборот, ошибка на стороне сервера, там надо у свойства проставить IsHorizontal = true
+          this.state.IsHorizontal ? "forColumnCase" : "blockStyle"
+      )
+    }
     render() {
        //Проверяет ориентацию - выбирает нужный стиль для верстки
-        const checkHor = () => {
-            return (
-                this.state.IsHorizontal ? "blockStyle" : "forColumnCase"
-            )
+        console.log(this.checkHor());
+        let con = [];
+        for(let i=0;i < this.state.Links.length;i++)
+        {
+          let link = this.state.Links[i];
+          if(link.Link != undefined && link.Id != undefined && link.Title != undefined)
+          {
+            con.push(<NavLink className="stylishAAA" to={'/'+link.Link}>{link.Title}</NavLink>);
+          }
         }
-
         return (
-        <div className={checkHor()}>
-            {/* <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-          <Container>
-            <NavbarBrand tag={Link} to="/">WebApplication1</NavbarBrand>
-            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow">
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-                </NavItem>
-              </ul>
-            </Collapse>
-          </Container>
-        </Navbar> */}
+        <div className={this.checkHor()}>
             {this.state.MainTitle}
-            {this.state.Links.map((link)=>
-             <NavLink className="stylishAAA" key={link.Id} to={link.Link}>{link.Title}</NavLink>
-            )
-            }
+            {con}
         </div>
         
         );
