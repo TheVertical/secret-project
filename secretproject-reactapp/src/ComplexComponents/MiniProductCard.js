@@ -5,6 +5,7 @@ import Badge from 'react-bootstrap/Badge'
 import {connect} from "react-redux"
 import './ProductCard.css'
 import rootStore from "../redux/rootStore"
+
 // import rootStore from "../redux/rootReducer"
 
 
@@ -22,53 +23,53 @@ class MiniProductCard extends React.Component{
             ImageUrl: props.ImageUrl,
             Type: props.Type,
             VisualElements: [],
-            Style:"",
-            ImageStyle:"",
-            width:'16rem'
+            Style: "ProductCard_BlockStyle",
+            ImageStyle: "ProductCard_ImageBlockStyle",
         }
     }
     //Функции React
 
     //Собственные функции класса
-    // static GetInlineStyle=()=>{
-    //   this.SetInlineStyle()
-    // }  
-
-    SetInlineStyle(){
+      SetInlineStyle(){
       if(this.props.isInline){
         this.setState({
           Style:"ProductCard_InlineStyle",
-          width:"100%",
-          ImageStyle:"ProductCard_ImageStyle"
+          ImageStyle:"ProductCard_ImageInlineStyle"
       }
       );
       }
       else{
         this.setState({
-          Style:"",
-          ImageStyle:"",
-          width:'16rem'
+          Style:"ProductCard_BlockStyle",
+          ImageStyle:"ProductCard_ImageBlockStyle"
       }
       );
       }
-  //     this.setState({
-  //     Style:"ProductCard_InlineStyle",
-  //     width:"100%",
-  //     ImageStyle:"ProductCard_ImageStyle"
-  
-  // });
-
    }
-
-
+    
+   
+  componentWillReceiveProps(props){
+    if(props.isInline){
+      this.setState({
+        Style:"ProductCard_InlineStyle",
+        ImageStyle:"ProductCard_ImageInlineStyle"
+    }
+    );
+    }
+    else{
+      this.setState({
+        Style:"ProductCard_BlockStyle",
+        ImageStyle:"ProductCard_ImageBlockStyle"
+    }
+    );
+    }
+  }
+   
     render(props){
-      // this.SetInlineStyle()
-      let store=rootStore()
-      store.subscribe(()=>{this.SetInlineStyle()})
+     
       console.log(this.state.Style)
       return(
-      <Card style={{ width: this.state.width }} className={this.state.Style}>
-      {this.SetInlineStyle.bind(this)}
+      <Card  className={this.state.Style}>
       <Badge pill variant="primary">
         Есть в наличии
       </Badge>{' '}
@@ -82,11 +83,9 @@ class MiniProductCard extends React.Component{
       <Card.Title>
          {this.state.Price+"₽"} 
       </Card.Title>
-        <Button variant="primary">Купить</Button>
+        <Button variant="primary" onClick={()=>{this.props.onGetMiniProductCard(this.state.Price,this.state.Title,this.state.ImageUrl,this.state.Id)}}>Купить</Button>
       </Card.Body>
-    
-    <Button onClick= {this.SetInlineStyle.bind(this)}></Button>
-    
+      
     </Card>
      
      )
@@ -96,8 +95,17 @@ class MiniProductCard extends React.Component{
 }
 function mapStatetoProps(state){
   return{
-    isInline:state.isInline
+    isInline:state.isInline,
+    width:state.width,
+    ImageStyle:state.ImageStyle,
+    Style:state.Style
   }
 }
 
-export default connect(mapStatetoProps)(MiniProductCard)
+function mapDispatchToProps(dispatch){
+  return{
+    onGetMiniProductCard:(Price,Title,ImageUrl,Id)=>dispatch({type:"GetMiniProductCard",Price:Price,Title:Title,ImageUrl:ImageUrl,Id:Id})
+  }
+}
+
+export default connect(mapStatetoProps,mapDispatchToProps)(MiniProductCard)

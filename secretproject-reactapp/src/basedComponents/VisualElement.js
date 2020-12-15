@@ -14,6 +14,7 @@ import LinkList from '../ComplexComponents/LinkList'
 import DropdownMenu from './DropdownMenu'
 
 import { Button } from 'bootstrap-4-react';
+import { NavLink } from 'react-router-dom';
 
 class VisualFactory extends React.Component {
     static renderVisualElement(element) {
@@ -57,7 +58,9 @@ class VisualFactory extends React.Component {
             case "Button":
                 return (
                     <div>
-                        <Button Id={element.Id} href={element.Action}>{element.Title || element.Image}</Button>
+                        <NavLink to={element.Action}>
+                        <Button Id={element.Id}>{element.Title || element.Image}</Button>
+                        </NavLink>
                     </div>
                 );
             case "ComboBoxButton":

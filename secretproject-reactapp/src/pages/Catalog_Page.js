@@ -47,11 +47,8 @@ class Catalog_Page extends React.Component {
         <Container>
           <Row >
             <Breadcrumb>
-              <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-              <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-                Library
-                                 </Breadcrumb.Item>
-              <Breadcrumb.Item active>Data</Breadcrumb.Item>
+              <Breadcrumb.Item href="/">Главная</Breadcrumb.Item>
+              <Breadcrumb.Item active>Каталог</Breadcrumb.Item>
             </Breadcrumb>
           </Row>
           <Row>
@@ -70,8 +67,8 @@ class Catalog_Page extends React.Component {
               </DropdownButton>
               <div className="Catalog_Page_SVG_SpisokStyle"></div>
               <div></div>
-              <button onClick={this.props.onSetInline}>A</button>
-              <button onClick={this.props.onSetBlock}>B</button>
+              <button onClick={this.props.onSetInline}>Inline</button>
+              <button onClick={this.props.onSetBlock}>Block</button>
             </div>
           </Row>
           <Row>

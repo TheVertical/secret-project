@@ -1,0 +1,23 @@
+.Cart_ContainerStyle{
+    position: absolute;
+    right: 0;
+    padding:40px;
+    background-color: white;
+    border-radius: 20px;
+    width:100%;
+}
+.Cart_ContainerInsideStyle{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.Cart_ButtonStyle{
+    width: 100%;
+}
+input.form-control {
+    margin-bottom: 10px;
+}
+/* Стилистика хлебных крошек */
+ol.breadcrumb {
+    background-color: #e9eff5;
+}

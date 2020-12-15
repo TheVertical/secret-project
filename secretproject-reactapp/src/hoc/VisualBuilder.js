@@ -26,7 +26,7 @@ class VisualBuilder extends React.Component {
               "Type": "ImageBlock",
               "Alt": "\u041B\u043E\u0433\u043E\u0442\u0438\u043F \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438",
               "Source": "./Images/logo.png",
-              "Links":"/first",
+              "Links":"/",
               "NeededColumns": 3
             },
             {
@@ -63,7 +63,7 @@ class VisualBuilder extends React.Component {
                 {
                   "Id": 5,
                   "Title": "\u041D\u043E\u0432\u043E\u0441\u0442\u0438",
-                  "Link": "#"
+                  "Link": "/sixth"
                 },
                 {
                   "Id": 6,
@@ -191,7 +191,7 @@ class VisualBuilder extends React.Component {
               "Type": "Button",
               "Title": null,
               "Image": "shopLogo",
-              "Action": "#",
+              "Action": "/cart",
               "NeededColumns": 1
             },
             {
@@ -199,7 +199,7 @@ class VisualBuilder extends React.Component {
               "Type": "Button",
               "Title": null,
               "Image": "profileLogo",
-              "Action": "#",
+              "Action": "/cart",
               "NeededColumns": 1
             }
           ],
