@@ -11,7 +11,7 @@ import OrderPage from '../pages/OrderPage';
 import Catalog_Page from '../pages/Catalog_Page'
 import GrayLine from '../hoc/LayoutElements/GrayLine';
 import VisualFactory from '../basedComponents/VisualElement';
-
+import Cart from '../pages/Cart'
 
 
 class Layout extends React.Component{
@@ -59,6 +59,8 @@ class Layout extends React.Component{
                   <Route path="/pages/return" exact render={()=><Catalog_Page></Catalog_Page>}></Route>
                   <Route path="/pages/home" exact render={()=><h1 className="mainStyle">Fourth</h1>}></Route>
                   <Route path="/pages/news" exact render={()=><SuccessfulRegistration></SuccessfulRegistration>}></Route>
+                  <Route path="/Basket" exact render={()=><Cart></Cart>}></Route>
+                  <Route path="/Catalog" exact render={()=><Catalog_Page></Catalog_Page>}></Route>
                   <Route render={()=><Page404 className="mainStyle"></Page404>}></Route>
                </Switch>
                {/*Footer*/}
