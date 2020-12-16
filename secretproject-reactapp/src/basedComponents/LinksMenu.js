@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 // import { Link } from 'react-router-dom';
- import "./LinkBlock.css"
+ import "./LinksMenu.css"
 //Собственные зависимости
 import "./ContactBlock.css"
 import {Link, NavLink} from "react-router-dom"
@@ -36,7 +36,7 @@ class LinksMenu extends React.Component {
           let link = this.state.Links[i];
           if(link.Link != undefined && link.Id != undefined && link.Title != undefined)
           {
-            con.push(<NavLink className="stylishAAA" to={'/'+link.Link}>{link.Title}</NavLink>);
+            con.push(<NavLink className="Header_NavLink" to={'/'+link.Link}>{link.Title}</NavLink>);
           }
         }
         return (

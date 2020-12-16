@@ -16,18 +16,15 @@ text-decoration: none;
     width: 90%;
     margin-left: auto;
     margin-right: 0;
-    text-decoration: none;
-    color:black;
+    
 }
 
-.stylishAAA{
-color: #555555;
+.Header_NavLink{
+color: #44799f;
 margin-right:15px;
 font-size: 14px;
-text-decoration: none;
-
 }
-.stylishAAA:hover{
+.Header_NavLink:hover{
     color:white;
     text-decoration: none;
 }

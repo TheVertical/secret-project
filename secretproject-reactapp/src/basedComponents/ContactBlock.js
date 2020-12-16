@@ -5,7 +5,7 @@ import { Modal, Button } from 'bootstrap-4-react';
 import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
 
 //Собственные зависимости
-import VisualElement from './VisualElement'
+import VisualElement from './VisualFactory'
 import Picture from "../basedComponents/ImageBlock"
 import "./ContactBlock.css"
 
@@ -28,9 +28,9 @@ render(){
         return (
             <div className="globalblockStylle">
                 <div className="blockStylle">
-                    <a href={"tel:" + this.state.Phone} className="bigAStyle">{this.state.Phone}</a>
-                    <p className="pppStyle">{this.state.OpeningHours}</p>
-                    <a href="#" className="smallAStyle" data-toggle="modal" data-target="#exampleModal">Заказать обратный звонок</a>
+                    <a href={"tel:" + this.state.Phone} className="Header_Phone">{this.state.Phone}</a>
+                    <p className="OpeningHours">{this.state.OpeningHours}</p>
+                    <a href="#" className="GetBackCall" data-toggle="modal" data-target="#exampleModal">Заказать обратный звонок</a>
                 <MyVerticallyCenteredModal></MyVerticallyCenteredModal>
                 </div>
             </div>

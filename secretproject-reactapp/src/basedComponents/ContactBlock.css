@@ -8,29 +8,31 @@
     top: 0;  bottom: 0; right: 0;
 }
 
-.bigAStyle{
-    font-size: 27px;
+.Header_Phone{
+    font-size: 40px;
     color:white;
     text-transform: none;
+    padding: 0px;
 }
-.smallAStyle{
+.Header_Phone:hover{
+    color: #00507f;
+    text-decoration: none;
+}
+.OpeningHours{
+    margin:0;
+    font-size: 18px;
+    color: #44799f;
+}
+.GetBackCall{
     font-size: 16px;
     color:white;
     text-transform: none;
 }
-.pppStyle{
-    margin:0;
-    font-size:14px;
+.GetBackCall:hover{
+    color:#00507f;
+    text-decoration: none;
 }
 
-.smallAStyle:hover{
-    color:#555555;
-    text-decoration: none;
-}
-.bigAStyle:hover{
-    color: #555555;
-    text-decoration: none;
-}
 
 .bigAAStyle{
     color:black;

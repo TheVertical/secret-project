@@ -33,13 +33,6 @@ class MiniProductCard extends React.Component {
       width: '16rem'
     }
   }
-  //Функции React
-
-  //Собственные функции класса
-  // static GetInlineStyle=()=>{
-  //   this.SetInlineStyle()
-  // }  
-
   SetInlineStyle() {
     if (this.props.isInline) {
       this.setState({
@@ -57,17 +50,10 @@ class MiniProductCard extends React.Component {
       }
       );
     }
-    //     this.setState({
-    //     Style:"ProductCard_InlineStyle",
-    //     width:"100%",
-    //     ImageStyle:"ProductCard_ImageStyle"
-
-    // });
-
   }
 
 
-  render(props) {
+  render() {
     // this.SetInlineStyle()
     let store = rootStore()
     store.subscribe(() => { this.SetInlineStyle() })
@@ -104,4 +90,4 @@ function mapStatetoProps(state) {
   }
 }
 
-export default connect(mapStatetoProps,mapDispatchToProps)(MiniProductCard)
+export default connect(mapStatetoProps)(MiniProductCard)

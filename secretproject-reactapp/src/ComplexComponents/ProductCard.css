@@ -11,6 +11,11 @@
 .card{
     border-radius: 1rem;
 }
+.card p{
+    white-space: wrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
 .card:hover{
     border: 4px solid gray;
 }
