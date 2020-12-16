@@ -4,7 +4,7 @@ import ProductCardArray from "./../hoComplexComponents/ProductCardArray"
 import React from 'react'
 import { Row, Col } from 'bootstrap-4-react'
 import { Button, Container } from "react-bootstrap"
-import './OrderPage.css'
+import './ProductPage.css'
 import ".././hoc/LayoutElements/Main.css"
 import { NavLink } from 'react-router-dom'
 import {connect} from "react-redux"

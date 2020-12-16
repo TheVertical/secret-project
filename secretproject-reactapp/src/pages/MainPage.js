@@ -85,10 +85,10 @@ class MainPage extends React.Component {
     let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
     return (
       <div className="mainStyle MainPage_Global">
-        <Slider {...settings1}>
+        {/* <Slider {...settings1}>
           <img src="./Images/BannerProduct1.jpg" ></img>
           <img src="./Images/BannerProduct3.jpg" ></img>
-        </Slider>
+        </Slider> */}
         <Container className="MainPage_GlobalBottom">
           <Row>
             <h1 className="MainPage_h1Style">Специальные предложения!</h1>

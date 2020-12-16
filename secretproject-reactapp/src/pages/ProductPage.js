@@ -1,16 +1,16 @@
 import React from 'react'
 import { Row, Col } from 'bootstrap-4-react'
 import { Button, Container } from "react-bootstrap"
-import './OrderPage.css'
+import './ProductPage.css'
 import ".././hoc/LayoutElements/Main.css"
-import ProductCardArray from "./../hoComplexComponents/ProductCardArray"
+import ProductCardArray from "../hoComplexComponents/ProductCardArray"
 import { NavLink } from 'react-router-dom'
 // import ProductCardArray from './../hoCont/ProductCardArray'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
-class OrderPage extends React.Component {
+class ProductPage extends React.Component {
 
     constructor() {
         super();
@@ -49,38 +49,38 @@ class OrderPage extends React.Component {
                             </Breadcrumb>
                         </Row>
                         <Row>
-                            <h1 className="OrderPage_TitleH1Style">Наименование супер-крутого товара в дозировке 2*50мл</h1>
+                            <h1 className="ProductPage_TitleH1Style">Наименование супер-крутого товара в дозировке 2*50мл</h1>
                         </Row>
 
-                        <Container className="OrderPage_Global">
-                            <Row className="OrderPage_OrderBlockStyle">
+                        <Container className="ProductPage_Global">
+                            <Row className="ProductPage_OrderBlockStyle">
 
                                 <Col>
-                                    <img src="./Images/Product1.jpg" className="OrderPage_ImageStyle"></img>
+                                    <img src="./Images/Product1.jpg" className="ProductPage_ImageStyle"></img>
                                     <span>Производитель:</span>
                                     <NavLink to="/">DentKist</NavLink>
                                 </Col>
                                 <Col>
-                                    <h1 className="OrderPage_H1Style">2995 ₽</h1>
-                                    <span className="OrderPage_IdSpanStyle">Код: 02641</span>
-                                    <div className="OrderPage_InsideRow">
-                                        <div className="OrderPage_ClickerBlockStyle">
-                                            <Button onClick={this.doDecrease.bind(this)} className="OrderPage_ClickerBlockButtonStyle">-</Button>
-                                            <span className="OrderPage_ClickerBlockSpanStyle">{this.state.count}</span>
-                                            <Button onClick={this.doIncrease.bind(this)} className="OrderPage_ClickerBlockButtonStyle">+</Button>
+                                    <h1 className="ProductPage_H1Style">2995 ₽</h1>
+                                    <span className="ProductPage_IdSpanStyle">Код: 02641</span>
+                                    <div className="ProductPage_InsideRow">
+                                        <div className="ProductPage_ClickerBlockStyle">
+                                            <Button onClick={this.doDecrease.bind(this)} className="ProductPage_ClickerBlockButtonStyle">-</Button>
+                                            <span className="ProductPage_ClickerBlockSpanStyle">{this.state.count}</span>
+                                            <Button onClick={this.doIncrease.bind(this)} className="ProductPage_ClickerBlockButtonStyle">+</Button>
                                         </div>
-                                        <span className="OrderPage_ClickerBlockSpanStyle2">В наличии: много</span>
+                                        <span className="ProductPage_ClickerBlockSpanStyle2">В наличии: много</span>
                                     </div>
-                                    <Button className="OrderPage_ButtonStyle"><div className="OrderPage_ButtonDivStyle"><img src="./Images/trolley.png"></img><span className="OrderPage_SpanStyle">В корзину</span></div></Button>
-                                    <Button className="OrderPage_ComparenSaveButtonStyle"><div className="OrderPage_ButtonDivStyle"><img src="./Images/CompareIcon.png"></img><span className="OrderPage_ComparenSaveSpanStyle">Сравнить</span></div></Button>
-                                    <Button className="OrderPage_ComparenSaveButtonStyle"><div className="OrderPage_ButtonDivStyle"><img src="./Images/SaveIcon.png"></img><span className="OrderPage_ComparenSaveSpanStyle">Отложить</span></div></Button>
-                                    <div className="OrderPage_InsideRow">
+                                    <Button className="ProductPage_ButtonStyle" active="true"><div className="ProductPage_ButtonDivStyle"><img src="./Images/trolley.png"></img><span className="ProductPage_SpanStyle">В корзину</span></div></Button>
+                                    <Button className="ProductPage_ComparenSaveButtonStyle"><div className="ProductPage_ButtonDivStyle"><img src="./Images/CompareIcon.png"></img><span className="ProductPage_ComparenSaveSpanStyle">Сравнить</span></div></Button>
+                                    <Button className="ProductPage_ComparenSaveButtonStyle"><div className="ProductPage_ButtonDivStyle"><img src="./Images/SaveIcon.png"></img><span className="ProductPage_ComparenSaveSpanStyle">Отложить</span></div></Button>
+                                    <div className="ProductPage_InsideRow">
                                         <div>
-                                            <button className="OrderPage_StarStyle"></button>
-                                            <button className="OrderPage_StarStyle"></button>
-                                            <button className="OrderPage_StarStyle"></button>
-                                            <button className="OrderPage_StarStyle"></button>
-                                            <button className="OrderPage_StarStyle"></button>
+                                            <button className="ProductPage_StarStyle"></button>
+                                            <button className="ProductPage_StarStyle"></button>
+                                            <button className="ProductPage_StarStyle"></button>
+                                            <button className="ProductPage_StarStyle"></button>
+                                            <button className="ProductPage_StarStyle"></button>
                                         </div>
                                         <Button>Отправить отзыв</Button>
                                     </div>
@@ -119,4 +119,4 @@ class OrderPage extends React.Component {
     }
 
 }
-export default OrderPage
+export default ProductPage

@@ -1,32 +1,32 @@
-.OrderPage_OrderBlockStyle{
+.ProductPage_OrderBlockStyle{
     display: flex;
     flex-direction: row;
 }
 
-.OrderPage_Global{
+.ProductPage_Global{
     background-color: white;
     border-radius: 20px;
     padding:3%;
 }
-/* .OrderPage_OrderBlockStyle .row{
+/* .ProductPage_OrderBlockStyle .row{
      flex-direction: column;
 } */
-.OrderPage_ImageStyle{
+.ProductPage_ImageStyle{
     width: 700px;
 }
 
-.OrderPage_Global.container{
+.ProductPage_Global.container{
     padding: 3%;
 }
-.OrderPage_TitleH1Style{
+.ProductPage_TitleH1Style{
     padding-left: 12px;
 }
-.OrderPage_InsideRow{
+.ProductPage_InsideRow{
     display: flex;
     align-items: baseline;
     margin: 20px 0;
 }
-.OrderPage_StarStyle{
+.ProductPage_StarStyle{
   content:" ";
   mask-image:url('./star.svg');
   background-color: gray;
@@ -35,41 +35,41 @@
   height: 25px;  
 
 }
-.OrderPage_H1Style{
+.ProductPage_H1Style{
     margin:0;
     font-size: 58px;
 }
-.OrderPage_IdSpanStyle{
+.ProductPage_IdSpanStyle{
     color: gray;
     margin-bottom: 30px;
 }
 
-.OrderPage_ClickerBlockStyle{
+.ProductPage_ClickerBlockStyle{
     background-color:#e9eff5;
     border-radius: 10px;
     display: flex; 
 }
-.OrderPage_StarStyle:hover{
+.ProductPage_StarStyle:hover{
     background-color: #83bde6;
 }
-.OrderPage_OrderBlockStyle .col{
+.ProductPage_OrderBlockStyle .col{
     align-items: flex-start;
 }
-.OrderPage_SpanStyle{
+.ProductPage_SpanStyle{
     font-size:30px;
     margin-left:7px;
     color:white;
 }
-.OrderPage_ButtonDivStyle{
+.ProductPage_ButtonDivStyle{
     display: flex;
     flex-direction: row;
     align-items: baseline;
     margin: 0 25px;
 }
-.OrderPage_ButtonStyle{
+.ProductPage_ButtonStyle{
     background-color: #83bde6;
 }
-.OrderPage_ComparenSaveButtonStyle{
+.ProductPage_ComparenSaveButtonStyle{
     background-color: #e9eff5;
     margin-top:20px;
 }
@@ -79,19 +79,19 @@ nav.nav.nav-tabs {
     margin-top: 20px;
 }
 
-.OrderPage_ClickerBlockSpanStyle{
+.ProductPage_ClickerBlockSpanStyle{
   font-size:30px;
 }
-.OrderPage_ClickerBlockSpanStyle2{
+.ProductPage_ClickerBlockSpanStyle2{
 color: #b5d7f0;
 margin-left:20px       
 }
-button.OrderPage_ClickerBlockButtonStyle.btn.btn-primary{
+button.ProductPage_ClickerBlockButtonStyle.btn.btn-primary{
     background-color: #e9eff5;
     border: 0;
     font-size: 25px;
 }
-.OrderPage_ComparenSaveSpanStyle{
+.ProductPage_ComparenSaveSpanStyle{
     color:black;
     margin-left:7px;
     font-weight: 600px;
