@@ -16,14 +16,26 @@ text-decoration: none;
     width: 90%;
     margin-left: auto;
     margin-right: 0;
-    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .Header_NavLink{
-color: #44799f;
-margin-right:15px;
-font-size: 14px;
 }
+
+.forColumnCase .Header_NavLink{
+    color: black;
+    margin-right:15px;
+    font-size: 14px;
+}
+
+.blockStyle .Header_NavLink{
+    color: #44799f;
+    margin-right:15px;
+    font-size: 14px;
+}
+
 .Header_NavLink:hover{
     color:white;
     text-decoration: none;

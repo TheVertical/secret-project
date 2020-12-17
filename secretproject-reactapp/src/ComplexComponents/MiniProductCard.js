@@ -52,6 +52,12 @@ class MiniProductCard extends React.Component {
     }
   }
 
+   ReturnSubString(str){
+    if(str!=undefined && str.length>=50)
+    {return str.substr(0,47)+"..."} 
+    return str;
+   }
+
 
   render() {
     // this.SetInlineStyle()
@@ -67,7 +73,7 @@ class MiniProductCard extends React.Component {
         <Card.Img variant="top" src={this.state.ImageUrl} className={this.state.ImageStyle} />
         <Card.Body>
           <Card.Text>
-            {this.state.Title}
+            {this.ReturnSubString(this.state.Title)}
           </Card.Text>
         </Card.Body>
         <Card.Body className="ProductCard_BottomPart">

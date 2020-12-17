@@ -75,13 +75,13 @@ class VisualFactory extends React.Component {
             case "LinksMenu":
                 return (
                     <div>
-                        <LinksMenu Id={element.Id} Links={element.Links} IsHorizontal={element.IsHorizontal} MainTitle={element.MainTitle}></LinksMenu>
+                        <LinksMenu Id={element.Id} Links={element.Links} IsHorizontal={element.IsHorizontal} MainTitle={element.MainTitle} ></LinksMenu>
                     </div>
                 );
             case "ImageBlock":
                 return (
                     <div>
-                        <ImageBlock Id={element.Id} Alt={element.Alt} Source={element.Source}></ImageBlock>
+                        <ImageBlock Id={element.Id} Alt={element.Alt} Source={element.Source}  ></ImageBlock>
                     </div>
                 );
                 break;

@@ -36,6 +36,15 @@
     width:16rem;
 }
 
+.card-img-top{
+    padding: 0 25px;
+}
+.card-body{
+    padding: 0 13px;
+}
+.card p{
+    height:45px
+}
 .ProductCard_ImageInlineStyle{
     width:8rem;
 }
@@ -44,4 +53,8 @@
 }
 span.badge.badge-pill.badge-primary{
     display: inline-table;
+}
+button.btn.btn-primary:active{
+  border:0;
+  background-color: white;
 }

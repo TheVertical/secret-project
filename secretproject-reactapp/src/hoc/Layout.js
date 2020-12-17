@@ -29,6 +29,7 @@ class Layout extends React.Component {
    async getBackbone() {
       let url = 'https://secrethost.azurewebsites.net/visual/backbone'
       let response = await fetch(url);
+      if(!response.ok){alert(response)}
       let json = await response.json();
       this.setState({ Downloaded: json, IsLoading: false });
    }

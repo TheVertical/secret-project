@@ -1,5 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
+import "./ImageBlock.css"
 class ImageBlock  extends React.Component{
     constructor(props) {
         super();
@@ -25,7 +26,7 @@ class ImageBlock  extends React.Component{
         else
             out = <NavLink to='/home'><img src={this.state.Source} alt={this.state.Alt} /></NavLink>;
         return (
-            <div>{out}</div>
+            <div className="ImageBlock_DivStyle">{out}</div>
         );
 
     }

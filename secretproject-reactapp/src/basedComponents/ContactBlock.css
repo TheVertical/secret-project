@@ -4,12 +4,11 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    position: absolute;
-    top: 0;  bottom: 0; right: 0;
+ 
 }
 
 .Header_Phone{
-    font-size: 40px;
+    font-size: 38px;
     color:white;
     text-transform: none;
     padding: 0px;
@@ -20,7 +19,7 @@
 }
 .OpeningHours{
     margin:0;
-    font-size: 18px;
+    font-size: 14px;
     color: #44799f;
 }
 .GetBackCall{

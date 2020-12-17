@@ -91,7 +91,9 @@ class MainPage extends React.Component {
         </Slider> */}
         <Container className="MainPage_GlobalBottom">
           <Row>
+            <Col>
             <h1 className="MainPage_h1Style">Специальные предложения!</h1>
+            </Col>
           </Row>
           <Row>
             <Slider {...settings2}>
@@ -119,33 +121,33 @@ class MainPage extends React.Component {
           </Row> */}
           <Row className="MainPage_LinkButtonStyle">
             <NavLink to="/Catalog">
-              <Button>перейти к каталогу</Button>
+              <Button className="MainPage_ToCatalogButtonStyle">Перейти к каталогу</Button>
             </NavLink>
           </Row>
           <Container className="MainPage_BottomPartStyle">
-            <Row>
-              <Col>
+             <Row>
+              <div className="MainPage_InfoBlockStyle">
                 <h1>2011</h1>
                 <span>Год основания компании</span>
-              </Col>
-              <Col>
+              </div>
+              <div className="MainPage_InfoBlockStyle">
                 <h1>3000</h1>
                 <span>Год основания компании</span>
-              </Col>
-              <Col>
+              </div>
+              <div className="MainPage_InfoBlockStyle">
                 <h1>72%</h1>
                 <span>Клиентов совершают повторные покупки в нашем магазине</span>
-              </Col>
-              <Col>
+              </div>
+              <div className="MainPage_InfoBlockStyle">
                 <h1>Курсы</h1>
                 <span>Мы организовываем профессиональные курсы для стоматологов</span>
-              </Col>
-              <Col>
+              </div>
+              <div className="MainPage_InfoBlockStyle">
                 <h1>25000</h1>
                 <span>Довольных клиентов</span>
-              </Col>
-            </Row>
-            <Row>
+              </div>
+            </Row> 
+             <Row>
               <Col>
                 <img src="./Images/dentist.jpg"></img>
               </Col>
@@ -162,7 +164,7 @@ class MainPage extends React.Component {
                   <Button>узнать больше...</Button>
                 </NavLink>
               </Col>
-            </Row>
+            </Row> 
           </Container>
         </Container>
       </div>
