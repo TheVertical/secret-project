@@ -12,8 +12,9 @@
      flex-direction: column;
 } */
 .ProductPage_ImageStyle{
-    width: 700px;
+    width: -webkit-fill-available;
 }
+
 
 .ProductPage_Global.container{
     padding: 3%;
@@ -38,6 +39,7 @@
 .ProductPage_H1Style{
     margin:0;
     font-size: 58px;
+    font-weight: bolder;
 }
 .ProductPage_IdSpanStyle{
     color: gray;
@@ -46,7 +48,7 @@
 
 .ProductPage_ClickerBlockStyle{
     background-color:#e9eff5;
-    border-radius: 10px;
+    border-radius: 20px;
     display: flex; 
 }
 .ProductPage_StarStyle:hover{
@@ -54,18 +56,26 @@
 }
 .ProductPage_OrderBlockStyle .col{
     align-items: flex-start;
+    justify-content: end;
 }
 .ProductPage_SpanStyle{
     font-size:30px;
     margin-left:7px;
     color:white;
 }
-.ProductPage_ButtonDivStyle{
+.ProductPage_ButtonDivBasketStyle{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 5px 50px;
+}
+.ProductPage_ButtonDivComareNSaveStyle{
     display: flex;
     flex-direction: row;
     align-items: baseline;
     margin: 0 25px;
 }
+
 .ProductPage_ButtonStyle{
     background-color: #83bde6;
 }
@@ -76,7 +86,7 @@
 nav.nav.nav-tabs {
     width: 100%;
     justify-content: space-around;
-    margin-top: 20px;
+    margin: 40px 0;
 }
 
 .ProductPage_ClickerBlockSpanStyle{
@@ -90,10 +100,39 @@ button.ProductPage_ClickerBlockButtonStyle.btn.btn-primary{
     background-color: #e9eff5;
     border: 0;
     font-size: 25px;
+    color:black;
 }
 .ProductPage_ComparenSaveSpanStyle{
     color:black;
     margin-left:7px;
     font-weight: 600px;
     font-size:25px;
+}
+button.ProductPage_ComparenSaveButtonStyle.btn.btn-primary{
+    background-color:#e9eff5;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-bottom:4px solid #83bde6;
+}
+
+.nav-tabs .nav-link {
+    border:0;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+.nav-tabs a{
+    color:gray;
+}
+.ProductPage_ButtonSendReviewStyle{
+}
+button.ProductPage_ButtonSendReviewStyle.btn.btn-primary{
+    margin-left:10px;
+    background-color:white;
+    color:gray;
+}
+button.ProductPage_ButtonStyle.btn.active.btn-primary{
+    background-color: #83bde6;
 }

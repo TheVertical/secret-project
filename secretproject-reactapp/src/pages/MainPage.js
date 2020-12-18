@@ -10,6 +10,8 @@ import MiniProductCard from "../ComplexComponents/MiniProductCard"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LoadingPage from './LoadingPage'
+
 
 class MainPage extends React.Component {
   constructor() {
@@ -20,7 +22,7 @@ class MainPage extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.downloadedSpecPromotion();
   }
 
@@ -30,6 +32,36 @@ class MainPage extends React.Component {
     let json = await response.json();
     console.log(json);
     this.setState({ Downloaded: json, IsLoading: false });
+  }
+   
+ 
+   RenderAllMiniCards(settings2){
+    if(this.state.IsLoading){
+      return(
+      // <div className="MainPage_MiniProductCardRowStyle">
+      <LoadingPage loading={this.state.IsLoading}></LoadingPage>
+      // </div>
+      )
+    }
+    else{
+      let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
+      return(<Slider {...settings2}>
+              {minicards.map(minicard => {
+                return(<MiniProductCard
+                  key={minicard.Id}
+                  Title={minicard.Title}
+                  OriginalPrice={minicard.OriginalPrice}
+                  DiscountedPrice={minicard.DiscountedPrice}
+                  //TODO Пока мок
+                  ImageUrl="./Images/Product.jpg"
+                  IsDiscouted={minicard.IsDiscouted}
+                  IsNew={minicard.IsNew}
+                  IsPopular={minicard.IsPopular}
+                  IsInStock={minicard.IsInStock}
+                />);
+              })}
+      </Slider>)
+    }
   }
 
   render() {
@@ -82,7 +114,8 @@ class MainPage extends React.Component {
         }
       ]
     };
-    let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
+    // let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
+ 
     return (
       <div className="mainStyle MainPage_Global">
         {/* <Slider {...settings1}>
@@ -95,23 +128,12 @@ class MainPage extends React.Component {
             <h1 className="MainPage_h1Style">Специальные предложения!</h1>
             </Col>
           </Row>
-          <Row>
-            <Slider {...settings2}>
-              {minicards.map(minicard => {
-                return(<MiniProductCard
-                  key={minicard.Id}
-                  Title={minicard.Title}
-                  OriginalPrice={minicard.OriginalPrice}
-                  DiscountedPrice={minicard.DiscountedPrice}
-                  //TODO Пока мок
-                  ImageUrl="./Images/Product.jpg"
-                  IsDiscouted={minicard.IsDiscouted}
-                  IsNew={minicard.IsNew}
-                  IsPopular={minicard.IsPopular}
-                  IsInStock={minicard.IsInStock}
-                />);
-              })}
-            </Slider>
+
+          <Row className="MainPage_MiniProductCardRowStyle">
+          
+          {this.RenderAllMiniCards(settings2)}
+          
+          
           </Row>
           {/* <Row>
             <h1 className="MainPage_h1Style">Хиты продаж:</h1>

@@ -23,6 +23,12 @@ text-decoration: none;
 
 .Header_NavLink{
 }
+@media (max-width: 768px){
+   .blockStyle{
+    justify-content: center;
+   }
+    }
+    
 
 .forColumnCase .Header_NavLink{
     color: black;

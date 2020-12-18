@@ -80,7 +80,7 @@ class MiniProductCard extends React.Component {
           <Card.Title>
             {this.state.OriginalPrice + "₽"}
           </Card.Title>
-          <Button variant="primary">Купить</Button>
+          <Button variant="primary" className="ProductCard_ButtonStyle">Купить</Button>
         </Card.Body>
 
       </Card>

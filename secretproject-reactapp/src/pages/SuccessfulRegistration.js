@@ -6,15 +6,21 @@ import ".././hoc/LayoutElements/Main.css"
 import ProductCardArray from "./../hoComplexComponents/ProductCardArray"
 import {NavLink} from 'react-router-dom'
 // import ProductCardArray from './../hoCont/ProductCardArray'
+import LoadingPage from './LoadingPage'
 
 class SuccessfulRegistration extends React.Component {
 
     constructor() {
         super();
-        this.state = {}
+      this.state = {
+            isLoading:true
+        }
     }
-
+    componentDidMount(){
+        this.setState({isLoading:false})
+    }
     render() {
+        if(this.state.isLoading){return(<LoadingPage></LoadingPage>)}
         return (
             <div className="mainStyle">
                 <div className="SuccessfulRegistration_GlobalStyle">

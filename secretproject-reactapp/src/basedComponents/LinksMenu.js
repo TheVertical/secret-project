@@ -24,7 +24,7 @@ class LinksMenu extends React.Component {
     checkHor(){
       return (
         //TODO Здесь не правильно сделано, надо наоборот, ошибка на стороне сервера, там надо у свойства проставить IsHorizontal = true
-          this.state.IsHorizontal ? "blockStyle" : "forColumnCase"
+          this.state.IsHorizontal ? "forColumnCase" : "blockStyle"
       )
     }
     render() {

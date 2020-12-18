@@ -41,9 +41,9 @@ class ProductPage extends React.Component {
                     <Container>
                         <Row>
                             <Breadcrumb>
-                                <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-                                <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-                                    Library
+                                <Breadcrumb.Item href="/">Главная</Breadcrumb.Item>
+                                <Breadcrumb.Item href="/catalog">
+                                    Каталог
                                  </Breadcrumb.Item>
                                 <Breadcrumb.Item active>Data</Breadcrumb.Item>
                             </Breadcrumb>
@@ -57,10 +57,10 @@ class ProductPage extends React.Component {
 
                                 <Col>
                                     <img src="./Images/Product1.jpg" className="ProductPage_ImageStyle"></img>
-                                    <span>Производитель:</span>
-                                    <NavLink to="/">DentKist</NavLink>
+                                    <span style={{color:"gray"}}>Производитель:</span>
+                                    <NavLink to="/" style={{color:"black"}}>DentKist</NavLink>
                                 </Col>
-                                <Col>
+                                <Col xs lg="4">
                                     <h1 className="ProductPage_H1Style">2995 ₽</h1>
                                     <span className="ProductPage_IdSpanStyle">Код: 02641</span>
                                     <div className="ProductPage_InsideRow">
@@ -71,9 +71,9 @@ class ProductPage extends React.Component {
                                         </div>
                                         <span className="ProductPage_ClickerBlockSpanStyle2">В наличии: много</span>
                                     </div>
-                                    <Button className="ProductPage_ButtonStyle" active="true"><div className="ProductPage_ButtonDivStyle"><img src="./Images/trolley.png"></img><span className="ProductPage_SpanStyle">В корзину</span></div></Button>
-                                    <Button className="ProductPage_ComparenSaveButtonStyle"><div className="ProductPage_ButtonDivStyle"><img src="./Images/CompareIcon.png"></img><span className="ProductPage_ComparenSaveSpanStyle">Сравнить</span></div></Button>
-                                    <Button className="ProductPage_ComparenSaveButtonStyle"><div className="ProductPage_ButtonDivStyle"><img src="./Images/SaveIcon.png"></img><span className="ProductPage_ComparenSaveSpanStyle">Отложить</span></div></Button>
+                                    <Button className="ProductPage_ButtonStyle" active="true"><div className="ProductPage_ButtonDivBasketStyle"><img src="./Images/trolley.png"></img><span className="ProductPage_SpanStyle">В корзину</span></div></Button>
+                                    <Button className="ProductPage_ComparenSaveButtonStyle"><div className="ProductPage_ButtonDivComareNSaveStyle"><img src="./Images/CompareIcon.png"></img><span className="ProductPage_ComparenSaveSpanStyle">Сравнить</span></div></Button>
+                                    <Button className="ProductPage_ComparenSaveButtonStyle"><div className="ProductPage_ButtonDivComareNSaveStyle"><img src="./Images/SaveIcon.png"></img><span className="ProductPage_ComparenSaveSpanStyle">Отложить</span></div></Button>
                                     <div className="ProductPage_InsideRow">
                                         <div>
                                             <button className="ProductPage_StarStyle"></button>
@@ -82,7 +82,7 @@ class ProductPage extends React.Component {
                                             <button className="ProductPage_StarStyle"></button>
                                             <button className="ProductPage_StarStyle"></button>
                                         </div>
-                                        <Button>Отправить отзыв</Button>
+                                        <Button className="ProductPage_ButtonSendReviewStyle">Отправить отзыв</Button>
                                     </div>
 
                                 </Col>

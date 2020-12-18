@@ -22,7 +22,6 @@ class ComboBoxButton extends React.Component {
   }
 
   OnClick_DropdowmItem(eventKey , event) {
-    debugger;
     // this.state.history.pushState(eventKey,event.Title,"/catalog");
     this.state.history.push("/catalog");
   }

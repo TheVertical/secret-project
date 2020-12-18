@@ -73,7 +73,7 @@ class Catalog_Page extends React.Component {
           </Row>
           <Row>
             <Col col="2">
-              <Accordion>
+              <Accordion className="Catalog_Page_AccordionStyle">
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="0">

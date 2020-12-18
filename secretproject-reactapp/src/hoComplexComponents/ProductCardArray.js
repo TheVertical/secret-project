@@ -42,7 +42,7 @@ class ProductCardArray extends React.Component {
     return( 
     <div>
      <Row>
-       Do
+      {this.state.array}
      </Row>
     </div>
   

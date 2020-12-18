@@ -17,7 +17,7 @@
     text-overflow: ellipsis; /* Добавляем многоточие */
 }
 .card:hover{
-    border: 4px solid gray;
+    box-shadow: 0px 8px 11px 0px rgba(50, 50, 50, 0.25);
 }
 .ProductCard_BottomPart{
     display:flex;
@@ -35,7 +35,15 @@
     flex-direction: column;
     width:16rem;
 }
-
+.ProductCard_ButtonStyle{}
+button.ProductCard_ButtonStyle.btn.btn-primary {
+    /* border-radius: 20px; */
+    background-color: #83bde5;
+    color: white;
+    border: 0;
+    border-radius: 20px;
+    margin: 10px 0;
+}
 .card-img-top{
     padding: 0 25px;
 }

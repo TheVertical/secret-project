@@ -32,6 +32,7 @@
     background-color: rgba(255,255,255,0);
     border:0;
 }
+/* стилизация кнопки сортировки при взаимодействии с ней */
 .Catalog_Page_SortButtonStyle button.dropdown-toggle.btn.btn-primary:focus,.Catalog_Page_SortButtonStyle button.dropdown-toggle.btn.btn-primary:hover,.Catalog_Page_SortButtonStyle button.dropdown-toggle.btn.btn-primary:target{
     color:black;
     border:0;
@@ -41,4 +42,14 @@
     display:none;
 }
 
-
+.Catalog_Page_AccordionStyle{
+    position:sticky;
+    top:20px;
+}
+/* стилизация сайдбара */
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,0); 
+     border-bottom: 0;
+}
