@@ -6,7 +6,7 @@ import { Row, Col } from 'bootstrap-4-react'
 import { Button, Container } from "react-bootstrap"
 import './ProductPage.css'
 import ".././hoc/LayoutElements/Main.css"
-import { NavLink } from 'react-router-dom'
+import { NavLink , Route, useParams,withRouter } from 'react-router-dom'
 import {connect} from "react-redux"
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Accordion from 'react-bootstrap/Accordion'
@@ -24,11 +24,22 @@ class Catalog_Page extends React.Component {
   constructor() {
     super();
     this.state = {
-      sortStyle: "Убыванию цены"
+      sortStyle: "Убыванию цены",
     }
-
+    let link = useParams();
+  }
+  componentDidMount() {
+    this.dowmloadNomenclatures();
   }
 
+  async dowmloadNomenclatures() {
+    debugger;
+    let url = 'https://secrethost.azurewebsites.net/' + this.state.link;
+    let response = await fetch(url);
+    let json = await response.json();
+    console.log(json);
+    this.setState({ Downloaded: json, IsLoading: false });
+  }
   render() {
 
 
@@ -119,4 +130,4 @@ function mapDispatchToProps(dispatch){
     onSetBlock:()=>dispatch({type:"InlineFalse"})
   }
 }
-export default connect(null,mapDispatchToProps)(Catalog_Page)
+export default withRouter(connect(null,mapDispatchToProps)(Catalog_Page))

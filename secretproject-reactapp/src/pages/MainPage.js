@@ -114,26 +114,39 @@ class MainPage extends React.Component {
         }
       ]
     };
-    // let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
+    let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
  
     return (
       <div className="mainStyle MainPage_Global">
-        {/* <Slider {...settings1}>
+        <Slider {...settings1}>
           <img src="./Images/BannerProduct1.jpg" ></img>
           <img src="./Images/BannerProduct3.jpg" ></img>
-        </Slider> */}
+        </Slider>
         <Container className="MainPage_GlobalBottom">
           <Row>
             <Col>
-            <h1 className="MainPage_h1Style">Специальные предложения!</h1>
+              <h1 className="MainPage_h1Style">Специальные предложения!</h1>
             </Col>
           </Row>
-
-          <Row className="MainPage_MiniProductCardRowStyle">
-          
-          {this.RenderAllMiniCards(settings2)}
-          
-          
+          <Row>
+            <Slider {...settings2}>
+              {minicards.map(minicard => {
+                if (minicard.Id != undefined)
+                  return (<MiniProductCard
+                    key={minicard.Id}
+                    Id={minicard.Id}
+                    Title={minicard.Title}
+                    OriginalPrice={minicard.OriginalPrice}
+                    DiscountedPrice={minicard.DiscountedPrice}
+                    //TODO Пока мок
+                    ImageUrl="./Images/Product.jpg"
+                    IsDiscouted={minicard.IsDiscouted}
+                    IsNew={minicard.IsNew}
+                    IsPopular={minicard.IsPopular}
+                    IsInStock={minicard.IsInStock}
+                  />);
+              })}
+            </Slider>
           </Row>
           {/* <Row>
             <h1 className="MainPage_h1Style">Хиты продаж:</h1>
@@ -147,7 +160,7 @@ class MainPage extends React.Component {
             </NavLink>
           </Row>
           <Container className="MainPage_BottomPartStyle">
-             <Row>
+            <Row>
               <div className="MainPage_InfoBlockStyle">
                 <h1>2011</h1>
                 <span>Год основания компании</span>
@@ -168,8 +181,8 @@ class MainPage extends React.Component {
                 <h1>25000</h1>
                 <span>Довольных клиентов</span>
               </div>
-            </Row> 
-             <Row>
+            </Row>
+            <Row>
               <Col>
                 <img src="./Images/dentist.jpg"></img>
               </Col>
@@ -186,7 +199,7 @@ class MainPage extends React.Component {
                   <Button>узнать больше...</Button>
                 </NavLink>
               </Col>
-            </Row> 
+            </Row>
           </Container>
         </Container>
       </div>
