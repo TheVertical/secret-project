@@ -5,6 +5,7 @@ import Badge from 'react-bootstrap/Badge'
 import { connect } from "react-redux"
 import './ProductCard.css'
 import rootStore from "../redux/rootStore"
+import { withRouter } from 'react-router-dom'
 
 // import rootStore from "../redux/rootReducer"
 
@@ -15,6 +16,10 @@ import rootStore from "../redux/rootStore"
 class MiniProductCard extends React.Component {
   constructor(props) {
     super(props);
+    if (props.Id == undefined) {
+      console.error("Id of minicard is:",props.Id);
+      
+    }
     this.state = {
       Id: props.Id,
       Title: props.Title,
@@ -30,8 +35,12 @@ class MiniProductCard extends React.Component {
       VisualElements: [],
       Style: "",
       ImageStyle: "",
-      width: '16rem'
+      width: '16rem',
+
+      history: props.history
+
     }
+    this.onClick_MiniCard = this.OnClick_MiniCard.bind(this);
   }
   SetInlineStyle() {
     if (this.props.isInline) {
@@ -52,11 +61,10 @@ class MiniProductCard extends React.Component {
     }
   }
 
-   ReturnSubString(str){
-    if(str!=undefined && str.length>=50)
-    {return str.substr(0,47)+"..."} 
+  ReturnSubString(str) {
+    if (str != undefined && str.length >= 50) { return str.substr(0, 47) + "..." }
     return str;
-   }
+  }
 
 
   render() {
@@ -70,9 +78,9 @@ class MiniProductCard extends React.Component {
         <Badge pill variant="primary">
           Есть в наличии
       </Badge>{' '}
-        <Card.Img variant="top" src={this.state.ImageUrl} className={this.state.ImageStyle} />
+        <Card.Img onClick={this.onClick_MiniCard} variant="top" src={this.state.ImageUrl} className={this.state.ImageStyle} />
         <Card.Body>
-          <Card.Text>
+          <Card.Text onClick={this.onClick_MiniCard}>
             {this.ReturnSubString(this.state.Title)}
           </Card.Text>
         </Card.Body>
@@ -89,6 +97,13 @@ class MiniProductCard extends React.Component {
     //рендер
   }
 
+  OnClick_MiniCard(event) {
+    if (this.state.Id != undefined)
+      this.state.history.push('/catalog/product/' + this.state.Id);
+    else
+      this.state.history.push('/404');
+  }
+
 }
 function mapStatetoProps(state) {
   return {
@@ -96,4 +111,4 @@ function mapStatetoProps(state) {
   }
 }
 
-export default connect(mapStatetoProps)(MiniProductCard)
+export default withRouter(connect(mapStatetoProps)(MiniProductCard))
