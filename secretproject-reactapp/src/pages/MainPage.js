@@ -47,7 +47,11 @@ class MainPage extends React.Component {
       let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
       return(<Slider {...settings2}>
               {minicards.map(minicard => {
-                return(<MiniProductCard
+                return(
+                
+                <div className="MainPage_MarginForMiniProductCard" style={{display:"contents"}}>
+                   <MiniProductCard
+                   style={{display:"contents"}}
                   key={minicard.Id}
                   Title={minicard.Title}
                   OriginalPrice={minicard.OriginalPrice}
@@ -58,7 +62,10 @@ class MainPage extends React.Component {
                   IsNew={minicard.IsNew}
                   IsPopular={minicard.IsPopular}
                   IsInStock={minicard.IsInStock}
-                />);
+                />
+                </div>
+                
+               );
               })}
       </Slider>)
     }
@@ -70,7 +77,7 @@ class MainPage extends React.Component {
       dots: true,
       infinite: true,
       autoplay: true,
-      autoplaySpeed: 2000,
+      autoplaySpeed: 9000,
       slidesToShow: 1,
       slidesToScroll: 1,
       className: "MainPage_FirstSlider",
@@ -118,10 +125,10 @@ class MainPage extends React.Component {
  
     return (
       <div className="mainStyle MainPage_Global">
-        {/* <Slider {...settings1}>
+        <Slider {...settings1}>
           <img src="./Images/BannerProduct1.jpg" ></img>
           <img src="./Images/BannerProduct3.jpg" ></img>
-        </Slider> */}
+        </Slider>
         <Container className="MainPage_GlobalBottom">
           <Row>
             <Col>

@@ -250,12 +250,21 @@ button.MainPage_ToCatalogButtonStyle.btn.btn-primary{
 .slick-slide>div {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+
 }
 
 .MainPage_MiniProductCardRowStyle{
   position: relative;
   min-height: 285px;
+}
+
+.MainPage_MarginForMiniProductCard{
+  display: flex!important;
+  justify-content: center;
+}
+
+.MainPage_MarginForMiniProductCard .card{
+  margin: 20px auto;
 }
 /* .MainPage_SecondSlider .slider__item {
   padding: 0px 300px;

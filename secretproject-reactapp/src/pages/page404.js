@@ -33,7 +33,7 @@ class Page404 extends React.Component {
                     <img src="./Images/404.png"></img>
                     <h1 className="Page404_H1Style">Страница не найдена</h1>
                     <p>Проверьте правильность адреса или вернитесь на главную страницу</p>
-                    <NavLink to="/first">
+                    <NavLink to="/">
                     <Button className="Page404_BtnStyle">вернуться на главную</Button>
                     </NavLink>
                     </Col>

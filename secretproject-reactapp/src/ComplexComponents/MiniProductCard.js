@@ -65,7 +65,7 @@ class MiniProductCard extends React.Component {
     store.subscribe(() => { this.SetInlineStyle() })
     console.log(this.state.Style)
     return (
-      <Card style={{ width: this.state.width }} className={this.state.Style}>
+      <Card style={{ width:"280px", height:"280px" }} className={this.state.Style}>
         {this.SetInlineStyle.bind(this)}
         <Badge pill variant="primary">
           Есть в наличии
