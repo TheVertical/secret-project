@@ -53,3 +53,12 @@
     background-color: rgba(0,0,0,0); 
      border-bottom: 0;
 }
+.Catalog_Page_InputStyle{
+   
+}
+input.Catalog_Page_InputStyle.form-control{
+    background-color:#eaeff5;
+    border:0;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+}

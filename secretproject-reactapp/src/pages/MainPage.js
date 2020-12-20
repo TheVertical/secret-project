@@ -135,8 +135,8 @@ class MainPage extends React.Component {
               <h1 className="MainPage_h1Style">Специальные предложения!</h1>
             </Col>
           </Row>
-          <Row>
-            <Slider {...settings2}>
+          <Row className="MainPage_MiniProductCardRowStyle">
+            {/* <Slider {...settings2}>
               {minicards.map(minicard => {
                 if (minicard.Id != undefined)
                   return (<MiniProductCard
@@ -153,7 +153,8 @@ class MainPage extends React.Component {
                     IsInStock={minicard.IsInStock}
                   />);
               })}
-            </Slider>
+            </Slider> */}
+          {this.RenderAllMiniCards(settings2)}
           </Row>
           {/* <Row>
             <h1 className="MainPage_h1Style">Хиты продаж:</h1>
