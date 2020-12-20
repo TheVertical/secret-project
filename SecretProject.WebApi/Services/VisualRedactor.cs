@@ -94,6 +94,7 @@ namespace SecretProject.Services
             var pages = context.Set<Page>().ToList();
 
             LinksMenu linksMenu = new LinksMenu();
+            linksMenu.IsHorizontal = true;
             foreach(var page in pages)
             {
                 LinkItem link = new LinkItem(page.Id,page.OfficialTitle,page.PageLink);
@@ -123,9 +124,18 @@ namespace SecretProject.Services
             ComboBoxButton catalog = new ComboBoxButton { Id = 0, Title = "Каталог", Action = null, NeededColumns = 2, DropdownMenu = dropdownMenu };
             grayLine.AddVisualElement(catalog);
 
-            Button basket = new Button { Id = 3, Image = "shopLogo", Action = "Basket", NeededColumns = 1 };
+            Button learn = new Button { Id = 1, Title = "Обучение", NeededColumns = 2 };
+            grayLine.AddVisualElement(learn);
+
+            Button impl = new Button { Id = 2, Title = "Имплантация", NeededColumns = 2 };
+            grayLine.AddVisualElement(impl);
+
+            VisualSearch visualSearch = new VisualElements.Elements.VisualSearch { Id = 3, NeededColumns = 4 };
+            grayLine.AddVisualElement(visualSearch);
+
+            Button basket = new Button { Id = 4, Image = "./Images/shopLogo.png", Action = "Basket", NeededColumns = 1 };
             grayLine.AddVisualElement(basket);
-            Button auth = new Button { Id = 4, Image = "profileLogo", Action = "Account", NeededColumns = 1 };
+            Button auth = new Button { Id = 5, Image = "./Images/profileLogo.png", Action = "Account", NeededColumns = 1 };
             grayLine.AddVisualElement(auth);
 
             #endregion
@@ -190,10 +200,11 @@ namespace SecretProject.Services
             {
                 Id = 0,
                 NeededColumns = 2,
+                Image = "./Images/LogoDown.png",
                 OpeningHours = "Пн-Чт:10:00 - 18:00, Пт:10:00 - 17:00",
                 Phone = "8 (812) 388-4538"
             };
-
+            footer.AddVisualElement(_contactblock);
             #endregion
             backbone.Add("Footer", footer);
 
