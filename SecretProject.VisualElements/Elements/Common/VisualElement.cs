@@ -17,5 +17,13 @@ namespace SecretProject.VisualElements.Elements.Common
         /// </summary>
         [StringLength(20)]
         public int NeededColumns { get; set; }
+        /// <summary>
+        /// Расположение по оси X
+        /// </summary>
+        public string JustyfyContent { get; set; }
+        /// <summary>
+        /// Расположение по оси Y
+        /// </summary>
+        public string AlignContent { get; set; }
     }
 }

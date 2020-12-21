@@ -143,10 +143,15 @@ namespace SecretProject.Services
 
             Block footer = new Block();
             #region блоки
-            Label stayOnLink = new Label() { Id = 0, NeededColumns = 6, Text = "Оставайтесь на связи" };
-            footer.AddVisualElement(stayOnLink);
 
+            Block stayWithUsLine = new Block();
+            footer.AddVisualElement(stayWithUsLine);
 
+            Label stayOnLink = new Label() { Id = 0, NeededColumns = 12, Text = "Оставайтесь на связи" };
+            stayWithUsLine.AddVisualElement(stayOnLink);
+
+            Block linksBlock = new Block();
+            footer.AddVisualElement(linksBlock);
             //ПОКА СТАТИКА
             LinksMenu links = new LinksMenu
             {
@@ -154,6 +159,7 @@ namespace SecretProject.Services
                 MainTitle = "Моя учётная запись",
                 IsHorizontal = false,
                 NeededColumns = 3,
+                AlignContent="start",
                 Links = new List<LinkItem>
                 {
                     new LinkItem (0,"Войти","#"),
@@ -161,7 +167,7 @@ namespace SecretProject.Services
                 }
 
             };
-            footer.AddVisualElement(links);
+            linksBlock.AddVisualElement(links);
             //ПОКА СТАТИКА
             links = new LinksMenu
             {
@@ -169,6 +175,7 @@ namespace SecretProject.Services
                 MainTitle = "Магазин",
                 IsHorizontal = false,
                 NeededColumns = 3,
+                AlignContent="start",
                 Links = new List<LinkItem>
                 {
                     new LinkItem (0,"О нас","#"),
@@ -178,7 +185,7 @@ namespace SecretProject.Services
                 }
 
             };
-            footer.AddVisualElement(links);
+            linksBlock.AddVisualElement(links);
             //ПОКА СТАТИКА
             links = new LinksMenu
             {
@@ -186,6 +193,7 @@ namespace SecretProject.Services
                 MainTitle = "Покупательский сервис",
                 IsHorizontal = false,
                 NeededColumns = 3,
+                AlignContent="start",
                 Links = new List<LinkItem>
                 {
                     new LinkItem (0,"Ваши заказы","#"),
@@ -194,7 +202,7 @@ namespace SecretProject.Services
                 }
 
             };
-            footer.AddVisualElement(links);
+            linksBlock.AddVisualElement(links);
             //ПОКА СТАТИКА
             var _contactblock = new ContactBlock()
             {
@@ -204,7 +212,7 @@ namespace SecretProject.Services
                 OpeningHours = "Пн-Чт:10:00 - 18:00, Пт:10:00 - 17:00",
                 Phone = "8 (812) 388-4538"
             };
-            footer.AddVisualElement(_contactblock);
+            linksBlock.AddVisualElement(_contactblock);
             #endregion
             backbone.Add("Footer", footer);
 
