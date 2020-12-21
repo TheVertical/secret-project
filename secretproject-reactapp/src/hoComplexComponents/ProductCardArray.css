@@ -10,9 +10,9 @@
 
 .ProductCardArray_Col{
     margin-bottom:20px;
+    width: 280px;
 }
 .col.ProductCardArray_Col {
-    padding-left: 26px;
 }
 .col.ProductCardArray_Col:nth-child(1), .col.ProductCardArray_Col:last-child{
   align-items: center;

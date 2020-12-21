@@ -6,8 +6,8 @@ import { Row, Col } from 'bootstrap-4-react'
 import { Button, Container } from "react-bootstrap"
 import './ProductPage.css'
 import ".././hoc/LayoutElements/Main.css"
-import { NavLink , Route, useParams,withRouter } from 'react-router-dom'
-import {connect} from "react-redux"
+import { NavLink, Route, useParams, withRouter } from 'react-router-dom'
+import { connect } from "react-redux"
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
@@ -18,41 +18,56 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Pagination from 'react-bootstrap/Pagination'
 import PageItem from 'react-bootstrap/PageItem'
 import MiniProductCard from "../ComplexComponents/MiniProductCard"
-
+import Form from 'react-bootstrap/Form'
+import CheckBoxArray from "./../hoComplexComponents/CheckBoxArray"
 
 class Catalog_Page extends React.Component {
   constructor() {
     super();
     this.state = {
       sortStyle: "Убыванию цены",
+      pagActive:1,
+      pagItems:[],
+      itemsCount:100
     }
-    let link = useParams();
+    // let link = useParams();
   }
   componentDidMount() {
     this.dowmloadNomenclatures();
   }
 
   async dowmloadNomenclatures() {
-    debugger;
-    let url = 'https://secrethost.azurewebsites.net/' + this.state.link;
-    let response = await fetch(url);
-    let json = await response.json();
-    console.log(json);
-    this.setState({ Downloaded: json, IsLoading: false });
+    let url = 'https://secrethost.azurewebsites.net/'
+    // + this.state.link;
+    // let response = await fetch(url);
+    // let json = await response.json();
+    // console.log(json);
+    this.setState({ Downloaded: [], IsLoading: false });
   }
-  render() {
 
 
-    let active = 1;
-    let items = [];
-    for (let number = 1; number <= 5; number++) {
-      items.push(
-        <Pagination.Item key={number} active={number === active}>
+  GetNewPageInPagination(key){
+    if (key!==this.state.pagActive&&key>0&&key<(this.state.itemsCount/15)){
+      this.setState({pagActive:key})
+      console.log()
+            //Тут будет запрос на загрузку новой страницы
+    }
+  }
+  RenderPagination(){
+    for (let number = 1; number <= (this.state.itemsCount/15); number++) {
+      this.state.pagItems.push(
+        <Pagination.Item key={number} activeLabel={()=>this.state.pagActive===number}  onClick={this.GetNewPageInPagination.bind(this,number)}>
           {number}
+          {console.log(this.state.pagActive)}
         </Pagination.Item>,
       );
     }
 
+    return(this.state.pagItems)
+  }
+  render() {
+
+   
     return (
       <div className="mainStyle">
         <Container>
@@ -83,35 +98,79 @@ class Catalog_Page extends React.Component {
             </div>
           </Row>
           <Row>
-            <Col col="2">
+            <Col col="3">
               <Accordion className="Catalog_Page_AccordionStyle">
                 <Card>
                   <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                      Click me!
-                     </Accordion.Toggle>
+                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="0" style={{padding:"12px 12px"}}>
+                      <Form>
+                        <span className="Catalog_Page_SidebarSpanStyle">Цена</span>
+                        <Row className="Catalog_Page_SidebarInputRowStyle">
+                          <div>
+                            <Form.Control placeholder="от 0Р:" className="Catalog_Page_InputStyle" />
+                          </div>
+                          <div>
+                            <Form.Control placeholder="до 179000Р" className="Catalog_Page_InputStyle" />
+                          </div>
+                        </Row>
+                      </Form>
+                    </Accordion.Toggle>
                   </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body>Hello! I'm the body</Card.Body>
+                </Card>
+                <Card>
+                  <Card.Header>
+                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="1">
+                    <Row className="Catalog_Page_SidebarInputRowStyle">
+                    <span className="Catalog_Page_SidebarSpanStyle">Бренды</span>
+                    <Button eventKey="1" style={{backgroundColor:"white"}}><img src="./Images/ListIcon.png" eventKey="1"></img></Button>
+                    </Row>
+      </Accordion.Toggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="1">
+                    <Card.Body>
+                      <CheckBoxArray></CheckBoxArray>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
                 <Card>
                   <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                      Click me!
+                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="2">
+                    <Row className="Catalog_Page_SidebarInputRowStyle">
+                    <span className="Catalog_Page_SidebarSpanStyle">В наличии</span>
+                    <Button eventKey="1" style={{backgroundColor:"white"}}><img src="./Images/ListIcon.png" eventKey="2"></img></Button>
+                    </Row>
       </Accordion.Toggle>
                   </Card.Header>
-                  <Accordion.Collapse eventKey="1">
-                    <Card.Body>Hello! I'm another body</Card.Body>
+                  <Accordion.Collapse eventKey="2">
+                    <Card.Body>
+                      <CheckBoxArray></CheckBoxArray>
+                    </Card.Body>
                   </Accordion.Collapse>
+                </Card>
+                <Card style={{borderTop:"0"}}>
+                  <Card.Header>
+                    <Button className="Catalog_Page_SideBarBottomButton">
+                      <span>Применить фильтры</span>
+                    </Button>
+                    </Card.Header>
                 </Card>
               </Accordion>
             </Col>
 
-            <Col>
-             <ProductCardArray></ProductCardArray> 
-              <Pagination>{items}</Pagination>
-          </Col>
+            <Col className="Catalog_Page_Content">
+              <ProductCardArray></ProductCardArray>
+              <Pagination>
+              <Pagination.Prev onClick={()=>{
+                let number=this.state.pagActive
+                this.GetNewPageInPagination(--number)
+                }} />
+                {this.RenderPagination()}
+              <Pagination.Next onClick={()=>{
+                let number=this.state.pagActive
+                this.GetNewPageInPagination(++number)
+                }}/>
+              </Pagination>
+            </Col>
 
 
 
@@ -124,10 +183,10 @@ class Catalog_Page extends React.Component {
 
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return {
-    onSetInline:()=>dispatch({type:"InlineTrue"}),
-    onSetBlock:()=>dispatch({type:"InlineFalse"})
+    onSetInline: () => dispatch({ type: "InlineTrue" }),
+    onSetBlock: () => dispatch({ type: "InlineFalse" })
   }
 }
-export default withRouter(connect(null,mapDispatchToProps)(Catalog_Page))
+export default withRouter(connect(null, mapDispatchToProps)(Catalog_Page))

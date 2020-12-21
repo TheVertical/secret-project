@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-bootstrap'
+import { NavLink,Button } from 'react-bootstrap'
 
 class LinkButton extends React.Component {
 
@@ -18,7 +18,9 @@ class LinkButton extends React.Component {
         let action = this.state.Action != undefined ? "/" + this.state.Action : "#";
         return (
             <NavLink>
+                <Button>
                 {title}{image}
+                </Button>
             </NavLink>
     );
     }

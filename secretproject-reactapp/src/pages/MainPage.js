@@ -47,7 +47,11 @@ class MainPage extends React.Component {
       let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
       return(<Slider {...settings2}>
               {minicards.map(minicard => {
-                return(<MiniProductCard
+                return(
+                
+                <div className="MainPage_MarginForMiniProductCard" style={{display:"contents"}}>
+                   <MiniProductCard
+                   style={{display:"contents"}}
                   key={minicard.Id}
                   Title={minicard.Title}
                   OriginalPrice={minicard.OriginalPrice}
@@ -58,7 +62,10 @@ class MainPage extends React.Component {
                   IsNew={minicard.IsNew}
                   IsPopular={minicard.IsPopular}
                   IsInStock={minicard.IsInStock}
-                />);
+                />
+                </div>
+                
+               );
               })}
       </Slider>)
     }
@@ -70,7 +77,7 @@ class MainPage extends React.Component {
       dots: true,
       infinite: true,
       autoplay: true,
-      autoplaySpeed: 2000,
+      autoplaySpeed: 9000,
       slidesToShow: 1,
       slidesToScroll: 1,
       className: "MainPage_FirstSlider",
@@ -128,8 +135,8 @@ class MainPage extends React.Component {
               <h1 className="MainPage_h1Style">Специальные предложения!</h1>
             </Col>
           </Row>
-          <Row>
-            <Slider {...settings2}>
+          <Row className="MainPage_MiniProductCardRowStyle">
+            {/* <Slider {...settings2}>
               {minicards.map(minicard => {
                 if (minicard.Id != undefined)
                   return (<MiniProductCard
@@ -146,7 +153,8 @@ class MainPage extends React.Component {
                     IsInStock={minicard.IsInStock}
                   />);
               })}
-            </Slider>
+            </Slider> */}
+          {this.RenderAllMiniCards(settings2)}
           </Row>
           {/* <Row>
             <h1 className="MainPage_h1Style">Хиты продаж:</h1>
