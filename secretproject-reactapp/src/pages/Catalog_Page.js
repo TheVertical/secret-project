@@ -19,12 +19,16 @@ import Pagination from 'react-bootstrap/Pagination'
 import PageItem from 'react-bootstrap/PageItem'
 import MiniProductCard from "../ComplexComponents/MiniProductCard"
 import Form from 'react-bootstrap/Form'
+import CheckBoxArray from "./../hoComplexComponents/CheckBoxArray"
 
 class Catalog_Page extends React.Component {
   constructor() {
     super();
     this.state = {
       sortStyle: "Убыванию цены",
+      pagActive:1,
+      pagItems:[],
+      itemsCount:100
     }
     // let link = useParams();
   }
@@ -40,19 +44,30 @@ class Catalog_Page extends React.Component {
     // console.log(json);
     this.setState({ Downloaded: [], IsLoading: false });
   }
-  render() {
 
 
-    let active = 1;
-    let items = [];
-    for (let number = 1; number <= 5; number++) {
-      items.push(
-        <Pagination.Item key={number} active={number === active}>
+  GetNewPageInPagination(key){
+    if (key!==this.state.pagActive&&key>0&&key<(this.state.itemsCount/15)){
+      this.setState({pagActive:key})
+      console.log()
+            //Тут будет запрос на загрузку новой страницы
+    }
+  }
+  RenderPagination(){
+    for (let number = 1; number <= (this.state.itemsCount/15); number++) {
+      this.state.pagItems.push(
+        <Pagination.Item key={number} activeLabel={()=>this.state.pagActive===number}  onClick={this.GetNewPageInPagination.bind(this,number)}>
           {number}
+          {console.log(this.state.pagActive)}
         </Pagination.Item>,
       );
     }
 
+    return(this.state.pagItems)
+  }
+  render() {
+
+   
     return (
       <div className="mainStyle">
         <Container>
@@ -87,16 +102,16 @@ class Catalog_Page extends React.Component {
               <Accordion className="Catalog_Page_AccordionStyle">
                 <Card>
                   <Card.Header>
-                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="0">
+                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="0" style={{padding:"12px 12px"}}>
                       <Form>
-                      <h1>Цена</h1>
-                        <Row>
-                          <Col>
-                            <Form.Control placeholder="от 0Р:" className="Catalog_Page_InputStyle"/>
-                          </Col>
-                          <Col>
+                        <span className="Catalog_Page_SidebarSpanStyle">Цена</span>
+                        <Row className="Catalog_Page_SidebarInputRowStyle">
+                          <div>
+                            <Form.Control placeholder="от 0Р:" className="Catalog_Page_InputStyle" />
+                          </div>
+                          <div>
                             <Form.Control placeholder="до 179000Р" className="Catalog_Page_InputStyle" />
-                          </Col>
+                          </div>
                         </Row>
                       </Form>
                     </Accordion.Toggle>
@@ -104,20 +119,57 @@ class Catalog_Page extends React.Component {
                 </Card>
                 <Card>
                   <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                      Click me!
+                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="1">
+                    <Row className="Catalog_Page_SidebarInputRowStyle">
+                    <span className="Catalog_Page_SidebarSpanStyle">Бренды</span>
+                    <Button eventKey="1" style={{backgroundColor:"white"}}><img src="./Images/ListIcon.png" eventKey="1"></img></Button>
+                    </Row>
       </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="1">
-                    <Card.Body>Hello! I'm another body</Card.Body>
+                    <Card.Body>
+                      <CheckBoxArray></CheckBoxArray>
+                    </Card.Body>
                   </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Card.Header>
+                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="2">
+                    <Row className="Catalog_Page_SidebarInputRowStyle">
+                    <span className="Catalog_Page_SidebarSpanStyle">В наличии</span>
+                    <Button eventKey="1" style={{backgroundColor:"white"}}><img src="./Images/ListIcon.png" eventKey="2"></img></Button>
+                    </Row>
+      </Accordion.Toggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="2">
+                    <Card.Body>
+                      <CheckBoxArray></CheckBoxArray>
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+                <Card style={{borderTop:"0"}}>
+                  <Card.Header>
+                    <Button className="Catalog_Page_SideBarBottomButton">
+                      <span>Применить фильтры</span>
+                    </Button>
+                    </Card.Header>
                 </Card>
               </Accordion>
             </Col>
 
-            <Col>
+            <Col className="Catalog_Page_Content">
               <ProductCardArray></ProductCardArray>
-              <Pagination>{items}</Pagination>
+              <Pagination>
+              <Pagination.Prev onClick={()=>{
+                let number=this.state.pagActive
+                this.GetNewPageInPagination(--number)
+                }} />
+                {this.RenderPagination()}
+              <Pagination.Next onClick={()=>{
+                let number=this.state.pagActive
+                this.GetNewPageInPagination(++number)
+                }}/>
+              </Pagination>
             </Col>
 
 

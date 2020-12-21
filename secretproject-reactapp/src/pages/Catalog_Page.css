@@ -60,5 +60,46 @@ input.Catalog_Page_InputStyle.form-control{
     background-color:#eaeff5;
     border:0;
     border-radius: 20px;
-    width: -webkit-fill-available;
+    width: 5.7rem;
+    font-size: 12px;
+}
+.Catalog_Page_SidebarInputRowStyle{
+    justify-content:space-between;
+    padding: 0 12px;
+    margin-top:10px;
+}
+.Catalog_Page_SidebarSpanStyle{
+    font-size:28px;
+}
+.Catalog_Page_SideBarBottomButton{
+    display:flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+.Catalog_Page_Content{}
+.col.Catalog_Page_Content:last-child {
+ align-items: center;
+}
+.page-item:first-child .page-link {
+    border-top-left-radius: 20px; 
+    border-bottom-left-radius: 20px;
+    margin: 0 20px;
+    border: 0;
+}
+.page-item:last-child .page-link {
+    border-top-right-radius: 20px; 
+    border-bottom-right-radius: 20px;
+    margin: 0 20px;
+    border: 0;
+}
+a.page-link{
+    border-radius: 20px;
+    margin: 0 2px;
+}
+.page-item.active .page-link {
+    background-color: #83bde6;
+    border-radius: 20px;
+    margin: 0 2px;
+    border:0;
 }

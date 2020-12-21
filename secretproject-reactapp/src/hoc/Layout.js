@@ -19,37 +19,41 @@ class Layout extends React.Component {
       super(props);
       this.state = {
          Direction: props.Direction,
-         IsLoading: true,
+         IsLoading: false,
          Downloaded: {},
       }
    }
 
-   componentDidMount() {
-      this.getBackbone();
-   }
+   // componentDidMount() {
+   //    this.getBackbone();
+   // }
 
-   async getBackbone() {
-      let url = 'https://secrethost.azurewebsites.net/visual/backbone'
-      let response = await fetch(url);
-      if (!response.ok) { alert(response) }
-      let json = await response.json();
-      this.setState({ Downloaded: json,IsLoading:false});
-   }
+   // async getBackbone() {
+   //    let url = 'https://secrethost.azurewebsites.net/visual/backbone'
+   //    let response = await fetch(url);
+   //    if (!response.ok) { alert(response.status) }
+   //    let json = await response.json();
+   //    this.setState({ Downloaded: json,IsLoading:false});
+   // }
    
    render() {
 
-      if(this.state.IsLoading){ return (<div className="Layout_FullContentStyle"><LoadingPage loading={this.state.IsLoading}></LoadingPage></div>)}
-      let header =  VisualFactory.renderVisualElement(this.state.Downloaded["Header"]);
-      let grayline =  VisualFactory.renderVisualElement(this.state.Downloaded["GrayLine"]);
-      let footer =  VisualFactory.renderVisualElement(this.state.Downloaded["Footer"]);
+      // if(this.state.IsLoading){ return (<div className="Layout_FullContentStyle"><LoadingPage loading={this.state.IsLoading}></LoadingPage></div>)}
+      // let header =  VisualFactory.renderVisualElement(this.state.Downloaded["Header"]);
+      // let grayline =  VisualFactory.renderVisualElement(this.state.Downloaded["GrayLine"]);
+      // let footer =  VisualFactory.renderVisualElement(this.state.Downloaded["Footer"]);
       return (
          <div>
             <div className="globalStyleWhite">
                {/* Разбиение блоков */}
                {/*Header*/}
-               <div className="globalStyleTop">{header}</div>
+               <div className="globalStyleTop">
+                  {/* {header} */}
+                  </div>
                {/*GrayLine*/}
-               <div className="globalStyleBottom">{grayline}</div>
+               <div className="globalStyleBottom">
+                  {/* {grayline} */}
+                  </div>
                <Switch>
                   <Route path="/home" render={() => <MainPage></MainPage>}></Route>
                   <Route path="/pages/contacts" exact render={() => <MainPage></MainPage>}></Route>
@@ -58,12 +62,14 @@ class Layout extends React.Component {
                   <Route path="/pages/home" exact render={() => <h1 className="mainStyle">Fourth</h1>}></Route>
                   <Route path="/pages/news" exact render={() => <SuccessfulRegistration></SuccessfulRegistration>}></Route>
                   <Route path="/Basket" exact render={() => <Cart></Cart>}></Route>
-                  <Route path="/Catalog" exact render={() => <Catalog_Page></Catalog_Page>}></Route>
+                  <Route path="/" exact render={() => <Catalog_Page></Catalog_Page>}></Route>
                   <Route path="/order" exact render={() => <OrderRegistration></OrderRegistration>}></Route>
                   <Route render={() => <Page404 className="mainStyle"></Page404>}></Route>
                </Switch>
                {/*Footer*/}
-               <div className="globalStyleFooter">{footer}</div>
+               <div className="globalStyleFooter">
+                  {/* {footer} */}
+                  </div>
 
             </div>
 

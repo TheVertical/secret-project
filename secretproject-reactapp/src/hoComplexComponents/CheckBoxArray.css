@@ -1,0 +1,5 @@
+.CheckBoxArray_ItemStyle{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 25px;
+}
