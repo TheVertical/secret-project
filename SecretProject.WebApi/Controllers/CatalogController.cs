@@ -85,7 +85,7 @@ namespace SecretProject.WebApi.Controllers
         [Route("product/discounted")]
         public async Task<IActionResult> GetDiscountedProducts([FromQuery] string promotion, [FromQuery] int? count)
         {
-            IEnumerable<Nomenclature> noms = null;
+            IEnumerable<NomenclatureViewModel> noms = null;
             int amount = count != null && count < 20 ? count.Value : 20;
             if (!String.IsNullOrEmpty(promotion))
             {
@@ -94,7 +94,7 @@ namespace SecretProject.WebApi.Controllers
                 var prom = promotions.FirstOrDefault();
                 if (prom == null)
                     return BadRequest();
-                noms = prom.DiscountedNomenclatures;
+                noms = prom.DiscountedNomenclatures.Select(nom => new NomenclatureViewModel(nom));
             }
             else
                 return BadRequest();
