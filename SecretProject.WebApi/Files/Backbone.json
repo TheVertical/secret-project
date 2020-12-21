@@ -10,7 +10,7 @@
       },
       {
         "MainTitle": null,
-        "IsHorizontal": false,
+        "IsHorizontal": true,
         "Links": [
           {
             "Id": 1,
@@ -46,6 +46,14 @@
         "Id": 0,
         "Type": "LinksMenu",
         "NeededColumns": 0
+      },
+      {
+        "Phone": "\u002B7(812) 388 - 45 - 38",
+        "OpeningHours": "??-??:10:00 - 18:00, ??:10:00 - 17:00",
+        "Image": null,
+        "Id": 1,
+        "Type": "ContactBlock",
+        "NeededColumns": 2
       }
     ],
     "Id": 0,
@@ -100,18 +108,39 @@
         "NeededColumns": 2
       },
       {
-        "Title": null,
-        "Image": "shopLogo",
-        "Action": "Basket",
+        "Title": "\u041E\u0431\u0443\u0447\u0435\u043D\u0438\u0435",
+        "Image": null,
+        "Action": null,
+        "Id": 1,
+        "Type": "Button",
+        "NeededColumns": 2
+      },
+      {
+        "Title": "\u0418\u043C\u043F\u043B\u0430\u043D\u0442\u0430\u0446\u0438\u044F",
+        "Image": null,
+        "Action": null,
+        "Id": 2,
+        "Type": "Button",
+        "NeededColumns": 2
+      },
+      {
         "Id": 3,
+        "Type": "VisualSearch",
+        "NeededColumns": 4
+      },
+      {
+        "Title": null,
+        "Image": "./Images/shopLogo.png",
+        "Action": "Basket",
+        "Id": 4,
         "Type": "Button",
         "NeededColumns": 1
       },
       {
         "Title": null,
-        "Image": "profileLogo",
+        "Image": "./Images/profileLogo.png",
         "Action": "Account",
-        "Id": 4,
+        "Id": 5,
         "Type": "Button",
         "NeededColumns": 1
       }
@@ -199,6 +228,14 @@
         "Id": 1,
         "Type": "LinksMenu",
         "NeededColumns": 3
+      },
+      {
+        "Phone": "8 (812) 388-4538",
+        "OpeningHours": "\u041F\u043D-\u0427\u0442:10:00 - 18:00, \u041F\u0442:10:00 - 17:00",
+        "Image": "./Images/LogoDown.png",
+        "Id": 0,
+        "Type": "ContactBlock",
+        "NeededColumns": 2
       }
     ],
     "Id": 0,

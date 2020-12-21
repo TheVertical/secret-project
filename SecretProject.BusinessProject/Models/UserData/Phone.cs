@@ -4,7 +4,7 @@ namespace SecretProject.BusinessProject.Models.UserData
 {
     public class Phone
     {
-        public PhoneFormat PhoneFormat = PhoneFormat.RussiaOnlyHyphenated;
+        public PhoneFormat PhoneFormat = PhoneFormat.BracketWithWhitespaceLastTen;
         private string phoneNumber;
         public string PhoneNumber {
             get => phoneNumber;
@@ -16,8 +16,14 @@ namespace SecretProject.BusinessProject.Models.UserData
                 phoneNumber = formatter.FormatString(value);
                 formatter.Format = PhoneFormat.DigitsTen;
                 PhoneDigits = formatter.FormatString(value);
+
             }
         }
         public string PhoneDigits { get; private set; }
+
+        public override string ToString()
+        {
+            return "+7" + phoneNumber;
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace SecretProject.BusinessProject.Models.Common
         /// </summary>
         [Display(Name = "Телефон горячей линии")]
         [NotMapped]
-        public Phone WorkPhone;
+        public Phone WorkPhone = new Phone();
         #endregion
 
         #region Foreign keys

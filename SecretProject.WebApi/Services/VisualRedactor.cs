@@ -25,13 +25,13 @@ namespace SecretProject.Services
     //настройки сериализации
 
 
-    public class VisualRedactor : IVisualRedactor
+    public class VisualRedactor : IVisualRedactor,IDisposable
     {
         #region Model
-        private readonly JsonSerializerOptions settings;
-        private readonly DbContext context;
-        private readonly IRepository repository;
-        private readonly ILogger<VisualRedactor> logger;
+        private JsonSerializerOptions settings;
+        private DbContext context;
+        private IRepository repository;
+        private ILogger<VisualRedactor> logger;
         #endregion
         #region Realization
         //TODO Оставить что-то одно, либо repository, либо context!
@@ -109,7 +109,7 @@ namespace SecretProject.Services
                     Id = companyContacts.Id,
                     NeededColumns = 2,
                     OpeningHours = companyContacts.WorkHours,
-                    Phone = companyContacts.PhoneNumber
+                    Phone = companyContacts.WorkPhone.ToString()
                 };
                 header.AddVisualElement(contactblock);
             }
@@ -354,6 +354,11 @@ namespace SecretProject.Services
                 }
             }
             return result;
+        }
+
+        public void Dispose()
+        {
+            context = null;
         }
         #endregion
 
