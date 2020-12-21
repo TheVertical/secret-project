@@ -18,7 +18,6 @@ class MiniProductCard extends React.Component {
     super(props);
     if (props.Id == undefined) {
       console.error("Id of minicard is:",props.Id);
-      
     }
     this.state = {
       Id: props.Id,

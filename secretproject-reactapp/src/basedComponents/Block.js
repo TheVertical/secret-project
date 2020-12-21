@@ -17,7 +17,7 @@ class Block extends React.Component{
         return(
             <Container id = "block">
                 <Row>
-                    {this.state.VisualElements.map(obj =><Col> {VisualElement.renderVisualElement(obj)}</Col>)}
+                    {this.state.VisualElements.map(obj =><Col key={obj.Id} col={"col-sm-"+obj.NeededColumns}> {VisualElement.renderVisualElement(obj)}</Col>)}
                 </Row>
             </Container>
         );

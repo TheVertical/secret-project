@@ -10,6 +10,8 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import { withRouter } from 'react-router-dom'
+import { MakeServerQuery } from  '../Services/ServerQuery'
+
 
 
 class ProductPage extends React.Component {
@@ -32,11 +34,10 @@ class ProductPage extends React.Component {
     }
 
     async LoadNomenclature(id) {
-        let url = 'https://secrethost.azurewebsites.net/catalog/product/' + id;
-        let response = await fetch(url);
-        if (!response.ok) { alert(response) }
-        let json = await response.json();
-        this.setState({ DownloadedNomenclature: json, IsLoading: false });
+        let responce = await MakeServerQuery('GET', "/catalog/product/" + id);
+        if (responce && responce.success) {
+            this.setState({ DownloadedNomenclature: responce.data, IsLoading: false });
+        }
     }
 
     doIncrease() {

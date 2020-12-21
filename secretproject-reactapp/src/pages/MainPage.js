@@ -11,7 +11,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LoadingPage from './LoadingPage'
-import { MakeServerQuery } from  '../Services/ServerQuery'
+import { MakeServerQuery } from '../Services/ServerQuery'
 
 class MainPage extends React.Component {
   constructor() {
@@ -32,40 +32,37 @@ class MainPage extends React.Component {
       this.setState({ Downloaded: responce.data, IsLoading: false });
     }
   }
-   
- 
-   RenderAllMiniCards(settings2){
-    if(this.state.IsLoading){
-      return(
-      // <div className="MainPage_MiniProductCardRowStyle">
-      <LoadingPage loading={this.state.IsLoading}></LoadingPage>
-      // </div>
+
+
+  RenderAllMiniCards(settings2) {
+    if (this.state.IsLoading) {
+      return (
+        // <div className="MainPage_MiniProductCardRowStyle">
+        <LoadingPage loading={this.state.IsLoading}></LoadingPage>
+        // </div>
       )
     }
-    else{
+    else {
       let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
-      return(<Slider {...settings2}>
-              {minicards.map(minicard => {
-                return(
-                
-                <div className="MainPage_MarginForMiniProductCard" style={{display:"contents"}}>
-                   <MiniProductCard
-                   style={{display:"contents"}}
-                  key={minicard.Id}
-                  Title={minicard.Title}
-                  OriginalPrice={minicard.OriginalPrice}
-                  DiscountedPrice={minicard.DiscountedPrice}
-                  //TODO Пока мок
-                  ImageUrl="./Images/Product.jpg"
-                  IsDiscouted={minicard.IsDiscouted}
-                  IsNew={minicard.IsNew}
-                  IsPopular={minicard.IsPopular}
-                  IsInStock={minicard.IsInStock}
-                />
-                </div>
-                
-               );
-              })}
+      return (<Slider {...settings2}>
+        {minicards.map(minicard => {
+          if (minicard.Id != undefined) {
+            console.info('minicard:', minicard);
+            return (<MiniProductCard
+              key={minicard.Id}
+              Id={minicard.Id}
+              Title={minicard.Title}
+              OriginalPrice={minicard.OriginalPrice}
+              DiscountedPrice={minicard.DiscountedPrice}
+              //TODO Пока мок
+              ImageUrl="./Images/Product.jpg"
+              IsDiscouted={minicard.IsDiscouted}
+              IsNew={minicard.IsNew}
+              IsPopular={minicard.IsPopular}
+              IsInStock={minicard.IsInStock}
+            ></MiniProductCard>);
+          }
+        })}
       </Slider>)
     }
   }
@@ -121,7 +118,7 @@ class MainPage extends React.Component {
       ]
     };
     let minicards = this.state.IsLoading ? [{}] : this.state.Downloaded;
- 
+
     return (
       <div className="mainStyle MainPage_Global">
         <Slider {...settings1}>
@@ -153,7 +150,7 @@ class MainPage extends React.Component {
                   />);
               })}
             </Slider> */}
-          {this.RenderAllMiniCards(settings2)}
+            {this.RenderAllMiniCards(settings2)}
           </Row>
           {/* <Row>
             <h1 className="MainPage_h1Style">Хиты продаж:</h1>

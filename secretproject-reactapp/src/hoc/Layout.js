@@ -42,7 +42,6 @@ class Layout extends React.Component {
      //}
      let responce = await MakeServerQuery('GET', "/visual/backbone");
      if (responce && responce.success) {
-        debugger;
        this.setState({ Downloaded: responce.data, IsLoading: false });
      }
    }
