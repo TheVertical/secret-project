@@ -43,7 +43,112 @@ namespace SecretProject.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Measurement");
+                    b.ToTable("Measurements");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Common.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("WorkHours")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Good.Nomenclature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Cost")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("DiscountedCost")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("ManufacturerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MeasurementId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("NomenclatureGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PromotionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ManufacturerId");
+
+                    b.HasIndex("MeasurementId");
+
+                    b.HasIndex("NomenclatureGroupId");
+
+                    b.HasIndex("PromotionId");
+
+                    b.ToTable("Nomenclatures");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Good.Promotion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("OfficialTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("WorkTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Promotions");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.Manufacturer", b =>
@@ -61,48 +166,14 @@ namespace SecretProject.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("NomenclatureId")
-                        .HasColumnType("int");
-
                     b.Property<byte[]>("Timestamp")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NomenclatureId")
-                        .IsUnique();
 
                     b.ToTable("Manufacturers");
-                });
-
-            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomenclature", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MeasurementId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<byte[]>("Timestamp")
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MeasurementId");
-
-                    b.ToTable("Nomenclatures");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureGroup", b =>
@@ -115,19 +186,18 @@ namespace SecretProject.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NomenclatureId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Timestamp")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NomenclatureId")
-                        .IsUnique();
 
                     b.HasIndex("ParentId");
 
@@ -148,7 +218,9 @@ namespace SecretProject.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Timestamp")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
@@ -160,65 +232,410 @@ namespace SecretProject.DAL.Migrations
 
                     b.HasIndex("NomenclatureId");
 
-                    b.ToTable("GetNomenclatureProperties");
+                    b.ToTable("NomenclatureProperties");
                 });
 
-            modelBuilder.Entity("SecretProject.BusinessProject.Models.Manufacturer", b =>
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.Order", b =>
                 {
-                    b.HasOne("SecretProject.BusinessProject.Models.Nomenclature", "Nomenclature")
-                        .WithOne("Manufacturer")
-                        .HasForeignKey("SecretProject.BusinessProject.Models.Manufacturer", "NomenclatureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
-                    b.Navigation("Nomenclature");
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("FullCost")
+                        .HasColumnType("float");
+
+                    b.Property<int>("OrderDetailsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PromotionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderDetailsId");
+
+                    b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomenclature", b =>
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.OrderDetails", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("AdditionalNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AppartmentNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BuildCorps")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BuildLiteral")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BuildNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("District")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Entrance")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("FirstNameCustomer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Floor")
+                        .HasColumnType("tinyint");
+
+                    b.Property<bool>("IsWithDelivery")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastNameCustomer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders.Details");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("ActualCount")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Cost")
+                        .HasColumnType("real");
+
+                    b.Property<int>("NomenclatureId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NomenclatureId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Orders.Items");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.UserData.Adress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("AppartmentNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BuildCorps")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BuildLiteral")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BuildNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("District")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Entrance")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("Floor")
+                        .HasColumnType("tinyint");
+
+                    b.Property<float>("Latitude")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Longitude")
+                        .HasColumnType("real");
+
+                    b.Property<int>("OKATOCod")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Users.DeliveryAdresses");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.UserData.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("AdditionalNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DefaultDeliveryAdressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SecretProject.VisualElements.Elements.Banner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ImageSource")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NeededColumns")
+                        .HasMaxLength(20)
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
+                });
+
+            modelBuilder.Entity("SecretProject.VisualElements.Pages.Page", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("OfficialTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PageLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pages");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Good.Nomenclature", b =>
+                {
+                    b.HasOne("SecretProject.BusinessProject.Models.Manufacturer", "Manufacturer")
+                        .WithMany()
+                        .HasForeignKey("ManufacturerId");
+
                     b.HasOne("SecretProject.BusinessProject.Measurements.Measurement", "Measurement")
                         .WithMany()
                         .HasForeignKey("MeasurementId");
 
+                    b.HasOne("SecretProject.BusinessProject.Models.NomenclatureGroup", "NomenclatureGroup")
+                        .WithMany()
+                        .HasForeignKey("NomenclatureGroupId");
+
+                    b.HasOne("SecretProject.BusinessProject.Models.Good.Promotion", null)
+                        .WithMany("DiscountedNomenclatures")
+                        .HasForeignKey("PromotionId");
+
+                    b.Navigation("Manufacturer");
+
                     b.Navigation("Measurement");
+
+                    b.Navigation("NomenclatureGroup");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureGroup", b =>
                 {
-                    b.HasOne("SecretProject.BusinessProject.Models.Nomenclature", "Nomenclature")
-                        .WithOne("NomenclatureGroup")
-                        .HasForeignKey("SecretProject.BusinessProject.Models.NomenclatureGroup", "NomenclatureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SecretProject.BusinessProject.Models.NomenclatureGroup", "Parent")
                         .WithMany("Childs")
                         .HasForeignKey("ParentId");
-
-                    b.Navigation("Nomenclature");
 
                     b.Navigation("Parent");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureProperty", b =>
                 {
-                    b.HasOne("SecretProject.BusinessProject.Models.Nomenclature", null)
+                    b.HasOne("SecretProject.BusinessProject.Models.Good.Nomenclature", null)
                         .WithMany("Properties")
                         .HasForeignKey("NomenclatureId");
                 });
 
-            modelBuilder.Entity("SecretProject.BusinessProject.Models.Nomenclature", b =>
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.Order", b =>
                 {
-                    b.Navigation("Manufacturer");
+                    b.HasOne("SecretProject.BusinessProject.Models.Order.OrderDetails", "OrderDetails")
+                        .WithMany()
+                        .HasForeignKey("OrderDetailsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("NomenclatureGroup");
+                    b.Navigation("OrderDetails");
+                });
 
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.OrderDetails", b =>
+                {
+                    b.HasOne("SecretProject.BusinessProject.Models.UserData.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.OrderItem", b =>
+                {
+                    b.HasOne("SecretProject.BusinessProject.Models.Good.Nomenclature", "Nomenclature")
+                        .WithMany()
+                        .HasForeignKey("NomenclatureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SecretProject.BusinessProject.Models.Order.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Nomenclature");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.UserData.Adress", b =>
+                {
+                    b.HasOne("SecretProject.BusinessProject.Models.UserData.User", "User")
+                        .WithMany("DeliveryAdresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Good.Nomenclature", b =>
+                {
                     b.Navigation("Properties");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Good.Promotion", b =>
+                {
+                    b.Navigation("DiscountedNomenclatures");
                 });
 
             modelBuilder.Entity("SecretProject.BusinessProject.Models.NomenclatureGroup", b =>
                 {
                     b.Navigation("Childs");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.Order.Order", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("SecretProject.BusinessProject.Models.UserData.User", b =>
+                {
+                    b.Navigation("DeliveryAdresses");
                 });
 #pragma warning restore 612, 618
         }

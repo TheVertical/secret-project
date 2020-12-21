@@ -4,9 +4,15 @@ using System.Text.RegularExpressions;
 
 namespace QS.Utilities.Numeric
 {
+	/// <summary>
+	/// Класс, предоставляет меотды для обработки любого номера телефона в корректный вид
+	/// </summary>
 	public class PhoneFormatter
 	{
 		private PhoneFormat format;
+		/// <summary>
+		/// Формат телефонного номера
+		/// </summary>
 		public PhoneFormat Format { 
 			get => format;
             set
@@ -61,13 +67,18 @@ namespace QS.Utilities.Numeric
 			}
 		}
 		#endregion
-
+		/// <summary>
+		/// Форматирует телефон в соответсвии с форматом
+		/// </summary>
 		public string FormatString(string phone)
 		{
 			int fake = 0;
 			return FormatString(phone, ref fake);
 		}
-
+		/// <summary>
+		/// Метод используется для форматирования телефона во время ввода
+		/// </summary>
+		/// <param name="cursorPos">Возвращает текущее положение курсора</param>
 		public string FormatString(string phone, ref int cursorPos)
 		{
 			string Result = Starttext;
@@ -123,6 +134,9 @@ namespace QS.Utilities.Numeric
 		}
 	}
 
+	/// <summary>
+	/// Форматы телефонов
+	/// </summary>
 	public enum PhoneFormat
 	{
 		/// <summary>

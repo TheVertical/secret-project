@@ -3,6 +3,9 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using SecretProject.VisualElements.Elements.Common;
 
 namespace SecretProject.VisualElements.Elements
 {
@@ -39,7 +42,7 @@ namespace SecretProject.VisualElements.Elements
             base.AddRange(c);
         }
     }
-    public class Block
+    public class Block : VisualElement,IVisualElement, IColumnable
     {
         //public string Parametrs { get; set; }
         public VisualList VisualElements { get; set; } = new VisualList();

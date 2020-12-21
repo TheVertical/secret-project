@@ -1,0 +1,18 @@
+.LoadingPage_GlobalStyle{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    background-color: #eaeff5;
+}
+.LoadingPage_InsideStyle{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -5%;
+}
+.sweet-loading {
+    position: absolute;
+    left: 48%;
+    top: 50%;
+    margin-top: -5%;
+}

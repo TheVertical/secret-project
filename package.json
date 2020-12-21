@@ -1,9 +1,21 @@
 {
   "name": "SecretProject",
   "dependencies": {
-    "typescript": "^4.1.2"
+    "@reduxjs/toolkit": "^1.5.0",
+    "bootstrap": "^4.5.3",
+    "bootstrap-4-react": "0.0.59",
+    "formik": "^2.2.6",
+    "react-bootstrap": "^1.4.0",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "react-slick": "^0.27.13",
+    "react-spinners": "^0.9.0",
+    "redux": "^4.0.5",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.2.1",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
-    "@types/react": "^17.0.0"
+    "redux-devtools": "^3.7.0"
   }
 }

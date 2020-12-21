@@ -1,0 +1,19 @@
+.ProductCardArray_Global{
+    display: flex;
+    justify-content: flex-end;
+    padding:40px;
+}
+
+.ProductCardArray_Global>*{
+    margin-right:15px
+}
+
+.ProductCardArray_Col{
+    margin-bottom:20px;
+}
+.col.ProductCardArray_Col {
+    padding-left: 26px;
+}
+.col.ProductCardArray_Col:nth-child(1), .col.ProductCardArray_Col:last-child{
+  align-items: center;
+}

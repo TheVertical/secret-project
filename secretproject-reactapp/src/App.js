@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
-
-import './App.css';
 import Layout from "./hoc/Layout"
+import React, { Children } from 'react';
+import { Route } from 'react-router';
 
-function App() {
-  return (
-    <div>
-     <Layout/>
 
-    </div>
-  );
+class App extends React.Component {
+
+    render() {
+        return (
+            <Layout>
+                {/* <Route exact path='/' component={Home} />
+                <Route path='/counter' component={} />
+                <Route path='/fetch-data' component={} /> ����� */}
+            </Layout>
+        )
+
+    }
+
 }
 
 export default App;

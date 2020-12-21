@@ -1,0 +1,11 @@
+.bigAAStyle{
+    color:black;
+    font-size: 27px;
+    text-decoration: none;
+    text-transform: none;
+}
+.bigAAStyle:hover{
+    color:black;
+    text-decoration: none;
+    text-transform: none;
+}

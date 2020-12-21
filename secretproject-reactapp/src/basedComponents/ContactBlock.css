@@ -1,0 +1,46 @@
+.blockStylle{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+ 
+}
+
+.Header_Phone{
+    font-size: 38px;
+    color:white;
+    text-transform: none;
+    padding: 0px;
+}
+.Header_Phone:hover{
+    color: #00507f;
+    text-decoration: none;
+}
+.OpeningHours{
+    margin:0;
+    font-size: 14px;
+    color: #44799f;
+}
+.GetBackCall{
+    font-size: 16px;
+    color:white;
+    text-transform: none;
+}
+.GetBackCall:hover{
+    color:#00507f;
+    text-decoration: none;
+}
+
+
+.bigAAStyle{
+    color:black;
+    font-size: 27px;
+    text-decoration: none;
+    text-transform: none;
+}
+.bigAAStyle:hover{
+    color:black;
+    text-decoration: none;
+    text-transform: none;
+}

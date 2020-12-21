@@ -1,42 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SecretProject.VisualElements.Elements;
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using SecretProject.Services;
+using SecretProject.VisualElements;
 
 namespace SecretProject.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
-        private readonly VisualRedactor visualRedactor;
+        private readonly IVisualRedactor visualRedactor;
 
-        public HomeController(ILogger<HomeController> logger, VisualRedactor visualRedactor)
+        public HomeController(ILogger<HomeController> logger, IVisualRedactor visualRedactor)
         {
             this.logger = logger;
             this.visualRedactor = visualRedactor;
         }
 
-        private int counter = 0;
-        public int Counter { get { counter++; return counter; } }
-        [HttpGet]
         public JsonResult Get()
         {
-            return visualRedactor.GetExplicitMockBackgone();
+            return visualRedactor.GetBackbone() as JsonResult;
         }
 
-#if DEBUG
-        [HttpGet(Name = "GetAllVisualElements")]
-        public JsonResult GetAllVisualElements()
+        public JsonResult Error()
         {
-            return visualRedactor.GetAllJsonVisualObjects();
+            return null;
         }
-#endif
     }
 }
