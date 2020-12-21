@@ -26,18 +26,18 @@ class ProductCardArray extends React.Component {
       Dowloaded:{}
     }
   }
-  // componentDidMount()
-  // {
-  //   this.DownloadMiniProductCard();
-  // }
-  // async DownloadMiniProductCard(){
-  //   // http://localhost:50258/catalog/product?manufacturerId=1&categoryId=1
-  //   // http://localhost:50258/catalog/product/discounted?promotion=Спец&count=10
-  //   let url = 'https://secrethost.azurewebsites.net/catalog/product/discounted?promotion=Спец&count=10';
-  //   let response = await fetch(url); 
-  //   let json = await response.json();
-  //   this.setState({Dowloaded:json})
-  // }
+   componentDidMount()
+   {
+     this.DownloadMiniProductCard();
+   }
+   async DownloadMiniProductCard(){
+     // http://localhost:50258/catalog/product?manufacturerId=1&categoryId=1
+     // http://localhost:50258/catalog/product/discounted?promotion=Спец&count=10
+     let url = 'https://secrethost.azurewebsites.net/catalog/product/discounted?promotion=Спец&count=10';
+     let response = await fetch(url); 
+     let json = await response.json();
+     this.setState({Dowloaded:json})
+  }
   render() {
     return( 
     <div>
