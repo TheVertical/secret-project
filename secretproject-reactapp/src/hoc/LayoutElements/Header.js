@@ -1,7 +1,9 @@
 //Библиотечные зависимости
 import React, { Children } from 'react';
-import { Container } from 'bootstrap-4-react';
+import { Container, Row, Col } from 'bootstrap-4-react'
+
 import "./Header.css"
+import ImageBlock from '../../basedComponents/ImageBlock';
 //Собственные зависимости
 
 
@@ -19,7 +21,16 @@ class Header extends React.Component {
 
     render() {
         return (
-            <div className ="globalStyleTop">{this.state.Content}</div>
+            <Container>
+                <Row>
+                    <Col Col="sm-3" className="d-flex align-items-center">
+                        <ImageBlock Alt="Olimp-dental" Source="./Images/logo.png" />
+                    </Col>
+                    <Col Col="sm-3" className="d-flex align-items-center">
+                        <ImageBlock Alt="Olimp-dental" Source="./Images/logo.png" />
+                    </Col>
+                </Row>
+            </Container>
         );
 
     }
