@@ -4,7 +4,6 @@ import "./ImageBlock.css"
 class ImageBlock  extends React.Component{
     constructor(props) {
         super();
-        console.log(props)
         if (props.Id != undefined && props.Alt != undefined && props.Source != undefined)
             this.state = {
                 Id: props.Id,

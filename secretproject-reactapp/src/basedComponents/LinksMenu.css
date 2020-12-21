@@ -8,14 +8,11 @@ color: black;
 display:flex;
 flex-direction: row;
 color: #555555;
-text-transform: none;
+text-transform: none; 
 text-decoration: none;
 }
 
 .blockStyle{
-    width: 90%;
-    margin-left: auto;
-    margin-right: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;

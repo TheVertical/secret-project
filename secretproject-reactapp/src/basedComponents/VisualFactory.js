@@ -7,10 +7,12 @@ import LinksMenu from './LinksMenu'
 import Search from '../ComplexComponents/Search';
 import ImageBlock from './ImageBlock'
 import MiniProductCard from '../ComplexComponents/MiniProductCard'
-import LinkButton from './LinkButton';
-import { Button } from 'bootstrap-4-react';
 import { NavLink } from 'react-router-dom';
-import ComboBoxButton from './ComboBoxButton';
+//Кнопки
+import LinkButton from './Buttons/LinkButton';
+import ComboBoxButton from './Buttons/ComboBoxButton';
+import { Button } from 'bootstrap-4-react';
+//hoc
 import { withRouter } from 'react-router-dom'
 
 class VisualFactory extends React.Component {

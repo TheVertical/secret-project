@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink,Button } from 'react-bootstrap'
-
+import './Button.css'
 class LinkButton extends React.Component {
 
     constructor(props) {
@@ -17,10 +17,8 @@ class LinkButton extends React.Component {
         let image = this.state.Image != undefined ? <img src={"./" + this.state.Image} /> : null;
         let action = this.state.Action != undefined ? "/" + this.state.Action : "#";
         return (
-            <NavLink>
-                <Button>
-                {title}{image}
-                </Button>
+            <NavLink to={this.state.Action}>
+                <button type="button" className="btn basic-button">{<img src={this.state.Image ?? null}/>}{this.state.Title}</button>
             </NavLink>
     );
     }
