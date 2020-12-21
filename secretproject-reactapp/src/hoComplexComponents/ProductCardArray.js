@@ -28,7 +28,7 @@ class ProductCardArray extends React.Component {
   }
    componentDidMount()
    {
-     this.DownloadMiniProductCard();
+     //this.DownloadMiniProductCard();
    }
    async DownloadMiniProductCard(){
      // http://localhost:50258/catalog/product?manufacturerId=1&categoryId=1
