@@ -41,7 +41,7 @@ class LinksMenu extends React.Component {
         }
         return (
         <div className={this.checkHor()}>
-            {this.state.MainTitle}
+            <h3>{this.state.MainTitle}</h3>
             {con}
         </div>
         

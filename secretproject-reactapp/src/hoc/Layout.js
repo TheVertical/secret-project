@@ -12,7 +12,7 @@ import VisualFactory from '../basedComponents/VisualFactory';
 import Cart from '../pages/Cart';
 import OrderRegistration from '../pages/OrderRegistration';
 import LoadingPage from '../pages/LoadingPage';
-//import ServerQuery from '../Services/ServerQuery';
+//Вспомогательные функции
 import { MakeServerQuery } from  '../Services/ServerQuery'
 
 //const Query = new ServerQuery();
@@ -80,7 +80,7 @@ class Layout extends React.Component {
                </Switch>
                {/*Footer*/}
                <div className="globalStyleFooter">
-                  {/* {footer} */}
+                  {footer}
                </div>
 
             </div>

@@ -20,6 +20,8 @@ import PageItem from 'react-bootstrap/PageItem'
 import MiniProductCard from "../ComplexComponents/MiniProductCard"
 import Form from 'react-bootstrap/Form'
 import CheckBoxArray from "./../hoComplexComponents/CheckBoxArray"
+//Вспомогательные функции
+import { MakeServerQuery } from  '../Services/ServerQuery'
 
 class Catalog_Page extends React.Component {
   constructor() {
@@ -30,19 +32,16 @@ class Catalog_Page extends React.Component {
       pagItems:[],
       itemsCount:100
     }
-    // let link = useParams();
   }
   componentDidMount() {
     this.dowmloadNomenclatures();
   }
 
   async dowmloadNomenclatures() {
-    let url = 'https://secrethost.azurewebsites.net/'
-    // + this.state.link;
-    // let response = await fetch(url);
-    // let json = await response.json();
-    // console.log(json);
-    this.setState({ Downloaded: [], IsLoading: false });
+    let responce = await MakeServerQuery('GET', "/visual/backbone");
+     if (responce && responce.success) {
+       this.setState({ Downloaded: responce.data, IsLoading: false });
+     }
   }
 
 

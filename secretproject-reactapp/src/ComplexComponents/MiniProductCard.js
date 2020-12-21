@@ -17,7 +17,7 @@ class MiniProductCard extends React.Component {
   constructor(props) {
     super(props);
     if (props.Id == undefined) {
-      console.error("Id of minicard is:",props.Id);
+      console.error("Id of minicard is:", props.Id);
     }
     this.state = {
       Id: props.Id,
@@ -64,10 +64,7 @@ class MiniProductCard extends React.Component {
     if (str != undefined && str.length >= 50) { return str.substr(0, 47) + "..." }
     return str;
   }
-
-
   render() {
-    // this.SetInlineStyle()
     let store = rootStore()
     store.subscribe(() => { this.SetInlineStyle() })
     console.log(this.state.Style)
