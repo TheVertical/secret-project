@@ -12,6 +12,10 @@ import VisualFactory from '../basedComponents/VisualFactory';
 import Cart from '../pages/Cart';
 import OrderRegistration from '../pages/OrderRegistration';
 import LoadingPage from '../pages/LoadingPage';
+//import ServerQuery from '../Services/ServerQuery';
+import { MakeServerQuery } from  '../Services/ServerQuery'
+
+//const Query = new ServerQuery();
 
 
 class Layout extends React.Component {
@@ -19,41 +23,50 @@ class Layout extends React.Component {
       super(props);
       this.state = {
          Direction: props.Direction,
-         IsLoading: false,
+         IsLoading: true,
          Downloaded: {},
       }
    }
 
-   // componentDidMount() {
-   //    this.getBackbone();
-   // }
+   componentDidMount() {
+      this.getBackbone();
+   }
 
-   // async getBackbone() {
-   //    let url = 'https://secrethost.azurewebsites.net/visual/backbone'
-   //    let response = await fetch(url);
-   //    if (!response.ok) { alert(response.status) }
-   //    let json = await response.json();
-   //    this.setState({ Downloaded: json,IsLoading:false});
-   // }
-   
+   async getBackbone() {
+      //let url = 'https://secrethost.azurewebsites.net/visual/backbone';
+      //let response = await fetch(url);
+      //if (!response.ok) { alert(response.status) }
+      //else {
+      //   let json = await response.json();
+      //   this.setState({ Downloaded: json, IsLoading: false });
+     //}
+     let responce = await MakeServerQuery('GET', "/visual/backbone");
+     if (responce && responce.success) {
+        debugger;
+       this.setState({ Downloaded: responce.data, IsLoading: false });
+     }
+   }
+
    render() {
 
-      // if(this.state.IsLoading){ return (<div className="Layout_FullContentStyle"><LoadingPage loading={this.state.IsLoading}></LoadingPage></div>)}
-      // let header =  VisualFactory.renderVisualElement(this.state.Downloaded["Header"]);
-      // let grayline =  VisualFactory.renderVisualElement(this.state.Downloaded["GrayLine"]);
-      // let footer =  VisualFactory.renderVisualElement(this.state.Downloaded["Footer"]);
+      //if (this.state.IsLoading) {
+      //  return (<div className="Layout_FullContentStyle"><LoadingPage loading={this.state.IsLoading}></LoadingPage></div>)
+      //}
+      let header = this.state.IsLoading ? <p>Loading</p> : VisualFactory.renderVisualElement(this.state.Downloaded["Header"]);
+      let grayline = this.state.IsLoading ? <p>Loading</p> : VisualFactory.renderVisualElement(this.state.Downloaded["GrayLine"]);
+      let footer = this.state.IsLoading ? <p>Loading</p> : VisualFactory.renderVisualElement(this.state.Downloaded["Footer"]);
       return (
          <div>
             <div className="globalStyleWhite">
                {/* Разбиение блоков */}
                {/*Header*/}
                <div className="globalStyleTop">
-                  {/* {header} */}
-                  </div>
+                  {header}
+               </div>
                {/*GrayLine*/}
                <div className="globalStyleBottom">
-                  {/* {grayline} */}
-                  </div>
+                  {grayline}
+               </div>
                <Switch>
                   <Route path="/home" render={() => <MainPage></MainPage>}></Route>
                   <Route path="/pages/contacts" exact render={() => <MainPage></MainPage>}></Route>
@@ -69,7 +82,7 @@ class Layout extends React.Component {
                {/*Footer*/}
                <div className="globalStyleFooter">
                   {/* {footer} */}
-                  </div>
+               </div>
 
             </div>
 

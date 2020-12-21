@@ -24,7 +24,7 @@ class VisualFactory extends React.Component {
                     </div>
                 );
                 break;
-            case "Search":
+            case "VisualSearch":
                 return (
                     <div>
                         <Search Id={element.Id} VisualElements={element.VisualElements}></Search>
@@ -50,8 +50,8 @@ class VisualFactory extends React.Component {
                     </div>
                 );
             case "Button":
-                return (
-                    <LinkButton />
+            return (
+              <LinkButton Id={element.Id} Title={element.Title} Image={element.Image} Action={element.Action}  />
                 );
             case "ComboBoxButton":
                 return (

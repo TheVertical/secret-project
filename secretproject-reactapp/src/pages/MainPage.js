@@ -11,7 +11,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LoadingPage from './LoadingPage'
-
+import { MakeServerQuery } from  '../Services/ServerQuery'
 
 class MainPage extends React.Component {
   constructor() {
@@ -27,11 +27,10 @@ class MainPage extends React.Component {
   }
 
   async downloadedSpecPromotion() {
-    let url = 'https://secrethost.azurewebsites.net/catalog/product/discounted?promotion=Спец&count=10'
-    let response = await fetch(url);
-    let json = await response.json();
-    console.log(json);
-    this.setState({ Downloaded: json, IsLoading: false });
+    let responce = await MakeServerQuery('GET', "/catalog/product/discounted?promotion=Спец&count=10");
+    if (responce && responce.success) {
+      this.setState({ Downloaded: responce.data, IsLoading: false });
+    }
   }
    
  
