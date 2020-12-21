@@ -10,7 +10,7 @@ class App extends React.Component {
             <Layout>
                 {/* <Route exact path='/' component={Home} />
                 <Route path='/counter' component={} />
-                <Route path='/fetch-data' component={} /> */}
+                <Route path='/fetch-data' component={} /> фигня */}
             </Layout>
         )
 
