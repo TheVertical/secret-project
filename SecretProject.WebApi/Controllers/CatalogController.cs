@@ -72,8 +72,9 @@ namespace SecretProject.WebApi.Controllers
                 query = query.Where(p => p.ManufacturerId == manufacturerId);
             if (categoryId != null)
                 query = query.Where(p => p.NomenclatureGroupId == categoryId);
-            noms = await query.ToListAsync(); 
-            return visualRedactor.GetFormattedElement(noms) as JsonResult;
+            noms = await query.ToListAsync();
+            var nomViewModes = noms.Select(n => new NomenclatureViewModel(n));
+            return visualRedactor.GetFormattedElement(nomViewModes) as JsonResult;
         }
         /// <summary>
         /// Получить номенклатуры по определенной акцие

@@ -54,7 +54,7 @@ namespace SecretProject.Services
 
             DropdownItem item = new DropdownItem();
             item.Title = group.Name;
-            item.Route = $"catalog/product?categoryId={group.Id}";
+            item.Route = $"catalog/category/{group.Id}";
             if (group.Childs == null)
                 return item;
             item.Items = new List<DropdownItem>();
@@ -133,9 +133,9 @@ namespace SecretProject.Services
             VisualSearch visualSearch = new VisualElements.Elements.VisualSearch { Id = 3, NeededColumns = 4 };
             grayLine.AddVisualElement(visualSearch);
 
-            Button basket = new Button { Id = 4, Image = "./Images/shopLogo.png", Action = "Basket", NeededColumns = 1 };
+            Button basket = new Button { Id = 4, Image = "./Images/shopLogo.png", Action = "/basket", NeededColumns = 1 };
             grayLine.AddVisualElement(basket);
-            Button auth = new Button { Id = 5, Image = "./Images/profileLogo.png", Action = "Account", NeededColumns = 1 };
+            Button auth = new Button { Id = 5, Image = "./Images/profileLogo.png", Action = "/account", NeededColumns = 1 };
             grayLine.AddVisualElement(auth);
 
             #endregion

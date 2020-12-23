@@ -67,13 +67,13 @@ class Layout extends React.Component {
                   {grayline}
                </div>
                <Switch>
-                  <Route path="/home" render={() => <MainPage></MainPage>}></Route>
+                  <Route exact path="/" render={() => <MainPage></MainPage>}></Route>
                   <Route path="/pages/contacts" exact render={() => <MainPage></MainPage>}></Route>
                   <Route path="/catalog/product/:id" render={() => <ProductPage></ProductPage>}></Route>
-                  <Route path="/catalog/:params" exact render={() => <Catalog_Page></Catalog_Page>}></Route>
-                  <Route path="/pages/home" exact render={() => <h1 className="mainStyle">Fourth</h1>}></Route>
+                  <Route exact path="/catalog/category/:id" exact render={() => <Catalog_Page></Catalog_Page>}></Route>
+                  <Route path="/catalog/category/:id" exact render={() => <Catalog_Page></Catalog_Page>}></Route>
                   <Route path="/pages/news" exact render={() => <SuccessfulRegistration></SuccessfulRegistration>}></Route>
-                  <Route path="/Basket" exact render={() => <Cart></Cart>}></Route>
+                  <Route path="/cart" exact render={() => <Cart></Cart>}></Route>
                   <Route path="/" exact render={() => <Catalog_Page></Catalog_Page>}></Route>
                   <Route path="/order" exact render={() => <OrderRegistration></OrderRegistration>}></Route>
                   <Route render={() => <Page404 className="mainStyle"></Page404>}></Route>

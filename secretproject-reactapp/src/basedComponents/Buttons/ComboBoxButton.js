@@ -3,7 +3,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import DropdownMenu from 'react-bootstrap/esm/DropdownMenu';
-import { withRouter } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 
 class ComboBoxButton extends React.Component {
 
@@ -18,7 +18,8 @@ class ComboBoxButton extends React.Component {
 
       history: props.history
     }
-    this.onClick_DropdowmItem = this.OnClick_DropdowmItem.bind(this);
+    // this.onClick_DropdowmItem = this.OnClick_DropdowmItem.bind(this);
+    this.onClick_DropdowmItem = null;
   }
 
   OnClick_DropdowmItem(eventKey , event) {
@@ -30,10 +31,10 @@ class ComboBoxButton extends React.Component {
     let visualItem;
     if (item.Items.length > 0) {
       let dropdownMenu = this.CreateDropdownMenu(item.Items)
-      visualItem = <DropdownButton title={item.Title}>{dropdownMenu}</DropdownButton>
+      visualItem =<DropdownButton title={item.Title} href="/catalog">{dropdownMenu}</DropdownButton>
     }
     else {
-      visualItem = <Dropdown.Item eventKey={item.Route} eventKey={item.Route}>{item.Title}</Dropdown.Item>
+      visualItem = <Dropdown.Item href={item.Route}>{item.Title}</Dropdown.Item>
     }
     return (visualItem);
   }

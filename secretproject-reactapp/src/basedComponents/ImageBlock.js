@@ -23,7 +23,7 @@ class ImageBlock  extends React.Component{
         if (this.state.Source == undefined)
             out = <img alt={this.state.Alt} />
         else
-            out = <NavLink to='/home'><img src={this.state.Source} alt={this.state.Alt} /></NavLink>;
+            out = <NavLink to='/'><img src={this.state.Source} alt={this.state.Alt} /></NavLink>;
         return (
             <div className="ImageBlock_DivStyle">{out}</div>
         );
