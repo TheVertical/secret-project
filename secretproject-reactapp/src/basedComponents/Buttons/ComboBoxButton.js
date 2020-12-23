@@ -22,19 +22,15 @@ class ComboBoxButton extends React.Component {
     this.onClick_DropdowmItem = null;
   }
 
-  OnClick_DropdowmItem(eventKey , event) {
-    // this.state.history.pushState(eventKey,event.Title,"/catalog");
-    debugger;
-    this.state.history.replace('catalog/'+ event.currentTarget.outerText,{Route:eventKey});
-  }
+ 
   static CreateItem(item) {
     let visualItem;
     if (item.Items.length > 0) {
       let dropdownMenu = this.CreateDropdownMenu(item.Items)
-      visualItem =<DropdownButton title={item.Title} href="/catalog">{dropdownMenu}</DropdownButton>
+      visualItem =<DropdownButton title={item.Title} as={NavLink} to={"/catalog"}>{dropdownMenu}</DropdownButton>
     }
     else {
-      visualItem = <Dropdown.Item href={item.Route}>{item.Title}</Dropdown.Item>
+      visualItem = <Dropdown.Item as={NavLink} to={item.Route}>{item.Title}</Dropdown.Item>
     }
     return (visualItem);
   }
@@ -58,5 +54,5 @@ class ComboBoxButton extends React.Component {
   }
 
 }
-let withRouterComboBoxButton = withRouter(ComboBoxButton);
-export default withRouterComboBoxButton;
+
+export default withRouter(ComboBoxButton);

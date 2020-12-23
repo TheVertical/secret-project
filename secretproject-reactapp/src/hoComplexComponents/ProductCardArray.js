@@ -2,43 +2,54 @@ import React from "react"
 import MiniProductCard from "./../ComplexComponents/MiniProductCard"
 import "./ProductCardArray.css"
 import { Row, Col } from 'bootstrap-4-react'
+import { MakeServerQuery } from '../Services/ServerQuery'
+import LoadingPage from '../pages/LoadingPage';
+
 class ProductCardArray extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     // Здесь будут состояния
     this.state = {
       Direction: {},
-      array: [ 
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki 1" Price="666"></MiniProductCard></Col> ,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product1.jpg" Title="Super Tabletki 2" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product2.jpg" Title="Super Tabletki 3" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product3.jpg" Title="Super Tabletki 4" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki 5" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product1.jpg" Title="Super Tabletki 6" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product2.jpg" Title="Super Tabletki 7" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product3.jpg" Title="Super Tabletki 8" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product.jpg" Title="Super Tabletki 9" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product1.jpg" Title="Super Tabletki 10" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product2.jpg" Title="Super Tabletki 11" Price="666"></MiniProductCard></Col>,
-      <Col className="ProductCardArray_Col"><MiniProductCard ImageUrl="./Images/Product3.jpg" Title="Super Tabletki 12" Price="666"></MiniProductCard></Col>
-      ],
+      array: [],
       IsLoading: true,
+      DownloadedNomenclatures:[],
       Dowloaded:{}
     }
   }
    componentDidMount()
    {
-     //this.DownloadMiniProductCard();
+     this.downloadNomenclatures()
    }
-   async DownloadMiniProductCard(){
-     // http://localhost:50258/catalog/product?manufacturerId=1&categoryId=1
-     // http://localhost:50258/catalog/product/discounted?promotion=Спец&count=10
-     let url = 'https://secrethost.azurewebsites.net/catalog/product/discounted?promotion=Спец&count=10';
-     let response = await fetch(url); 
-     let json = await response.json();
-     this.setState({Dowloaded:json})
-  }
+   async downloadNomenclatures() {
+    let responce = await MakeServerQuery('GET', "/catalog/product?categoryId="+this.props.Id);
+    if (responce && responce.success) {
+      this.setState({ DownloadedNomenclatures: responce.data});
+    }
+    this.SetProductCardArray()
+    this.setState({IsLoading:false})
+     }
+    //Метод-установщик полученнных данных в карточку
+    SetProductCardArray(){
+      this.state.DownloadedNomenclatures.map((item)=>{
+      this.state.array.push(<Col className="ProductCardArray_Col"><MiniProductCard 
+      Id={item.Id} 
+      ImageUrl={'./Images/Product1.jpg'} 
+      Title={item.Title} 
+      OriginalPrice={item.OriginalPrice}
+      Description={item.Description}
+      IsDiscouted={item.IsDiscouted}
+      IsInStock={item.IsInStock}
+      IsNew={item.IsNew}
+      IsPopular={item.IsPopular}
+      ></MiniProductCard></Col>)
+    })
+    }
+   
   render() {
+    if (this.state.IsLoading) {
+      return (<div className="Layout_FullContentStyle"><LoadingPage loading={this.state.IsLoading}></LoadingPage></div>)
+     }
     return( 
     <div>
      <Row>

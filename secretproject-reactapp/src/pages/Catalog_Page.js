@@ -29,10 +29,7 @@ class Catalog_Page extends React.Component {
     this.state = {
       Id: props.match.params.id,
       IsLoading1:true,
-      IsLoading2:true,
-      DownloadedNomenclatureGroup:{},
-      DownloadedNomenclatures:{},
-
+      DownloadedNomenclatureGroup:{"1":0},
       sortStyle: "Убыванию цены",
       pagActive: 1,
       pagItems: [],
@@ -41,7 +38,6 @@ class Catalog_Page extends React.Component {
   }
   componentDidMount() {
     this.downloadNomenclatureGroup();
-    this.dowmloadNomenclatures();
   }
 
   async downloadNomenclatureGroup(){
@@ -49,14 +45,8 @@ class Catalog_Page extends React.Component {
     if (responce && responce.success) {
       this.setState({ DownloadedNomenclatureGroup: responce.data, IsLoading1: false });
     }
+    console.log(this.state.DownloadedNomenclatureGroup)
   }
-  async dowmloadNomenclatures() {
-    let responce = await MakeServerQuery('GET', "/catalog/product?categoryId="+this.state.Id);
-    if (responce && responce.success) {
-      this.setState({ DownloadedNomenclatures: responce.data, IsLoading2: false });
-    }
-  }
-
 
   GetNewPageInPagination(key) {
     if (key !== this.state.pagActive && key > 0 && key < (this.state.itemsCount / 15)) {
@@ -88,7 +78,7 @@ class Catalog_Page extends React.Component {
             </Breadcrumb>
           </Row>
           <Row>
-            <h1 className="Catalog_Page_H1">{}</h1>
+            <h1 className="Catalog_Page_H1">{(this.state.DownloadedNomenclatureGroup.Name)}</h1>
           </Row>
           <hr />
           <Row className="Catalog_Page_TitleRow">
@@ -168,7 +158,7 @@ class Catalog_Page extends React.Component {
             </Col>
 
             <Col className="Catalog_Page_Content">
-              <ProductCardArray></ProductCardArray>
+              <ProductCardArray Id={this.state.Id}></ProductCardArray>
               <Pagination>
                 <Pagination.Prev onClick={() => {
                   let number = this.state.pagActive

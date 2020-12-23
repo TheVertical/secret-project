@@ -48,12 +48,12 @@ class Layout extends React.Component {
 
    render() {
 
-      //if (this.state.IsLoading) {
-      //  return (<div className="Layout_FullContentStyle"><LoadingPage loading={this.state.IsLoading}></LoadingPage></div>)
-      //}
-      let header = this.state.IsLoading ? <p>Loading</p> : VisualFactory.renderVisualElement(this.state.Downloaded["Header"]);
-      let grayline = this.state.IsLoading ? <p>Loading</p> : VisualFactory.renderVisualElement(this.state.Downloaded["GrayLine"]);
-      let footer = this.state.IsLoading ? <p>Loading</p> : VisualFactory.renderVisualElement(this.state.Downloaded["Footer"]);
+      if (this.state.IsLoading) {
+       return (<div className="Layout_FullContentStyle"><LoadingPage loading={this.state.IsLoading}></LoadingPage></div>)
+      }
+      let header =  VisualFactory.renderVisualElement(this.state.Downloaded["Header"]);
+      let grayline =  VisualFactory.renderVisualElement(this.state.Downloaded["GrayLine"]);
+      let footer = VisualFactory.renderVisualElement(this.state.Downloaded["Footer"]);
       return (
          <div>
             <div className="globalStyleWhite">
