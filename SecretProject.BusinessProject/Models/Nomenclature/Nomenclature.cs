@@ -43,6 +43,7 @@ namespace SecretProject.BusinessProject.Models.Good
         [Display(Name = "Группа номенклатуры")]
         [ForeignKey(nameof(NomenclatureGroupId))]
         public virtual NomenclatureGroup NomenclatureGroup { get; set; }
+        public virtual string ImageUrl { get; set; }
         public virtual int? ManufacturerId { get; set; }
         /// <summary>
         /// Производитель
