@@ -63,18 +63,49 @@ namespace SecretProject.WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("product")]
-        public async Task<IActionResult> GetPoducts([FromQuery]int? manufacturerId,[FromQuery]int? categoryId,[FromQuery] int? count)
+        public async Task<IActionResult> GetPoducts(
+            [FromQuery]bool? needTotalCount,
+            [FromQuery]int? manufacturerId,
+            [FromQuery]int? categoryId,
+            [FromQuery] int? count,
+            [FromQuery]int? from,
+            [FromQuery]float? minValue,
+            [FromQuery]float? maxValue)
         {
-            IEnumerable<Nomenclature> noms = null;
+            float maxCost = -1;
+            float minCost = -1;
+            int allNomByQuery = -1;
             int amount = count != null && count < 20 ? count.Value : 20;
-            IQueryable<Nomenclature> query = context.Set<Nomenclature>().Take(amount);
+
+            IEnumerable<Nomenclature> noms = null;
+
+            IQueryable<Nomenclature> query = context.Set<Nomenclature>().OrderBy(n => n.Id);
             if (manufacturerId != null)
                 query = query.Where(p => p.ManufacturerId == manufacturerId);
+
             if (categoryId != null)
                 query = query.Where(p => p.NomenclatureGroupId == categoryId);
-            noms = await query.ToListAsync();
+
+            if(needTotalCount != null && needTotalCount.Value)
+                allNomByQuery = await query.CountAsync();
+
+            if (from != null)
+                query = query.Where(p => p.Id > from);
+
+            if (minValue != null)
+            {
+                query = query.Where(p => p.Cost >= minValue);
+                minCost = minValue.Value;
+            }
+            if (maxValue != null)
+            {
+                query = query.Where(p => p.Cost <= maxValue);
+                maxCost = maxValue.Value;
+            }
+            noms = await query.Take(amount).ToListAsync();
             var nomViewModes = noms.Select(n => new NomenclatureViewModel(n));
-            return visualRedactor.GetFormattedElement(nomViewModes) as JsonResult;
+            NomenclatureResult nomResult = new NomenclatureResult(allNomByQuery, maxCost, minCost,nomViewModes);
+            return visualRedactor.GetFormattedElement(nomResult) as JsonResult;
         }
         /// <summary>
         /// Получить номенклатуры по определенной акцие

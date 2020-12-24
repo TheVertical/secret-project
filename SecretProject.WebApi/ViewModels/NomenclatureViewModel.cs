@@ -12,6 +12,7 @@ namespace SecretProject.WebApi.ViewModels
             Title = domain.Name;
             Description = domain.Description;
             OriginalPrice = domain.Cost;
+            ImageUrl = domain.ImageUrl;
             if (domain.IsDiscounted)
             {
                 DiscountedPrice = domain.DiscountedCost;
