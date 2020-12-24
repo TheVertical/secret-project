@@ -10,7 +10,7 @@ using SecretProject.DAL.Contexts;
 namespace SecretProject.DAL.Migrations
 {
     [DbContext(typeof(sBaseContext))]
-    [Migration("20201214150326_Initial")]
+    [Migration("20201224095540_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,6 +92,9 @@ namespace SecretProject.DAL.Migrations
 
                     b.Property<float>("DiscountedCost")
                         .HasColumnType("real");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ManufacturerId")
                         .HasColumnType("int");
@@ -490,7 +493,13 @@ namespace SecretProject.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("AlignContent")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageSource")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JustyfyContent")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Link")

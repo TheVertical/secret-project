@@ -91,6 +91,9 @@ namespace SecretProject.DAL.Migrations
                     b.Property<float>("DiscountedCost")
                         .HasColumnType("real");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("ManufacturerId")
                         .HasColumnType("int");
 
@@ -488,7 +491,13 @@ namespace SecretProject.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("AlignContent")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageSource")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JustyfyContent")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Link")

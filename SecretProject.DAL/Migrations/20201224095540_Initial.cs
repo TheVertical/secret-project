@@ -15,7 +15,9 @@ namespace SecretProject.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Link = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageSource = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NeededColumns = table.Column<int>(type: "int", maxLength: 20, nullable: false)
+                    NeededColumns = table.Column<int>(type: "int", maxLength: 20, nullable: false),
+                    JustyfyContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AlignContent = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -154,6 +156,7 @@ namespace SecretProject.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NomenclatureGroupId = table.Column<int>(type: "int", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ManufacturerId = table.Column<int>(type: "int", nullable: true),
                     MeasurementId = table.Column<int>(type: "int", nullable: true),
                     Amount = table.Column<int>(type: "int", nullable: false),

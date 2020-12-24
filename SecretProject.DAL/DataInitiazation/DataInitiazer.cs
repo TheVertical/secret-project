@@ -11,14 +11,40 @@ using SecretProject.BusinessProject.Models.Order;
 using System.IO;
 using SecretProject.VisualElements.Pages;
 using SecretProject.BusinessProject.Models.Common;
+using System.Text;
 
 namespace SecretProject.DAL.DataInitiazation
 {
     public class DataInitiazer
     {
+        /// <summary>
+        /// Генерить рандомные строки по определенному алафавиту
+        /// </summary>
+        /// <param name="Length">необходимая длинна строки</param>
+        /// <param name="Alphabet">(необязательный) алфавит, из которого будут браться буквы</param>
+        /// <returns></returns>
+        private static string GenRandomString(int Length, string Alphabet="ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТТЬБЮБййцукенгшщзхъфывапролджэячсмитьбю")
+        {
+            Random rnd = new Random();
+            int length = rnd.Next(0, 50);
+            StringBuilder sb = new StringBuilder(Length - 1);
+            int Position = 0;
+
+            for (int i = 0; i < length; i++)
+            {
+                Position = rnd.Next(0, Alphabet.Length - 1);
+                //добавляем выбранный символ в объект
+                //StringBuilder
+                sb.Append(Alphabet[Position]);
+            }
+
+            return sb.ToString();
+        }
         #region Class Methods
         public static void InitializeData(sBaseContext context)
         {
+            bool isNeedRandom = true;
+            Random random = new Random();
             var company = new Company
             {
                 Name = "Olimp-dental",
@@ -34,6 +60,17 @@ namespace SecretProject.DAL.DataInitiazation
                 new NomenclatureGroup { Name = "Приспособления и инструменты",Childs = null,Parent = null},
                 new NomenclatureGroup { Name = "Слепочные массы",Childs = null,Parent = null},
             };
+            if (isNeedRandom)
+            {
+                var randomNomenclatureGroup = new List<NomenclatureGroup>();
+                for (int i = 0; i < 14; i++)
+                {
+                    NomenclatureGroup group = new NomenclatureGroup();
+                    group.Name = DataInitiazer.GenRandomString(50);
+                    randomNomenclatureGroup.Add(group);
+                }
+                context.NomenclatureGroups.AddRange(randomNomenclatureGroup);
+            }
             context.NomenclatureGroups.AddRange(nomenclatureGroups);
             context.SaveChanges();
 
@@ -45,6 +82,18 @@ namespace SecretProject.DAL.DataInitiazation
                 new Manufacturer { Name = "DMG"},
             };
             context.Manufacturers.AddRange(manufactures);
+            if(isNeedRandom)
+            {
+                var randomManufacturers = new List<Manufacturer>();
+                for (int i = 0; i < 16; i++)
+                {
+                    Manufacturer manufacturer = new Manufacturer();
+                    int length = random.Next(3, 10);
+                    manufacturer.Name = DataInitiazer.GenRandomString(10, Alphabet: "QWERTYUIOPASDFGHJKLZXCVBNM");
+                    randomManufacturers.Add(manufacturer);
+                }
+                context.Manufacturers.AddRange(randomManufacturers);
+            }
             context.SaveChanges();
 
             var measurements = new List<Measurement>
@@ -68,7 +117,8 @@ namespace SecretProject.DAL.DataInitiazation
                     Cost = 567,
                     Status = VisibleStatus.Visible,
                     Amount = 356,
-                    Measurement = null
+                    Measurement = null,
+                   ImageUrl = "./Images/Product.jpg"
                 },
                 new Nomenclature
                 {
@@ -81,7 +131,8 @@ namespace SecretProject.DAL.DataInitiazation
                     Cost = 1700,
                     Status = VisibleStatus.Visible,
                     Amount = 5,
-                    Measurement = null
+                    Measurement = null,
+                   ImageUrl = "./Images/Product.jpg"
                 },
                 //Дезинфекция
                 new Nomenclature
@@ -98,7 +149,8 @@ namespace SecretProject.DAL.DataInitiazation
                     Amount = 0,
 	                #endregion
 
-                    Measurement = null
+                    Measurement = null,
+                   ImageUrl = "./Images/Product.jpg"
                 },
                 new Nomenclature
                 {
@@ -127,7 +179,8 @@ namespace SecretProject.DAL.DataInitiazation
                     Cost = 720,
                     Status = VisibleStatus.Visible,
                     Amount = 8,
-                    Measurement = null
+                    Measurement = null,
+                   ImageUrl = "./Images/Product.jpg"
                 },
                 //Ортопедические материалы
                 new Nomenclature
@@ -144,7 +197,8 @@ namespace SecretProject.DAL.DataInitiazation
                     Cost = 2400,
                     Status = VisibleStatus.Visible,
                     Amount = 10,
-                    Measurement = null
+                    Measurement = null,
+                   ImageUrl = "./Images/Product.jpg"
                 },
                 new Nomenclature
                 {
@@ -166,10 +220,31 @@ namespace SecretProject.DAL.DataInitiazation
                     Cost = 5300,
                     Status = VisibleStatus.Visible,
                     Amount = 10,
-                    Measurement = null
+                    Measurement = null,
+                   ImageUrl = "./Images/Product.jpg"
                 },
             };
             context.Nomenclatures.AddRange(nomenclatures);
+            if (isNeedRandom)
+            {
+                var randomNomenclatures = new List<Nomenclature>();
+                for (int i = 0; i < 1000; i++)
+                {
+                    Nomenclature nom = new Nomenclature();
+                    int length = random.Next(3, 10);
+                    nom.Name = DataInitiazer.GenRandomString(50);
+                    nom.NomenclatureGroupId = random.Next(1, 20);
+                    nom.ManufacturerId = random.Next(1, 20);
+                    nom.Status = VisibleStatus.Visible;
+                    nom.Cost = random.Next(0, 1000000);
+                    nom.Amount = random.Next(0, 10000);
+                    int image = random.Next(0, 3);
+                    nom.ImageUrl = image == 0 ? "./Images/Product.jpg" : "./Images/Product"+image+".jpg";
+                    nom.Description = DataInitiazer.GenRandomString(150);
+                    randomNomenclatures.Add(nom);
+                }
+                context.Nomenclatures.AddRange(randomNomenclatures);
+            }
             context.SaveChanges();
 
             var users = new List<User>
@@ -200,7 +275,18 @@ namespace SecretProject.DAL.DataInitiazation
             var promotion = new Promotion { OfficialTitle = "Специальные предложения!", WorkTitle = "Спец",
                 DiscountedNomenclatures = new List<Nomenclature>()
             };
-            var nomec = context.Nomenclatures.ToList();
+            List<Nomenclature> nomec = new List<Nomenclature>();
+            if (isNeedRandom)
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    int nomId = random.Next(1, 1000 + nomenclatures.Count);
+                    Nomenclature nomenclature = context.Nomenclatures.Find(nomId);
+                    nomec.Add(nomenclature);
+                }
+            }
+            else
+                nomec.AddRange(context.Nomenclatures.ToList());
             promotion.DiscountNomenclature(nomec, 10);
             context.Add(promotion);
             context.SaveChanges();
@@ -224,6 +310,33 @@ namespace SecretProject.DAL.DataInitiazation
                     }
                 }
             };
+            if(isNeedRandom)
+            {
+                var randomOrders = new List<Order>();
+                for (int i = 0; i < 5; i++)
+                {
+                    OrderDetails orderDetails = new OrderDetails
+                    {
+                        UserId = 1,
+                        IsWithDelivery = true,
+                    };
+                    
+                    Order order = new Order();
+                    order.OrderDetails = orderDetails;
+                    int paymentM = random.Next(0, Enum.GetValues(typeof(PaymentMethod)).Length - 1);
+                    order.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), paymentM.ToString());
+                    int status = random.Next(0, Enum.GetValues(typeof(OrderState)).Length - 1);
+                    for (int j = 0; j < random.Next(1,10); j++)
+                    {
+                        int nomId = random.Next(1, 1000 + nomenclatures.Count);
+                        int actualCount = random.Next(1, 100);
+                        OrderItem item = new OrderItem() { NomenclatureId = nomId, ActualCount = actualCount };
+                        order.OrderItems.Add(item);
+                    }
+                    randomOrders.Add(order);
+                }
+                context.Orders.AddRange(randomOrders);
+            }
             context.Orders.AddRange(orders);
 
             List<Page> pages = new List<Page> 
