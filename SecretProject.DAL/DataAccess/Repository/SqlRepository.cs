@@ -115,7 +115,7 @@ namespace SecretProject.DAL.DataAccess
             where Entity : class, IDomainObject
         {
             var table = context.Set<Entity>();
-            var result = await table.AsTracking().Where(predicate).Take(count).ToListAsync();
+            var result = await table.AsNoTracking().Where(predicate).Take(count).ToListAsync();
             return result;
         }
         public async Task<IEnumerable<Entity>> GetAllAsync<Entity,TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending)

@@ -51,12 +51,13 @@ namespace SecretProject.DAL.DataInitiazation
                 WorkHours = "Пн-Чт:10:00 - 18:00, Пт:10:00 - 17:00",
                 WorkPhone = new Phone() { PhoneNumber = "8 (812) 388-4538" }
             };
+            context.Companies.Add(company);
             var nomenclatureGroups = new List<NomenclatureGroup>
             {
                 new NomenclatureGroup { Name = "Гигиена и профилактика",Childs = null,Parent = null},
                 new NomenclatureGroup { Name = "Дезинфекция",Childs = null,Parent = null},
                 new NomenclatureGroup { Name = "Ортопедические материалы",Childs = null,Parent = null},
-                new NomenclatureGroup { Name = "Пломбировачные материалы материалы",Childs = null,Parent = null},
+                new NomenclatureGroup { Name = "Пломбировачные материалы",Childs = null,Parent = null},
                 new NomenclatureGroup { Name = "Приспособления и инструменты",Childs = null,Parent = null},
                 new NomenclatureGroup { Name = "Слепочные массы",Childs = null,Parent = null},
             };

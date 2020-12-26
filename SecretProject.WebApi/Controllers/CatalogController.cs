@@ -43,17 +43,29 @@ namespace SecretProject.WebApi.Controllers
                     return BadRequest();
                 return visualRedactor.GetFormattedElement(groupViewModels) as JsonResult;
             }
-            NomenclatureGroupViewModel categoryViewModel = new NomenclatureGroupViewModel(await repository.GetByIdAsync<NomenclatureGroup>(id.Value));
-            return visualRedactor.GetFormattedElement(categoryViewModel) as JsonResult;
+            var group = await repository.GetByIdAsync<NomenclatureGroup>(id.Value);
+            if (group != null)
+            {
+                NomenclatureGroupViewModel categoryViewModel = new NomenclatureGroupViewModel(group);
+                return visualRedactor.GetFormattedElement(categoryViewModel) as JsonResult;
+            }
+            return BadRequest();
 
         }
         [HttpGet]
         [Route("product/{id:int}")]
-        public async Task<JsonResult> GetProducts(int? id)
+        public async Task<IActionResult> GetProducts(int id)
         {
-            int _id = id != null ? id.Value : 1;
-            NomenclatureViewModel vm = new NomenclatureViewModel(await repository.GetByIdAsync<Nomenclature>(_id));
-            return visualRedactor.GetFormattedElement(vm) as JsonResult;
+            var query = context.Set<Nomenclature>()
+                .Include(n => n.Manufacturer)
+                .Include(n => n.Measurement);
+            var nom = await query.Where(n => n.Id == id).FirstOrDefaultAsync();
+            if (nom != null)
+            {
+                var nomViewModel = new NomenclatureViewModel(nom);
+                return visualRedactor.GetFormattedElement(nomViewModel) as JsonResult;
+            }
+            return BadRequest();
         }
         /// <summary>
         /// Получить номенклатуры по фильтрам
@@ -77,7 +89,7 @@ namespace SecretProject.WebApi.Controllers
             int allNomByQuery = -1;
             int amount = count != null && count < 20 ? count.Value : 20;
 
-            IEnumerable<Nomenclature> noms = null;
+            List<Nomenclature> noms = null;
 
             IQueryable<Nomenclature> query = context.Set<Nomenclature>().OrderBy(n => n.Id);
             if (manufacturerId != null)
@@ -103,9 +115,13 @@ namespace SecretProject.WebApi.Controllers
                 maxCost = maxValue.Value;
             }
             noms = await query.Take(amount).ToListAsync();
-            var nomViewModes = noms.Select(n => new NomenclatureViewModel(n));
-            NomenclatureResult nomResult = new NomenclatureResult(allNomByQuery, maxCost, minCost,nomViewModes);
-            return visualRedactor.GetFormattedElement(nomResult) as JsonResult;
+            if (noms.Count > 0)
+            {
+                var nomViewModes = noms.Select(n => new NomenclatureViewModel(n));
+                NomenclatureResult nomResult = new NomenclatureResult(allNomByQuery, maxCost, minCost, nomViewModes);
+                return visualRedactor.GetFormattedElement(nomResult) as JsonResult;
+            }
+            return BadRequest();
         }
         /// <summary>
         /// Получить номенклатуры по определенной акцие
@@ -115,7 +131,11 @@ namespace SecretProject.WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("product/discounted")]
-        public async Task<IActionResult> GetDiscountedProducts([FromQuery] string promotion, [FromQuery] int? count)
+        public async Task<IActionResult> GetDiscountedProducts(
+            [FromQuery] string promotion,
+            [FromQuery]int? from,
+            [FromQuery] int? count
+            )
         {
             IEnumerable<NomenclatureViewModel> noms = null;
             int amount = count != null && count < 20 ? count.Value : 20;
@@ -126,7 +146,10 @@ namespace SecretProject.WebApi.Controllers
                 var prom = promotions.FirstOrDefault();
                 if (prom == null)
                     return BadRequest();
-                noms = prom.DiscountedNomenclatures.Select(nom => new NomenclatureViewModel(nom));
+                noms = prom.DiscountedNomenclatures
+                    .OrderBy(n => n.Id)
+                    .Take(amount)
+                    .Select(nom => new NomenclatureViewModel(nom));
             }
             else
                 return BadRequest();
