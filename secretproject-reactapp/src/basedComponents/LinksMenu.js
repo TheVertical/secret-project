@@ -29,14 +29,13 @@ class LinksMenu extends React.Component {
     }
     render() {
        //Проверяет ориентацию - выбирает нужный стиль для верстки
-        console.log(this.checkHor());
         let con = [];
         for(let i=0;i < this.state.Links.length;i++)
         {
           let link = this.state.Links[i];
           if(link.Link != undefined && link.Id != undefined && link.Title != undefined)
           {
-            con.push(<NavLink className="Header_NavLink" to={'/'+link.Link}>{link.Title}</NavLink>);
+            con.push(<NavLink key={link.Id} className="Header_NavLink" to={'/'+link.Link}>{link.Title}</NavLink>);
           }
         }
         return (

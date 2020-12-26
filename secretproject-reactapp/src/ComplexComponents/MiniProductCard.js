@@ -40,6 +40,8 @@ class MiniProductCard extends React.Component {
 
     }
     this.onClick_MiniCard = this.OnClick_MiniCard.bind(this);
+    this.setInlineStyle = this.SetInlineStyle.bind(this);
+    this.returnSubString = this.ReturnSubString.bind(this);
   }
   SetInlineStyle() {
     if (this.props.isInline) {
@@ -67,10 +69,9 @@ class MiniProductCard extends React.Component {
   render() {
     let store = rootStore()
     store.subscribe(() => { this.SetInlineStyle() })
-    console.log(this.state.Style)
     return (
-      <Card onClick={this.onClick_MiniCard} style={{ width: this.state.width, margin:"20px 0" }} className={this.state.Style}>
-        {this.SetInlineStyle.bind(this)}
+      <Card style={{ width: this.state.width, margin:"20px 0" }} className={this.state.Style}>
+        {/* {this.SetInlineStyle()} */}
         <Badge pill variant="primary">
           Есть в наличии
       </Badge>{' '}
@@ -107,4 +108,4 @@ function mapStatetoProps(state) {
   }
 }
 
-export default withRouter(connect(mapStatetoProps)(MiniProductCard))
+export default withRouter(MiniProductCard)

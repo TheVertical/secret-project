@@ -12,7 +12,8 @@
      flex-direction: column;
 } */
 .ProductPage_ImageStyle{
-    width: -webkit-fill-available;
+    /* width: -webkit-fill-available; */
+    width: 100%;
 }
 
 

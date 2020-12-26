@@ -70,7 +70,8 @@ class Layout extends React.Component {
                   <Route exact path="/" render={() => <MainPage></MainPage>}></Route>
                   <Route path="/pages/contacts" exact render={() => <MainPage></MainPage>}></Route>
                   <Route path="/catalog/product/:id" render={() => <ProductPage></ProductPage>}></Route>
-                  <Route exact path="/catalog/category/:id" exact render={() => <Catalog_Page></Catalog_Page>}></Route>
+                  <Route exact path="/catalog" render={(props) => <Catalog_Page {...props}></Catalog_Page>}></Route>
+                  <Route exact path="/catalog/brend/:id" render={(props) => <Catalog_Page {...props}></Catalog_Page>}></Route>
                   <Route path="/catalog/category/:id" exact render={() => <Catalog_Page></Catalog_Page>}></Route>
                   <Route path="/pages/news" exact render={() => <SuccessfulRegistration></SuccessfulRegistration>}></Route>
                   <Route path="/cart" exact render={() => <Cart></Cart>}></Route>

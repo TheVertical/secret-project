@@ -4,67 +4,56 @@ import "./ProductCardArray.css"
 import { Row, Col } from 'bootstrap-4-react'
 import { MakeServerQuery } from '../Services/ServerQuery'
 import LoadingPage from '../pages/LoadingPage';
+import { withRouter } from 'react-router-dom'
+
 
 class ProductCardArray extends React.Component {
   constructor(props) {
     super(props);
-    // Здесь будут состояния
     this.state = {
       Direction: {},
+      NomenclatureCollection: props.NomenclatureCollection,
       array: [],
-      IsLoading: true,
-      DownloadedNomenclatures:[],
-      Dowloaded:{}
     }
   }
-   componentDidMount()
-   {
-     this.downloadNomenclatures()
-   }
-   async downloadNomenclatures() {
-    let responce = await MakeServerQuery('GET', "/catalog/product?categoryId="+this.props.Id);
-    if (responce && responce.success) {
-      this.setState({ DownloadedNomenclatures: responce.data});
-    }
-    this.SetProductCardArray()
-    this.setState({IsLoading:false})
-     }
-    //Метод-установщик полученнных данных в карточку
-    SetProductCardArray(){
-      this.state.DownloadedNomenclatures.map((item)=>{
-      this.state.array.push(<Col className="ProductCardArray_Col"><MiniProductCard 
-      Id={item.Id} 
-      ImageUrl={'./Images/Product1.jpg'} 
-      Title={item.Title} 
-      OriginalPrice={item.OriginalPrice}
-      Description={item.Description}
-      IsDiscouted={item.IsDiscouted}
-      IsInStock={item.IsInStock}
-      IsNew={item.IsNew}
-      IsPopular={item.IsPopular}
-      ></MiniProductCard></Col>)
-    })
-    }
-   
+  //Метод-установщик полученнных данных в карточку
+  SetProductCardArray() {
+    if (this.state.NomenclatureCollection != undefined)
+      this.state.NomenclatureCollection.map((item) => {
+        this.state.array.push(
+          <Col key={item.Id} className="ProductCardArray_Col">
+            <MiniProductCard
+              key={item.Id}
+              Id={item.Id}
+              ImageUrl={item.ImageUrl}
+              Title={item.Title}
+              OriginalPrice={item.OriginalPrice}
+              Description={item.Description}
+              IsDiscouted={item.IsDiscouted}
+              IsInStock={item.IsInStock}
+              IsNew={item.IsNew}
+              IsPopular={item.IsPopular}/>
+          </Col>)
+      })
+  }
+
   render() {
-    if (this.state.IsLoading) {
-      return (<div className="Layout_FullContentStyle"><LoadingPage loading={this.state.IsLoading}></LoadingPage></div>)
-     }
-    return( 
-    <div>
-     <Row>
-      {this.state.array}
-     </Row>
-    </div>
-  
-     )
+    this.SetProductCardArray();
+    return (
+      <div>
+        <Row>
+          {this.state.array}
+        </Row>
+      </div>
+
+    )
   }
 
 
 
 }
 //Здесь будет главная функция экспорта 
-export default ProductCardArray
+export default withRouter(ProductCardArray)
 
 
 

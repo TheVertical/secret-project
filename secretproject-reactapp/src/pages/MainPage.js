@@ -27,7 +27,7 @@ class MainPage extends React.Component {
   }
 
   async downloadedSpecPromotion() {
-    let responce = await MakeServerQuery('GET', "/catalog/product/discounted?promotion=Спец&count=10");
+    let responce = await MakeServerQuery('GET', "/catalog/product/discounted?promotion=Спец&count=6");
     if (responce && responce.success) {
       this.setState({ Downloaded: responce.data, IsLoading: false });
     }
@@ -37,9 +37,7 @@ class MainPage extends React.Component {
   RenderAllMiniCards(settings2) {
     if (this.state.IsLoading) {
       return (
-        // <div className="MainPage_MiniProductCardRowStyle">
         <LoadingPage loading={this.state.IsLoading}></LoadingPage>
-        // </div>
       )
     }
     else {
@@ -47,15 +45,13 @@ class MainPage extends React.Component {
       return (<Slider {...settings2}>
         {minicards.map(minicard => {
           if (minicard.Id != undefined) {
-            console.info('minicard:', minicard);
             return (<MiniProductCard
               key={minicard.Id}
               Id={minicard.Id}
               Title={minicard.Title}
               OriginalPrice={minicard.OriginalPrice}
               DiscountedPrice={minicard.DiscountedPrice}
-              //TODO Пока мок
-              ImageUrl="./Images/Product.jpg"
+              ImageUrl={minicard.ImageUrl}
               IsDiscouted={minicard.IsDiscouted}
               IsNew={minicard.IsNew}
               IsPopular={minicard.IsPopular}
@@ -78,8 +74,6 @@ class MainPage extends React.Component {
       slidesToScroll: 1,
       className: "MainPage_FirstSlider",
       respondTo: "min"
-      // centerMode:true,
-      // centerPadding:"10%"
     };
     const settings2 = {
       infinite: true,
@@ -132,24 +126,6 @@ class MainPage extends React.Component {
             </Col>
           </Row>
           <Row className="MainPage_MiniProductCardRowStyle">
-            {/* <Slider {...settings2}>
-              {minicards.map(minicard => {
-                if (minicard.Id != undefined)
-                  return (<MiniProductCard
-                    key={minicard.Id}
-                    Id={minicard.Id}
-                    Title={minicard.Title}
-                    OriginalPrice={minicard.OriginalPrice}
-                    DiscountedPrice={minicard.DiscountedPrice}
-                    //TODO Пока мок
-                    ImageUrl="./Images/Product.jpg"
-                    IsDiscouted={minicard.IsDiscouted}
-                    IsNew={minicard.IsNew}
-                    IsPopular={minicard.IsPopular}
-                    IsInStock={minicard.IsInStock}
-                  />);
-              })}
-            </Slider> */}
             {this.RenderAllMiniCards(settings2)}
           </Row>
           {/* <Row>

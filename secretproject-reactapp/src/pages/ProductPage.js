@@ -10,7 +10,7 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import { withRouter } from 'react-router-dom'
-import { MakeServerQuery } from  '../Services/ServerQuery'
+import { MakeServerQuery } from '../Services/ServerQuery'
 
 
 
@@ -21,7 +21,7 @@ class ProductPage extends React.Component {
         this.state = {
             Id: props.match.params.id,
             count: 0,
-            DownloadedNomenclature: undefined,
+            Nomenclature: undefined,
             IsLoading: true,
         }
     }
@@ -36,7 +36,7 @@ class ProductPage extends React.Component {
     async LoadNomenclature(id) {
         let responce = await MakeServerQuery('GET', "/catalog/product/" + id);
         if (responce && responce.success) {
-            this.setState({ DownloadedNomenclature: responce.data, IsLoading: false });
+            this.setState({ Nomenclature: responce.data, IsLoading: false });
         }
     }
 
@@ -54,7 +54,7 @@ class ProductPage extends React.Component {
     render() {
         if (this.state.IsLoading)
             return ('...Loading');
-        else
+        else {
             return (
                 <div className="mainStyle">
                     <div>
@@ -69,17 +69,18 @@ class ProductPage extends React.Component {
                                 </Breadcrumb>
                             </Row>
                             <Row>
-                                <h1 className="ProductPage_TitleH1Style">{this.state.DownloadedNomenclature.Title}</h1>
+                                <h1 className="ProductPage_TitleH1Style">{this.state.Nomenclature.Title}</h1>
                             </Row>
                             <Container className="ProductPage_Global">
                                 <Row className="ProductPage_OrderBlockStyle">
                                     <Col>
-                                        <img src="./Images/Product1.jpg" className="ProductPage_ImageStyle"></img>
-                                        <span>Производитель:</span>
-                                        <NavLink to="/">{this.state.DownloadedNomenclature.Manufactrer}</NavLink>
+                                        <img src={this.state.Nomenclature.ImageUrl} className="ProductPage_ImageStyle"></img>
+                                        <span>Производитель:<NavLink to={{pathname:"/catalog",props:'catalog/product?manufacturerId=2'}}>
+                                        {this.state.Nomenclature.Manufacturer.Name ?? "error"}
+                                        </NavLink></span>
                                     </Col>
                                     <Col xs lg="4">
-                                        <h1 className="ProductPage_H1Style">{this.state.DownloadedNomenclature.OriginalPrice + ' ₽'}</h1>
+                                        <h1 className="ProductPage_H1Style">{this.state.Nomenclature.OriginalPrice + ' ₽'}</h1>
                                         <span className="ProductPage_IdSpanStyle">Код: 02641</span>
                                         <div className="ProductPage_InsideRow">
                                             <div className="ProductPage_ClickerBlockStyle">
@@ -87,11 +88,26 @@ class ProductPage extends React.Component {
                                                 <span className="ProductPage_ClickerBlockSpanStyle">{this.state.count}</span>
                                                 <Button onClick={this.doIncrease.bind(this)} className="ProductPage_ClickerBlockButtonStyle">+</Button>
                                             </div>
-                                            <span className="ProductPage_ClickerBlockSpanStyle2">В наличии: {this.state.DownloadedNomenclature.IsInStock == true ? 'Есть' : 'Отсутствует'}</span>
+                                            <span className="ProductPage_ClickerBlockSpanStyle2">В наличии: {this.state.Nomenclature.IsInStock == true ? 'Есть' : 'Отсутствует'}</span>
                                         </div>
-                                        <Button className="ProductPage_ButtonStyle" active="true"><div className="ProductPage_ButtonDivBasketStyle"><img src="./Images/trolley.png"></img><span className="ProductPage_SpanStyle">В корзину</span></div></Button>
-                                        <Button className="ProductPage_ComparenSaveButtonStyle"><div className="ProductPage_ButtonDivComareNSaveStyle"><img src="./Images/CompareIcon.png"></img><span className="ProductPage_ComparenSaveSpanStyle">Сравнить</span></div></Button>
-                                        <Button className="ProductPage_ComparenSaveButtonStyle"><div className="ProductPage_ButtonDivComareNSaveStyle"><img src="./Images/SaveIcon.png"></img><span className="ProductPage_ComparenSaveSpanStyle">Отложить</span></div></Button>
+                                        <Button className="ProductPage_ButtonStyle" active="true">
+                                            <div className="ProductPage_ButtonDivBasketStyle">
+                                                <img src="./Images/trolley.png"></img>
+                                                <span className="ProductPage_SpanStyle">В корзину</span>
+                                            </div>
+                                        </Button>
+                                        <Button className="ProductPage_ComparenSaveButtonStyle">
+                                            <div className="ProductPage_ButtonDivComareNSaveStyle">
+                                                <img src="./Images/CompareIcon.png"></img>
+                                                <span className="ProductPage_ComparenSaveSpanStyle">Сравнить</span>
+                                            </div>
+                                        </Button>
+                                        <Button className="ProductPage_ComparenSaveButtonStyle">
+                                            <div className="ProductPage_ButtonDivComareNSaveStyle">
+                                                <img src="./Images/SaveIcon.png"></img>
+                                                <span className="ProductPage_ComparenSaveSpanStyle">Отложить</span>
+                                            </div>
+                                        </Button>
                                         <div className="ProductPage_InsideRow">
                                             <div>
                                                 <button className="ProductPage_StarStyle"></button>
@@ -108,7 +124,7 @@ class ProductPage extends React.Component {
                                 <Row>
                                     <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example">
                                         <Tab eventKey="home" title="Характеристики и описание">
-                                            {this.state.DownloadedNomenclature.Description}
+                                            {this.state.Nomenclature.Description}
                                         </Tab>
                                         <Tab eventKey="profile" title="Отзывы">
                                             <p>Компания "Олимп-Дентал" предлагает широкий спектр расходных материалов, инструментов,дезинфакторов, стоматологического оборудования, мебели и стоматологических установок ведущих производителей.</p>
@@ -124,6 +140,7 @@ class ProductPage extends React.Component {
                     </div>
                 </div >
             )
+        }
     }
 
 }

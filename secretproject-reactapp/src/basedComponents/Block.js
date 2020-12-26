@@ -13,14 +13,16 @@ class Block extends React.Component {
         }
     }
     render() {
+        let count = 0;
         return (
             <Container id="block">
                 <Row>
                     {this.state.VisualElements.map(obj => {
                         let justify = obj.JustyfyContent == undefined ? " justify-content-center" : " justify-content-" + obj.JustyfyContent;
                         let align = obj.AlignContent == undefined ? " align-items-center" : " align-items-" + obj.AlignContent;
+                        count++;
                         return (
-                            <Col key={obj.Id} col={obj.Type == 'Block' ? "col-12" : "col-sm-" + obj.NeededColumns}
+                            <Col key={count} col={obj.Type == 'Block' ? "col-12" : "col-sm-" + obj.NeededColumns}
                                 className={"d-flex" + justify + align}>
                                 {VisualElement.renderVisualElement(obj)}
                             </Col>);
