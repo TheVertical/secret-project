@@ -1,4 +1,5 @@
-﻿using SecretProject.BusinessProject.Models.Good;
+﻿using SecretProject.BusinessProject.Models;
+using SecretProject.BusinessProject.Models.Good;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +12,8 @@ namespace SecretProject.WebApi.ViewModels
             Id = domain.Id;
             Title = domain.Name;
             Description = domain.Description;
+            if(domain.Manufacturer != null)
+                Manufacturer = new ManufacturerViewModel(domain.Manufacturer);
             OriginalPrice = domain.Cost;
             ImageUrl = domain.ImageUrl;
             if (domain.IsDiscounted)
@@ -30,6 +33,7 @@ namespace SecretProject.WebApi.ViewModels
 
         public string Title { get; set; }
         public string Description { get; set; }
+        public ManufacturerViewModel Manufacturer { get; set; }
         public float OriginalPrice { get; set; }
         public float DiscountedPrice { get; set; }
         public string ImageUrl { get; set; }

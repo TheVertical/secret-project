@@ -10,6 +10,7 @@ using SecretProject.DAL.DataAccess;
 using SecretProject.Services;
 using SecretProject.VisualElements;
 using SecretProject.WebApi.Services;
+using System;
 using System.Text.Json;
 
 namespace SecretProject.WebApi
@@ -35,9 +36,14 @@ namespace SecretProject.WebApi
             services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
             services.AddScoped<sBaseContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
             services.AddScoped<IRepository, SqlRepository>();
-            services.AddControllers().AddJsonOptions(options =>
+            //services.AddScoped<SessionHelper>();
+            services.AddControllers().AddSessionStateTempDataProvider();
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
             {
-
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
         }
 
@@ -53,10 +59,11 @@ namespace SecretProject.WebApi
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
             app.UseRouting();
-
             app.UseCors(builder => builder.AllowAnyOrigin());
+
+            app.UseSession();
+
             //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

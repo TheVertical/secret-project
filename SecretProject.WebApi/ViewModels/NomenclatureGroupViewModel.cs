@@ -9,6 +9,7 @@ namespace SecretProject.WebApi.ViewModels
     {
         public NomenclatureGroupViewModel(NomenclatureGroup domain)
         {
+            if (domain != null)
             Id = domain.Id;
             Name = domain.Name;
             Parent = domain.Parent;
