@@ -114,7 +114,7 @@ class OrderRegistration extends React.Component {
                                   />
                                   <Form.Control.Feedback>Запомнили!</Form.Control.Feedback>
                                   <Form.Control.Feedback type="invalid">
-                                    {errors.firstName}
+                                  {"Поле необходимо заполнить"}
                                   </Form.Control.Feedback>
                                 </Form.Group>
 
@@ -132,8 +132,8 @@ class OrderRegistration extends React.Component {
 
                                   <Form.Control.Feedback>Запомнили!</Form.Control.Feedback>
                                   <Form.Control.Feedback type="invalid">
-                                    {errors.lastName}
-                                  </Form.Control.Feedback>
+                                  {"Поле необходимо заполнить"}
+                                   </Form.Control.Feedback>
                                 </Form.Group>
                             
                               </Form.Row>
@@ -150,11 +150,11 @@ class OrderRegistration extends React.Component {
                                     isInvalid={!!errors.city}
                                   />
                                   <Form.Control.Feedback type="invalid">
-                                    {errors.city}
-                                  </Form.Control.Feedback>
+                                  {"Поле необходимо заполнить"}
+                                   </Form.Control.Feedback>
                                   
                                 </Form.Group>
-                                <Form.Group as={Col} md="3" controlId="validationFormik04">
+                                <Form.Group as={Col} md="4" controlId="validationFormik04">
                                   <Form.Label>Запасной телефон*</Form.Label>
                                   <Form.Control
                                     type="text"
@@ -166,7 +166,7 @@ class OrderRegistration extends React.Component {
                                     isInvalid={!!errors.state}
                                   />
                                   <Form.Control.Feedback type="invalid">
-                                    {errors.state}
+                                    {"Поле необходимо заполнить"}
                                   </Form.Control.Feedback>
                                 </Form.Group>
                         
@@ -175,10 +175,10 @@ class OrderRegistration extends React.Component {
                                 <Form.Check
                                   required
                                   name="terms"
-                                  label="Agree to terms and conditions"
+                                  label="Согласие на обработку персональных данных"
                                   onChange={handleChange}
-                                  isInvalid={!!errors.terms}
-                                  feedback={errors.terms}
+                                  // isInvalid={!!errors.terms}
+                                  // feedback={errors.terms}
                                   id="validationFormik0"
                                 />
                               </Form.Group>
@@ -199,17 +199,17 @@ class OrderRegistration extends React.Component {
                 <div>
                   <h1>2. Способ получения:</h1>
                   <div className="OrderRegistration_ButtonRow">
-                    <Button>Самовывоз</Button>
-                    <Button>Доставка</Button>
+                    <Button className="OrderRegistration_ButtonStyle">Самовывоз</Button>
+                    <Button className="OrderRegistration_ButtonStyle">Доставка</Button>
                   </div>
                 </div>
                 <div>
                   <h1>3. Способ оплаты:</h1>
                   <span>Выберите способ оплаты:</span>
                   <div className="OrderRegistration_ButtonRow">
-                    <Button>При получении</Button>
-                    <Button>Наличными</Button>
-                    <Button>Картой</Button>
+                    <Button className="OrderRegistration_ButtonStyle">При получении</Button>
+                    <Button className="OrderRegistration_ButtonStyle">Наличными</Button>
+                    <Button className="OrderRegistration_ButtonStyle">Картой</Button>
                   </div>
                   <Form.Check type='checkbox'
                     id={`default`}
@@ -222,7 +222,7 @@ class OrderRegistration extends React.Component {
 
                           
 
-                  <Button type="submit">Оформить заказ</Button>
+                  <Button type="submit" className="OrderRegistration_ButtonStyle">Оформить заказ</Button>
 
                   <p className="OrderRegistration_pStyle">Компания "Олимп-Дентал" предлагает широкий спектр расходных материалов, инструментов,дезинфакторов, стоматологического оборудования, мебели и стоматологических установок ведущих производителей.</p>
 
@@ -231,7 +231,7 @@ class OrderRegistration extends React.Component {
 
             </Col>
 
-            <Col>
+            <Col className="OrderRegistration_SideBarStyle">
               <div className="Cart_ContainerStyle">
                 <h1>Итого</h1>
                 <hr></hr>

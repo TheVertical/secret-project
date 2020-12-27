@@ -60,9 +60,28 @@ button.dropdown-toggle.btn.btn-primary {
     background-color: white;
     border: 0;
 }
-button.dropdown-toggle.btn.btn-primary::after{
-    display: none;
+button.dropdown-toggle.btn.btn-primary:focus {
+    border: 0!important;
 }
+button.dropdown-toggle.btn.btn-primary::after{
+    border:0;
+    margin-left: 0;
+  }
+/* button.dropdown-toggle.btn.btn-primary:not(:disabled):not(.disabled):active:focus:after,button.dropdown-toggle.btn.btn-primary:not(:disabled):not(.disabled).active:focus:after,button.dropdown-toggle.btn.btn-primary:focus:after{
+    position: absolute;
+    top: 16px;
+    right: 0px;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    z-index: -1; 
+}  */
+
+
+button.dropdown-toggle.btn.btn-primary::before{
+    background:white;
+}
+
 /* .dropdown-toggle::after {
     display: inline-block;
     width: 0;
@@ -76,6 +95,8 @@ button.dropdown-toggle.btn.btn-primary::after{
     border-left: .3em solid transparent;
 } */
 .stylesForShopLogoAndProfileLogo{
-    display: contents;
-    
+    display: contents;   
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus{
+    box-shadow: 0 0 0 0 rgba(0,123,255,0); 
 }

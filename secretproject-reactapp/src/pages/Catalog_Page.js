@@ -23,7 +23,6 @@ import CheckBoxArray from "./../hoComplexComponents/CheckBoxArray"
 //Вспомогательные функции
 import { MakeServerQuery } from '../Services/ServerQuery'
 import LoadingPage from '../pages/LoadingPage';
-import { param } from 'jquery'
 import { configureStore } from '@reduxjs/toolkit'
 
 

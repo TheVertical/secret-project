@@ -1,0 +1,7 @@
+.dropdown-menu.show {
+    border-radius: 0rem 0rem 1rem 1rem;
+    inset: 13px auto auto 0px!important;
+    border-top:0;
+    border-color:white;
+    box-shadow: rgba(50, 50, 50, 0.25) 0px 8px 11px 0px;
+}

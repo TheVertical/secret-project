@@ -34,7 +34,8 @@
     margin: 0;
 }
 .Cart_Element_ButtonStyle{
-    font-size: 30px;
+    font-size: 23px;
+    padding: 0 7px;
     height: fit-content;
 }
 
@@ -51,6 +52,7 @@ button.Cart_Element_ClickerBlockButtonStyle.btn.btn-primary{
     background-color:#e9eff5;
     border-radius: 10px;
     display: flex; 
+    margin-left: 10px;
 }
 .Cart_Element_IdSpanStyle{
     color:gray;
