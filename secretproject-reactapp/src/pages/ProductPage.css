@@ -22,6 +22,7 @@
 }
 .ProductPage_TitleH1Style{
     padding-left: 12px;
+    margin-bottom: 15px;
 }
 .ProductPage_InsideRow{
     display: flex;
@@ -83,6 +84,22 @@
 .ProductPage_ComparenSaveButtonStyle{
     background-color: #e9eff5;
     margin-top:20px;
+    color: black;
+    text-decoration: none;
+    border-radius: 15px;
+}
+.ProductPage_ComparenSaveButtonStyle:hover{
+    background: #83bde6;
+    color: white;
+    text-decoration: none;
+}
+.ProductPage_ComparenSaveButtonStyle:focus{
+    text-decoration: none;
+    background-color: #83bde6;
+    color: white;
+}
+.ProductPage_ComparenSaveButtonStyle img{
+    margin-right: 10px;
 }
 nav.nav.nav-tabs {
     width: 100%;
@@ -92,26 +109,52 @@ nav.nav.nav-tabs {
 
 .ProductPage_ClickerBlockSpanStyle{
   font-size:30px;
+  border-color: black;
 }
+.ProductPage_ClickerBlockButtonStyle:first-child{
+    border-color: black;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    text-decoration: none;
+    margin-right: 8px;
+}
+.ProductPage_ClickerBlockButtonStyle:last-child{
+    border-color: black;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    text-decoration: none;
+    margin-left: 8px;
+}
+.ProductPage_ClickerBlockSpanStyle:focus{
+    font-size:30px;
+    border-style:none;
+  }
 .ProductPage_ClickerBlockSpanStyle2{
 color: #005ca0;
 margin-left:20px       
 }
-button.ProductPage_ClickerBlockButtonStyle.btn.btn-primary{
+button.ProductPage_ClickerBlockButtonStyle{
     background-color: #e9eff5;
     border: 0;
     font-size: 25px;
     color:black;
+    border-color: black;
 }
-.ProductPage_ComparenSaveSpanStyle{
-    color:black;
-    margin-left:7px;
-    font-weight: 600px;
-    font-size:25px;
+button.ProductPage_ClickerBlockButtonStyle:hover{
+    background-color: #83bde6;
+    font-size: 25px;
+    color:white;
+    border-color: black;
 }
-button.ProductPage_ComparenSaveButtonStyle.btn.btn-primary{
+button.ProductPage_ClickerBlockButtonStyle:focus{
+    background-color: #83bde6;
+    font-size: 25px;
+    color:white;
+    border-color: black;
+}
+/* button.ProductPage_ComparenSaveButtonStyle.btn.btn-primary{
     background-color:#e9eff5;
-}
+} */
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     color: #495057;
     background-color: #fff;
@@ -136,4 +179,7 @@ button.ProductPage_ButtonSendReviewStyle.btn.btn-primary{
 }
 button.ProductPage_ButtonStyle.btn.active.btn-primary{
     background-color: #83bde6;
+}
+button.ProductPage_ButtonStyle.btn.active.btn-primary:hover{
+    background-color: #0062cc;
 }
