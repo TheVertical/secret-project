@@ -9,7 +9,6 @@ using SecretProject.DAL.Contexts;
 using SecretProject.DAL.DataAccess;
 using SecretProject.Services;
 using SecretProject.VisualElements;
-using SecretProject.WebApi.Services;
 using System;
 using System.Text.Json;
 
@@ -17,6 +16,7 @@ namespace SecretProject.WebApi
 {
     public class Startup
     {
+        private string myAllowedOrigins = "user_policy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -44,6 +44,16 @@ namespace SecretProject.WebApi
                 options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
+                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+            });
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: myAllowedOrigins, builder =>
+                 {
+                     builder.WithOrigins("http://localhost:3000")
+                     .AllowCredentials()
+                     .AllowAnyHeader();
+                 });
             });
         }
 
@@ -60,11 +70,11 @@ namespace SecretProject.WebApi
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseRouting();
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(myAllowedOrigins);
 
             app.UseSession();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
