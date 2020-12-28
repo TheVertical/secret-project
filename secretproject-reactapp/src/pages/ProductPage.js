@@ -11,6 +11,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import { withRouter } from 'react-router-dom'
 import { MakeServerQuery } from '../Services/ServerQuery'
+import LoadingPage from '../pages/LoadingPage';
 
 
 
@@ -53,7 +54,7 @@ class ProductPage extends React.Component {
     }
     render() {
         if (this.state.IsLoading)
-            return ('...Loading');
+            return <LoadingPage/>;
         else {
             return (
                 <div className="mainStyle">

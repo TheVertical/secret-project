@@ -79,6 +79,7 @@ class Layout extends React.Component {
                </Switch>
                {/*Footer*/}
                <div className="globalStyleFooter">
+                  <hr/>
                   {footer}
                </div>
 
