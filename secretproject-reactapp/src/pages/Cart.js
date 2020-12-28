@@ -100,11 +100,11 @@ class Cart extends React.Component {
                 <hr></hr>
                 <div className="Cart_ContainerInsideStyle">
                   <span>Всего к оплате:</span>
-                  <h1>3600 ₽</h1>
+                  <h1 style={{fontSize:"1.5rem"}}>{this.state.FullCost+"0"} ₽</h1>
 
                 </div>
                 <Form.Control placeholder="Введите промокод:" />
-                <NavLink to="/seventh">
+                <NavLink to="/order">
                   <Button className="Cart_ButtonStyle">Перейти к оплате</Button>
                 </NavLink>
               </div>
