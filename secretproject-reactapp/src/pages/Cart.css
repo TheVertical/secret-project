@@ -19,3 +19,9 @@ input.form-control {
 ol.breadcrumb {
     background-color: #e9eff5;
 }
+.Cart_SideBarColumnStyle{
+
+}
+.col.Cart_SideBarColumnStyle{
+    justify-content: start;
+}
