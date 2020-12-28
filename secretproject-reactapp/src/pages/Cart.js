@@ -16,7 +16,7 @@ class Cart extends React.Component {
     super();
     this.state = {
       FullCost: 0,
-      CartLines: undefined
+      CartLines: []
     }
   }
   componentDidMount() {
@@ -87,7 +87,7 @@ class Cart extends React.Component {
                 <hr></hr>
                 <div className="Cart_ContainerInsideStyle">
                   <span>Стоимость</span>
-                  <span>2000 ₽</span>
+                  <span>{this.state.FullCost}</span>
                 </div>
                 {/* <div className="Cart_ContainerInsideStyle">
                   <span>Скидка</span>
@@ -95,7 +95,7 @@ class Cart extends React.Component {
                 </div> */}
                 <div className="Cart_ContainerInsideStyle">
                   <span>Кол-во товаров</span>
-                  <span>3</span>
+                  <span>{this.state.CartLines.length}</span>
                 </div>
                 <hr></hr>
                 <div className="Cart_ContainerInsideStyle">
