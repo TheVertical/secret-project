@@ -25,6 +25,12 @@ namespace SecretProject.WebApi.Controllers
             this.visualRedactor = visualRedactor;
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
+        [HttpGet]
+        [Route("settings")]
+        public IActionResult GetSettings()
+        {
+            return Ok();
+        }
         [Route("visual/clear")]
         public IActionResult Clear([FromQuery]string page)
         {

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject.DataAccess;
-using SecretProject.BusinessProject.Models;
 using SecretProject.BusinessProject.Models.Good;
 using SecretProject.VisualElements;
 using SecretProject.WebApi.Infrastructure;
@@ -37,49 +36,72 @@ namespace SecretProject.WebApi.Controllers
         public async Task<IActionResult> GetCartLineList()
         {
             Cart cart = GetCart();
-            var lines = cart.Lines;
-            return visualRedactor.GetFormattedElement(lines) as JsonResult;
+            var lines = cart.Lines.ToList();
+            List<CartLineViewModel> cartLines = new List<CartLineViewModel>();
+            foreach (var l in lines)
+            {
+                Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(l.NomenclatureId);
+                if (nomenclature != null)
+                {
+                    NomenclatureViewModel viewModel = new NomenclatureViewModel(nomenclature);
+                    CartLineViewModel line = new CartLineViewModel(viewModel, l.Amount);
+                    cartLines.Add(line);
+                }
+            }
+            CartResult result = new CartResult
+            {
+                FullCost = cart.ComputeToValue(),
+                Lines = cartLines
+            };
+
+            return visualRedactor.GetFormattedElement(result) as JsonResult;
         }
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> AddToCart([FromQuery]int nomenclatureId,[FromQuery]int amount)
+        public async Task<IActionResult> AddToCart([FromQuery] int nomenclatureId, [FromQuery] int amount)
         {
+            IActionResult result = null;
             Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(nomenclatureId);
             if (nomenclature != null)
             {
                 Cart cart = GetCart();
                 cart.AddItem(nomenclature, amount);
-                SaveCart(cart);
+                SaveCart(cart,out result);
             }
             else
                 return BadRequest("Nomenclature was not found!");
-            return Ok();
+            return result;
         }
 
         [HttpPost]
         [Route("remove")]
         public async Task<IActionResult> RemoveLineFromCart([FromQuery] int nomenclatureId)
         {
+            IActionResult result = null;
             Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(nomenclatureId);
             if (nomenclature != null)
             {
                 Cart cart = GetCart();
                 cart.RemoveLine(nomenclature);
-                SaveCart(cart);
+                SaveCart(cart,out result);
             }
             else
                 return BadRequest("Nomenclature was not found!");
-            return Ok();
+            return result;
         }
 
         private Cart GetCart()
         {
+            logger.LogInformation(HttpContext.Session.Id);
             Cart cart = sessionHelper.Get<Cart>() ?? new Cart();
             return cart;
         }
-        private void SaveCart(Cart cart)
+        private void SaveCart(Cart cart,out IActionResult result)
         {
-            sessionHelper.Save<Cart>(cart);
+            if (sessionHelper.Save<Cart>(cart))
+                result = Ok();
+            else
+                result = BadRequest();
         }
     }
 }
