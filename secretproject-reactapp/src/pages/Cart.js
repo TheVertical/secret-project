@@ -52,6 +52,7 @@ class Cart extends React.Component {
            IsPopular={l.Model.IsPopular} />
       )
       count++;
+      
     });
     return array;
   }

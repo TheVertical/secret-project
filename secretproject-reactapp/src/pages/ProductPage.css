@@ -26,7 +26,7 @@
 }
 .ProductPage_InsideRow{
     display: flex;
-    align-items: baseline;
+    align-items: center;
     margin: 20px 0;
 }
 .ProductPage_StarStyle{
@@ -180,6 +180,47 @@ button.ProductPage_ButtonSendReviewStyle.btn.btn-primary{
 button.ProductPage_ButtonStyle.btn.active.btn-primary{
     background-color: #83bde6;
 }
-button.ProductPage_ButtonStyle.btn.active.btn-primary:hover{
-    background-color: #0062cc;
+
+
+/* Стилизация звездочек */
+.rating-area {
+	overflow: hidden;
+	width: 265px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.rating-area:not(:checked) > input {
+	display: none;
+}
+.rating-area:not(:checked) > label {
+	float: right;
+	width: 29px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 35px;
+	line-height: 32px;
+	color: lightgrey;
+	/* text-shadow: 1px 1px #bbb; */
+}
+.rating-area:not(:checked) > label:before {
+	content: '★';
+}
+.rating-area > input:checked ~ label {
+	color: #83bde6;
+}
+.rating-area:not(:checked) > label:hover,
+.rating-area:not(:checked) > label:hover ~ label {
+	color: #83bde6;
+}
+.rating-area > input:checked + label:hover,
+.rating-area > input:checked + label:hover ~ label,
+.rating-area > input:checked ~ label:hover,
+.rating-area > input:checked ~ label:hover ~ label,
+.rating-area > label:hover ~ input:checked ~ label {
+	color: #83bde6;
+}
+.rate-area > label:active {
+	position: relative;
 }
