@@ -12,6 +12,7 @@ import VisualFactory from '../basedComponents/VisualFactory';
 import Cart from '../pages/Cart';
 import OrderRegistration from '../pages/OrderRegistration';
 import LoadingPage from '../pages/LoadingPage';
+import "./LayoutElements/Footer.css"
 //Вспомогательные функции
 import { MakeServerQuery,GetSettings } from  '../Services/ServerQuery'
 

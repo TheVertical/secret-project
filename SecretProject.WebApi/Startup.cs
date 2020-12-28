@@ -33,8 +33,8 @@ namespace SecretProject.WebApi
             services.AddScoped<JsonSerializerOptions>(f => new JsonSerializerOptions() { WriteIndented = true, });
             services.AddScoped<IVisualRedactor, VisualRedactor>();
             //Configuration.
-            services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
-            services.AddScoped<sBaseContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
+            services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbRemote")));
+            services.AddScoped<sBaseContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbRemote")));
             services.AddScoped<IRepository, SqlRepository>();
             //services.AddScoped<SessionHelper>();
             services.AddControllers().AddSessionStateTempDataProvider();

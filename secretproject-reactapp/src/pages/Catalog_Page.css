@@ -45,6 +45,7 @@
 .Catalog_Page_AccordionStyle{
     position:sticky;
     top:20px;
+    margin-top:20px;
 }
 /* стилизация сайдбара */
 .card-header {
@@ -69,7 +70,7 @@ input.Catalog_Page_InputStyle.form-control{
     margin-top:10px;
 }
 .Catalog_Page_SidebarSpanStyle{
-    font-size:28px;
+    font-size:27px;
 }
 .Catalog_Page_SideBarBottomButton{
     display:flex;
