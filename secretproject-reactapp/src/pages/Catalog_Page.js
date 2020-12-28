@@ -159,7 +159,7 @@ class Catalog_Page extends React.Component {
             <hr />
             <Row className="Catalog_Page_TitleRow">
               <span>Найдено товаров: {nomenclatureResult.TotalFound}</span>
-              <div className="Catalog_Page_TitleRowDiv">
+              {/* <div className="Catalog_Page_TitleRowDiv">
                 <span>Сортировать по: </span>
                 <DropdownButton as={ButtonGroup} title={this.state.sortStyle} className="Catalog_Page_SortButtonStyle" >
                   <DropdownItem onClick={() => { this.setState({ sortStyle: "Убыванию цены" }) }}>Убыванию цены</DropdownItem>
@@ -171,7 +171,7 @@ class Catalog_Page extends React.Component {
                 <div></div>
                 <button onClick={this.props.onSetInline}>Inline</button>
                 <button onClick={this.props.onSetBlock}>Block</button>
-              </div>
+              </div> */}
             </Row>
             <Row>
               <Col col="3">

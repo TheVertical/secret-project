@@ -135,7 +135,7 @@ class MainPage extends React.Component {
             <ProductCardArray></ProductCardArray>
           </Row> */}
           <Row className="MainPage_LinkButtonStyle">
-            <NavLink to="/Catalog">
+            <NavLink to="/catalog/category/1">
               <Button className="MainPage_ToCatalogButtonStyle">Перейти к каталогу</Button>
             </NavLink>
           </Row>
@@ -175,7 +175,7 @@ class MainPage extends React.Component {
                 </p>
                 <p>Компания "Олимп-Дентал" предлагает широкий спектр расходных материалов, инструментов,дезинфакторов, стоматологического оборудования, мебели и стоматологических установок ведущих производителей.</p>
                 <p>Многолетний опыт нашей работы, высокая квалификация и доброжелательность продавцов-консультантов помогут Вам определиться с выбором и получить ответы на интересующие Вас вопросы.</p>
-                <NavLink to="/second">
+                <NavLink to="/">
                   <Button>узнать больше...</Button>
                 </NavLink>
               </Col>
