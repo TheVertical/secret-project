@@ -20,9 +20,10 @@ class Block extends React.Component {
                     {this.state.VisualElements.map(obj => {
                         let justify = obj.JustyfyContent == undefined ? " justify-content-center" : " justify-content-" + obj.JustyfyContent;
                         let align = obj.AlignContent == undefined ? " align-items-center" : " align-items-" + obj.AlignContent;
+                        let NeededColumns = +obj.NeededColumns == 0 ? "auto" : obj.NeededColumns;
                         count++;
                         return (
-                            <Col key={count} col={obj.Type == 'Block' ? "col-12" : "col-sm-" + obj.NeededColumns}
+                            <Col key={count} col={obj.Type == 'Block' ? "col-12" : "col-sm-" + NeededColumns}
                                 className={"d-flex" + justify + align}>
                                 {VisualElement.renderVisualElement(obj)}
                             </Col>);

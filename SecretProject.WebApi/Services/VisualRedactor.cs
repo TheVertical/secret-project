@@ -112,7 +112,7 @@ namespace SecretProject.Services
                     OpeningHours = companyContacts.WorkHours,
                     Phone = companyContacts.WorkPhone.ToString(),
                     IsHeaderStyle = true
-                };
+                }; 
                 header.AddVisualElement(contactblock);
             }
             #endregion
@@ -123,21 +123,21 @@ namespace SecretProject.Services
             var categories = repository.GetAll<NomenclatureGroup, bool>(nom => nom.Parent == null, true);
             DropdownMenu dropdownMenu = CreateDropDownMenu(categories);
 
-            ComboBoxButton catalog = new ComboBoxButton { Id = 0, Title = "Каталог", Action = null, NeededColumns = 2, DropdownMenu = dropdownMenu };
+            ComboBoxButton catalog = new ComboBoxButton { Id = 0, Title = "Каталог", Action = null, NeededColumns = 0, DropdownMenu = dropdownMenu };
             grayLine.AddVisualElement(catalog);
 
-            Button learn = new Button { Id = 1, Title = "Обучение", NeededColumns = 2 };
+            Button learn = new Button { Id = 1, Title = "Обучение", NeededColumns = 0 };
             grayLine.AddVisualElement(learn);
 
-            Button impl = new Button { Id = 2, Title = "Имплантация", NeededColumns = 2 };
+            Button impl = new Button { Id = 2, Title = "Имплантация", NeededColumns = 0 };
             grayLine.AddVisualElement(impl);
 
-            VisualSearch visualSearch = new VisualElements.Elements.VisualSearch { Id = 3, NeededColumns = 4 };
+            VisualSearch visualSearch = new VisualElements.Elements.VisualSearch { Id = 3, NeededColumns = 6 };
             grayLine.AddVisualElement(visualSearch);
 
-            Button basket = new Button { Id = 4, Image = "./Images/shopLogo.png", Action = "/cart", NeededColumns = 1 };
+            Button basket = new Button { Id = 4, Image = "./Images/shopLogo.png", Action = "/cart", NeededColumns = 0 };
             grayLine.AddVisualElement(basket);
-            Button auth = new Button { Id = 5, Image = "./Images/profileLogo.png", Action = "/account", NeededColumns = 1 };
+            Button auth = new Button { Id = 5, Image = "./Images/profileLogo.png", Action = "/account", NeededColumns = 0 };
             grayLine.AddVisualElement(auth);
 
             #endregion
