@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button'
 import Badge from 'react-bootstrap/Badge'
 // import {connect} from "react-redux"
 import './CartElement.css'
+import { connect } from "react-redux"
+import "../pages/ProductPage.css"
 // import rootStore from "../redux/rootStore"
 // import rootStore from "../redux/rootReducer"
 
@@ -48,10 +50,10 @@ class CartElement extends React.Component {
         <div className="Cart_Element_CenterBlock">
           <h1 className="Cart_Element_H1Style">{this.state.Title}</h1>
           <div className="Cart_Element_InsideCenterBlock">
-            <div className="Cart_Element_ClickerBlockStyle">
-              <Button onClick={this.doDecrease.bind(this)} className="Cart_Element_ClickerBlockButtonStyle">-</Button>
-              <span className="Cart_Element_ClickerBlockSpanStyle">{this.state.Amount}</span>
-              <Button onClick={this.doIncrease.bind(this)} className="Cart_Element_ClickerBlockButtonStyle">+</Button>
+            <div className="ProductPage_ClickerBlockStyle">
+              <Button variant="link" onClick={this.doDecrease.bind(this)} className="ProductPage_ClickerBlockButtonStyle">-</Button>
+              <span className="ProductPage_ClickerBlockSpanStyle">{this.state.Amount}</span>
+              <Button variant="link" onClick={this.doIncrease.bind(this)} className="ProductPage_ClickerBlockButtonStyle">+</Button>
             </div>
             <div className="Cart_Element_InsideCenterInlineBlock">
               <h1 className="Cart_Element_H1Style">{this.state.OriginalPrice} ₽</h1>
@@ -59,20 +61,16 @@ class CartElement extends React.Component {
             </div>
           </div>
         </div>
-        <Button className="Cart_Element_ButtonStyle">x</Button>
+        <Button className="Cart_Element_ButtonStyle" onClick={() => { this.props.onDelete(this.props.Count) }}>x</Button>
       </div>
     )
   }
 
 }
-// function mapStatetoProps(state){
-//   return{
-//     isInline:state.isInline,
-//     width:state.width,
-//     ImageStyle:state.ImageStyle,
-//     Style:state.Style
-//   }
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    onDelete: (value) => dispatch({ type: "DeleteTrue", key: value }),
+  }
+}
 
-// export default connect(mapStatetoProps)(MiniProductCard)
-export default CartElement
+export default connect(null, mapDispatchToProps)(CartElement)
