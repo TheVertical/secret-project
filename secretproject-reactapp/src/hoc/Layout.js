@@ -13,10 +13,9 @@ import Cart from '../pages/Cart';
 import OrderRegistration from '../pages/OrderRegistration';
 import LoadingPage from '../pages/LoadingPage';
 //Вспомогательные функции
-import { MakeServerQuery } from  '../Services/ServerQuery'
+import { MakeServerQuery,GetSettings } from  '../Services/ServerQuery'
 
 //const Query = new ServerQuery();
-
 
 class Layout extends React.Component {
    constructor(props) {
@@ -29,17 +28,16 @@ class Layout extends React.Component {
    }
 
    componentDidMount() {
+      this.getSettings();
       this.getBackbone();
    }
-
+   async getSettings(){
+      let responce = await GetSettings();
+     if (responce && responce.success) {
+       console.info('Settings are success setted!');
+     }
+   }
    async getBackbone() {
-      //let url = 'https://secrethost.azurewebsites.net/visual/backbone';
-      //let response = await fetch(url);
-      //if (!response.ok) { alert(response.status) }
-      //else {
-      //   let json = await response.json();
-      //   this.setState({ Downloaded: json, IsLoading: false });
-     //}
      let responce = await MakeServerQuery('GET', "/visual/backbone");
      if (responce && responce.success) {
        this.setState({ Downloaded: responce.data, IsLoading: false });
@@ -72,7 +70,7 @@ class Layout extends React.Component {
                   <Route path="/catalog/product/:id" render={() => <ProductPage></ProductPage>}></Route>
                   <Route exact path="/catalog" render={(props) => <Catalog_Page {...props}></Catalog_Page>}></Route>
                   <Route exact path="/catalog/brend/:id" render={(props) => <Catalog_Page {...props}></Catalog_Page>}></Route>
-                  <Route path="/catalog/category/:id" exact render={() => <Catalog_Page></Catalog_Page>}></Route>
+                  <Route exact path="/catalog/category/:id" render={() => <Catalog_Page></Catalog_Page>}></Route>
                   <Route path="/pages/news" exact render={() => <SuccessfulRegistration></SuccessfulRegistration>}></Route>
                   <Route path="/cart" exact render={() => <Cart></Cart>}></Route>
                   <Route path="/" exact render={() => <Catalog_Page></Catalog_Page>}></Route>

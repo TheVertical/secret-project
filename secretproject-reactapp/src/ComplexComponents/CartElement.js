@@ -17,11 +17,10 @@ class CartElement extends React.Component {
     this.state = {
       Id: props.Id,
       Title: props.Title,
-      Price: props.Price,
+      OriginalPrice: props.OriginalPrice,
       ImageUrl: props.ImageUrl,
       Type: props.Type,
-      VisualElements: [],
-      Count: 0
+      Amount: props.Amount
     }
   }
   //Функции React
@@ -29,13 +28,13 @@ class CartElement extends React.Component {
   //Собственные функции класса
   doIncrease() {
     this.setState((state) => {
-      return { Count: state.Count + 1 }
+      return { Amount: state.Amount + 1 }
     });
   }
   doDecrease() {
     this.setState((state) => {
-      if (state.Count > 0)
-        return { Count: state.Count - 1 }
+      if (state.Amount > 0)
+        return { Amount: state.Amount - 1 }
     });
   }
 
@@ -51,7 +50,7 @@ class CartElement extends React.Component {
           <div className="Cart_Element_InsideCenterBlock">
             <div className="Cart_Element_ClickerBlockStyle">
               <Button onClick={this.doDecrease.bind(this)} className="Cart_Element_ClickerBlockButtonStyle">-</Button>
-              <span className="Cart_Element_ClickerBlockSpanStyle">{this.state.Count}</span>
+              <span className="Cart_Element_ClickerBlockSpanStyle">{this.state.Amount}</span>
               <Button onClick={this.doIncrease.bind(this)} className="Cart_Element_ClickerBlockButtonStyle">+</Button>
             </div>
             <div className="Cart_Element_InsideCenterInlineBlock">

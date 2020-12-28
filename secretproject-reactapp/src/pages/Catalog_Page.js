@@ -12,27 +12,23 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownItem from 'react-bootstrap/esm/DropdownItem'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Pagination from 'react-bootstrap/Pagination'
-import PageItem from 'react-bootstrap/PageItem'
-import MiniProductCard from "../ComplexComponents/MiniProductCard"
 import Form from 'react-bootstrap/Form'
 import CheckBoxArray from "./../hoComplexComponents/CheckBoxArray"
 //Вспомогательные функции
 import { MakeServerQuery } from '../Services/ServerQuery'
 import LoadingPage from '../pages/LoadingPage';
-import { param } from 'jquery'
-import { configureStore } from '@reduxjs/toolkit'
+import MiniProductCard from "./../ComplexComponents/MiniProductCard"
 
 
 class Catalog_Page extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Id: 0,
       location: props.location,
+      Id: Number(props.match.params.id),
       NomenclatureGroup: undefined,
       NomenclatureResult: undefined,
       sortStyle: "Убыванию цены",
@@ -41,50 +37,43 @@ class Catalog_Page extends React.Component {
       itemsCount: 100,
       IsLoading: false,
       Query: this.props.location.transmittedData,
+      callBackCard: undefined
     }
     this.onRouteChanged = this.OnRouteChanged.bind(this);
-    props.history.listen((location, action) => {
-      console.info(`The current URL is ${location.pathname}${location.search}${location.hash}`)
-      console.info(`The last navigation action was ${action}`)
-    })
-  }
-  OnRouteChanged(params) {
-    this.setState({ Id: Number(params.Id) });
-    this.getNomenclaturesGroup();
-    this.getNomenclatures();
-    
-  }
-
-  componentDidMount() {
-    // Catalog_Page.addChangeListener(this.onIdChange);
-    this.getNomenclaturesGroup();
-    this.getNomenclatures();
 
   }
-  componentDidUpdate(prevProps) {
-    console.debug('loc',this.props.location);
-    console.debug('prev loc',prevProps.location);
-
-    console.debug('match',this.props.match.params.id);
-    console.debug('prev match',prevProps.match.params.id);
-    if (this.props.location !== prevProps.location) {
-      this.onRouteChanged(this.props.match.params);
+  OnRouteChanged(location) {
+    if (location.state && location.state.Id != undefined) {
+      let id = location.state.Id;
+      this.getNomenclatureGroup(id);
+      this.getNomenclatures(id);
     }
   }
-  async getNomenclaturesGroup() {
-    console.debug(this.state.Id);
-    let responce = await MakeServerQuery('GET', "/catalog/categories/" + this.state.Id);
+  componentDidMount() {
+    this.unlisten = this.props.history.listen((location, action) => {
+      this.onRouteChanged(location);
+    });
+    if (this.state.Id != undefined) {
+      let id = this.state.Id;
+      this.getNomenclatureGroup(id);
+      this.getNomenclatures(id);
+    }
+  }
+  componentWillUnmount(){
+    this.unlisten();
+  }
+  async getNomenclatureGroup(id) {
+    let responce = await MakeServerQuery('GET', "/catalog/categories/" + id);
     if (responce && responce.success) {
-      console.debug('Responce', responce.data)
       this.setState({ NomenclatureGroup: responce.data });
     }
     else {
       this.setState({ NomenclatureGroup: undefined });
     }
   }
-  async getNomenclatures() {
+  async getNomenclatures(id) {
     let filter = {
-      categoryId: this.state.Id,
+      categoryId: id,
       count: 15
     };
     let query = this.buildQuery(filter);
@@ -128,6 +117,27 @@ class Catalog_Page extends React.Component {
       query = query.slice(0, query.length - 1);
     return query;
   }
+
+  UpdateCardArray(NomenclatureCollection) {
+    let ar = undefined;
+    if (NomenclatureCollection && NomenclatureCollection.length > 0)
+      ar = NomenclatureCollection.map((item) =>
+        <Col key={item.Id} className="ProductCardArray_Col">
+          <MiniProductCard
+            key={item.Id}
+            Id={item.Id}
+            ImageUrl={item.ImageUrl}
+            Title={item.Title}
+            OriginalPrice={item.OriginalPrice}
+            Description={item.Description}
+            IsDiscouted={item.IsDiscouted}
+            IsInStock={item.IsInStock}
+            IsNew={item.IsNew}
+            IsPopular={item.IsPopular} />
+        </Col>
+      );
+    return ar;
+  }
   render() {
     let nomenclatureGroup = this.state.NomenclatureGroup == undefined ? <LoadingPage></LoadingPage> : this.state.NomenclatureGroup;
     let nomenclatureResult = this.state.NomenclatureResult == undefined ? <LoadingPage></LoadingPage> : this.state.NomenclatureResult;
@@ -152,10 +162,10 @@ class Catalog_Page extends React.Component {
               <div className="Catalog_Page_TitleRowDiv">
                 <span>Сортировать по: </span>
                 <DropdownButton as={ButtonGroup} title={this.state.sortStyle} className="Catalog_Page_SortButtonStyle" >
-                  <DropdownItem  onClick={() => { this.setState({ sortStyle: "Убыванию цены" }) }}>Убыванию цены</DropdownItem>
-                  <DropdownItem  onClick={() => { this.setState({ sortStyle: "Возрастанию цены" }) }}>Возрастанию цены</DropdownItem>
-                  <DropdownItem  onClick={() => { this.setState({ sortStyle: "По новинкам" }) }}>По новинкам</DropdownItem>
-                  <DropdownItem  onClick={() => { this.setState({ sortStyle: "По рейтингу" }) }}>По рейтингу</DropdownItem>
+                  <DropdownItem onClick={() => { this.setState({ sortStyle: "Убыванию цены" }) }}>Убыванию цены</DropdownItem>
+                  <DropdownItem onClick={() => { this.setState({ sortStyle: "Возрастанию цены" }) }}>Возрастанию цены</DropdownItem>
+                  <DropdownItem onClick={() => { this.setState({ sortStyle: "По новинкам" }) }}>По новинкам</DropdownItem>
+                  <DropdownItem onClick={() => { this.setState({ sortStyle: "По рейтингу" }) }}>По рейтингу</DropdownItem>
                 </DropdownButton>
                 <div className="Catalog_Page_SVG_SpisokStyle"></div>
                 <div></div>
@@ -224,8 +234,10 @@ class Catalog_Page extends React.Component {
               </Col>
 
               <Col className="Catalog_Page_Content">
-                <ProductCardArray NomenclatureCollection={nomenclatureResult.Nomenclatures}></ProductCardArray>
-                <Pagination>
+                <Row>
+                  {this.UpdateCardArray(this.state.NomenclatureResult.Nomenclatures)}
+                </Row>
+                < Pagination >
                   <Pagination.Prev onClick={() => {
                     let number = this.state.pagActive
                     this.GetNewPageInPagination(--number)
@@ -239,7 +251,7 @@ class Catalog_Page extends React.Component {
               </Col>
             </Row>
           </Container>
-        </div>
+        </div >
       )
   }
 

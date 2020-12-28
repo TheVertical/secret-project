@@ -29,7 +29,7 @@ class ComboBoxButton extends React.Component {
       visualItem = <DropdownButton title={item.Title} as={NavLink} to={"/catalog"}>{dropdownMenu}</DropdownButton>
     }
     else {
-      visualItem = <Dropdown.Item key={this.count} as={NavLink} to={"/" + item.Route}>{item.Title}</Dropdown.Item>
+      visualItem = <Dropdown.Item key={this.count} as={NavLink} to={{ pathname: "/" + item.Route, state: { Id: Number(item.Route[item.Route.length - 1]) } }}>{item.Title}</Dropdown.Item>
       this.count++;
     }
     return (visualItem);

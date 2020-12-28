@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 import './ProductCard.css'
 import rootStore from "../redux/rootStore"
 import { withRouter } from 'react-router-dom'
+import { MakeSimpleServerQuery } from '../Services/ServerQuery'
 
 // import rootStore from "../redux/rootReducer"
 
@@ -42,6 +43,17 @@ class MiniProductCard extends React.Component {
     this.onClick_MiniCard = this.OnClick_MiniCard.bind(this);
     this.setInlineStyle = this.SetInlineStyle.bind(this);
     this.returnSubString = this.ReturnSubString.bind(this);
+
+    this.addNomenclatureToCart = this.AddNomenclatureToCart.bind(this);
+  }
+  async AddNomenclatureToCart() {
+    let query = '/cart/add?nomenclatureId=' + this.state.Id + '&' + 'count=1';
+    let responce = await MakeSimpleServerQuery('POST', query);
+    if (responce != undefined && responce.success) {
+      console.debug('Nomenclature with id ' + this.state.Id + ' was success added!');
+    }
+    else
+      alert('Error. Something was happend.\n Nomenclature with id ' + this.state.Id + ' was not added!');
   }
   SetInlineStyle() {
     if (this.props.isInline) {
@@ -70,7 +82,7 @@ class MiniProductCard extends React.Component {
     let store = rootStore()
     store.subscribe(() => { this.SetInlineStyle() })
     return (
-      <Card style={{ width: this.state.width, margin:"20px 0" }} className={this.state.Style}>
+      <Card style={{ width: this.state.width, margin: "20px 0" }} className={this.state.Style}>
         {/* {this.SetInlineStyle()} */}
         <Badge pill variant="primary">
           Есть в наличии
@@ -85,7 +97,7 @@ class MiniProductCard extends React.Component {
           <Card.Title>
             {this.state.OriginalPrice + "₽"}
           </Card.Title>
-          <Button variant="primary" className="ProductCard_ButtonStyle">Купить</Button>
+          <Button variant="primary" onClick={this.addNomenclatureToCart} className="ProductCard_ButtonStyle">Купить</Button>
         </Card.Body>
 
       </Card>

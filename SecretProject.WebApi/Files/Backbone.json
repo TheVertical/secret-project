@@ -219,7 +219,7 @@
       {
         "Title": null,
         "Image": "./Images/shopLogo.png",
-        "Action": "/basket",
+        "Action": "/cart",
         "Id": 4,
         "Type": "Button",
         "NeededColumns": 1,
