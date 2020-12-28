@@ -37,7 +37,7 @@ class ProductPage extends React.Component {
             this.state.history.push('/404');
     }
     async AddNomenclatureToCart() {
-        let query = '/cart/add?nomenclatureId=' + this.state.Id + '&' + 'count='+ this.state.count;
+        let query = '/cart/add?nomenclatureId=' + this.state.Id + '&' + 'amount='+ this.state.count;
         let responce = await MakeSimpleServerQuery('POST', query);
         if (responce != undefined && responce.success) {
             console.debug('Nomenclature with id ' + this.state.Id + ' was success added!');
