@@ -25,5 +25,6 @@ namespace SecretProject.VisualElements.Elements.Common
         /// Расположение по оси Y
         /// </summary>
         public string AlignContent { get; set; }
+        public string CssStyle { get; set; }
     }
 }

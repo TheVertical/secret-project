@@ -133,7 +133,7 @@ namespace SecretProject.Services
             VisualSearch visualSearch = new VisualElements.Elements.VisualSearch { Id = 3, NeededColumns = 4 };
             grayLine.AddVisualElement(visualSearch);
 
-            Button basket = new Button { Id = 4, Image = "./Images/shopLogo.png", Action = "/basket", NeededColumns = 1 };
+            Button basket = new Button { Id = 4, Image = "./Images/shopLogo.png", Action = "/cart", NeededColumns = 1 };
             grayLine.AddVisualElement(basket);
             Button auth = new Button { Id = 5, Image = "./Images/profileLogo.png", Action = "/account", NeededColumns = 1 };
             grayLine.AddVisualElement(auth);
@@ -143,12 +143,6 @@ namespace SecretProject.Services
 
             Block footer = new Block();
             #region блоки
-
-            Block stayWithUsLine = new Block();
-            footer.AddVisualElement(stayWithUsLine);
-
-            Label stayOnLink = new Label() { Id = 0, NeededColumns = 12, Text = "Оставайтесь на связи" };
-            stayWithUsLine.AddVisualElement(stayOnLink);
 
             Block linksBlock = new Block();
             footer.AddVisualElement(linksBlock);
@@ -207,10 +201,11 @@ namespace SecretProject.Services
             var _contactblock = new ContactBlock()
             {
                 Id = 0,
-                NeededColumns = 2,
+                NeededColumns = 3,
                 Image = "./Images/LogoDown.png",
                 OpeningHours = "Пн-Чт:10:00 - 18:00, Пт:10:00 - 17:00",
-                Phone = "8 (812) 388-4538"
+                Phone = "8 (812) 388-4538",
+                CssStyle = "ContactBlock_FooterStyle"
             };
             linksBlock.AddVisualElement(_contactblock);
             #endregion

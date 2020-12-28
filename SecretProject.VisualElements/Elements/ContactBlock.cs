@@ -12,5 +12,6 @@ namespace SecretProject.VisualElements.Elements
         public string Phone { get; set; }
         public string OpeningHours { get; set; }
         public string Image { get; set; }
+        public bool IsHeaderStyle { get; set; }
     }
 }
