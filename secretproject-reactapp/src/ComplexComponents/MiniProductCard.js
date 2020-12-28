@@ -47,7 +47,7 @@ class MiniProductCard extends React.Component {
     this.addNomenclatureToCart = this.AddNomenclatureToCart.bind(this);
   }
   async AddNomenclatureToCart() {
-    let query = '/cart/add?nomenclatureId=' + this.state.Id + '&' + 'count=1';
+    let query = '/cart/add?nomenclatureId=' + this.state.Id + '&' + 'amount=1';
     let responce = await MakeSimpleServerQuery('POST', query);
     if (responce != undefined && responce.success) {
       console.debug('Nomenclature with id ' + this.state.Id + ' was success added!');

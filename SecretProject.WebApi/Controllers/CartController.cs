@@ -61,6 +61,8 @@ namespace SecretProject.WebApi.Controllers
         public async Task<IActionResult> AddToCart([FromQuery] int nomenclatureId, [FromQuery] int amount)
         {
             IActionResult result = null;
+            if (amount < 1)
+                return BadRequest();
             Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(nomenclatureId);
             if (nomenclature != null)
             {
