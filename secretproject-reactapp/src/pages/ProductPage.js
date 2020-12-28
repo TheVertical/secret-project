@@ -12,6 +12,7 @@ import Tab from 'react-bootstrap/Tab'
 import { withRouter } from 'react-router-dom'
 import { MakeServerQuery } from '../Services/ServerQuery'
 import LoadingPage from '../pages/LoadingPage';
+import { MakeSimpleServerQuery } from '../Services/ServerQuery'
 
 
 
@@ -21,10 +22,12 @@ class ProductPage extends React.Component {
         super(props);
         this.state = {
             Id: props.match.params.id,
-            count: 0,
+            count: 1,
             Nomenclature: undefined,
             IsLoading: true,
         }
+        this.addNomenclatureToCart = this.AddNomenclatureToCart.bind(this);
+
     }
 
     componentDidMount() {
@@ -33,7 +36,15 @@ class ProductPage extends React.Component {
         else
             this.state.history.push('/404');
     }
-
+    async AddNomenclatureToCart() {
+        let query = '/cart/add?nomenclatureId=' + this.state.Id + '&' + 'count='+ this.state.count;
+        let responce = await MakeSimpleServerQuery('POST', query);
+        if (responce != undefined && responce.success) {
+            console.debug('Nomenclature with id ' + this.state.Id + ' was success added!');
+        }
+        else
+            alert('Error. Something was happend.\n Nomenclature with id ' + this.state.Id + ' was not added!');
+    }
     async LoadNomenclature(id) {
         let responce = await MakeServerQuery('GET', "/catalog/product/" + id);
         if (responce && responce.success) {
@@ -48,13 +59,13 @@ class ProductPage extends React.Component {
     }
     doDecrease() {
         this.setState((state) => {
-            if (state.count > 0)
+            if (state.count > 1)
                 return { count: state.count - 1 }
         });
     }
     render() {
         if (this.state.IsLoading)
-            return <LoadingPage/>;
+            return <LoadingPage />;
         else {
             return (
                 <div className="mainStyle">
@@ -62,9 +73,9 @@ class ProductPage extends React.Component {
                         <Container>
                             <Row>
                                 <Breadcrumb>
-                                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                                    <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-                                        Library
+                                    <Breadcrumb.Item as={NavLink} to="/">Home</Breadcrumb.Item>
+                                    <Breadcrumb.Item as={NavLink} to="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
+                                        Каталог
                                  </Breadcrumb.Item>
                                     <Breadcrumb.Item active>Data</Breadcrumb.Item>
                                 </Breadcrumb>
@@ -76,8 +87,8 @@ class ProductPage extends React.Component {
                                 <Row className="ProductPage_OrderBlockStyle">
                                     <Col>
                                         <img src={this.state.Nomenclature.ImageUrl} className="ProductPage_ImageStyle"></img>
-                                        <span>Производитель:<NavLink to={{pathname:"/catalog",props:'catalog/product?manufacturerId=2'}}>
-                                        {this.state.Nomenclature.Manufacturer.Name ?? "error"}
+                                        <span>Производитель:<NavLink to={{ pathname: "/catalog", props: 'catalog/product?manufacturerId=2' }}>
+                                            {this.state.Nomenclature.Manufacturer.Name ?? "error"}
                                         </NavLink></span>
                                     </Col>
                                     <Col xs lg="4">
@@ -85,25 +96,25 @@ class ProductPage extends React.Component {
                                         <span className="ProductPage_IdSpanStyle">Код: 02641</span>
                                         <div className="ProductPage_InsideRow">
                                             <div className="ProductPage_ClickerBlockStyle">
-                                                <Button onClick={this.doDecrease.bind(this)} className="ProductPage_ClickerBlockButtonStyle">-</Button>
+                                                <Button variant="link" onClick={this.doDecrease.bind(this)} className="ProductPage_ClickerBlockButtonStyle">-</Button>
                                                 <span className="ProductPage_ClickerBlockSpanStyle">{this.state.count}</span>
-                                                <Button onClick={this.doIncrease.bind(this)} className="ProductPage_ClickerBlockButtonStyle">+</Button>
+                                                <Button variant="link" onClick={this.doIncrease.bind(this)} className="ProductPage_ClickerBlockButtonStyle">+</Button>
                                             </div>
                                             <span className="ProductPage_ClickerBlockSpanStyle2">В наличии: {this.state.Nomenclature.IsInStock == true ? 'Есть' : 'Отсутствует'}</span>
                                         </div>
-                                        <Button className="ProductPage_ButtonStyle" active="true">
+                                        <Button onClick={this.addNomenclatureToCart} className="ProductPage_ButtonStyle" active="true">
                                             <div className="ProductPage_ButtonDivBasketStyle">
                                                 <img src="./Images/trolley.png"></img>
                                                 <span className="ProductPage_SpanStyle">В корзину</span>
                                             </div>
                                         </Button>
-                                        <Button className="ProductPage_ComparenSaveButtonStyle">
+                                        <Button variant="link" className="ProductPage_ComparenSaveButtonStyle">
                                             <div className="ProductPage_ButtonDivComareNSaveStyle">
                                                 <img src="./Images/CompareIcon.png"></img>
                                                 <span className="ProductPage_ComparenSaveSpanStyle">Сравнить</span>
                                             </div>
                                         </Button>
-                                        <Button className="ProductPage_ComparenSaveButtonStyle">
+                                        <Button variant="link" className="ProductPage_ComparenSaveButtonStyle">
                                             <div className="ProductPage_ButtonDivComareNSaveStyle">
                                                 <img src="./Images/SaveIcon.png"></img>
                                                 <span className="ProductPage_ComparenSaveSpanStyle">Отложить</span>
