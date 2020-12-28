@@ -1,5 +1,5 @@
 input.stylesForSearch.form-control {
-    border-radius: 20px;
+    border-radius: 20px!important;
     border-bottom: 0;
     margin-bottom: 0;
 }

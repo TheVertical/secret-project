@@ -54,7 +54,7 @@ class CartElement extends React.Component {
               <Button onClick={this.doIncrease.bind(this)} className="Cart_Element_ClickerBlockButtonStyle">+</Button>
             </div>
             <div className="Cart_Element_InsideCenterInlineBlock">
-              <h1 className="Cart_Element_H1Style">{this.state.Price} ₽</h1>
+              <h1 className="Cart_Element_H1Style">{this.state.OriginalPrice} ₽</h1>
               <span className="Cart_Element_IdSpanStyle">Код:{this.state.Id}</span>
             </div>
           </div>
