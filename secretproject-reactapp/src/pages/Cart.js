@@ -52,7 +52,7 @@ class Cart extends React.Component {
            IsPopular={l.Model.IsPopular} />
       )
       count++;
-      
+
     });
     return array;
   }
@@ -81,7 +81,7 @@ class Cart extends React.Component {
               {this.getLines()}
             </Col>
 
-            <Col>
+            <Col className="Cart_SideBarColumnStyle">
               <div className="Cart_ContainerStyle">
                 <h1>Итого</h1>
                 <hr></hr>
@@ -89,10 +89,10 @@ class Cart extends React.Component {
                   <span>Стоимость</span>
                   <span>2000 ₽</span>
                 </div>
-                <div className="Cart_ContainerInsideStyle">
+                {/* <div className="Cart_ContainerInsideStyle">
                   <span>Скидка</span>
                   <span>100 ₽</span>
-                </div>
+                </div> */}
                 <div className="Cart_ContainerInsideStyle">
                   <span>Кол-во товаров</span>
                   <span>3</span>
