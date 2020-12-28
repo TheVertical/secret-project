@@ -49,7 +49,9 @@ class Cart extends React.Component {
            IsDiscouted={l.Model.IsDiscouted}
            IsInStock={l.Model.IsInStock}
            IsNew={l.Model.IsNew}
-           IsPopular={l.Model.IsPopular} />
+           IsPopular={l.Model.IsPopular} 
+          //  Callback={()=>{this.array.splice(key, 1);}}
+           />
       )
       count++;
 
@@ -100,7 +102,7 @@ class Cart extends React.Component {
                 <hr></hr>
                 <div className="Cart_ContainerInsideStyle">
                   <span>Всего к оплате:</span>
-                  <h1 style={{fontSize:"1.5rem"}}>{this.state.FullCost+"0"} ₽</h1>
+                  <h1 style={{fontSize:"1.5rem"}}>{this.state.FullCost}₽</h1>
 
                 </div>
                 <Form.Control placeholder="Введите промокод:" />

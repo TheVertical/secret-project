@@ -15,6 +15,7 @@ text-decoration: none;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    width:70%
 }
 
 .Header_NavLink{
