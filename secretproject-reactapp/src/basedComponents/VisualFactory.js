@@ -60,7 +60,7 @@ class VisualFactory extends React.Component {
                 );
             case "ContactBlock":
                 return (
-                    <ContactBlock Id={element.Id} Phone={element.Phone} OpeningHours={element.OpeningHours} IsHeaderStyle={true}></ContactBlock>
+                    <ContactBlock Id={element.Id} Phone={element.Phone} OpeningHours={element.OpeningHours} IsHeaderStyle={element.IsHeaderStyle}></ContactBlock>
                 );
             case "LinksMenu":
                 return (

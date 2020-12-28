@@ -38,7 +38,7 @@ render(){
     else
         return (
             <div className="blockStylle">
-                <Picture src={'./Images/LogoDown.png'}></Picture>
+                <img src={'./Images/LogoDown.png'}></img>
                 <a href={"tel:" + this.state.Phone} className="bigAAStyle">{this.state.Phone}</a>
                 <p className="pppStyle">{this.state.OpeningHours}</p>
             </div>

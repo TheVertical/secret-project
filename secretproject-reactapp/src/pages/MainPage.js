@@ -116,8 +116,8 @@ class MainPage extends React.Component {
     return (
       <div className="mainStyle MainPage_Global">
         <Slider {...settings1}>
-          <img src="./Images/BannerProduct1.jpg" ></img>
-          <img src="./Images/BannerProduct3.jpg" ></img>
+          <img src="./Images/slideN1.png" ></img>
+          <img src="./Images/slideN2.png" ></img>
         </Slider>
         <Container className="MainPage_GlobalBottom">
           <Row>

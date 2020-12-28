@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'bootstrap-4-react';
+import Form from 'react-bootstrap/Form'
+import "./Modal.css"
 
 export default class MyVerticallyCenteredModal extends Component {
   render() {
@@ -13,17 +15,25 @@ export default class MyVerticallyCenteredModal extends Component {
           <Modal.Dialog centered>
             <Modal.Content>
               <Modal.Header>
-                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Title>Закажите звонок!</Modal.Title>
                 <Modal.Close>
                   <span aria-hidden="true">&times;</span>
                 </Modal.Close>
               </Modal.Header>
               <Modal.Body>
-                Modal body text goes here.
+                <Form>
+                  <Form.Row>
+                  <Form.Label>Имя*</Form.Label>
+                  <Form.Control placeholder="Введите ваше имя" className="OrderRegistration_InputStyle" />
+                  </Form.Row>
+                  <Form.Row>
+                  <Form.Label>Телефон*</Form.Label>
+                  <Form.Control placeholder="+7 (999)999-99-99" className="OrderRegistration_InputStyle" />
+                  </Form.Row>
+                </Form>
               </Modal.Body>
               <Modal.Footer>
-                <Button secondary data-dismiss="modal">Close</Button>
-                <Button primary>Save changes</Button>
+                <Button primary>Отправить данные</Button>
               </Modal.Footer>
             </Modal.Content>
           </Modal.Dialog>

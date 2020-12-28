@@ -25,7 +25,7 @@ button.btn.btn-primary:active {
 
 
 .dropdown-item:hover:nth-child(1){
- border-radius:16px 16px 0 0;
+ border-radius:0;
 }
 .dropdown-item:hover:last-child{
     border-radius:0 0 16px 16px;
