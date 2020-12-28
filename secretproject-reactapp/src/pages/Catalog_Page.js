@@ -237,7 +237,7 @@ class Catalog_Page extends React.Component {
                 <Row>
                   {this.UpdateCardArray(this.state.NomenclatureResult.Nomenclatures)}
                 </Row>
-                < Pagination >
+                {/* < Pagination >
                   <Pagination.Prev onClick={() => {
                     let number = this.state.pagActive
                     this.GetNewPageInPagination(--number)
@@ -247,7 +247,7 @@ class Catalog_Page extends React.Component {
                     let number = this.state.pagActive
                     this.GetNewPageInPagination(++number)
                   }} />
-                </Pagination>
+                </Pagination> */}
               </Col>
             </Row>
           </Container>

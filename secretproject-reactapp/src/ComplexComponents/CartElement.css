@@ -6,7 +6,7 @@
     border-radius: 20px;
     width:100%;
     justify-content: space-between;
-    margin-right: 30px;
+    margin: 0 0 30px 0;
 }
 .Cart_Element_CenterBlock{
     flex-direction: column;

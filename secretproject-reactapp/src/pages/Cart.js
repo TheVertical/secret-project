@@ -38,26 +38,28 @@ class Cart extends React.Component {
     if(this.state.CartLines)
     this.state.CartLines.map(l => {
       array.push(
-        <Col className="ProductCardArray_Col">
           <CartElement key={count}
            key={l.Model.Id}
            Id={l.Model.Id}
            Amount={l.Amount}
            ImageUrl={l.Model.ImageUrl}
-           Title={l.Model.Title}
+           Title={this.ReturnSubString(l.Model.Title)}
            OriginalPrice={l.Model.OriginalPrice}
            Description={l.Model.Description}
            IsDiscouted={l.Model.IsDiscouted}
            IsInStock={l.Model.IsInStock}
            IsNew={l.Model.IsNew}
            IsPopular={l.Model.IsPopular} />
-        </Col>
       )
       count++;
     });
     return array;
   }
 
+  ReturnSubString(str) {
+    if (str != undefined && str.length >= 20) { return str.substr(0, 17) + "..." }
+    return str;
+  }
   render() {
     return (
       <div className="mainStyle">
