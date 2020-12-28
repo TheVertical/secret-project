@@ -93,7 +93,7 @@ namespace SecretProject.Services
 
             var pages = context.Set<Page>().ToList();
 
-            LinksMenu linksMenu = new LinksMenu { NeededColumns=4};
+            LinksMenu linksMenu = new LinksMenu { NeededColumns=6};
             linksMenu.IsHorizontal = true;
             foreach(var page in pages)
             {
@@ -107,7 +107,8 @@ namespace SecretProject.Services
                 ContactBlock contactblock = new ContactBlock()
                 {
                     Id = companyContacts.Id,
-                    NeededColumns = 5,
+                    NeededColumns = 3,
+                    JustyfyContent = "end",
                     OpeningHours = companyContacts.WorkHours,
                     Phone = companyContacts.WorkPhone.ToString(),
                     IsHeaderStyle = true
