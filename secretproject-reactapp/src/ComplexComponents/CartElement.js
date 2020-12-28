@@ -33,7 +33,7 @@ class CartElement extends React.Component {
   }
   doDecrease() {
     this.setState((state) => {
-      if (state.Amount > 0)
+      if (state.Amount > 1)
         return { Amount: state.Amount - 1 }
     });
   }
