@@ -8,7 +8,8 @@
         "Type": "ImageBlock",
         "NeededColumns": 3,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       },
       {
         "MainTitle": null,
@@ -49,24 +50,28 @@
         "Type": "LinksMenu",
         "NeededColumns": 4,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       },
       {
         "Phone": "\u002B7(812) 388 - 45 - 38",
         "OpeningHours": "\u041F\u043D-\u0427\u0442:10:00 - 18:00, \u041F\u0442:10:00 - 17:00",
         "Image": null,
+        "IsHeaderStyle": true,
         "Id": 1,
         "Type": "ContactBlock",
         "NeededColumns": 5,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       }
     ],
     "Id": 0,
     "Type": "Block",
     "NeededColumns": 0,
     "JustyfyContent": null,
-    "AlignContent": null
+    "AlignContent": null,
+    "CssStyle": null
   },
   "GrayLine": {
     "VisualElements": [
@@ -178,7 +183,8 @@
           "Type": "DropdownMenu",
           "NeededColumns": 0,
           "JustyfyContent": null,
-          "AlignContent": null
+          "AlignContent": null,
+          "CssStyle": null
         },
         "Title": "\u041A\u0430\u0442\u0430\u043B\u043E\u0433",
         "Image": null,
@@ -187,7 +193,8 @@
         "Type": "ComboBoxButton",
         "NeededColumns": 2,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       },
       {
         "Title": "\u041E\u0431\u0443\u0447\u0435\u043D\u0438\u0435",
@@ -197,7 +204,8 @@
         "Type": "Button",
         "NeededColumns": 2,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       },
       {
         "Title": "\u0418\u043C\u043F\u043B\u0430\u043D\u0442\u0430\u0446\u0438\u044F",
@@ -207,14 +215,16 @@
         "Type": "Button",
         "NeededColumns": 2,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       },
       {
         "Id": 3,
         "Type": "VisualSearch",
         "NeededColumns": 4,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       },
       {
         "Title": null,
@@ -224,7 +234,8 @@
         "Type": "Button",
         "NeededColumns": 1,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       },
       {
         "Title": null,
@@ -234,34 +245,19 @@
         "Type": "Button",
         "NeededColumns": 1,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       }
     ],
     "Id": 0,
     "Type": "Block",
     "NeededColumns": 0,
     "JustyfyContent": null,
-    "AlignContent": null
+    "AlignContent": null,
+    "CssStyle": null
   },
   "Footer": {
     "VisualElements": [
-      {
-        "VisualElements": [
-          {
-            "Text": "\u041E\u0441\u0442\u0430\u0432\u0430\u0439\u0442\u0435\u0441\u044C \u043D\u0430 \u0441\u0432\u044F\u0437\u0438",
-            "Id": 0,
-            "Type": "Label",
-            "NeededColumns": 12,
-            "JustyfyContent": null,
-            "AlignContent": null
-          }
-        ],
-        "Id": 0,
-        "Type": "Block",
-        "NeededColumns": 0,
-        "JustyfyContent": null,
-        "AlignContent": null
-      },
       {
         "VisualElements": [
           {
@@ -283,7 +279,8 @@
             "Type": "LinksMenu",
             "NeededColumns": 3,
             "JustyfyContent": null,
-            "AlignContent": "start"
+            "AlignContent": "start",
+            "CssStyle": null
           },
           {
             "MainTitle": "\u041C\u0430\u0433\u0430\u0437\u0438\u043D",
@@ -314,7 +311,8 @@
             "Type": "LinksMenu",
             "NeededColumns": 3,
             "JustyfyContent": null,
-            "AlignContent": "start"
+            "AlignContent": "start",
+            "CssStyle": null
           },
           {
             "MainTitle": "\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0439 \u0441\u0435\u0440\u0432\u0438\u0441",
@@ -340,30 +338,35 @@
             "Type": "LinksMenu",
             "NeededColumns": 3,
             "JustyfyContent": null,
-            "AlignContent": "start"
+            "AlignContent": "start",
+            "CssStyle": null
           },
           {
             "Phone": "8 (812) 388-4538",
             "OpeningHours": "\u041F\u043D-\u0427\u0442:10:00 - 18:00, \u041F\u0442:10:00 - 17:00",
             "Image": "./Images/LogoDown.png",
+            "IsHeaderStyle": false,
             "Id": 0,
             "Type": "ContactBlock",
-            "NeededColumns": 2,
+            "NeededColumns": 3,
             "JustyfyContent": null,
-            "AlignContent": null
+            "AlignContent": null,
+            "CssStyle": "ContactBlock_FooterStyle"
           }
         ],
         "Id": 0,
         "Type": "Block",
         "NeededColumns": 0,
         "JustyfyContent": null,
-        "AlignContent": null
+        "AlignContent": null,
+        "CssStyle": null
       }
     ],
     "Id": 0,
     "Type": "Block",
     "NeededColumns": 0,
     "JustyfyContent": null,
-    "AlignContent": null
+    "AlignContent": null,
+    "CssStyle": null
   }
 }

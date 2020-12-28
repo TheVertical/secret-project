@@ -109,7 +109,8 @@ namespace SecretProject.Services
                     Id = companyContacts.Id,
                     NeededColumns = 5,
                     OpeningHours = companyContacts.WorkHours,
-                    Phone = companyContacts.WorkPhone.ToString()
+                    Phone = companyContacts.WorkPhone.ToString(),
+                    IsHeaderStyle = true
                 };
                 header.AddVisualElement(contactblock);
             }
@@ -152,7 +153,7 @@ namespace SecretProject.Services
                 Id = 1,
                 MainTitle = "Моя учётная запись",
                 IsHorizontal = false,
-                NeededColumns = 3,
+                NeededColumns = 4,
                 AlignContent="start",
                 Links = new List<LinkItem>
                 {
@@ -168,7 +169,7 @@ namespace SecretProject.Services
                 Id = 1,
                 MainTitle = "Магазин",
                 IsHorizontal = false,
-                NeededColumns = 3,
+                NeededColumns = 2,
                 AlignContent="start",
                 Links = new List<LinkItem>
                 {
