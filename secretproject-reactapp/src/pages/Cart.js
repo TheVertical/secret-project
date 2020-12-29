@@ -58,20 +58,14 @@ class Cart extends React.Component {
     return array;
   }
   
-  componentWillReceiveProps(){
-    // console.log(this.props.number)
-    // delete this.state.CartLines[this.props.number]
-    // this.setState((state)=>{return{CartLines:state.CartLines.splice(this.props.number,1)}})
-    // console.log(this.props.number)
-  }
+ 
   ReturnSubString(str) {
     if (str != undefined && str.length >= 20) { return str.substr(0, 17) + "..." }
     return str;
   }
   render() {
-    console.log(this.props.number)
+  
    delete this.state.CartLines[this.props.number]
-   this.state.CartLines.splice(this.props.number,0)
     return (
       <div className="mainStyle">
         <Container>

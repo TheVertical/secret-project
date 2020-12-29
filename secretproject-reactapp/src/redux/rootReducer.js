@@ -5,8 +5,7 @@ const initState = {
     imageUrl:"",
     Title:"",
     Id:"",
-    value:"",
-    ProdCount:0
+    value:""
 }
 
 export default function rootReducer(state = initState, action) {
@@ -31,10 +30,8 @@ export default function rootReducer(state = initState, action) {
                 Id:action.Id
             }
            case "NotificationTrue":
-           initState.ProdCount++ 
            return{
               NeedNotification:true,
-              ProductCount:state.ProdCount
             }
         case "DeleteTrue":
                 return {

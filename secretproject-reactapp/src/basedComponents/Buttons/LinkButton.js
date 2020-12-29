@@ -16,18 +16,15 @@ class LinkButton extends React.Component {
         }
     }
     
-    componentWillReceiveProps(){
-      this.setState({NeedNotification:this.props.NeedNotification})
-    }
+    
     render() { 
         let title = this.state.Title != undefined ? this.state.Title : "";
         let image = this.state.Image != undefined ? <img src={"./" + this.state.Image} /> : null;
         let action = this.state.Action != undefined ? "/" + this.state.Action : "#";
-        let styleName= this.state.Id==4&&this.state.NeedNotification ? " LinkButton_ActiveStyle" :"";
-        let number=this.props.count+[];
+        let styleName= this.state.Id==4&&this.props.NeedNotification ? " LinkButton_ActiveStyle" :"";
         return (
             <Link to={this.state.Action ?? "#"}>
-                <button type="button" className={"btn basic-button"+styleName} style={{content:{number}}}>{<img src={this.state.Image ?? null}/>}{this.state.Title}</button>
+                <button type="button" className={"btn basic-button"+styleName} >{<img src={this.state.Image ?? null}/>}{this.state.Title}</button>
             </Link>
     );
     }
@@ -35,7 +32,6 @@ class LinkButton extends React.Component {
 }
 function mapStatetoProps(state){
     return {
-        count: state.ProductCount,
         NeedNotification: state.NeedNotification
       }
 }
