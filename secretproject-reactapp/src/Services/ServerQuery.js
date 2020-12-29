@@ -9,6 +9,7 @@ export async function GetSettings() {
   return responce;
 }
 export async function MakeSimpleServerQuery(httpMethod, url) {
+  // const server = "http://secrethost.azurewebsites.net";
   const server = "http://localhost:50258";
   switch (httpMethod) {
     case 'GET': break;
@@ -35,7 +36,9 @@ export async function MakeSimpleServerQuery(httpMethod, url) {
   return json;
 }
 export async function MakeServerQuery(httpMethod, url) {
+  // const server = "http://secrethost.azurewebsites.net";
   const server = "http://localhost:50258";
+
   switch (httpMethod) {
     case 'GET': break;
     case 'POST': break;

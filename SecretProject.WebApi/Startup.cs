@@ -50,9 +50,10 @@ namespace SecretProject.WebApi
             {
                 options.AddPolicy(name: myAllowedOrigins, builder =>
                  {
-                     builder.WithOrigins("http://localhost:3000")
-                     .AllowCredentials()
-                     .AllowAnyHeader();
+                     builder.WithOrigins("http://u98650.test-handyhost.ru");
+                     builder.WithOrigins("http://localhost:3000").AllowCredentials();
+                     //.AllowCredentials();k
+                     //builder.AllowAnyOrigin();
                  });
             });
         }
