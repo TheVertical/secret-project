@@ -4,7 +4,8 @@ const initState = {
     Price:"",
     imageUrl:"",
     Title:"",
-    Id:""
+    Id:"",
+    value:""
 }
 
 export default function rootReducer(state = initState, action) {
@@ -28,7 +29,14 @@ export default function rootReducer(state = initState, action) {
                 Title:action.Title,
                 Id:action.Id
             }
-
+           case "NotificationTrue":
+           return{
+              NeedNotification:true,
+            }
+        case "DeleteTrue":
+                return {
+                    value: action.key,
+                }
             default: return state
 
         }

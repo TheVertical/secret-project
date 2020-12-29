@@ -9,6 +9,8 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Form from 'react-bootstrap/Form'
 import { MakeServerQuery } from '../Services/ServerQuery'
 import CartElement from "./../ComplexComponents/CartElement"
+import { connect } from "react-redux"
+
 
 class Cart extends React.Component {
 
@@ -36,10 +38,10 @@ class Cart extends React.Component {
     let count = 0;
     let array = [];
     if(this.state.CartLines)
-    this.state.CartLines.map(l => {
+    this.state.CartLines.map((l,index) => {
       array.push(
-          <CartElement key={count}
-           key={l.Model.Id}
+          <CartElement key={index}
+           Count={index}
            Id={l.Model.Id}
            Amount={l.Amount}
            ImageUrl={l.Model.ImageUrl}
@@ -50,20 +52,20 @@ class Cart extends React.Component {
            IsInStock={l.Model.IsInStock}
            IsNew={l.Model.IsNew}
            IsPopular={l.Model.IsPopular} 
-          //  Callback={()=>{this.array.splice(key, 1);}}
            />
       )
-      count++;
-
     });
     return array;
   }
-
+  
+ 
   ReturnSubString(str) {
     if (str != undefined && str.length >= 20) { return str.substr(0, 17) + "..." }
     return str;
   }
   render() {
+  
+   delete this.state.CartLines[this.props.number]
     return (
       <div className="mainStyle">
         <Container>
@@ -119,4 +121,9 @@ class Cart extends React.Component {
   }
 
 }
-export default Cart
+function mapStatetoProps(state) {
+  return {
+    number: state.value
+  }
+}
+export default connect(mapStatetoProps, null)(Cart)

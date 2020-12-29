@@ -47,6 +47,7 @@ class MiniProductCard extends React.Component {
     this.addNomenclatureToCart = this.AddNomenclatureToCart.bind(this);
   }
   async AddNomenclatureToCart() {
+    this.props.onGetNotification()
     let query = '/cart/add?nomenclatureId=' + this.state.Id + '&' + 'amount=1';
     let responce = await MakeSimpleServerQuery('POST', query);
     if (responce != undefined && responce.success) {
@@ -114,10 +115,11 @@ class MiniProductCard extends React.Component {
   }
 
 }
-function mapStatetoProps(state) {
+
+function mapDispatchToProps(dispatch) {
   return {
-    isInline: state.isInline
+    onGetNotification: () => dispatch({ type: "NotificationTrue"})
   }
 }
 
-export default withRouter(MiniProductCard)
+export default withRouter(connect(null,mapDispatchToProps)(MiniProductCard))
