@@ -48,7 +48,7 @@ namespace SecretProject.BusinessProject.Models.Order
         /// <summary>
         /// Дополнительный номер телефона в цифромов формате, ИСПОЛЬЗУЙТЕ поле AdditionalPhone
         /// </summary>
-        public string AdditionalNumber { get => AdditionalPhone.PhoneDigits; set => AdditionalPhone.PhoneNumber = value; }
+        public string AdditionalPhoneNumber { get => AdditionalPhone.PhoneDigits; set => AdditionalPhone.PhoneNumber = value; }
         [NotMapped]
         public Phone AdditionalPhone = new Phone();
         public bool IsWithDelivery { get; set; }

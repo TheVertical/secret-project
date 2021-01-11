@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace SecretProject.BusinessProject.DataAccess
 {
+    /// <summary>
+    /// Описывает паттерн репозиторий, предоставляя доступ к источнику данных
+    /// </summary>
     public interface IQueryableRepository
     {
         IQueryable<Entity> Get<Entity>(int count, Expression<Func<Entity, bool>> pericate) where Entity : class, IDomainObject;
@@ -22,6 +25,7 @@ namespace SecretProject.BusinessProject.DataAccess
         Task<bool> RemoveAsync<Entity>(Entity entity) where Entity : class, IDomainObject;
         Task<bool> SaveAsync<Entity>(Entity entity) where Entity : class, IDomainObject;
     }
+    [Obsolete]
     public interface IRepository
     {
         IEnumerable<Entity> Get<Entity>(int count, Expression<Func<Entity, bool>> pericate) where Entity : class, IDomainObject;
@@ -37,6 +41,7 @@ namespace SecretProject.BusinessProject.DataAccess
         Task<bool> SaveAsync<Entity>(Entity entity) where Entity : class,IDomainObject;
 
     }
+    [Obsolete]
     public interface IRepository<Entity>
         where Entity : class, IDomainObject
     {

@@ -7,6 +7,9 @@ using System.Text;
 
 namespace SecretProject.BusinessProject.Measurements
 {
+    /// <summary>
+    /// Класс описывает еденицу измерения (пример: "штука"/"пара" и тд.)
+    /// </summary>
     public class Measurement : IDomainObject
     {
 

@@ -26,10 +26,14 @@ namespace SecretProject.BusinessProject.Models.Good
         [Display(Name = "Рабочее название акции")]
         public virtual string WorkTitle { get; set; }
         /// <summary>
-        /// Официальное название
+        /// Официальное название акции, которые выводится пользователю
         /// </summary>
         [Display(Name = "Официальное название")]
         public virtual string OfficialTitle { get; set; }
+        /// <summary>
+        /// Номенклатуры входящие в акцию
+        /// </summary>
+        [Display(Name = "Номенклатуры входящие в акцию")]
         public virtual List<Nomenclature> DiscountedNomenclatures { get; set; }
         #endregion
 
@@ -38,6 +42,7 @@ namespace SecretProject.BusinessProject.Models.Good
             nomenclature.Discount(percent);
             DiscountedNomenclatures.Add(nomenclature);
         }
+
         public void DiscountNomenclature(IEnumerable<Nomenclature> nomenclatures, int percent)
         {
             nomenclatures.ToList().ForEach(nom => nom.Discount(percent));

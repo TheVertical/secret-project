@@ -43,6 +43,10 @@ namespace SecretProject.BusinessProject.Models.Good
         [Display(Name = "Группа номенклатуры")]
         [ForeignKey(nameof(NomenclatureGroupId))]
         public virtual NomenclatureGroup NomenclatureGroup { get; set; }
+        /// <summary>
+        /// Url картинки
+        /// </summary>
+        [Display(Name = "Url картинки")]
         public virtual string ImageUrl { get; set; }
         public virtual int? ManufacturerId { get; set; }
         /// <summary>
@@ -94,7 +98,6 @@ namespace SecretProject.BusinessProject.Models.Good
         /// Цена со скидкой
         /// </summary>
         [Display(Name = "Цена со скидкой")]
-        //[System.Diagnostics.CodeAnalysis.AllowNull]
         public virtual float DiscountedCost { get; set; }
         [NotMapped]
         //QUESTION Может ценовую политику перенести в заказ?

@@ -7,6 +7,9 @@ using System.Text;
 
 namespace SecretProject.BusinessProject.Models.Common
 {
+    /// <summary>
+    /// Класс описывает компанию (общую информацию: название, часы работы, рабочий телефон и тд.)
+    /// </summary>
     public class Company : IDomainObject
     {
 

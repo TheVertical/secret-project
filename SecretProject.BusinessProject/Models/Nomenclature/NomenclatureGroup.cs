@@ -14,6 +14,7 @@ namespace SecretProject.BusinessProject.Models
         /// <summary>
         /// Ид
         /// </summary>
+        [Key]
         [Display(Name = "Ид")]
         public virtual int Id { get; set; }
         /// <summary>
