@@ -12,9 +12,14 @@ namespace SecretProject.WebApi.Infrastructure
     [Serializable]
     public class Cart
     {
+
+        #region Model
         private List<CartLine> lineCollection = new List<CartLine>();
         public IEnumerable<CartLine> Lines => lineCollection;
-        public virtual void AddItem(Nomenclature nom, int amount)
+        #endregion
+
+        #region Class Methods
+        public virtual void AddLine(Nomenclature nom, int amount)
         {
             CartLine line = lineCollection
                 .Where(l => l.NomenclatureId == nom.Id)
@@ -40,7 +45,11 @@ namespace SecretProject.WebApi.Infrastructure
             Lines.ToList().ForEach(l => list += l.ToString());
             return list;
         }
+        #endregion
     }
+    /// <summary>
+    /// Строка в корзине
+    /// </summary>
     [Serializable]
     public class CartLine
     {

@@ -214,7 +214,7 @@ namespace SecretProject.Services
             backbone.Add("Footer", footer);
 
             string json = JsonSerializer.Serialize<Dictionary<string, object>>(backbone, settings);
-            FileInfo file = new FileInfo("Files/Backbone.json");
+            FileInfo file = new FileInfo(Directory.GetCurrentDirectory()+"/Files/Backbone.json");
             using (StreamWriter writer = file.CreateText())
             {
                 writer.Write(json);
@@ -311,7 +311,11 @@ namespace SecretProject.Services
 
         public object GetBackbone()
         {
-            string path = "Files/Backbone.json";
+            string directoryPath = Directory.GetCurrentDirectory() + "/Files";
+            string path = directoryPath + "/Backbone.json";
+            DirectoryInfo directory = new DirectoryInfo(directoryPath);
+            if (!directory.Exists)
+                Directory.CreateDirectory(directoryPath);
             FileInfo file = new FileInfo(path);
             if (!file.Exists)
                 createBackbone();

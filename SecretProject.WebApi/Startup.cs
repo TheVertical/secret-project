@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using SecretProject.DAL.Contexts;
 using SecretProject.DAL.DataAccess;
 using SecretProject.Services;
 using SecretProject.VisualElements;
+using SecretProject.WebApi.Infrastructure;
 using System;
 using System.Text.Json;
 
@@ -27,16 +29,17 @@ namespace SecretProject.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLogging();
-            services.AddControllers();
-            //TODO Это мок опции
+
             services.AddScoped<JsonSerializerOptions>(f => new JsonSerializerOptions() { WriteIndented = true, });
             services.AddScoped<IVisualRedactor, VisualRedactor>();
-            //Configuration.
-            services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbRemote")));
-            services.AddScoped<sBaseContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbRemote")));
+
+            services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
+            services.AddScoped<sBaseContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
             services.AddScoped<IRepository, SqlRepository>();
-            //services.AddScoped<SessionHelper>();
+
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddLogging();
             services.AddControllers().AddSessionStateTempDataProvider();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>

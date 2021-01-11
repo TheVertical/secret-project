@@ -20,13 +20,14 @@ namespace SecretProject.WebApi.Controllers
         private ILogger<CartController> logger;
         private readonly IVisualRedactor visualRedactor;
 
-        private SessionHelper sessionHelper => new SessionHelper(logger, HttpContext.Session);
+        private Cart cart { get; set; }
         private IRepository repository;
         private readonly DbContext context;
 
-        public CartController(ILogger<CartController> logger, IVisualRedactor visualRedactor, IRepository repository, DbContext context)
+        public CartController(ILogger<CartController> logger, Cart cart, IVisualRedactor visualRedactor, IRepository repository, DbContext context)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.cart = cart ?? throw new ArgumentNullException(nameof(CartController.cart));
             this.visualRedactor = visualRedactor ?? throw new ArgumentNullException(nameof(visualRedactor));
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.context = context ?? throw new ArgumentNullException(nameof(context));
@@ -35,7 +36,6 @@ namespace SecretProject.WebApi.Controllers
         [Route("list")]
         public async Task<IActionResult> GetCartLineList()
         {
-            Cart cart = GetCart();
             var lines = cart.Lines.ToList();
             List<CartLineViewModel> cartLines = new List<CartLineViewModel>();
             foreach (var l in lines)
@@ -66,9 +66,8 @@ namespace SecretProject.WebApi.Controllers
             Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(nomenclatureId);
             if (nomenclature != null)
             {
-                Cart cart = GetCart();
-                cart.AddItem(nomenclature, amount);
-                SaveCart(cart,out result);
+                cart.AddLine(nomenclature, amount);
+                result = Ok();
             }
             else
                 return BadRequest("Nomenclature was not found!");
@@ -83,27 +82,12 @@ namespace SecretProject.WebApi.Controllers
             Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(nomenclatureId);
             if (nomenclature != null)
             {
-                Cart cart = GetCart();
                 cart.RemoveLine(nomenclature);
-                SaveCart(cart,out result);
+                result = Ok();  
             }
             else
                 return BadRequest("Nomenclature was not found!");
             return result;
-        }
-
-        private Cart GetCart()
-        {
-            logger.LogInformation(HttpContext.Session.Id);
-            Cart cart = sessionHelper.Get<Cart>() ?? new Cart();
-            return cart;
-        }
-        private void SaveCart(Cart cart,out IActionResult result)
-        {
-            if (sessionHelper.Save<Cart>(cart))
-                result = Ok();
-            else
-                result = BadRequest();
         }
     }
 }

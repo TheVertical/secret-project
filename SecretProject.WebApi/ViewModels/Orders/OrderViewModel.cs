@@ -5,7 +5,6 @@ namespace SecretProject.WebApi.ViewModels
 {
     public class OrderViewModel
     {
-        public int? UserId { get; set; }
         public Info Info { get; set; }
         public OrderState Status { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
@@ -21,7 +20,12 @@ namespace SecretProject.WebApi.ViewModels
         public string AdditionalNumber { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
-        public int BuildNumber { get; set; }
+        //Дом
+        public int Building { get; set; }
+        //Строение
+        public int Structure { get; set; }
+        //Корпус
+        public int Housing { get; set; }
         public string BuildLiteral { get; set; }
         public byte Entrance { get; set; }
         public byte Floor { get; set; }

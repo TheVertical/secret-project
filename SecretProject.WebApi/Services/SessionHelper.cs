@@ -59,6 +59,15 @@ namespace SecretProject.WebApi.Services
             }
             return null;
         }
+        public void Remove(string sessionVariable)
+        {
+           session.Remove(sessionVariable);
+        }
+        public void Remove<DataType>(string sessionVariable = nameof(DataType))
+            where DataType : class
+        {
+            session.Remove(sessionVariable);
+        }
 
         public bool Save<DataType>(DataType serializingObj,string sessionVariable = nameof(DataType))
             where DataType : class

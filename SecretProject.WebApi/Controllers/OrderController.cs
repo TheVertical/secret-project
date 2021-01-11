@@ -6,6 +6,7 @@ using SecretProject.BusinessProject.Models.Good;
 using SecretProject.BusinessProject.Models.Order;
 using SecretProject.BusinessProject.Models.UserData;
 using SecretProject.VisualElements;
+using SecretProject.WebApi.Infrastructure;
 using SecretProject.WebApi.ViewModels;
 using System;
 using System.Linq;
@@ -18,16 +19,18 @@ namespace SecretProject.WebApi.Controllers
     public class OrderController : ControllerBase
     {
         private ILogger<CatalogController> logger;
+        private readonly Cart cart;
         private IVisualRedactor visualRedactor;
         private IRepository repository;
         private readonly DbContext context;
         #region Mock
 
         #endregion
-        public OrderController(ILogger<CatalogController> logger, IVisualRedactor visualRedactor, IRepository repository, DbContext context)
+        public OrderController(ILogger<CatalogController> logger, Cart cart, IVisualRedactor visualRedactor, IRepository repository, DbContext context)
         {
-            this.logger = logger;
-            this.visualRedactor = visualRedactor;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.cart = cart ?? throw new ArgumentNullException(nameof(cart));
+            this.visualRedactor = visualRedactor ?? throw new ArgumentNullException(nameof(visualRedactor));
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -71,29 +74,29 @@ namespace SecretProject.WebApi.Controllers
                 order.OrderItems.Add(orderItem);
             }
 
-            if (orderViewModel.UserId != null)
-            {
-                User user = await context.Set<User>().Include(u => u.DeliveryAdresses).Where(u => u.Id == orderViewModel.UserId).FirstOrDefaultAsync();
-                details.GetInfoDataByUser(user);
-            }
-            else
-            {
-                details.FirstNameCustomer = orderViewModel.Info.FirstNameCustomer;
-                details.LastNameCustomer = orderViewModel.Info.LastNameCustomer;
+            //if (orderViewModel.UserId != null)
+            //{
+            //    User user = await context.Set<User>().Include(u => u.DeliveryAdresses).Where(u => u.Id == orderViewModel.UserId).FirstOrDefaultAsync();
+            //    details.GetInfoDataByUser(user);
+            //}
+            //else
+            //{
+            details.FirstNameCustomer = orderViewModel.Info.FirstNameCustomer;
+            details.LastNameCustomer = orderViewModel.Info.LastNameCustomer;
 
-                details.IsWithDelivery = orderViewModel.Info.IsWithDelivery;
+            details.IsWithDelivery = orderViewModel.Info.IsWithDelivery;
 
-                details.PhoneNumber = orderViewModel.Info.PhoneNumber;
-                details.AdditionalNumber = orderViewModel.Info.AdditionalNumber;
+            details.PhoneNumber = orderViewModel.Info.PhoneNumber;
+            details.AdditionalPhoneNumber = orderViewModel.Info.AdditionalNumber;
 
-                details.City = orderViewModel.Info.City;
-                details.Street = orderViewModel.Info.Street;
-                details.BuildNumber = orderViewModel.Info.BuildNumber;
-                details.BuildLiteral = orderViewModel.Info.BuildLiteral;
-                details.Entrance = orderViewModel.Info.Entrance;
-                details.Floor = orderViewModel.Info.Floor;
-                details.AppartmentNumber = orderViewModel.Info.AppartmentNumber;
-            }
+            details.City = orderViewModel.Info.City;
+            details.Street = orderViewModel.Info.Street;
+            details.BuildNumber = orderViewModel.Info.Building;
+            details.BuildLiteral = orderViewModel.Info.BuildLiteral;
+            details.Entrance = orderViewModel.Info.Entrance;
+            details.Floor = orderViewModel.Info.Floor;
+            details.AppartmentNumber = orderViewModel.Info.AppartmentNumber;
+            //}
             order.OrderDetails = details;
             order.PaymentMethod = orderViewModel.PaymentMethod;
             order.Status = orderViewModel.Status;
