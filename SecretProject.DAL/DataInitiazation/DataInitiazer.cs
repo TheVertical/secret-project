@@ -64,7 +64,7 @@ namespace SecretProject.DAL.DataInitiazation
             if (isNeedRandom)
             {
                 var randomNomenclatureGroup = new List<NomenclatureGroup>();
-                for (int i = 0; i < 14; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     NomenclatureGroup group = new NomenclatureGroup();
                     group.Name = DataInitiazer.GenRandomString(50);
@@ -234,7 +234,7 @@ namespace SecretProject.DAL.DataInitiazation
                     Nomenclature nom = new Nomenclature();
                     int length = random.Next(3, 10);
                     nom.Name = DataInitiazer.GenRandomString(50);
-                    nom.NomenclatureGroupId = random.Next(1, 20);
+                    nom.NomenclatureGroupId = random.Next(1, 9);
                     nom.ManufacturerId = random.Next(1, 20);
                     nom.Status = VisibleStatus.Visible;
                     nom.Cost = random.Next(0, 1000000);

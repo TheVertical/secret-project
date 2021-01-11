@@ -283,7 +283,7 @@ namespace SecretProject.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("AdditionalNumber")
+                    b.Property<string>("AdditionalPhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("AppartmentNumber")
@@ -492,6 +492,9 @@ namespace SecretProject.DAL.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("AlignContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CssStyle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageSource")

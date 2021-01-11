@@ -10,7 +10,7 @@ using SecretProject.DAL.Contexts;
 namespace SecretProject.DAL.Migrations
 {
     [DbContext(typeof(sBaseContext))]
-    [Migration("20201224095540_Initial")]
+    [Migration("20210110192155_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -285,7 +285,7 @@ namespace SecretProject.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("AdditionalNumber")
+                    b.Property<string>("AdditionalPhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("AppartmentNumber")
@@ -494,6 +494,9 @@ namespace SecretProject.DAL.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("AlignContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CssStyle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageSource")

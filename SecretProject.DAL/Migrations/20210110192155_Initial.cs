@@ -17,7 +17,8 @@ namespace SecretProject.DAL.Migrations
                     ImageSource = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NeededColumns = table.Column<int>(type: "int", maxLength: 20, nullable: false),
                     JustyfyContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AlignContent = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AlignContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CssStyle = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -204,7 +205,7 @@ namespace SecretProject.DAL.Migrations
                     FirstNameCustomer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastNameCustomer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdditionalNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdditionalPhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsWithDelivery = table.Column<bool>(type: "bit", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
