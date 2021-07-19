@@ -79,17 +79,17 @@
         "DropdownMenu": {
           "Items": [
             {
-              "Title": "\u041F\u0420\u043D\u0443\u0415\u043D\u0429\u0449\u0446\u042A\u0439\u0446\u043E\u042F\u0419\u0428\u0413\u0428\u041D\u0422\u0410\u043C\u041A\u041F\u0436\u0423\u0414\u0430\u0427\u0412\u0433\u0448\u0432\u0418\u044A\u041D\u0425",
+              "Title": "\u0439\u044F\u041A\u0437\u044B\u0447\u0426\u041B\u042C\u0437\u0419\u0429\u0422\u041D\u0422\u0445\u0449\u0426\u044B\u043F\u0421\u0446\u0440\u0439\u044F",
               "Route": "catalog/category/1",
               "Items": []
             },
             {
-              "Title": "\u0411\u0428\u042A\u041A\u0410\u0427\u0429\u0422\u0442\u0446\u0415\u041F\u0429\u041A\u0410\u0424\u0442\u0412\u0436\u0421\u0449\u0448\u0434\u0414\u042F\u0429\u041B\u0447\u0422\u0434\u043E\u0446\u0412\u041F\u0411\u0411\u042D\u0428\u0432\u042E\u043A\u044D\u0433",
+              "Title": "\u041E\u0433",
               "Route": "catalog/category/2",
               "Items": []
             },
             {
-              "Title": "\u0432\u0426\u0440\u0413\u041C\u0431\u042E\u041A\u044C\u0419\u044D\u0417\u042B\u0417\u0416\u044D\u0448\u044C",
+              "Title": "\u0422\u043F\u043D\u0427\u044D\u044B\u0417\u044A\u0410\u0447\u0425\u044F\u041D\u0412\u041C\u0448\u043B\u043A\u042F\u042E\u0448\u0418",
               "Route": "catalog/category/3",
               "Items": []
             },
@@ -132,7 +132,7 @@
           "CssStyle": null
         },
         "Title": "\u041A\u0430\u0442\u0430\u043B\u043E\u0433",
-        "Image": null,
+        "FontImage": null,
         "Action": null,
         "Id": 0,
         "Type": "ComboBoxButton",
@@ -143,7 +143,7 @@
       },
       {
         "Title": "\u041E\u0431\u0443\u0447\u0435\u043D\u0438\u0435",
-        "Image": null,
+        "FontImage": null,
         "Action": null,
         "Id": 1,
         "Type": "Button",
@@ -154,7 +154,7 @@
       },
       {
         "Title": "\u0418\u043C\u043F\u043B\u0430\u043D\u0442\u0430\u0446\u0438\u044F",
-        "Image": null,
+        "FontImage": null,
         "Action": null,
         "Id": 2,
         "Type": "Button",
@@ -173,7 +173,7 @@
       },
       {
         "Title": null,
-        "Image": "./Images/shopLogo.png",
+        "FontImage": "shopLogo",
         "Action": "/cart",
         "Id": 4,
         "Type": "Button",
@@ -184,7 +184,7 @@
       },
       {
         "Title": null,
-        "Image": "./Images/profileLogo.png",
+        "FontImage": "profileLogo",
         "Action": "/account",
         "Id": 5,
         "Type": "Button",

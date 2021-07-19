@@ -2,6 +2,7 @@
 using SecretProject.DAL.Contexts;
 using SecretProject.DAL.DataInitiazation;
 using System;
+using System.Runtime.InteropServices;
 
 namespace PreperaDbApp
 {
@@ -9,13 +10,21 @@ namespace PreperaDbApp
     {
         static void Main(string[] args)
         {
-            sBaseContextFactory factory = new sBaseContextFactory();
-            using (sBaseContext context = factory.CreateDbContext("server=DESKTOP-P7SS3RO;database=SecretDb;Integrated Security=True;App=EntityFramework"))
+            AppIdentityContextFactory factory = new AppIdentityContextFactory();
+            IdentityDataInitializer dataInitializer = new IdentityDataInitializer();
+            using (var context = factory.CreateDbContext(args))
             {
-                DataInitiazer.RecreateDatabase(context);
-                DataInitiazer.InitializeData(context);
+                    dataInitializer.RecreateDatabase(context,true);
             }
 
+            Console.WriteLine("Ready!");
+            Console.ReadLine();
+            //sBaseContextFactory factory = new sBaseContextFactory();
+            //using (sBaseContext context = factory.CreateDbContext("server=DESKTOP-P7SS3RO;database=SecretDb;Integrated Security=True;App=EntityFramework"))
+            //{
+            //    SBaseDataInitializer.RecreateDatabase(context);
+            //    SBaseDataInitializer.InitializeData(context);
+            //}
         }
     }
 }

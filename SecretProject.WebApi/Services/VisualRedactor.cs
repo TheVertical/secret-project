@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject.DataAccess;
@@ -31,16 +32,18 @@ namespace SecretProject.Services
         private JsonSerializerOptions settings;
         private DbContext context;
         private IRepository repository;
+        private readonly IWebHostEnvironment environment;
         private ILogger<VisualRedactor> logger;
         #endregion
         #region Realization
         //TODO Оставить что-то одно, либо repository, либо context!
-        public VisualRedactor(JsonSerializerOptions settings, ILogger<VisualRedactor> logger, DbContext context, IRepository repository)
+        public VisualRedactor(JsonSerializerOptions settings, ILogger<VisualRedactor> logger, DbContext context, IRepository repository, IWebHostEnvironment environment)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            this.environment = environment ?? throw new ArgumentNullException(nameof(environment));
         }
 
         
@@ -135,9 +138,9 @@ namespace SecretProject.Services
             VisualSearch visualSearch = new VisualElements.Elements.VisualSearch { Id = 3, NeededColumns = 6 };
             grayLine.AddVisualElement(visualSearch);
 
-            Button basket = new Button { Id = 4, Image = "./Images/shopLogo.png", Action = "/cart", NeededColumns = 0 };
+            Button basket = new Button { Id = 4, FontImage = "shopLogo", Action = "/cart", NeededColumns = 0 };
             grayLine.AddVisualElement(basket);
-            Button auth = new Button { Id = 5, Image = "./Images/profileLogo.png", Action = "/account", NeededColumns = 0 };
+            Button auth = new Button { Id = 5, FontImage = "profileLogo", Action = "/account", NeededColumns = 0 };
             grayLine.AddVisualElement(auth);
 
             #endregion
@@ -311,7 +314,7 @@ namespace SecretProject.Services
 
         public object GetBackbone()
         {
-            string directoryPath = Directory.GetCurrentDirectory() + "/Files";
+            string directoryPath = environment.ContentRootPath + "/Files";
             string path = directoryPath + "/Backbone.json";
             DirectoryInfo directory = new DirectoryInfo(directoryPath);
             if (!directory.Exists)

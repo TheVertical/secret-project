@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "module": "system",
+      "moduleResolution": "node",
+      "noImplicitAny": true,
+      "removeComments": true,
+      "jsx": "react",
+      "preserveConstEnums": true,
+      "outFile": "../SecretProject.WebApi/Scripts/React/dist",
+      "sourceMap": true,
+      "lib": ["es2015"],
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"],
+    "extends": "./node_modules/react-redux-typescript-scripts/tsconfig.json"
+  }

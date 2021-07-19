@@ -346,3 +346,9 @@ package-lock.json
 /SecretProject.DAL/Program.cs
 /ConsoleApp
 >>>>>>> 5b81c26809d9fc1a0b2fd720f409b58790a6c4d3
+*.key
+CommonConfig/rootCA.crt
+SecretProject.WebApi/Scripts/React/dist
+SecretProject.WebApi/Styles
+secretproject-reactapp/public
+secretproject-reactapp/.eslintcache

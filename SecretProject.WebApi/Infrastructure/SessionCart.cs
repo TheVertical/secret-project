@@ -23,7 +23,7 @@ namespace SecretProject.WebApi.Infrastructure
         public static Cart GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-            SessionHelper helper = new SessionHelper((services.GetService(typeof(ILogger<SessionHelper>)) as ILogger), session);
+            SessionHelper helper = new SessionHelper((services.GetService(typeof(ILogger<SessionHelper>)) as ILogger), services);
             SessionCart cart = helper.Get<Cart>() as SessionCart ?? new SessionCart();
             cart.SessionHelper = helper;
             return cart;

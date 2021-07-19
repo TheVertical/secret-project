@@ -17,13 +17,10 @@ namespace SecretProject.WebApi.Controllers
     {
         private ILogger<VEController> logger;
         private IVisualRedactor visualRedactor;
-        private readonly sBaseContext context;
-
-        public VEController(ILogger<VEController> logger, IVisualRedactor visualRedactor, sBaseContext context)
+        public VEController(ILogger<VEController> logger, IVisualRedactor visualRedactor)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.visualRedactor = visualRedactor;
-            this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
         [HttpGet]
         [Route("settings")]
@@ -62,22 +59,6 @@ namespace SecretProject.WebApi.Controllers
         public JsonResult GetJsonElement()
         {
             return visualRedactor.GetAllViewModels() as JsonResult;
-        }
-
-        [HttpPost]
-        [Route("visual/RedeployDatabase")]
-        public IActionResult RedeployDatabase()
-        {
-            try
-            {
-                DataInitiazer.RecreateDatabase(context);
-                DataInitiazer.InitializeData(context);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            return Ok();
         }
         public void Dispose()
         {

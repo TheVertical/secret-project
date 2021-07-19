@@ -165,9 +165,9 @@ namespace SecretProject.WebApi.Services
             ComboBoxButton implanting = new ComboBoxButton { Id = 2, Title = "Каталог", Action = "#", NeededColumns = 2, DropdownMenu = null };
             grayLine.AddVisualElement(implanting);
 
-            Button basket = new Button { Id = 3, Image = "shopLogo", Action = "#", NeededColumns = 1 };
+            Button basket = new Button { Id = 3, FontImage = "shopLogo", Action = "#", NeededColumns = 1 };
             grayLine.AddVisualElement(basket);
-            Button auth = new Button { Id = 4, Image = "profileLogo", Action = "#", NeededColumns = 1 };
+            Button auth = new Button { Id = 4, FontImage = "profileLogo", Action = "#", NeededColumns = 1 };
             grayLine.AddVisualElement(auth);
 
             #endregion

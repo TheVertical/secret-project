@@ -11,7 +11,7 @@ namespace SecretProject.VisualElements.Elements
     {
         [StringLength(20)]
         public string Title { get; set; }
-        public string Image { get; set; }
+        public string FontImage { get; set; }
         public string Action { get; set; }
         /// <summary>
         /// Необходимое количество столбцов для отрисовки

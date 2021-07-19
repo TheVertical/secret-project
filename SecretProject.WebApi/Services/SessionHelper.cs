@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,19 @@ namespace SecretProject.WebApi.Services
         private readonly ILogger logger;
         private ISession session;
 
-        public SessionHelper(ILogger logger, ISession session)
+        public SessionHelper(ILogger logger, IServiceProvider services)
         {
+            if (services is null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            this.session = session ?? throw new ArgumentNullException(nameof(session));
+            session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+        }
+
+        public static SessionHelper GetHelper(IServiceProvider services)
+        {
+            return new SessionHelper((services.GetService(typeof(ILogger<SessionHelper>)) as ILogger), services);
         }
 
         private byte[] ObjectToByteArray(object obj)
@@ -49,6 +59,8 @@ namespace SecretProject.WebApi.Services
             }
             return null;
         }
+        public int? GetInt(string sessionVariable)=> session.GetInt32(sessionVariable);
+
         public DataType Get<DataType>(string sessionVariable = nameof(DataType))
             where DataType : class
         {
@@ -61,7 +73,7 @@ namespace SecretProject.WebApi.Services
         }
         public void Remove(string sessionVariable)
         {
-           session.Remove(sessionVariable);
+            session.Remove(sessionVariable);
         }
         public void Remove<DataType>(string sessionVariable = nameof(DataType))
             where DataType : class
@@ -69,13 +81,50 @@ namespace SecretProject.WebApi.Services
             session.Remove(sessionVariable);
         }
 
-        public bool Save<DataType>(DataType serializingObj,string sessionVariable = nameof(DataType))
+        public void IncreaseSessionNumber(int value,string sessionVariable)
+        {
+            object variable = Get(sessionVariable);
+            int i = 0;
+            if (variable is int)
+            {
+                i = Convert.ToInt32(variable) + value;
+                Save(i, sessionVariable);
+            }
+        }
+
+        public bool Save<DataType>(DataType serializingObj, string sessionVariable = nameof(DataType))
             where DataType : class
         {
             try
             {
                 byte[] bytes = ObjectToByteArray(serializingObj);
                 session.Set(sessionVariable, bytes);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Error by trying to save {sessionVariable.GetType().Name} in session with variable name {sessionVariable}\nInner Exception:{ex.Message}");
+                return false;
+            }
+            return true;
+        }
+        public bool Save(int number, string sessionVariable)
+        {
+            try
+            {
+                session.SetInt32(sessionVariable, number);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Error by trying to save {sessionVariable.GetType().Name} in session with variable name {sessionVariable}\nInner Exception:{ex.Message}");
+                return false;
+            }
+            return true;
+        }
+        public bool Save(string value, string sessionVariable)
+        {
+            try
+            {
+                session.SetString(sessionVariable, value);
             }
             catch (Exception ex)
             {

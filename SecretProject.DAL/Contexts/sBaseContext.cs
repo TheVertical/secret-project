@@ -41,7 +41,7 @@ namespace SecretProject.DAL.Contexts
         public DbSet<Banner> Banners { get; set; }
         #endregion
 
-        public sBaseContext(DbContextOptions options) : base(options)
+        public sBaseContext(DbContextOptions<sBaseContext> options) : base(options)
         {
         }
 
