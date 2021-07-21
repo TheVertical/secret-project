@@ -8,21 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication;
-using SecretProject.BusinessProject.DataAccess;
 using SecretProject.DAL.Contexts;
-using SecretProject.DAL.DataAccess;
-using SecretProject.Services;
-using SecretProject.VisualElements;
-using SecretProject.WebApi.Infrastructure;
-using SecretProject.WebApi.Services;
 using System;
 using System.IO;
-using System.Text.Json;
 using SecretProject.WebApi.Infrastructure.Authetication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using SecretProject.BusinessProject.Services.Encription;
 
 namespace SecretProject.WebApi
 {
@@ -49,6 +40,7 @@ namespace SecretProject.WebApi
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SecretIdentityDbLocal"));
             });
+            services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
@@ -65,18 +57,16 @@ namespace SecretProject.WebApi
                     });
                 })
                 .AddCookie("SECRET_ONEC_EXCHANGE");
-            services.AddScoped<IdentityBasicAuthenticationHandler>();
-            services.AddScoped<JsonSerializerOptions>(f => new JsonSerializerOptions() { WriteIndented = true, });
-            services.AddScoped<IVisualRedactor, VisualRedactor>();
-            services.AddScoped<EncriptionService>();
-            services.AddTransient<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
-            services.AddScoped<IRepository, SqlRepository>();
-            services.AddTransient<SessionHelper>(sp => SessionHelper.GetHelper(sp));
-            services.AddTransient<Cart>(sp => SessionCart.GetCart(sp));
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
             services.AddLogging();
-            services.AddRazorPages();
-            services.AddControllers().AddSessionStateTempDataProvider();
+            var mvcBuilder = services.AddRazorPages();
+
+            #if DEBUG
+            //mvcBuilder.AddRuntim
+            #endif
+
+            services.AddControllersWithViews().AddSessionStateTempDataProvider();
+
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
@@ -84,15 +74,6 @@ namespace SecretProject.WebApi
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
                 options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
-            });
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: myAllowedOrigins, builder =>
-                 {
-                     builder.WithOrigins("http://31.134.135.98").AllowCredentials();
-                     builder.WithOrigins("http://localhost").AllowCredentials();
-                     builder.WithOrigins("http://localhost:3000").AllowCredentials();
-                 });
             });
         }
 

@@ -1,0 +1,48 @@
+{
+  "name": "secretproject-react",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "awesome-typescript-loader": "^5.2.1",
+    "bootstrap": "^4.6.0",
+    "jquery": "^3.5.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-scripts": "^1.1.5",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "watch": "webpack --config webpack.secret.project.config.js --env develop --progress --watch",
+    "build": "webpack --config webpack.secret.project.config.js --env develop --progress"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.6",
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-redux": "^7.1.18",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2"
+  }
+}
