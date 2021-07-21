@@ -19,7 +19,6 @@ namespace SecretProject.WebApi
 {
     public class Startup
     {
-        private string myAllowedOrigins = "user_policy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -95,7 +94,6 @@ namespace SecretProject.WebApi
             includeStaticFiles(app, env);
 
             app.UseRouting();
-            app.UseCors(myAllowedOrigins);
             app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
