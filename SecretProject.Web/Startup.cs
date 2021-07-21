@@ -14,57 +14,48 @@ using System.IO;
 using SecretProject.WebApi.Infrastructure.Authetication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
+using SecretProject.WebApi.Infrastructure.Dependecies;
 
 namespace SecretProject.WebApi
 {
     public class Startup
     {
+        private readonly DependencyResolver dependencyResolver;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            dependencyResolver = new DependencyResolver();
         }
 
         public IConfiguration Configuration { get; }
         private AuthenticationOptions AuthenticationOptions { get; set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<KestrelServerOptions>(options =>
-            {
-                options.AllowSynchronousIO = true;
-            });
 
-            services.AddDbContext<AppIdentityDbContext>(options => 
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("SecretIdentityDbLocal"));
-            });
+            //services.AddDbContext<AppIdentityDbContext>(options => 
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("SecretIdentityDbLocal"));
+            //});
+
             services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppIdentityDbContext>()
-                .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<IdentityUser>>()
-                .AddUserValidator<CustomUserValidator<IdentityUser>>()
-                .AddDefaultTokenProviders();
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<AppIdentityDbContext>()
+            //    .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<IdentityUser>>()
+            //    .AddUserValidator<CustomUserValidator<IdentityUser>>()
+            //    .AddDefaultTokenProviders();
 
-            services.AddAuthentication(confOptions =>
-                {
-                    confOptions.AddScheme("Basic", builder =>
-                    {
-                        builder.HandlerType = typeof(IdentityBasicAuthenticationHandler);
-                        builder.Build();
-                    });
-                })
-                .AddCookie("SECRET_ONEC_EXCHANGE");
-            
-            services.AddLogging();
+            //services.AddLogging();
             var mvcBuilder = services.AddRazorPages();
 
             #if DEBUG
-            //mvcBuilder.AddRuntim
+            mvcBuilder.AddRazorRuntimeCompilation();
             #endif
 
-            services.AddControllersWithViews().AddSessionStateTempDataProvider();
+            dependencyResolver.ResolveDependencies(services);
+
+            services.AddControllers();
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
@@ -76,7 +67,6 @@ namespace SecretProject.WebApi
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -89,9 +79,10 @@ namespace SecretProject.WebApi
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseHttpsRedirection();
+            #if !DEBUG
+            #endif
 
-            includeStaticFiles(app, env);
+            IncludeStaticFiles(app, env);
 
             app.UseRouting();
             app.UseSession();
@@ -104,13 +95,14 @@ namespace SecretProject.WebApi
             });
         }
 
-        private void includeStaticFiles(IApplicationBuilder app, IWebHostEnvironment env)
+        private void IncludeStaticFiles(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            includeDirectory("Scripts", "Scripts", app, env);
-            includeDirectory("Images", "Images", app, env);
-            includeDirectory("Styles", "Styles", app, env);
+            IncludeDirectory("Scripts", "Scripts", app, env);
+            IncludeDirectory("Images", "Images", app, env);
+            IncludeDirectory("Styles", "Styles", app, env);
         }
-        private void includeDirectory(string path, string accessPath, IApplicationBuilder app, IWebHostEnvironment env)
+
+        private void IncludeDirectory(string path, string accessPath, IApplicationBuilder app, IWebHostEnvironment env)
         {
             path = Path.Combine(env.ContentRootPath, path);
             if (!Directory.Exists(path))
