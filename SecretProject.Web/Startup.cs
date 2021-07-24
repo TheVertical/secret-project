@@ -33,7 +33,10 @@ namespace SecretProject.WebApi
             services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
             dependencyResolver.ResolveDependencies(services);
 
-            services.AddRazorPages();
+            var mvcBuilder = services.AddRazorPages();
+#if DEBUG
+            mvcBuilder.AddRazorRuntimeCompilation();
+#endif
             services.AddMvc();
             services.AddControllers();
         }

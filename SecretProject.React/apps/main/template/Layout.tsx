@@ -9,7 +9,7 @@ const Layout: React.FC = (props) => {
             <Header
                 PhoneNumber={PhoneNumber}
                 WorkTime={WorkTime}
-                />
+            />
         </>
     );
 }
