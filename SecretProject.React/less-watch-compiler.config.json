@@ -1,0 +1,7 @@
+{
+    "watchFolder": "apps/main/styles/",
+    "outputFolder": "../SecretProject.Web/Styles/",
+    "mainFile": "layout.less",
+    "includeHidden": false,
+    "sourceMap": true
+}

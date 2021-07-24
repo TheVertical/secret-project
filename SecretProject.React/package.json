@@ -16,8 +16,10 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "watch": "webpack --config webpack.secret.project.config.js --env develop --progress --watch",
-    "build": "webpack --config webpack.secret.project.config.js --env develop --progress"
+    "js-watch": "webpack --config webpack.secret.project.config.js --env develop --progress --watch",
+    "js-build": "webpack --config webpack.secret.project.config.js --env develop --progress",
+    "less-build": "lessc --source-map apps/main/styles/layout.less ../SecretProject.WebApi/Styles/layout.css",
+    "less-watch": "less-watch-compiler"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +44,8 @@
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@types/react-redux": "^7.1.18",
+    "less": "^4.1.1",
+    "less-watch-compiler": "^1.16.2",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2"
   }
