@@ -8,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Text;
-using System.Web.Http;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -143,32 +142,6 @@ namespace SecretProject.WebApi.Infrastructure.Authetication
                 return Task.CompletedTask;
 
             return Task.FromResult(0);
-        }
-    }
-
-    public class AuthenticationFailureResult : IHttpActionResult
-    {
-        public AuthenticationFailureResult(string reasonPhrase, HttpRequestMessage request)
-        {
-            ReasonPhrase = reasonPhrase;
-            Request = request;
-        }
-
-        public string ReasonPhrase { get; private set; }
-
-        public HttpRequestMessage Request { get; private set; }
-
-        public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
-        {
-            return Task.FromResult(Execute());
-        }
-
-        private HttpResponseMessage Execute()
-        {
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
-            response.RequestMessage = Request;
-            response.ReasonPhrase = ReasonPhrase;
-            return response;
         }
     }
 }

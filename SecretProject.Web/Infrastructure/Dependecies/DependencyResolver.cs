@@ -17,7 +17,7 @@ namespace SecretProject.WebApi.Infrastructure.Dependecies
     {
         public void ResolveDependencies(IServiceCollection services)
         {
-            services.AddScoped<IdentityBasicAuthenticationHandler>();
+            //services.AddScoped<IdentityBasicAuthenticationHandler>();
             services.AddScoped<JsonSerializerOptions>(f => new JsonSerializerOptions() { WriteIndented = true, });
             services.AddScoped<IVisualRedactor, VisualRedactor>();
             services.AddScoped<EncriptionService>();

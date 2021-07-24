@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authentication;
 using SecretProject.DAL.Contexts;
 using System;
 using System.IO;
@@ -28,45 +27,16 @@ namespace SecretProject.WebApi
         }
 
         public IConfiguration Configuration { get; }
-        private AuthenticationOptions AuthenticationOptions { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //services.AddDbContext<AppIdentityDbContext>(options => 
-            //{
-            //    options.UseSqlServer(Configuration.GetConnectionString("SecretIdentityDbLocal"));
-            //});
-
             services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
-
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<AppIdentityDbContext>()
-            //    .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<IdentityUser>>()
-            //    .AddUserValidator<CustomUserValidator<IdentityUser>>()
-            //    .AddDefaultTokenProviders();
-
-            //services.AddLogging();
-            var mvcBuilder = services.AddRazorPages();
-
-            #if DEBUG
-            mvcBuilder.AddRazorRuntimeCompilation();
-            #endif
-
             dependencyResolver.ResolveDependencies(services);
 
+            services.AddRazorPages();
+            services.AddMvc();
             services.AddControllers();
-
-            services.AddDistributedMemoryCache();
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromMinutes(20);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-                options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
-            });
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -79,19 +49,16 @@ namespace SecretProject.WebApi
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            #if !DEBUG
-            #endif
-
             IncludeStaticFiles(app, env);
 
             app.UseRouting();
-            app.UseSession();
-            app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
 
@@ -116,23 +83,6 @@ namespace SecretProject.WebApi
                     Path.Combine(env.ContentRootPath, path)),
                 RequestPath = "/" + accessPath
             });
-        }
-    }
-    public class IpMiddleware
-    {
-        private RequestDelegate nextDelegate;
-        private readonly ILogger<IpMiddleware> logger;
-
-        public IpMiddleware(RequestDelegate next, Microsoft.Extensions.Logging.ILogger<IpMiddleware> logger)
-        {
-            nextDelegate = next;
-            this.logger = logger;
-        }
-        public async System.Threading.Tasks.Task Invoke(HttpContext context)
-        {
-            logger.LogDebug("Remote User Ip:" + context.Connection.RemoteIpAddress);
-            logger.LogDebug("Local User Ip:" + context.Connection.LocalIpAddress);
-            await nextDelegate.Invoke(context);
         }
     }
 }
