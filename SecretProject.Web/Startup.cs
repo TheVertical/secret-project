@@ -40,6 +40,7 @@ namespace SecretProject.WebApi
             services.AddMvc();
             services.AddControllers();
         }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -53,8 +54,8 @@ namespace SecretProject.WebApi
             }
 
             IncludeStaticFiles(app, env);
-
             app.UseRouting();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -70,6 +71,9 @@ namespace SecretProject.WebApi
             IncludeDirectory("Scripts", "Scripts", app, env);
             IncludeDirectory("Images", "Images", app, env);
             IncludeDirectory("Styles", "Styles", app, env);
+    
+            IncludeDirectory("Resources", "Resources", app, env);
+            IncludeDirectory("Resources/Fonts", "Resources/Fonts", app, env);
         }
 
         private void IncludeDirectory(string path, string accessPath, IApplicationBuilder app, IWebHostEnvironment env)
