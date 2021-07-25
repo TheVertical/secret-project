@@ -1,5 +1,5 @@
 import React, { FunctionComponent as FC} from 'react';
-import Header from './Header';
+import Header from './header';
 
 const Layout: React.FC = (props) => {
     const PhoneNumber: string = '8 (812) 388-4538';

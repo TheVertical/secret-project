@@ -6,20 +6,20 @@ interface ContactViewModel {
     ShowBackCall: boolean,
 }
 
-const name: React.FC<ContactViewModel> = (props) => {
+const ContactForm: React.FC<ContactViewModel> = (props) => {
 const { PhoneNumber, WorkTime, ShowBackCall } = props;
     return(
         <div className='contact-form-container'>
-            <span className='phone-number phone-number-white'>{PhoneNumber}</span>
-            <span className='work-time'>{WorkTime}</span>
+            <div className='phone-number phone-number-white'>{PhoneNumber}</div>
+            <div className='work-time'>{WorkTime}</div>
             {ShowBackCall ?? 
-            <span className='request-callback'>
+            <div className='request-callback'>
                 // TODO: localize
                 'ContactForm_RequestCallBack'
-            </span>
+            </div>
             }
         </div>
     );
 }
 
-export default name;
+export default ContactForm;
