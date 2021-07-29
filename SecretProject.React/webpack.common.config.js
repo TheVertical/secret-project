@@ -9,8 +9,8 @@ exports.getConfig = (env) => {
 
     if(devMode) {
         plugins.push(new webpack.SourceMapDevToolPlugin({
-            filename: '[name].bundle,js.map',
-            exclude: ['react-vendors']
+            filename: '[name].bundle.js.map',
+            exclude: 'react-vendors'
         }));
     }
 
@@ -32,7 +32,7 @@ exports.getConfig = (env) => {
             ignored: /node_modeules/
         },
         optimization: {
-            minimize: true,
+            minimize: devMode ? false : true,
             splitChunks: {
                 chunks: 'async',
                 minSize: 20000,
