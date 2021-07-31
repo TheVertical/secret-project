@@ -16,54 +16,46 @@ namespace SecretProject.DAL.DataInitiazation
                 throw new ArgumentException("Your context is wrong for this function! You need AppIdentityDbContext context!");
             InitializeData(context);
         }
-        public void InitializeData(AppIdentityDbContext _context)
-        {
-            IdentityRole identityRole = new IdentityRole("Admin");
-            _context.Roles.Add(identityRole);
-            var role = _context.Roles.Where(r => r.Name == "Admin").FirstOrDefault();
+        //public void InitializeData(AppIdentityDbContext _context)
+        //{
+        //    IdentityRole identityRole = new IdentityRole("Admin");
+        //    _context.Roles.Add(identityRole);
+        //    var role = _context.Roles.Where(r => r.Name == "Admin").FirstOrDefault();
                 
-            List<IdentityRoleClaim<string>> claims = new List<IdentityRoleClaim<string>>();
-            foreach(var c in Enum.GetNames(typeof(SecretProject.Constans.Claims)))
-            {
-                var claim = new Claim(c, Guid.NewGuid().ToString());
-                var claimValue = Guid.NewGuid().ToString();
+        //    List<IdentityRoleClaim<string>> claims = new List<IdentityRoleClaim<string>>();
+        //    foreach(var c in Enum.GetNames(typeof(SecretProject.Constans.Contans)))
+        //    {
+        //        var claim = new Claim(c, Guid.NewGuid().ToString());
+        //        var claimValue = Guid.NewGuid().ToString();
 
-                var userClaim = new IdentityUserClaim<string>();
-                userClaim.ClaimType = c;
-                userClaim.ClaimValue = claimValue;
+        //        var userClaim = new IdentityUserClaim<string>();
+        //        userClaim.ClaimType = c;
+        //        userClaim.ClaimValue = claimValue;
 
-                var identityRoleClaim = new IdentityRoleClaim<string>();
-                identityRoleClaim.ClaimType = c;
-                identityRoleClaim.ClaimValue = 
-                identityRoleClaim.RoleId = role.Id;
+        //        var identityRoleClaim = new IdentityRoleClaim<string>();
+        //        identityRoleClaim.ClaimType = c;
+        //        identityRoleClaim.ClaimValue = 
+        //        identityRoleClaim.RoleId = role.Id;
 
-                claims.Add(identityRoleClaim);
-            }
-            _context.RoleClaims.AddRange(claims);
+        //        claims.Add(identityRoleClaim);
+        //    }
+        //    _context.RoleClaims.AddRange(claims);
 
-            var identityUserClaim = new IdentityUserClaim<string>();
+        //    var identityUserClaim = new IdentityUserClaim<string>();
 
-            IdentityUser admin = new IdentityUser("Admin");
+        //    IdentityUser admin = new IdentityUser("Admin");
 
-            var password = "potapov2222";
-            var salt = "l12kmlkzspdf";
-            var cryptedPassword = password;
+        //    var password = "potapov2222";
+        //    var salt = "l12kmlkzspdf";
+        //    var cryptedPassword = password;
 
-            //using (var shaProvider = new SHA256CryptoServiceProvider())
-            //{
-            //    var bytes = Encoding.ASCII.GetBytes(password);
-            //    shaProvider.Initialize();
-            //    var cryptedBytes = shaProvider.ComputeHash(bytes);
-            //    cryptedPassword = Encoding.UTF8.GetString(cryptedBytes);
-            //}
-
-            admin.PasswordHash = cryptedPassword;
-            var adminRole = new IdentityUserRole<string>();
-            adminRole.RoleId = role.Id;
-            adminRole.UserId = admin.Id;
-            _context.UserRoles.Add(adminRole);
-            _context.Users.Add(admin);
-            _context.SaveChanges();
-        }
+        //    admin.PasswordHash = cryptedPassword;
+        //    var adminRole = new IdentityUserRole<string>();
+        //    adminRole.RoleId = role.Id;
+        //    adminRole.UserId = admin.Id;
+        //    _context.UserRoles.Add(adminRole);
+        //    _context.Users.Add(admin);
+        //    _context.SaveChanges();
+        //}
     }
 }

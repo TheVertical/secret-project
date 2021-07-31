@@ -14,7 +14,7 @@ using System.Text;
 
 namespace SecretProject.DAL.Contexts
 {
-    public class sBaseContext : DbContext
+    public class MainContext : DbContext
     {
         #region BaseSettings
         internal DbSet<Company> Companies { get; set; }
@@ -41,7 +41,7 @@ namespace SecretProject.DAL.Contexts
         public DbSet<Banner> Banners { get; set; }
         #endregion
 
-        public sBaseContext(DbContextOptions<sBaseContext> options) : base(options)
+        public MainContext(DbContextOptions<MainContext> options) : base(options)
         {
         }
 

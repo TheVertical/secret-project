@@ -9,7 +9,7 @@ using SecretProject.DAL.Contexts;
 
 namespace SecretProject.DAL.Migrations
 {
-    [DbContext(typeof(sBaseContext))]
+    [DbContext(typeof(MainContext))]
     [Migration("20210110192155_Initial")]
     partial class Initial
     {

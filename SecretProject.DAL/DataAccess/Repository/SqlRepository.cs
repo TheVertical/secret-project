@@ -28,39 +28,39 @@ namespace SecretProject.DAL.DataAccess
         #region IRepositiry
 
         public void Add<Entity>(Entity entity)
-            where Entity : class,IDomainObject
+            where Entity : class, IDomainObject
         {
             var table = context.Set<Entity>();
             table.Add(entity);
             Save();
         }
         public void Add<Entity>(IList<Entity> entities)
-            where Entity : class,IDomainObject
+            where Entity : class, IDomainObject
         {
             var table = context.Set<Entity>();
             table.AddRange(entities);
             Save();
         }
         public Entity GetById<Entity>(int id)
-            where Entity : class,IDomainObject
+            where Entity : class, IDomainObject
         {
             var table = context.Set<Entity>();
             return table.Find(id);
         }
         public IEnumerable<Entity> Get<Entity>(int count, Expression<Func<Entity, bool>> predicate)
-            where Entity : class,IDomainObject
+            where Entity : class, IDomainObject
         {
             var table = context.Set<Entity>();
             return table.Where(predicate).Take(count).ToList();
         }
         public IEnumerable<Entity> GetAll<Entity,TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending)
-            where Entity : class,IDomainObject
+            where Entity : class, IDomainObject
         {
             var table = context.Set<Entity>();
             return ascending ? table.OrderBy(orderBy) : table.OrderByDescending(orderBy);
         }
         public void Remove<Entity>(Entity entity)
-            where Entity : class,IDomainObject
+            where Entity : class, IDomainObject
         {
             context.Entry(entity).State = EntityState.Deleted;
             Save();

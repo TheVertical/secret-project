@@ -8,7 +8,7 @@ using SecretProject.DAL.Contexts;
 
 namespace SecretProject.DAL.Migrations
 {
-    [DbContext(typeof(sBaseContext))]
+    [DbContext(typeof(MainContext))]
     partial class sBaseContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

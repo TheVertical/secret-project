@@ -20,9 +20,9 @@ namespace SecretProject.DAL.DataInitiazation
     {
         public override void InitializeData(DbContext context)
         {
-            sBaseContext _context = null;
-            if(context is sBaseContext)
-                _context = context as sBaseContext;
+            MainContext _context = null;
+            if(context is MainContext)
+                _context = context as MainContext;
             else
             {
                 Exception ex = new Exception("Context has incorrect type!");
