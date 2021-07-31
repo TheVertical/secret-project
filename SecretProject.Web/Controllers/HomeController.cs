@@ -4,8 +4,7 @@ using SecretProject.VisualElements;
 
 namespace SecretProject.Controllers
 {
-    [ApiController]
-    [Route("[controller]/[action]")]
+    [Controller]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
@@ -17,11 +16,13 @@ namespace SecretProject.Controllers
             this.visualRedactor = visualRedactor;
         }
 
+        [HttpGet]
         public ViewResult Index()
         {
             return View("React");
         }
 
+        [HttpGet]
         public JsonResult Get()
         {
             return visualRedactor.GetBackbone() as JsonResult;

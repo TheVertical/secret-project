@@ -30,7 +30,7 @@ namespace SecretProject.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<DbContext, sBaseContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
+            services.AddScoped<DbContext, MainContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
             dependencyResolver.ResolveDependencies(services);
 
             var mvcBuilder = services.AddRazorPages();
@@ -60,6 +60,7 @@ namespace SecretProject.WebApi
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -74,6 +75,7 @@ namespace SecretProject.WebApi
     
             IncludeDirectory("Resources", "Resources", app, env);
             IncludeDirectory("Resources/Fonts", "Resources/Fonts", app, env);
+            IncludeDirectory("Resources/Fonts/FontAwesome/Solid", "Resources/Fonts/FontAwesome/Solid", app, env);
         }
 
         private void IncludeDirectory(string path, string accessPath, IApplicationBuilder app, IWebHostEnvironment env)
