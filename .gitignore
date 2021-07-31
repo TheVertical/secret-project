@@ -351,5 +351,4 @@ CommonConfig/rootCA.crt
 SecretProject.WebApi/Scripts/React/dist
 secretproject-reactapp/public
 secretproject-reactapp/.eslintcache
-SecretProject.Web/Styles
 SecretProject.Web/Scripts/React
