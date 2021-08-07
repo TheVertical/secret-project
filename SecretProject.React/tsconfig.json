@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES5",
     "lib": [
       "dom",
       "dom.iterable",
+      "ESNext"
     ],
     "baseUrl": "./",
     "outDir": "./dist/",
@@ -12,9 +13,10 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "removeComments": true,
     "isolatedModules": true,
     "noEmit": true,
     "strictNullChecks": true,

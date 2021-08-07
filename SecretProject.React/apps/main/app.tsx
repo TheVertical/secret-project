@@ -1,8 +1,7 @@
 import React from 'react';
 import Layout from "./template/layout";
 
-const App: React.FC = () => {
-
+function App (): React.ReactElement {
     return (
         <Layout>
         </Layout>

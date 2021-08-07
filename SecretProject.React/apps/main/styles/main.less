@@ -1,33 +1,62 @@
-@header-color: #83bde5;
+@import url(variables.less);
 
 * {
+    font-size: 12.5px;
     font-family: Montserrat;
 }
-.header {
-    background-color: @header-color;
+
+@main-body-background: #e9eff5;
+body {
+    background: @main-body-background;
 }
 
-.contact-form-container {
+@header-logo: white;
+@header-background: @blue-sky;
+@header-contrast-color: @oceanic-dark;
+.header {
+    background-color: @header-background;
+
+    .logo-company{
+        font-size: 40px;
+        text-decoration: none;
+        color: @header-logo;
+    }
+}
+
+@contact-form-white-color: white;
+@contact-form-black-color: black;
+
+.contact-form {
     & .phone-number {
         font-size: 30px;
     }
 
     & .phone-number-black {
-        color: black;
+        color: @contact-form-black-color;
     }
 
     & .phone-number-white {
-        color: white;
+        color: @contact-form-white-color;
     }
 
     & .work-time {
-        color: #588fb6;
+        color: @oceanic-dark;
         font-size: 12px;
-        font-family: Montserrat;
     }
 
-    & .requset-callback {
-        color: white;
-        font-size: 2.67pt;
+    & .request-callback-white {
+        color: @contact-form-white-color;
+        font-size: 12px;
+    }
+
+    & .request-callback-black {
+        color: @contact-form-black-color;
+        font-size: 12px;
+    }
+}
+
+.category-page-container {
+    .category-name {
+        font-weight: bold;
     }
 }

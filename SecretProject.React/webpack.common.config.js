@@ -22,8 +22,10 @@ exports.getConfig = (env) => {
             'react-vendors': [
                 'jquery',
                 'bootstrap',
+                'react-bootstrap',
                 'react',
                 'react-dom',
+                'react-router-dom',
                 'react-redux',
                 'redux',
             ]

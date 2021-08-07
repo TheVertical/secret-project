@@ -1,0 +1,152 @@
+//Redefenition the deffault bootstrap styles for some elements
+@primary-background: #83bde5;
+@secondary-background: white;
+@secondary-background-hover: #83bde5;
+@btn-box-shadow-size: 0.25rem;
+.btn {
+    border: none;
+    border-radius: 1.5rem;
+
+    &-primary {
+        
+
+        color: white;
+        background: @primary-background;
+
+        &:hover {
+            background: darken(@primary-background, 20%);
+        }
+
+        &:active {
+            background: darken(@primary-background, 20%);
+        }
+
+        &:focus {
+            background: darken(@primary-background, 20%);
+            border-color: @primary-background;
+            box-shadow: 0 0 0 @btn-box-shadow-size lighten(@primary-background, 10%);
+        }
+    }
+
+    &-secondary {
+        
+        color: #6f7079;
+        background: white;
+
+        &:hover {
+            background: @secondary-background-hover;
+            color: white;
+        }
+
+        &:active {
+            background: darken(@secondary-background-hover, 20%);
+        }
+
+        &:focus {
+            background: darken(@secondary-background-hover, 20%);
+            border-color: @primary-background;
+            box-shadow: 0 0 0 @btn-box-shadow-size lighten(@secondary-background-hover, 10%);
+        }
+    }
+}
+
+@default-nav-link-color: black;
+.nav{
+    & .nav-item {
+        & .nav-link {
+            color: @default-nav-link-color
+        }
+    }
+}
+
+
+@default-card-width: 264px;
+@default-card-height: 276px;
+@default-card-img-width: 154px;
+@default-card-img-height: 154px;
+@default-card-border-color: #8c99a3;
+@default-card-not-in-stock-color: #8c99a3;
+@default-card-image-color: #e9eff5;
+@default-card-body-max-height:45px;
+.card {
+    border: none;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    font-family: MyriadPro;
+
+    max-width: @default-card-width;
+    max-height: @default-card-height;
+
+    &:hover {
+        border: 2px solid @default-card-border-color;
+    }
+
+    .card-header {
+        font-family: inherit;
+        
+        font-size: 17px;
+        border: none;
+        background: none;
+
+        .in-stock {
+            font-family: inherit;
+            color: @oceanic-dark;
+        }
+
+        .not-in-stock {
+            font-family: inherit;
+            color: @default-card-not-in-stock-color;
+        }
+    }
+
+    .card-img,
+    .card-img-top,
+    .card-img-bottom {
+        border-image: none;
+        border-radius: 20px;
+        background: @default-card-image-color;
+        width: @default-card-img-width;
+        height: @default-card-img-height;
+    }
+
+    .card-body {
+        font-family: inherit;
+        overflow: hidden;
+        max-height: @default-card-body-max-height;
+
+        .card-name {
+            font-family: inherit;
+
+            overflow: hidden;
+            padding-left: 12px;
+        }
+    }
+
+    .card-footer {
+        font-family: inherit;
+
+        border: none;
+        background: white;
+        padding:0;
+        padding-left: 22px;
+        padding-bottom: 5px;
+
+        .cost {
+            &.real-cost {
+                color: @oceanic-dark;
+                font-family: inherit;
+                font-size: 17px;
+                font-weight: bold;
+                text-decoration: line-through;
+                text-decoration-thickness: 1px;
+            }
+
+            &.discounted-cost {
+                color: @blue-sky;
+                font-family: inherit;
+                font-size: 30px;
+                font-weight: bold;
+            }
+        }
+    }
+}

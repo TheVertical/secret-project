@@ -1,0 +1,22 @@
+@import url(variables.less);
+
+@toolbar-background: #dadce7;
+
+.toolbar-container {
+    background: @toolbar-background;
+
+    box-shadow: 0px 2px 10px -4px;
+
+    .toolbar-item {
+        height: auto;
+
+        &>i {
+            font-size: 18px;
+        }
+    }
+
+    .hide-toolbar-button {
+        position: relative;
+        align-self: flex-end;
+    }
+}

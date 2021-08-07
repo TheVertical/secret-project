@@ -3,5 +3,6 @@
     "outputFolder": "../SecretProject.Web/Styles/",
     "mainFile": "layout.less",
     "includeHidden": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "lessArgs": "include-path=./shared-styles"
 }
