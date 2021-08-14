@@ -95,7 +95,7 @@ namespace SecretProject.WebApi.Controllers
             details.BuildLiteral = orderViewModel.Info.BuildLiteral;
             details.Entrance = orderViewModel.Info.Entrance;
             details.Floor = orderViewModel.Info.Floor;
-            details.AppartmentNumber = orderViewModel.Info.AppartmentNumber;
+            details.ApartmentNumber = orderViewModel.Info.AppartmentNumber;
             //}
             order.OrderDetails = details;
             order.PaymentMethod = orderViewModel.PaymentMethod;

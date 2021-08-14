@@ -1,17 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using SecretProject.DAL.Contexts;
-using System;
 using System.IO;
-using SecretProject.WebApi.Infrastructure.Authetication;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
 using SecretProject.WebApi.Infrastructure.Dependecies;
 
@@ -19,25 +13,24 @@ namespace SecretProject.WebApi
 {
     public class Startup
     {
+        public IConfiguration Configuration;
         private readonly DependencyResolver dependencyResolver;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            dependencyResolver = new DependencyResolver();
+            dependencyResolver = new DependencyResolver(configuration);
         }
 
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<DbContext, MainContext>(fac => new sBaseContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDbLocal")));
-            dependencyResolver.ResolveDependencies(services);
+            services.AddScoped<DbContext, MainContext>(fac => new MainContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDb.Main")));
 
-            var mvcBuilder = services.AddRazorPages();
-#if DEBUG
-            mvcBuilder.AddRazorRuntimeCompilation();
-#endif
-            services.AddMvc();
+            dependencyResolver.ResolveDependencies(services);
+            dependencyResolver.ResolveIdentity(services);
+            dependencyResolver.ResolveSpaServices(services);
+
             services.AddControllers();
         }
 
@@ -53,29 +46,37 @@ namespace SecretProject.WebApi
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            IncludeStaticFiles(app, env);
+            IncludeSpaStaticFiles(app, env);
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "api/{controller}/{action}/{id?}");
+            });
+
+            app.UseSpa(builder =>
+            {
+                var options = builder.Options;
+
+                options.SourcePath = env.ContentRootPath + "/ClientApp";
+                options.DefaultPage = "/main.html";
             });
         }
 
-        private void IncludeStaticFiles(IApplicationBuilder app, IWebHostEnvironment env)
+        private void IncludeSpaStaticFiles(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            IncludeDirectory("Scripts", "Scripts", app, env);
-            IncludeDirectory("Images", "Images", app, env);
-            IncludeDirectory("Styles", "Styles", app, env);
+            IncludeDirectory("ClientApp/Scripts", "Scripts", app, env);
+            IncludeDirectory("ClientApp/Images", "Images", app, env);
+            IncludeDirectory("ClientApp/Styles", "Styles", app, env);
     
-            IncludeDirectory("Resources", "Resources", app, env);
-            IncludeDirectory("Resources/Fonts", "Resources/Fonts", app, env);
-            IncludeDirectory("Resources/Fonts/FontAwesome/Solid", "Resources/Fonts/FontAwesome/Solid", app, env);
+            IncludeDirectory("ClientApp/Resources", "Resources", app, env);
+            IncludeDirectory("ClientApp/Resources/Fonts", "Resources/Fonts", app, env);
+            IncludeDirectory("ClientApp/Resources/Fonts/FontAwesome/Solid", "Resources/Fonts/FontAwesome/Solid", app, env);
         }
 
         private void IncludeDirectory(string path, string accessPath, IApplicationBuilder app, IWebHostEnvironment env)
@@ -86,7 +87,7 @@ namespace SecretProject.WebApi
                 Directory.CreateDirectory(path);
             }
 
-            app.UseStaticFiles(new StaticFileOptions
+            app.UseSpaStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(env.ContentRootPath, path)),

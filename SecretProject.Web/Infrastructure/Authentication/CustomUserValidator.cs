@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
-namespace SecretProject.WebApi.Infrastructure.Authetication
+namespace SecretProject.Web.Infrastructure.Authentication
 {
     public class CustomUserValidator<TUser> : UserValidator<TUser>
         where TUser : class

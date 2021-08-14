@@ -1,22 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject.Services.Encription;
-using SecretProject.DAL.Contexts;
-using System.Collections.Generic;
 
-namespace SecretProject.WebApi.Infrastructure.Authetication
+namespace SecretProject.Web.Infrastructure.Authentication
 {
     public class IdentityBasicAuthenticationHandler : IAuthenticationHandler
     {
