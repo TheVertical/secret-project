@@ -11,6 +11,7 @@ using SecretProject.VisualElements.Pages;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SecretProject.BusinessProject.Models.Other;
 
 namespace SecretProject.DAL.Contexts
 {
@@ -19,6 +20,7 @@ namespace SecretProject.DAL.Contexts
         #region BaseSettings
         internal DbSet<Company> Companies { get; set; }
         #endregion
+
         #region Nomenclature
         internal DbSet<Nomenclature> Nomenclatures { get; set; } 
         internal DbSet<NomenclatureGroup> NomenclatureGroups { get; set; }
@@ -27,15 +29,17 @@ namespace SecretProject.DAL.Contexts
         internal DbSet<Manufacturer> Manufacturers { get; set; }
         internal DbSet<Measurement> Measurements { get; set; }
         #endregion
+
         #region Order
         internal DbSet<Order> Orders { get; set; } 
         internal DbSet<OrderDetails> OrderDetails{ get; set; }
         internal DbSet<OrderItem> OrderItems { get; set; }
         #endregion
+
         #region User
-        internal DbSet<User> Users { get; set; }
         internal DbSet<Adress> Adresses { get; set; }
         #endregion
+
         #region Design elements
         public DbSet<Page> Pages { get; set; }
         public DbSet<Banner> Banners { get; set; }
@@ -49,9 +53,7 @@ namespace SecretProject.DAL.Contexts
         {
             if(!optionsBuilder.IsConfigured)
             {
-                var connectionString = @"server=DESKTOP-P7SS3RO;database=SecretDb;User Id = root;Password = 123;App=EntityFramework";
-                optionsBuilder.UseSqlServer(connectionString, options => options.EnableRetryOnFailure());
-                    //.ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.Query));
+                throw new Exception("Context is not configured!");
             }
         }
 

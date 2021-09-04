@@ -8,7 +8,7 @@ using SecretProject.DAL.Contexts;
 
 namespace SecretProject.DAL.Migrations.AppIdentityDb
 {
-    [DbContext(typeof(AppIdentityDbContext))]
+    [DbContext(typeof(ApiIdentityContext))]
     partial class AppIdentityDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

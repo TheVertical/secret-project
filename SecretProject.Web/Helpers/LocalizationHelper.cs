@@ -1,9 +1,14 @@
-﻿using SecretProject.BusinessProject;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.Unicode;
+using SecretProject.BusinessProject;
+using SecretProject.BusinessProject.Models.Other;
 
 namespace SecretProject.Web.Helpers
 {
     public class LocalizationHelper
     {
-        public static string GetCurrentLanguageId() => Constants.LanguageCodeIds["RU"];
+        public static Guid GetCurrentLanguageId() => Constants.LanguageCodeIds["RU"];
     }
 }

@@ -3,61 +3,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SecretProject.BusinessProject.DataAccess
 {
-    /// <summary>
-    /// Описывает паттерн репозиторий, предоставляя доступ к источнику данных
-    /// </summary>
-    public interface IQueryableRepository
-    {
-        IQueryable<Entity> Get<Entity>(int count, Expression<Func<Entity, bool>> pericate) where Entity : class, IDomainObject;
-        IQueryable<Entity> GetAll<Entity, TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending) where Entity : class, IDomainObject;
-        void Add<Entity>(Entity entity) where Entity : class, IDomainObject;
-        void Remove<Entity>(Entity entity) where Entity : class, IDomainObject;
-        void Save<Entity>(Entity entity) where Entity : class, IDomainObject;
-        Task<Entity> GetByIdAsync<Entity>(int id) where Entity : class, IDomainObject;
-        Task<IQueryable<Entity>> GetAsync<Entity>(int count, Expression<Func<Entity, bool>> pericate) where Entity : class, IDomainObject;
-        Task<IQueryable<Entity>> GetAllAsync<Entity, TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending) where Entity : class, IDomainObject;
-        Task<bool> AddAsync<Entity>(Entity entity) where Entity : class, IDomainObject;
-        Task<bool> RemoveAsync<Entity>(Entity entity) where Entity : class, IDomainObject;
-        Task<bool> SaveAsync<Entity>(Entity entity) where Entity : class, IDomainObject;
-    }
-    [Obsolete]
-    public interface IRepository
-    {
-        IEnumerable<Entity> Get<Entity>(int count, Expression<Func<Entity, bool>> pericate) where Entity : class, IDomainObject;
-        IEnumerable<Entity> GetAll<Entity,TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending) where Entity : class, IDomainObject;
-        void Add<Entity>(Entity entity) where Entity : class,IDomainObject;
-        void Remove<Entity>(Entity entity) where Entity : class,IDomainObject;
-        void Save<Entity>(Entity entity) where Entity : class,IDomainObject;
-        Task<Entity> GetByIdAsync<Entity>(int id) where Entity : class,IDomainObject;
-        Task<IEnumerable<Entity>> GetAsync<Entity>(int count, Expression<Func<Entity, bool>> pericate) where Entity : class, IDomainObject;
-        Task<IEnumerable<Entity>> GetAllAsync<Entity, TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending) where Entity : class, IDomainObject;
-        Task<bool> AddAsync<Entity>(Entity entity) where Entity : class,IDomainObject;
-        Task<bool> RemoveAsync<Entity>(Entity entity) where Entity : class,IDomainObject;
-        Task<bool> SaveAsync<Entity>(Entity entity) where Entity : class,IDomainObject;
 
-    }
-    [Obsolete]
-    public interface IRepository<Entity>
-        where Entity : class, IDomainObject
+    public interface IRepository : IAsyncDisposable
     {
-        Entity GetById(int id);
-        IEnumerable<Entity> Get(int count,Expression<Func<Entity, bool>> pericate);
-        //TODO Переделать метод получения всех сущностей в интерфейсе!
-        IEnumerable<Entity> GetAll<TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending);
-        void Add(Entity entity);
-        void Remove(Entity entity);
-        void Save(Entity entity);
+        Task<TEntity> GetByIdAsync<TEntity>(int id, CancellationToken cancellationToken) where TEntity : class,IDomainObject;
 
-        Task<Entity> GetByIdAsync(int id);
-        Task<IEnumerable<Entity>> GetAsync(int count, Expression<Func<Entity, bool>> pericate);
-        Task<IEnumerable<Entity>> GetAllAsync<TSortField>(Expression<Func<Entity, TSortField>> orderBy, bool ascending);
-        Task<bool> AddAsync(Entity entity);
-        Task<bool> RemoveAsync(Entity entity);
-        Task<bool> SaveAsync(Entity entity);
+        Task<TEntity> GetByIdAsync<TEntity>(Guid id, CancellationToken cancellationToken) where TEntity : class, IDomainObject;
+
+        Task<IEnumerable<TEntity>> GetAsync<TEntity>(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken, int count = 1,
+            int skip = 0) where TEntity : class, IDomainObject;
+
+        Task<bool> AddAsync<TEntity>(TEntity entity, CancellationToken cancellationToken) where TEntity : class,IDomainObject;
+
+        Task<bool> RemoveAsync<TEntity>(TEntity entity, CancellationToken cancellationToken) where TEntity : class,IDomainObject;
+
+        Task<bool> SaveAsync<TEntity>(TEntity entity, CancellationToken cancellationToken) where TEntity : class,IDomainObject;
     }
 }

@@ -1,4 +1,5 @@
-﻿using SecretProject.BusinessProject.Models;
+﻿using System;
+using SecretProject.BusinessProject.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,8 +10,8 @@ namespace SecretProject.WebApi.ViewModels
     {
         public NomenclatureGroupViewModel(NomenclatureGroup domain)
         {
-            if (domain != null)
-            Id = domain.Id;
+            //TODO: move to Guid
+            //Id = domain.Id;
             Name = domain.Name;
             Parent = domain.Parent;
             Childs = domain.Childs;
@@ -19,17 +20,14 @@ namespace SecretProject.WebApi.ViewModels
         public int Id { get; set; }
         [NotMapped]
         public string Type => this.GetType().Name;
-        [Display(Name = "Название группы номенклатуры")]
         public virtual string Name { get; set; }
         /// <summary>
-        /// Родительская группа
+        /// Parent Group
         /// </summary>
-        [Display(Name = "Родительская группа")]
         public virtual NomenclatureGroup Parent { get; set; }
         /// <summary>
-        /// Дочерние группы
+        /// Nomenclature Childs
         /// </summary>
-        [Display(Name = "Дочерние группы")]
         public virtual IList<NomenclatureGroup> Childs { get; set; }
 
     }

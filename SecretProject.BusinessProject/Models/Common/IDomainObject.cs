@@ -11,7 +11,7 @@ namespace SecretProject.BusinessProject.Models
         
         [Key]
         //UNDONE Задача научиться формировать последовательный guid id
-        int Id { get; set; }
+        Guid Id { get; set; }
         [Timestamp]
         byte[] Timestamp { get; set; }
     }

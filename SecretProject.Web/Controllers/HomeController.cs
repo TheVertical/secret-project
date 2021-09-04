@@ -17,12 +17,6 @@ namespace SecretProject.Controllers
         }
 
         [HttpGet]
-        public ViewResult Index()
-        {
-            return View("React");
-        }
-
-        [HttpGet]
         public JsonResult Get()
         {
             return visualRedactor.GetBackbone() as JsonResult;

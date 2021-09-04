@@ -9,6 +9,7 @@ using SecretProject.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SecretProject.WebApi.Controllers
@@ -33,17 +34,18 @@ namespace SecretProject.WebApi.Controllers
         [HttpGet]
         [Route("categories")]
         [Route("categories/{id:int}")]
-        public async Task<IActionResult> GetCategories(int? id)
+        public async Task<IActionResult> GetCategories(int? id, CancellationToken cancellationToken = default)
         {
             if (id == null)
             {
-                var groups = await repository.GetAllAsync<NomenclatureGroup, int>(group => group.Id, true);
+                var groups = await repository.GetAsync<NomenclatureGroup>(null, cancellationToken);
                 var groupViewModels = groups.Select(g => new NomenclatureGroupViewModel(g));
                 if (groupViewModels == null)
                     return BadRequest();
                 return visualRedactor.GetFormattedElement(groupViewModels) as JsonResult;
             }
-            var group = await repository.GetByIdAsync<NomenclatureGroup>(id.Value);
+
+            var group = await repository.GetByIdAsync<NomenclatureGroup>(id.Value, cancellationToken);
             if (group != null)
             {
                 NomenclatureGroupViewModel categoryViewModel = new NomenclatureGroupViewModel(group);
@@ -54,7 +56,7 @@ namespace SecretProject.WebApi.Controllers
         }
         [HttpGet]
         [Route("product/{id:int}")]
-        public async Task<IActionResult> GetProducts(int id)
+        public async Task<IActionResult> GetProducts(Guid id)
         {
             var query = context.Set<Nomenclature>()
                 .Include(n => n.Manufacturer)
@@ -75,11 +77,11 @@ namespace SecretProject.WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("product")]
-        public async Task<IActionResult> GetPoducts(
+        public async Task<IActionResult> GetProducts (
             [FromQuery]bool? needTotalCount,
             [FromQuery]int? manufacturerId,
             [FromQuery]int? categoryId,
-            [FromQuery] int? count,
+            [FromQuery]int? count,
             [FromQuery]int? from,
             [FromQuery]float? minValue,
             [FromQuery]float? maxValue)
@@ -101,8 +103,8 @@ namespace SecretProject.WebApi.Controllers
             if(needTotalCount != null && needTotalCount.Value)
                 allNomByQuery = await query.CountAsync();
 
-            if (from != null)
-                query = query.Where(p => p.Id > from);
+            //if (from != null)
+            //    query = query.Where(p => p.Id > from);
 
             if (minValue != null)
             {

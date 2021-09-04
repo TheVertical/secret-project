@@ -8,14 +8,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using SecretProject.BusinessProject.DataAccess;
 using SecretProject.BusinessProject.Services.Encription;
 using SecretProject.DAL.Contexts;
 using SecretProject.DAL.DataAccess;
-using SecretProject.Services;
-using SecretProject.VisualElements;
+using SecretProject.DAL.DataAccess.Repository;
 using SecretProject.Web.Infrastructure.Authentication;
+using SecretProject.Web.Services;
 using SecretProject.WebApi.Services;
 
 namespace SecretProject.WebApi.Infrastructure.Dependecies
@@ -28,14 +27,48 @@ namespace SecretProject.WebApi.Infrastructure.Dependecies
         {
             Configuration = configuration;
         }
-        public void ResolveIdentity(IServiceCollection services)
+
+        public void ResolveContexts(IServiceCollection services)
         {
+            services.AddScoped<DbContext, MainContext>(factory => new MainContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDb.Main")));
+
             services.AddDbContext<ApiIdentityContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SecretDb.Identity"));
             });
 
-            services.AddDefaultIdentity<AppUser>()
+            services.AddScoped<LocalizationContext>(factory =>
+            {
+                var s = new LocalizationContextFactory().CreateDbContext(
+                    Configuration.GetConnectionString("SecretDb.Localization"));
+                    return s;
+                });
+        }
+
+        public void ResolveIdentity(IServiceCollection services)
+        {
+            services.AddDefaultIdentity<AppUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+
+                // Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = false;
+            })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApiIdentityContext>()
                 .AddDefaultTokenProviders();
@@ -49,6 +82,7 @@ namespace SecretProject.WebApi.Infrastructure.Dependecies
                     {
                         LogoutUrl = "/Identity/account/logout",
                         LoginUrl = "/Identity/account/login",
+                        
                         LoginReturnUrlParameter = "returnUrl"
                     };
                 })
@@ -64,13 +98,11 @@ namespace SecretProject.WebApi.Infrastructure.Dependecies
 
         public void ResolveDependencies(IServiceCollection services)
         {
-            //services.AddScoped<IdentityBasicAuthenticationHandler>();
             services.AddScoped<JsonSerializerOptions>(f => new JsonSerializerOptions() { WriteIndented = true, });
-            services.AddScoped<IVisualRedactor, VisualRedactor>();
             services.AddScoped<EncriptionService>();
-            services.AddScoped<IRepository, SqlRepository>();
-            services.AddTransient<SessionHelper>(sp => SessionHelper.GetHelper(sp));
-            services.AddTransient<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddScoped<LocalizationService>();
+            services.AddTransient<SessionHelper>(SessionHelper.GetHelper);
+            services.AddTransient<Cart>(SessionCart.GetCart);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 

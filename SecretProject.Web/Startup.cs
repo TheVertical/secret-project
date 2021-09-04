@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SecretProject.DAL.Contexts;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 using SecretProject.WebApi.Infrastructure.Dependecies;
@@ -22,16 +20,18 @@ namespace SecretProject.WebApi
             dependencyResolver = new DependencyResolver(configuration);
         }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<DbContext, MainContext>(fac => new MainContextFactory().CreateDbContext(Configuration.GetConnectionString("SecretDb.Main")));
-
+            dependencyResolver.ResolveContexts(services);
             dependencyResolver.ResolveDependencies(services);
             dependencyResolver.ResolveIdentity(services);
             dependencyResolver.ResolveSpaServices(services);
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -51,18 +51,15 @@ namespace SecretProject.WebApi
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "api/{controller}/{action}/{id?}");
+                endpoints.MapControllers();
             });
 
             app.UseSpa(builder =>
             {
                 var options = builder.Options;
-
                 options.SourcePath = env.ContentRootPath + "/ClientApp";
                 options.DefaultPage = "/main.html";
             });

@@ -53,7 +53,7 @@ namespace SecretProject.WebApi.Infrastructure
     [Serializable]
     public class CartLine
     {
-        public int NomenclatureId { get; set; }
+        public Guid NomenclatureId { get; set; }
         public float NomenclatureCost { get; set; }
         public int Amount { get; set; }
 

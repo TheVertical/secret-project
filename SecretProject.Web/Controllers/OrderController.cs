@@ -37,7 +37,7 @@ namespace SecretProject.WebApi.Controllers
 
         [HttpGet]
         [Route("details/{id:int}")]
-        public async Task<IActionResult> GetOrderDetails(int id)
+        public async Task<IActionResult> GetOrderDetails(Guid id)
         {
             var order = (await context.Set<Order>().Include(o => o.OrderDetails).Include(o => o.OrderItems).Where(o => o.Id == id).ToListAsync()).FirstOrDefault();
             if (order == null)

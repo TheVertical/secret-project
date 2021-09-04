@@ -6,6 +6,7 @@ using SecretProject.BusinessProject.Models.Good;
 using SecretProject.VisualElements;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SecretProject.WebApi.Controllers
@@ -28,10 +29,10 @@ namespace SecretProject.WebApi.Controllers
         [HttpGet]
         [Route("promotions")]
         [Route("promotions/{id:int?}")]
-        public async Task<IActionResult> GetPromotion(int? id)
+        public async Task<IActionResult> GetPromotion(Guid? id, CancellationToken cancellationToken = default)
         {
             Promotion promotion = null;
-            var result = id == null ? await repository.GetAsync<Promotion>(1, p => p.WorkTitle == "Спец") : await repository.GetAsync<Promotion>(1, p => p.Id == id);
+            var result = id == null ? await repository.GetAsync<Promotion>(p => p.WorkTitle == "Спец", cancellationToken) : await repository.GetAsync<Promotion>(p => p.Id == id, cancellationToken);
             promotion = result.FirstOrDefault();
             if (promotion == null)
                 return BadRequest();

@@ -12,7 +12,7 @@ namespace SecretProject.BusinessProject.Models.UserData
         #region Base Property
         [Key]
         [Display(Name = "Ид")]
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
         /// <summary>
@@ -20,7 +20,6 @@ namespace SecretProject.BusinessProject.Models.UserData
         public virtual byte[] Timestamp { get; set; }
         [ForeignKey(nameof(UserId))]
         [Required]
-        public  User User { get; set; }
         public virtual string Country { get; set; }
         public virtual string City { get; set; }
         public virtual int OKATOCod { get; set; }
@@ -39,11 +38,11 @@ namespace SecretProject.BusinessProject.Models.UserData
         public virtual string BuildLiteral { get; set; }
         public virtual int BuildCorps { get;set; }
         /// <summary>
-        /// Широта в градусах 
+        /// in degrees
         /// </summary>
         public virtual float Latitude { get; set; }
         /// <summary>
-        /// Долгота в градусах
+        /// in degrees
         /// </summary>
         public virtual float Longitude { get; set; }
         #endregion

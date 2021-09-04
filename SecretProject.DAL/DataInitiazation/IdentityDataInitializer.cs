@@ -12,11 +12,11 @@ namespace SecretProject.DAL.DataInitiazation
     {
         public override void InitializeData(DbContext context)
         {
-            if (!(context is AppIdentityDbContext))
-                throw new ArgumentException("Your context is wrong for this function! You need AppIdentityDbContext context!");
+            if (!(context is ApiIdentityContext))
+                throw new ArgumentException("Your context is wrong for this function! You need ApiIdentityContext context!");
             InitializeData(context);
         }
-        //public void InitializeData(AppIdentityDbContext _context)
+        //public void InitializeData(ApiIdentityContext _context)
         //{
         //    IdentityRole identityRole = new IdentityRole("Admin");
         //    _context.Roles.Add(identityRole);

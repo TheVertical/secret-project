@@ -9,7 +9,7 @@ using SecretProject.DAL.Contexts;
 
 namespace SecretProject.DAL.Migrations.AppIdentityDb
 {
-    [DbContext(typeof(AppIdentityDbContext))]
+    [DbContext(typeof(ApiIdentityContext))]
     [Migration("20210213152101_Initial_Identity")]
     partial class Initial_Identity
     {

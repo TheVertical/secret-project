@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 
 namespace SecretProject.DAL.DataInitiazation
 {
-    public class SBaseDataInitializer : DataInitializerBase
+    public class MainDataInitializer : DataInitializerBase
     {
         public override void InitializeData(DbContext context)
         {
@@ -234,31 +234,6 @@ namespace SecretProject.DAL.DataInitiazation
             }
             _context.SaveChanges();
 
-            var users = new List<User>
-            {
-                new User{FirstName = "Данила",LastName="Потапов",Login="danila351960@yandex.ru",Password="potapov2222",MainPhone = new Phone(){ PhoneNumber = "79536600012"},Status = UserStatus.Active,
-                    DeliveryAdresses = new List<Adress>
-                    {
-                        new Adress
-                        {
-                            Country = "Россия",
-                            City = "Санкт-Петербург",
-                            OKATOCod = 40,
-                            District = "Невский",
-                            Street = "Российский пр-кт",
-                            BuildNumber = 3,
-                            BuildCorps = 1,
-                            Entrance = 1,
-                            Floor = 3,
-                            AppartmentNumber = 12,
-                            Latitude = 59.923184f,
-                            Longitude = 30.472759f,
-                        }
-                    }
-                }
-            };
-            _context.Users.AddRange(users);
-
             var promotion = new Promotion { OfficialTitle = "Специальные предложения!", WorkTitle = "Спец",
                 DiscountedNomenclatures = new List<Nomenclature>()
             };
@@ -292,8 +267,8 @@ namespace SecretProject.DAL.DataInitiazation
                     Status = OrderState.Confirmed,
                     OrderItems = new System.Collections.ObjectModel.ObservableCollection<OrderItem>
                     {
-                        new OrderItem { NomenclatureId = 2,ActualCount = 2, },
-                        new OrderItem { NomenclatureId = 3,ActualCount = 1, },
+                        new OrderItem { NomenclatureId = Guid.NewGuid(), ActualCount = 2, },
+                        new OrderItem { NomenclatureId = Guid.NewGuid(), ActualCount = 1, },
                     }
                 }
             };
@@ -315,7 +290,7 @@ namespace SecretProject.DAL.DataInitiazation
                     int status = random.Next(0, Enum.GetValues(typeof(OrderState)).Length - 1);
                     for (int j = 0; j < random.Next(1,10); j++)
                     {
-                        int nomId = random.Next(1, 1000 + nomenclatures.Count);
+                        Guid nomId = Guid.NewGuid();
                         int actualCount = random.Next(1, 100);
                         OrderItem item = new OrderItem() { NomenclatureId = nomId, ActualCount = actualCount };
                         order.OrderItems.Add(item);

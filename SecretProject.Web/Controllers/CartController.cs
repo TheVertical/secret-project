@@ -10,6 +10,7 @@ using SecretProject.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 namespace SecretProject.WebApi.Controllers
 {
@@ -34,13 +35,13 @@ namespace SecretProject.WebApi.Controllers
         }
         [HttpGet]
         [Route("list")]
-        public async Task<IActionResult> GetCartLineList()
+        public async Task<IActionResult> GetCartLineList(CancellationToken cancellationToken = default)
         {
             var lines = cart.Lines.ToList();
             List<CartLineViewModel> cartLines = new List<CartLineViewModel>();
             foreach (var l in lines)
             {
-                Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(l.NomenclatureId);
+                Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(l.NomenclatureId, cancellationToken);
                 if (nomenclature != null)
                 {
                     NomenclatureViewModel viewModel = new NomenclatureViewModel(nomenclature);
@@ -58,12 +59,12 @@ namespace SecretProject.WebApi.Controllers
         }
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> AddToCart([FromQuery] int nomenclatureId, [FromQuery] int amount)
+        public async Task<IActionResult> AddToCart([FromQuery] int nomenclatureId, [FromQuery] int amount, CancellationToken cancellationToken = default)
         {
             IActionResult result = null;
             if (amount < 1)
                 return BadRequest();
-            Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(nomenclatureId);
+            Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(nomenclatureId, cancellationToken);
             if (nomenclature != null)
             {
                 cart.AddLine(nomenclature, amount);
@@ -76,10 +77,10 @@ namespace SecretProject.WebApi.Controllers
 
         [HttpPost]
         [Route("remove")]
-        public async Task<IActionResult> RemoveLineFromCart([FromQuery] int nomenclatureId)
+        public async Task<IActionResult> RemoveLineFromCart([FromQuery] int nomenclatureId, CancellationToken cancellationToken = default)
         {
             IActionResult result = null;
-            Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(nomenclatureId);
+            Nomenclature nomenclature = await repository.GetByIdAsync<Nomenclature>(nomenclatureId, cancellationToken);
             if (nomenclature != null)
             {
                 cart.RemoveLine(nomenclature);

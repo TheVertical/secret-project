@@ -1,6 +1,7 @@
 {
   "ConnectionStrings": {
     "SecretDb.Main": "server=(local);Initial Catalog='SecretDb_Main';User Id = sa;Password = potapov2222;App=EntityFramework",
-    "SecretDb.Identity": "server=(local);Initial Catalog='SecretDb_Identity';User Id = sa;Password = potapov2222;App=EntityFramework"
+    "SecretDb.Identity": "server=(local);Initial Catalog='SecretDb_Identity';User Id = sa;Password = potapov2222;App=EntityFramework",
+    "SecretDb.Localization": "server=(local);Initial Catalog='SecretDb_Localization';User Id = sa;Password = potapov2222;App=EntityFramework"
   }
 }

@@ -10,7 +10,8 @@ namespace SecretProject.WebApi.ViewModels
     {
         public ManufacturerViewModel(Manufacturer domain)
         {
-            Id = domain.Id;
+            //TODO: move to Guid
+            //Id = domain.Id;
             Name = domain.Name;
         }
 

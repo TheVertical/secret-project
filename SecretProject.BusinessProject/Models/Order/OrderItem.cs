@@ -24,7 +24,7 @@ namespace SecretProject.BusinessProject.Models.Order
         #region Base Property
         [Key]
         [Display(Name = "Ид")]
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
         /// </summary>
@@ -60,7 +60,7 @@ namespace SecretProject.BusinessProject.Models.Order
         #endregion
         #region Foreign keys
         public virtual int OrderId { get; set; }
-        public virtual int NomenclatureId { get; set; }
+        public virtual Guid NomenclatureId { get; set; }
         #endregion
         #region Special Property
         #endregion

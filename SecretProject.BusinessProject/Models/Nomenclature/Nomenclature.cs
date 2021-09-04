@@ -19,7 +19,7 @@ namespace SecretProject.BusinessProject.Models.Good
         /// Ид
         /// </summary>
         [Display(Name = "Ид")]
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using SecretProject.BusinessProject.Models;
+﻿using System;
+using SecretProject.BusinessProject.Models;
 using SecretProject.BusinessProject.Models.Good;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,8 @@ namespace SecretProject.WebApi.ViewModels
     {
         public NomenclatureViewModel(Nomenclature domain)
         {
-            Id = domain.Id;
+            //TODO: move to GUID
+            Id = 0;
             Title = domain.Name;
             Description = domain.Description;
             if(domain.Manufacturer != null)
