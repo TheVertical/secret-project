@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import layoutModalsReducer from "./layout-modals-reducer";
+import layoutModalsReducer from "./reducers/layout-modals-reducer";
+import toasterReducer from "./reducers/toaster-reducer";
 
 const rootReducer = combineReducers({
     layoutModals: layoutModalsReducer,
+    toaster: toasterReducer
 });
 
 export default rootReducer;

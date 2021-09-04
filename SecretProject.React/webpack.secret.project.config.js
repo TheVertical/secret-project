@@ -9,7 +9,7 @@ module.exports = (env) => {
         ...config.entry
     }
     config.output = {
-        'path': path.resolve('../SecretProject.Web/Scripts/React', 'dist'),
+        'path': path.resolve('../SecretProject.Web/ClientApp/Scripts/React', 'dist'),
         publicPath: 'auto',
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunkhash.bundle.js',

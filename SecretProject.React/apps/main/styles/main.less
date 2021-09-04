@@ -1,7 +1,7 @@
-@import url(variables.less);
+@import url('./variables.less');
 
 * {
-    font-size: 12.5px;
+    font-size: 14.5px;
     font-family: Montserrat;
 }
 
@@ -15,11 +15,32 @@ body {
 @header-contrast-color: @oceanic-dark;
 .header {
     background-color: @header-background;
+}
 
-    .logo-company{
-        font-size: 40px;
-        text-decoration: none;
-        color: @header-logo;
+@logo-color: black;
+.logo-company {
+    text-decoration: none;
+    color: @logo-color;
+    
+    & > .logo-img {
+        max-height: 27px;
+        width: 23px;
+    }
+
+    & > .logo-text {
+        font-size: 17.5px;
+    }
+
+    &:hover {
+        color: darken(@logo-color, 20%);
+    }
+
+    &:active {
+        color: darken(@logo-color, 20%);
+    }
+
+    &:focus {
+        color: darken(@logo-color, 20%);
     }
 }
 

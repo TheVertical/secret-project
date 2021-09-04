@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import App from './app';
-import jQuery from 'jquery';
-
 import MAIN_URLS from '@/constants/main-urls';
 import LocalizeService from '@/shared/localization-service';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import jQuery from 'jquery'
+import Loader from './common-components/loader';
 
-const $root = jQuery('#root');
-const languageId = $root.attr('language-id') || '';
-LocalizeService.init(MAIN_URLS.LOCALIZE, {languageId});
+const languageId = jQuery("#root").attr("default-language-id");
+const url: string = MAIN_URLS.LOCALIZE + "?languageId=" + languageId;
+LocalizeService.init(url);
 
 const rootElement = document.getElementById('root');
 
-
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Suspense fallback={<Loader/>}>
+            <App />
+        </Suspense>
     </Provider>,
-rootElement);
+    rootElement);

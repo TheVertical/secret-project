@@ -1,14 +1,83 @@
+@import url('./variables.less');
+
+.mr {
+    
+    &-0 {
+        margin-right: 0;
+    }
+
+    &-1 {
+        margin-right: 0.25rem !important;
+    }
+
+    &-2 {
+        margin-right: 0.5rem !important;
+    }
+
+    &-3 {
+        margin-right: 1rem !important;
+    }
+
+    &-4 {
+        margin-right: 1.5rem !important;
+    }
+
+    &-5 {
+        margin-right: 3rem !important;
+    }
+
+    &-auto {
+        margin-right: auto !important;
+    }
+}
+
+.ml {
+    
+    &-0 {
+        margin-left: 0;
+    }
+
+    &-1 {
+        margin-left: 0.25rem !important;
+    }
+
+    &-2 {
+        margin-left: 0.5rem !important;
+    }
+
+    &-3 {
+        margin-left: 1rem !important;
+    }
+
+    &-4 {
+        margin-left: 1.5rem !important;
+    }
+
+    &-5 {
+        margin-left: 3rem !important;
+    }
+
+    &-auto {
+        margin-left: auto !important;
+    }
+}
+
 //Redefenition the deffault bootstrap styles for some elements
 @primary-background: #83bde5;
 @secondary-background: white;
 @secondary-background-hover: #83bde5;
 @btn-box-shadow-size: 0.25rem;
+@btn-border-radius: 9px;
+
 .btn {
     border: none;
-    border-radius: 1.5rem;
+    border-radius: @btn-border-radius;
+
+    &.circle-border-radius {
+        border-radius: 20px;
+    }
 
     &-primary {
-        
 
         color: white;
         background: @primary-background;
@@ -28,8 +97,29 @@
         }
     }
 
+    &-outline-primary {
+        color: @primary-background;
+
+        &:hover {
+            color: white;
+            background: darken(@primary-background, 20%);
+        }
+
+        &:active {
+            color: white;
+            background: darken(@primary-background, 20%);
+        }
+
+        &:focus {
+            color: white;
+            background: darken(@primary-background, 20%);
+            border-color: @primary-background;
+            box-shadow: 0 0 0 @btn-box-shadow-size lighten(@primary-background, 10%);
+        }
+    }
+
     &-secondary {
-        
+
         color: #6f7079;
         background: white;
 
@@ -50,8 +140,9 @@
     }
 }
 
-@default-nav-link-color: black;
-.nav{
+@default-nav-link-color: white;
+
+.nav {
     & .nav-item {
         & .nav-link {
             color: @default-nav-link-color
@@ -66,8 +157,9 @@
 @default-card-img-height: 154px;
 @default-card-border-color: #8c99a3;
 @default-card-not-in-stock-color: #8c99a3;
-@default-card-image-color: #e9eff5;
-@default-card-body-max-height:45px;
+@default-card-image-color: @white-sky;
+@default-card-body-max-height: 45px;
+
 .card {
     border: none;
     border-radius: 1.5rem;
@@ -77,13 +169,18 @@
     max-width: @default-card-width;
     max-height: @default-card-height;
 
+    &.category-variant {
+        max-width: @default-card-width;
+        max-height: @default-card-height;
+    }
+
     &:hover {
         border: 2px solid @default-card-border-color;
     }
 
     .card-header {
         font-family: inherit;
-        
+
         font-size: 17px;
         border: none;
         background: none;
@@ -119,6 +216,8 @@
 
             overflow: hidden;
             padding-left: 12px;
+            padding-right: 12px;
+            max-height: 36.8px;
         }
     }
 
@@ -127,7 +226,7 @@
 
         border: none;
         background: white;
-        padding:0;
+        padding: 0;
         padding-left: 22px;
         padding-bottom: 5px;
 
@@ -148,5 +247,34 @@
                 font-weight: bold;
             }
         }
+    }
+}
+
+@modal-border-radius: 10px;
+@modal-secondary-color: @white-sky;
+
+.modal-dialog {
+    .modal-content {
+        border-radius: @modal-border-radius;
+
+        .modal-header {
+            border-bottom: 2px solid @modal-secondary-color;
+        }
+
+        .modal-footer {
+            background: @modal-secondary-color;
+            border-bottom-left-radius: @modal-border-radius;
+            border-bottom-right-radius: @modal-border-radius;
+        }
+    }
+}
+
+@form-control-border-radius: 10px;
+@form-control-background: @white-sky;
+
+form {
+    .form-control {
+        border-radius: @form-control-border-radius;
+        background: @white-sky;
     }
 }

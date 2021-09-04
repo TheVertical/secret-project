@@ -1,9 +1,9 @@
 import LocalizeService from '@/shared/localization-service';
-import { trackForMutations } from '@reduxjs/toolkit/dist/immutableStateInvariantMiddleware';
 import React from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row, Image } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { toggleAuthorizationModal } from '../store/layout-modals-reducer';
+import { Link } from 'react-router-dom';
+import { toggleAuthorizationModal } from '../store/reducers/layout-modals-reducer';
 
 interface ToolbarViewModel {
 
@@ -15,11 +15,21 @@ const Toolbar: React.FC<ToolbarViewModel> = () => {
     const onUserIconClick = () => dispatch(toggleAuthorizationModal());
 
     const isToolbarShow = true;
-    return(
+    return (
         <div className="toolbar-container p-2">
             <Container fluid>
                 <Row>
-                    <Col md={4} className="d-flex justify-content-end">
+                    <Col md={4} className="d-flex align-items-center justify-content-end">
+                        <Link to="/" className="logo-company d-inline-flex align-items-start">
+                            <div className="logo-img">
+                                <Image src="/Images/Logo.svg" />
+                            </div>
+                            &nbsp;
+                            <div className="logo-text">
+                                Olimp
+                            </div>
+                        </Link>
+                        &emsp;
                         <Button variant="secondary">
                             {LocalizeService.localize('Toolbar_Catalog')}
                         </Button>
@@ -34,16 +44,20 @@ const Toolbar: React.FC<ToolbarViewModel> = () => {
                         </div>
                     </Col>
                     <Col md={3} className="d-flex justify-content-start">
-                        <Button className="toolbar-item" variant="secondary" onClick={onUserIconClick}>
+                        <Button className="circle-border-radius toolbar-item" variant="secondary">
+                            <i className="fas fa-phone"></i>
+                        </Button>
+                        &emsp;
+                        <Button className="circle-border-radius toolbar-item" variant="secondary" onClick={onUserIconClick}>
                             <i className="fas fa-user"></i>
                         </Button>
                         &emsp;
-                        <Button className="toolbar-item" variant="secondary">
+                        <Button className="circle-border-radius toolbar-item" variant="secondary">
                             <i className="fas fa-shopping-cart"></i>
                         </Button>
                     </Col>
                     <Col md={1} className="d-flex justify-content-center">
-                        <Button className="toolbar-item hide-toolbar-button" variant="secondary">
+                        <Button className="circle-border-radius toolbar-item hide-toolbar-button" variant="secondary">
                             {isToolbarShow ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
                         </Button>
                     </Col>

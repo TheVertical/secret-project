@@ -1,5 +1,5 @@
 const LanguageCode = {
-    EN: 'eng',
+    EN: 'en',
     RU: 'ru'
 }
 export default LanguageCode;
