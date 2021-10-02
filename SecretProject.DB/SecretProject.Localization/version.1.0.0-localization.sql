@@ -28,6 +28,8 @@ EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Authorization_Crea
 EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Authorization_Registration_Title', N'Регистрация';
 EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Authorization_Registration_PersonalDataAgreement', N'Пользовательское соглашение';
 EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Authorization_Registration_Create', N'Создать';
+EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Authorization_UserExists', N'Такой аккаунт уже существует!';
+EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Authorization_AccountWasCreatedSuccessfully', N'Аккаунт успешно создан!';
 EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'RegistrationValidationSchema_ConfirmPersonalDataAgreement_Error', N'Подтвердите соглашение';
 EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'RegistrationValidationSchema_ConfirmationPassword_Error', N'Неправльно ввелен пароль';
 EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Header_DeliveryAndPayment', N'Доставка и оплата';
