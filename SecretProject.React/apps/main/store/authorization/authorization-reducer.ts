@@ -1,4 +1,4 @@
-import RegistrationAccountViewModel from "@/models/registration-account-view-model";
+import RegistrationAccountViewModel from "@/models/Account/registration-account-view-model";
 import RequestManager, { HttpMethod } from "@/shared/request-manager";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ActionUrls from "../../constants";
@@ -15,13 +15,17 @@ const authorizationSlice = createSlice({
     name: 'authorization-reducer',
     initialState,
     reducers: {
-        registerNewAccount: (state, action: PayloadAction<RegistrationAccountViewModel>) => {
-            var result = RequestManager.sendRequest(HttpMethod.Post, ActionUrls.REGISTER_NEW_ACCOUNT, undefined, action.payload);
+        registerNewAccount: (state, action: PayloadAction<boolean>) => {
+            state.IsAuthorize = action.payload;
+            return state;
+        },
+        sendSignIn: (state, action: PayloadAction<boolean>) => {
+            state.IsAuthorize = action.payload;
+            return state;
         }
     }
 });
 
-
-export const { registerNewAccount } = authorizationSlice.actions
+export const { registerNewAccount, sendSignIn } = authorizationSlice.actions;
 
 export default authorizationSlice.reducer;

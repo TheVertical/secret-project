@@ -9,22 +9,26 @@ export enum HttpMethod {
 
 const RequestManager = {
      sendRequest: async function (httpMethod: HttpMethod, url: string, params: Record<string, string> | undefined = undefined, payload: any = undefined): Promise<any> {
-
-          const resultUrl = new URL(url);
-          resultUrl.search = (new URLSearchParams(params)).toString();
-          const jsonPayload = JSON.stringify(payload);
           const requestSettings: RequestInit = {
                method: httpMethod,
-               body: JSON.stringify(jsonPayload),
+               body: JSON.stringify(payload),
+               headers: {
+                    'Content-Type': 'application/json'
+               }
           };
 
           var responce = await fetch(url, requestSettings);
 
           let result: ExtraInformation | null = await responce.json() as ExtraInformation;
-          debugger;
+          
           if (result == null) {
-               ToasterHelper.addErrorToasts([LocalizeService.localize("Error")]);
+               ToasterHelper.addErrorToasts(LocalizeService.localize("Error"), LocalizeService.localize("Error"));
                return null;
+          }
+
+          if(result.Message)
+          {
+               ToasterHelper.addToast(result.Message, result.Title, result.Type);
           }
 
           result.Data;

@@ -22,7 +22,7 @@ const Toolbar: React.FC<ToolbarViewModel> = () => {
                     <Col md={4} className="d-flex align-items-center justify-content-end">
                         <Link to="/" className="logo-company d-inline-flex align-items-start">
                             <div className="logo-img">
-                                <Image src="/Images/Logo.svg" />
+                                <Image src="/Images/LogoGradient.svg" />
                             </div>
                             &nbsp;
                             <div className="logo-text">

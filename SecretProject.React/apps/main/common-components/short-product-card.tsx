@@ -17,9 +17,9 @@ const ShortProductCard: React.FC<ShortProductViewModel> = (props) => {
         <Card className="d-flex align-content-end">
                 <Card.Header>
                     {InStock ?
-                    <span className="in-stock">{LocalizeService.localize("Not_InStock")}</span>
+                    <span className="in-stock">{LocalizeService.localize("InStock")}</span>
                     :
-                    <span className="not-in-stock">{LocalizeService.localize("InStock")}</span>
+                    <span className="not-in-stock">{LocalizeService.localize("Not_InStock")}</span>
                     }
                 </Card.Header>
             <Row>

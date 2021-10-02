@@ -1,7 +1,9 @@
-import RegistrationAccountViewModel from '@/models/registration-account-view-model';
+import AuthentificationAccountViewModel from '@/models/Account/authentification-account-view-model';
+import RegistrationAccountViewModel from '@/models/Account/registration-account-view-model';
 import React from 'react';
 import { connect } from 'react-redux';
 import AuthorizationModal from '../common-components/authorizatiom-modal';
+import registerNewAccount, { sendSignIn } from '../store/authorization/authentification-actions';
 import { AppDispatch, RootState } from '../store/store';
 
 interface ReduxStateProps {
@@ -11,6 +13,7 @@ interface ReduxStateProps {
 interface DispatchProps {
     toggleAuthorizationModal: () => void
     sendRegistration: (registrationAccountViewModel: RegistrationAccountViewModel) => void
+    sendSignIn: (authentificationAccountViewModel: AuthentificationAccountViewModel) => void
 }
 
 type Props = ReduxStateProps & DispatchProps;
@@ -22,7 +25,8 @@ const LayoutModals: React.FC<Props> = (props) => {
 
     const {
         toggleAuthorizationModal,
-        sendRegistration
+        sendRegistration,
+        sendSignIn
     } = props;
 
     return (
@@ -30,7 +34,8 @@ const LayoutModals: React.FC<Props> = (props) => {
             {authorizationModal &&
                 <AuthorizationModal
                     closeModal={toggleAuthorizationModal}
-                    sendRegistration={sendRegistration} />}
+                    sendRegistration={sendRegistration}
+                    sendSignIn={sendSignIn} />}
         </>
     );
 }
@@ -48,7 +53,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => {
         toggleAuthorizationModal: () =>
             dispatch({ type: 'layout-modals/toggleAuthorizationModal' }),
         sendRegistration: (registrationAccountViewModel: RegistrationAccountViewModel) =>
-            dispatch({ type: 'authorization-reducer/registerNewAccount', payload: registrationAccountViewModel }),
+            dispatch(registerNewAccount(registrationAccountViewModel)),
+        sendSignIn: (authentificationAccountViewModel: AuthentificationAccountViewModel) =>
+            dispatch(sendSignIn(authentificationAccountViewModel)),
     }
 }
 

@@ -3,7 +3,6 @@ const ActionUrls = {
 }
 
 export const VisualConstants = {
-    TOAST_ITEM: "SecretProject",
     MainColors: {
         OCEANIC_DARK: "#3A5466",
         WHITE_SKY: "#e9eff5",
