@@ -27,6 +27,11 @@
         Authorization_PasswordConfirm,
         Authorization_CreateAccount,
         Authorization_RememberAccount,
+        Authorization_UserExists,
+        Authorization_AccountWasCreatedSuccessfully,
+
+        Authentification_AccountIsNotFound,
+        Authentification_EmailOrPasswordIsWrong,
 
         Authorization_CreateAccount_Result_Success,
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityModel;
@@ -8,29 +9,21 @@ using Microsoft.Extensions.Options;
 namespace SecretProject.Web.Infrastructure.Authentication
 {
     public class AdditionalUserClaimsPrincipalFactory
-        : UserClaimsPrincipalFactory<AppUser, IdentityRole>
+        : UserClaimsPrincipalFactory<IdentityUser, IdentityRole>
     {
         public AdditionalUserClaimsPrincipalFactory(
-            UserManager<AppUser> userManager,
+            UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IOptions<IdentityOptions> optionsAccessor)
             : base(userManager, roleManager, optionsAccessor)
         { }
 
-        public override async Task<ClaimsPrincipal> CreateAsync(AppUser user)
+        public override async Task<ClaimsPrincipal> CreateAsync(IdentityUser user)
         {
             var principal = await base.CreateAsync(user);
             var identity = (ClaimsIdentity)principal.Identity;
 
             var claims = new List<Claim>();
-            if (!user.IsAdmin)
-            {
-                claims.Add(new Claim(JwtClaimTypes.Role, "user"));
-            }
-            else
-            {
-                claims.Add(new Claim(JwtClaimTypes.Role, "admin"));
-            }
 
             identity.AddClaims(claims);
             return principal;

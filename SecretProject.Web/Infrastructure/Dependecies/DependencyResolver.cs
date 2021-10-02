@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Text.Json;
-using IdentityServer4.Configuration;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SecretProject.BusinessProject.DataAccess;
 using SecretProject.BusinessProject.Services.Encription;
 using SecretProject.DAL.Contexts;
-using SecretProject.DAL.DataAccess;
-using SecretProject.DAL.DataAccess.Repository;
 using SecretProject.Web.Infrastructure.Authentication;
 using SecretProject.Web.Services;
-using SecretProject.WebApi.Services;
+using SecretProject.Web.Services.Interfaces;
 
-namespace SecretProject.WebApi.Infrastructure.Dependecies
+namespace SecretProject.Web.Infrastructure.Dependecies
 {
     public class DependencyResolver
     {
@@ -47,62 +41,43 @@ namespace SecretProject.WebApi.Infrastructure.Dependecies
 
         public void ResolveIdentity(IServiceCollection services)
         {
-            services.AddDefaultIdentity<AppUser>(options =>
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
 
-                // Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 6;
-                options.Password.RequiredUniqueChars = 1;
-
-                // Lockout settings.
+                // Lockout options.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
 
-                // User settings.
+                // Default SignIn settings.
+                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+
+                // User options.
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = true;
+
+                // Password options
+                options.Password.RequireNonAlphanumeric = false;
             })
+                .AddSignInManager()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApiIdentityContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddScoped<IUserClaimsPrincipalFactory<AppUser>,
-                AdditionalUserClaimsPrincipalFactory>();
-
-            services.AddIdentityServer(options =>
-                {
-                    options.UserInteraction = new UserInteractionOptions()
-                    {
-                        LogoutUrl = "/Identity/account/logout",
-                        LoginUrl = "/Identity/account/login",
-                        
-                        LoginReturnUrlParameter = "returnUrl"
-                    };
-                })
-                .AddApiAuthorization<AppUser, ApiIdentityContext>(options =>
-                {
-                    options.ApiResources.AddApiResource("MyExternalApi", resource =>
-                        resource.WithScopes("a", "b", "c"));
-                });
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddIdentityServerJwt();
+                .AddJwtBearer(options => Configuration.Bind("JwtBearerOptions", options));
+
+            services.AddScoped<IAccountService, AccountService>();
         }
 
-        public void ResolveDependencies(IServiceCollection services)
+        public void ResolveCommon(IServiceCollection services)
         {
-            services.AddScoped<JsonSerializerOptions>(f => new JsonSerializerOptions() { WriteIndented = true, });
-            services.AddScoped<EncriptionService>();
-            services.AddScoped<LocalizationService>();
-            services.AddTransient<SessionHelper>(SessionHelper.GetHelper);
-            services.AddTransient<Cart>(SessionCart.GetCart);
+            services.AddScoped<EncryptionService>();
+            services.AddScoped<ILocalizationService, LocalizationService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 

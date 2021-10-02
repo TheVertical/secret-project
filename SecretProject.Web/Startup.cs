@@ -1,13 +1,13 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.IO;
 using Microsoft.Extensions.FileProviders;
-using SecretProject.WebApi.Infrastructure.Dependecies;
+using Microsoft.Extensions.Hosting;
+using SecretProject.Web.Infrastructure.Dependecies;
 
-namespace SecretProject.WebApi
+namespace SecretProject.Web
 {
     public class Startup
     {
@@ -23,7 +23,7 @@ namespace SecretProject.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             dependencyResolver.ResolveContexts(services);
-            dependencyResolver.ResolveDependencies(services);
+            dependencyResolver.ResolveCommon(services);
             dependencyResolver.ResolveIdentity(services);
             dependencyResolver.ResolveSpaServices(services);
 

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace SecretProject.WebApi
+namespace SecretProject.Web
 {
     public class Program
     {

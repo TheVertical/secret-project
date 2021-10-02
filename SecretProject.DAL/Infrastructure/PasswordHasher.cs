@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace SecretProject.DAL.Infrastructure
 {
@@ -36,7 +34,7 @@ namespace SecretProject.DAL.Infrastructure
 
             //Get salt
             var salt = new byte[SALT_SIZE];
-            Array.Copy(hashBytes, 0, salt, 0, SALT_SIZE);
+            Array.Copy(hashBytes, HASH_SIZE, salt, 0, SALT_SIZE);
 
             // Create hash with given salt
             var pbkd2 = new Rfc2898DeriveBytes(password, salt, ITERATIONS_COUNT);
@@ -45,7 +43,7 @@ namespace SecretProject.DAL.Infrastructure
             // Get result
             for (int i = 0; i < HASH_SIZE; i++)
             {
-                if (hashBytes[i + SALT_SIZE] != hash[i])
+                if (hashBytes[i] != hash[i])
                 {
                     return false;
                 }
@@ -65,10 +63,13 @@ namespace SecretProject.DAL.Infrastructure
 
             // Combine salt and hash
             var hashBytes = new byte[SALT_SIZE + HASH_SIZE];
-            Array.Copy(salt, 0 , hashBytes, SALT_SIZE, HASH_SIZE);
+            Array.Copy(hash, 0, hashBytes, 0, HASH_SIZE);
+            Array.Copy(salt, 0 , hashBytes, HASH_SIZE, SALT_SIZE);
 
             // Convert to base64
             var base64Hash = Convert.ToBase64String(hashBytes);
+
+            Verify(password, base64Hash);
 
             return base64Hash;
         }

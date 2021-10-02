@@ -21,7 +21,7 @@ namespace SecretProject.Web.Infrastructure.Authentication
         private readonly IUserClaimsPrincipalFactory<IdentityUser> userClaimsPrincipalFactory;
         private HttpContext httpContext;
         private AuthenticationScheme scheme;
-        private readonly EncriptionService encriptionService;
+        private readonly EncryptionService encryptionService;
 
         public IdentityBasicAuthenticationHandler(ILogger<IdentityBasicAuthenticationHandler> logger, UserManager<IdentityUser> userManager, IUserValidator<IdentityUser> userValidator, IUserClaimsPrincipalFactory<IdentityUser> userClaimsPrincipalFactory)
         {
@@ -29,7 +29,7 @@ namespace SecretProject.Web.Infrastructure.Authentication
             this.userManager = userManager;
             this.userValidator = userValidator;
             this.userClaimsPrincipalFactory = userClaimsPrincipalFactory;
-            this.encriptionService = new EncriptionService();
+            this.encryptionService = new EncryptionService();
         }
         public bool AllowMultiple => throw new NotImplementedException();
 
@@ -73,7 +73,7 @@ namespace SecretProject.Web.Infrastructure.Authentication
             //TODO убрать отсюда соль, и научиться правильно солить пароли!
             var salt = "l12kmlkzspdf";
 
-            //var passwordHash = encriptionService.Encrypt(password + salt);
+            //var passwordHash = encryptionService.Encrypt(password + salt);
             var passwordHash = password;
             var user = await userManager.Users
                 .Where(u => u.UserName == login && u.PasswordHash == passwordHash).FirstOrDefaultAsync();

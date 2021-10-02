@@ -10,7 +10,6 @@ namespace SecretProject.Web.Services.Interfaces
     public interface ILocalizationService
     {
         Task<string> LocalizeAsync(LocalizationKey key, CancellationToken cancellationToken);
-        Task<Guid> GetDefaultLanguageAsync(Guid? userId, CancellationToken cancellationToken);
 
         Task<IDictionary<string, string>> GetLiterals<TEnum>(Guid languageId, CancellationToken cancellationToken)
             where TEnum : Enum;
