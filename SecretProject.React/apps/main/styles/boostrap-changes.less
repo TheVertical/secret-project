@@ -152,22 +152,23 @@
 
 
 @default-card-width: 264px;
-@default-card-height: 276px;
+@default-card-height: 300px;
 @default-card-img-width: 154px;
 @default-card-img-height: 154px;
-@default-card-border-color: #8c99a3;
+@default-card-border-color: @blue-sky;
 @default-card-not-in-stock-color: #8c99a3;
 @default-card-image-color: @white-sky;
 @default-card-body-max-height: 45px;
 
 .card {
-    border: none;
+    border: 2px solid white;
     border-radius: 1.5rem;
     overflow: hidden;
     font-family: MyriadPro;
+    box-sizing: border-box;
 
-    max-width: @default-card-width;
-    max-height: @default-card-height;
+    width: @default-card-width;
+    height: @default-card-height;
 
     &.category-variant {
         max-width: @default-card-width;
@@ -209,15 +210,20 @@
     .card-body {
         font-family: inherit;
         overflow: hidden;
-        max-height: @default-card-body-max-height;
+        // max-height: @default-card-body-max-height;
+        // max-width: inherit;
 
         .card-name {
             font-family: inherit;
-
+            
+            display: inline-block;
             overflow: hidden;
+            text-overflow: ellipsis;
+
             padding-left: 12px;
             padding-right: 12px;
-            max-height: 36.8px;
+            // max-height: 36.8px;
+            // max-width: inherit;
         }
     }
 
@@ -243,7 +249,7 @@
             &.discounted-cost {
                 color: @blue-sky;
                 font-family: inherit;
-                font-size: 30px;
+                font-size: 20px;
                 font-weight: bold;
             }
         }

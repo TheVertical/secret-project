@@ -30,7 +30,7 @@
     "watch": "webpack --config webpack.secret.project.config.js --env develop --progress --watch",
     "build": "webpack --config webpack.secret.project.config.js --env develop --progress",
     "less-build": "lessc --source-map apps/main/styles/layout.less ../SecretProject.Web/ClientApp/Styles/layout.css",
-    "less-watch": "less-watch-compiler"
+    "less-watch": "less-watch-compiler --config secret.project.less-watch-compiler.config.json",
   },
   "eslintConfig": {
     "extends": [

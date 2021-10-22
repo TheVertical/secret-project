@@ -7,7 +7,7 @@ const ToasterHelper = {
     addToast(message: string, title: string, toastType: ToastType) {
         const toastItem: ToastItem = {
             Id: Math.floor(Math.random() * 1000),
-            Title: VisualConstants.title,
+            Title: title,
             Message: message,
             Type: toastType
         };
@@ -15,13 +15,13 @@ const ToasterHelper = {
         store.dispatch(addToastItem(toastItem));
     },
     addErrorToasts: function (error: string, title: string): void {
-        addToast(error, title, ToastType.Error)
+        this.addToast(error, title, ToastType.Error)
     },
     addWarningToasts: function (warning: string, title: string): void {
-        addToast(warning, error, title, ToastType.Error)
+        this.addToast(warning, title, ToastType.Warning)
     },
     addInfoToasts: function (message: string, title: string): void {
-        addToast(error, title)
+        this.addToast(message, title, ToastType.Info)
     },
 }
 

@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toggleAuthorizationModal } from '../store/reducers/layout-modals-reducer';
 
-interface ToolbarViewModel {
+interface ToolbarProps {
 
 }
-const Toolbar: React.FC<ToolbarViewModel> = () => {
+const Toolbar: React.FC<ToolbarProps> = () => {
 
     const dispatch = useDispatch();
 
@@ -44,15 +44,15 @@ const Toolbar: React.FC<ToolbarViewModel> = () => {
                         </div>
                     </Col>
                     <Col md={3} className="d-flex justify-content-start">
-                        <Button className="circle-border-radius toolbar-item" variant="secondary">
+                        <Button className="circle-border-radius toolbar-item ms-2" variant="secondary">
                             <i className="fas fa-phone"></i>
                         </Button>
-                        &emsp;
-                        <Button className="circle-border-radius toolbar-item" variant="secondary" onClick={onUserIconClick}>
+
+                        <Button className="circle-border-radius toolbar-item ms-2" variant="secondary" onClick={onUserIconClick}>
                             <i className="fas fa-user"></i>
                         </Button>
-                        &emsp;
-                        <Button className="circle-border-radius toolbar-item" variant="secondary">
+
+                        <Button className="circle-border-radius toolbar-item ms-2" variant="secondary">
                             <i className="fas fa-shopping-cart"></i>
                         </Button>
                     </Col>
