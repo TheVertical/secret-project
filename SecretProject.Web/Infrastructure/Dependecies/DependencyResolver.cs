@@ -36,7 +36,7 @@ namespace SecretProject.Web.Infrastructure.Dependecies
                 var s = new LocalizationContextFactory().CreateDbContext(
                     Configuration.GetConnectionString("SecretDb.Localization"));
                     return s;
-                });
+            });
         }
 
         public void ResolveIdentity(IServiceCollection services)

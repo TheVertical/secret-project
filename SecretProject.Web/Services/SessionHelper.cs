@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading.Tasks;
 
-namespace SecretProject.WebApi.Services
+namespace SecretProject.Web.Services
 {
     public class SessionHelper
     {

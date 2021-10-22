@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SecretProject.WebApi.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using SecretProject.BusinessProject.Models.Good;
+using SecretProject.Web.Services;
 
 namespace SecretProject.WebApi.Infrastructure
 {
