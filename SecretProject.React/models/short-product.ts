@@ -1,4 +1,4 @@
-interface ShortProduct {
+interface ShortProductViewModel {
     Id: string,
     Name: string,
     ImageUrl: string,
@@ -6,4 +6,4 @@ interface ShortProduct {
     InStock: boolean
 }
 
-export default ShortProduct;
+export default ShortProductViewModel;

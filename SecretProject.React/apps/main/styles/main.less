@@ -6,6 +6,7 @@
 }
 
 @main-body-background: #e9eff5;
+
 body {
     background: @main-body-background;
 }
@@ -13,21 +14,23 @@ body {
 @header-logo: white;
 @header-background: @blue-sky;
 @header-contrast-color: @oceanic-dark;
+
 .header {
     background-color: @header-background;
 }
 
 @logo-color: black;
+
 .logo-company {
     text-decoration: none;
     color: @logo-color;
-    
-    & > .logo-img {
+
+    &>.logo-img {
         max-height: 27px;
         width: 23px;
     }
 
-    & > .logo-text {
+    &>.logo-text {
         font-size: 17.5px;
     }
 
@@ -79,5 +82,29 @@ body {
 .category-page-container {
     .category-name {
         font-weight: bold;
+    }
+}
+
+@product-card-body-background: white;
+@product-card-border-radius: 20px;
+@product-card-product-code-color: #cccccc;
+.product-card {
+
+    &-body {
+        background: @product-card-body-background;
+        border-radius: @product-card-border-radius;
+        overflow: hidden;
+    }
+
+    &-cost-information {
+        .product-code {
+            color: @product-card-product-code-color;
+            font-size: 12.5px;
+        }
+
+        .product-cost{
+            font-size: 80px;
+            font-weight: bold;
+        }
     }
 }

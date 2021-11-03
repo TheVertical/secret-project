@@ -1,4 +1,6 @@
 import Category from '@/models/category';
+import ManufacturerViewModel from '@/models/manufacturer-view-model';
+import ProductViewModel from '@/models/product-card-view-model';
 import ShortProduct from '@/models/short-product';
 import ToastItem, { ToastType } from '@/models/toast-item';
 
@@ -71,6 +73,28 @@ const MockService = {
         }
 
         return shortProducts;
+    },
+    getProduct(): ProductViewModel {
+        const manufacturer: ManufacturerViewModel = {
+            Id: '1',
+            Name: 'Alias'
+        };
+        const product: ProductViewModel = {
+            Id: 'sp-2',
+            ProductCode: 'sp-2',
+            Title: 'Лампа полимеризационная с принадлежностями LED.L (WOODPECKER)',
+            Description: 'Беспроводная лампа LED- L предназначена для полимеризации композитных светоотверждаемых материалов при проведении реставрационных работ. Семь рабочих режимов времени работы 3, 5, 10, 20 с, 1, 3, 5 мин. Также 3 режима работы:',
+            Manufacturer: manufacturer,
+            OriginalPrice: 4950,
+            DiscountedPrice: 200,
+            ImageUrl: '/Images/Mock.jpg',
+            IsDiscouted: false,
+            IsNew: false,
+            IsPopular: false,
+            IsInStock: false,
+        };
+
+        return product;
     },
     getCategory(productsCount: number): Category {
         const products: ShortProduct[] = productsCount > 0 ? this.getShortProducts(productsCount) : [];
