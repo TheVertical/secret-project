@@ -5,7 +5,7 @@ import { RootState, AppDispatch } from '../store/store';
 import ToastElement from './toaster-parts/toast-element';
 
 interface ReduxStateProps {
-    Toasts: ToastItem[];
+    toasts: ToastItem[];
 }
 
 interface DispatchProps {
@@ -18,11 +18,11 @@ type Props = ReduxStateProps & DispatchProps;
 
 const Toaster: React.FC<Props> = (props) => {
     const {
-        Toasts,
+        toasts,
         deleteToastItem
     } = props;
 
-    const toaster = Toasts.map(item =>
+    const toaster = toasts.map(item =>
         <ToastElement key={item.Id}
             toastItem={item}
             deleteToastItem={deleteToastItem} />);
@@ -34,8 +34,8 @@ const Toaster: React.FC<Props> = (props) => {
 }
 
 const mapStateToProps = (state: RootState): ReduxStateProps => {
-    const Toasts = state.toaster.ToastItems;
-    return { Toasts };
+    const toasts = state.toaster.ToastItems;
+    return { toasts };
 }
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {

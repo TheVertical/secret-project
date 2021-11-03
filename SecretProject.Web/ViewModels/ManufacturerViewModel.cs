@@ -1,10 +1,6 @@
 ﻿using SecretProject.BusinessProject.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace SecretProject.WebApi.ViewModels
+namespace SecretProject.Web.ViewModels
 {
     public class ManufacturerViewModel
     {

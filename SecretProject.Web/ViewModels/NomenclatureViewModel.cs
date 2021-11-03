@@ -1,10 +1,9 @@
-﻿using System;
-using SecretProject.BusinessProject.Models;
-using SecretProject.BusinessProject.Models.Good;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SecretProject.BusinessProject.Models.Good;
+using SecretProject.WebApi.ViewModels;
 
-namespace SecretProject.WebApi.ViewModels
+namespace SecretProject.Web.ViewModels
 {
     public class NomenclatureViewModel : IViewModel
     {
@@ -21,7 +20,7 @@ namespace SecretProject.WebApi.ViewModels
             if (domain.IsDiscounted)
             {
                 DiscountedPrice = domain.DiscountedCost;
-                IsDiscouted = domain.IsDiscounted;
+                IsDiscounted = domain.IsDiscounted;
             }
             IsInStock = domain.Amount > 0;
             //TODO Можно у номенклатуры добавить поля популярности и даты добавления в каталог
@@ -30,16 +29,16 @@ namespace SecretProject.WebApi.ViewModels
         }
         [Key]
         public int Id { get; set; }
+        public string ProductCode { get; set; }
         [NotMapped]
         public string Type => this.GetType().Name;
-
         public string Title { get; set; }
         public string Description { get; set; }
         public ManufacturerViewModel Manufacturer { get; set; }
         public float OriginalPrice { get; set; }
         public float DiscountedPrice { get; set; }
         public string ImageUrl { get; set; }
-        public bool IsDiscouted { get; set; }
+        public bool IsDiscounted { get; set; }
         public bool IsNew { get; set; }
         public bool IsPopular { get; set; }
         public bool IsInStock { get; set; }

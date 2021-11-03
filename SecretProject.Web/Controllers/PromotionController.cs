@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject.DataAccess;
 using SecretProject.BusinessProject.Models.Good;
 using SecretProject.VisualElements;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace SecretProject.WebApi.Controllers
+namespace SecretProject.Web.Controllers
 {
     public class PromotionController : ControllerBase
     {

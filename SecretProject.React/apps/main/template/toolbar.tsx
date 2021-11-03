@@ -8,6 +8,7 @@ import { toggleAuthorizationModal } from '../store/reducers/layout-modals-reduce
 interface ToolbarProps {
 
 }
+
 const Toolbar: React.FC<ToolbarProps> = () => {
 
     const dispatch = useDispatch();

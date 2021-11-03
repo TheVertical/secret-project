@@ -4,7 +4,11 @@ import { Card, Col, Row } from 'react-bootstrap';
 import CurencyService from '@/shared/curency-service';
 import LocalizeService from '@/shared/localization-service';
 
-const ShortProductCard: React.FC<ShortProductViewModel> = (props) => {
+interface ShortProductCardProps {
+    shortProductViewModel: ShortProductViewModel
+}
+
+const ShortProductCard: React.FC<ShortProductCardProps> = (props) => {
 
     const { 
         Id,
@@ -12,7 +16,7 @@ const ShortProductCard: React.FC<ShortProductViewModel> = (props) => {
         ImageUrl,
         Cost,
         InStock
-    } = props;
+    } = props.shortProductViewModel;
     return(
         <Card className="d-flex align-content-end">
                 <Card.Header>

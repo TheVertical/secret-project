@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SecretProject.Web.ViewModels;
 
 namespace SecretProject.WebApi.ViewModels
 {

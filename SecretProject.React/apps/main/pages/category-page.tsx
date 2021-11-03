@@ -13,7 +13,7 @@ const CategoryPage: React.FC<CategoryViewModel> = (props) => {
     const renderCard = function(shortProduct: ShortProductViewModel) {
         return (
             <Col key={shortProduct.Id} md={3} className="d-flex justify-content-center">
-                <ShortProductCard {...shortProduct}/>
+                <ShortProductCard shortProductViewModel={shortProduct} />
             </Col>
         );
     }

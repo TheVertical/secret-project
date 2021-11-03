@@ -8,27 +8,37 @@ import LayoutModals from './layout-modals';
 
 //TODO: Only on develop!
 import MockService from '@/shared/mock-service';
+import ProductCard from '../pages/product-card';
+import { Container, Row, Col } from 'react-bootstrap';
+import Home from '../pages/home';
 
 const Layout: React.FC = () => {
-    const PhoneNumber: string = '8 (812) 388-4538';
-    const WorkTime: string = 'ПН-Чт: 10 : 00 - 18 : 00, Пт: 10 : 00 - 17 : 00';
     return (
         <div className="layout-area">
             <Router>
                 <Header
-                    PhoneNumber={PhoneNumber}
-                    WorkTime={WorkTime}
                 />
                 <Toolbar />
                 <Toaster />
                 {/* //MOCK */}
                 <Switch>
                     <Route exact path="/">
+                        <Home />
                     </Route>
                     <Route path="/Catalog/Category">
                         {/* //TODO: Only on develop! */}
                         <CategoryPage {...MockService.getCategory(4)}
                         />
+                    </Route>
+                    <Route path="/Catalog/Product/:id">
+                        {/* //TODO: Only on develop! */}
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <ProductCard productViewModel={MockService.getProduct()} />
+                                </Col>
+                            </Row>
+                        </Container>
                     </Route>
                 </Switch>
             </Router>

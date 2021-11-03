@@ -1,21 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject.DataAccess;
 using SecretProject.BusinessProject.Models;
 using SecretProject.BusinessProject.Models.Good;
 using SecretProject.VisualElements;
+using SecretProject.Web.ViewModels;
 using SecretProject.WebApi.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace SecretProject.WebApi.Controllers
+namespace SecretProject.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]/")]
+    [Route("api/[controller]/")]
     public class CatalogController : ControllerBase, IDisposable
     {
         private ILogger<CatalogController> logger;

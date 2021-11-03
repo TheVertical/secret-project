@@ -1,23 +1,23 @@
 import React, { FunctionComponent as FC} from 'react';
 import LocalizeService from '@/shared/localization-service'
 
-interface ContactViewModel {
-    PhoneNumber: string,
-    WorkTime: string,
-    ShowCallback: boolean,
+interface ContactFormProps {
+    phoneNumber: string,
+    workTime: string,
+    showCallback: boolean,
 }
 
-const ContactForm: React.FC<ContactViewModel> = (props) => {
-const { PhoneNumber, WorkTime, ShowCallback } = props;
+const ContactForm: React.FC<ContactFormProps> = (props) => {
+const { phoneNumber, workTime, showCallback } = props;
     return(
         <div className="contact-form">
             <div className="phone-number phone-number-white text-md-center">
-                {PhoneNumber}
+                {phoneNumber}
             </div>
             <div className="work-time text-md-center">
-                {WorkTime}
+                {workTime}
             </div>
-            {ShowCallback ? 
+            {showCallback ? 
             <div className="request-callback-white text-md-center">
                 {LocalizeService.localize("ContactForm_RequestCallBack")}
             </div>

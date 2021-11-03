@@ -1,18 +1,10 @@
-import React, { FunctionComponent as FC} from 'react';
+import React, { FunctionComponent as FC } from 'react';
 import LocalizeService from '@/shared/localization-service'
 import { Col, Container, Nav, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-interface HeaderInfo {
-    PhoneNumber: string,
-    WorkTime: string
-}
-
-const Header: React.FC<HeaderInfo> = (props) => {
-
-    const { PhoneNumber, WorkTime } = props;
-    const showCallBack = true;
-    return(
+const Header: React.FC = (props) => {
+    return (
         <div className='header'>
             <Container>
                 <Row>
@@ -23,7 +15,7 @@ const Header: React.FC<HeaderInfo> = (props) => {
                             <Nav.Item>
                                 <Link to="/Catalog/Category" className='p-1 nav-link'>{LocalizeService.localize('Header_DeliveryAndPayment')}</Link>
                             </Nav.Item>
-                            <Nav.Item> 
+                            <Nav.Item>
                                 <Link to="/Catalog/Category" className='p-1 nav-link'>{LocalizeService.localize('Header_Return')}</Link>
                             </Nav.Item>
                             <Nav.Item>
@@ -45,7 +37,6 @@ const Header: React.FC<HeaderInfo> = (props) => {
             </Container>
         </div>
     );
-
 }
 
 export default Header;

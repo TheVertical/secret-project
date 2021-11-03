@@ -14,10 +14,10 @@ interface AuthorizationModalProps {
 }
 
 interface AuthorizationModalState {
-    IsShowCreateAccountModalContent: boolean,
-    Email: string,
-    Password: string,
-    ConfirmationPassword: string,
+    isShowCreateAccountModalContent: boolean,
+    email: string,
+    password: string,
+    confirmationPassword: string,
 }
 
 const AuthorizationModal: React.FC<AuthorizationModalProps> = function (props) {
@@ -27,15 +27,15 @@ const AuthorizationModal: React.FC<AuthorizationModalProps> = function (props) {
         sendSignIn
     } = props;
 
-    const [modalState, setModalState] = useState<AuthorizationModalState>({ IsShowCreateAccountModalContent: false, Email: "", Password: "", ConfirmationPassword: "" });
+    const [modalState, setModalState] = useState<AuthorizationModalState>({ isShowCreateAccountModalContent: false, email: "", password: "", confirmationPassword: "" });
 
     // #region event handlers
     const showCreateAccount = function (): void {
-        setModalState({ ...modalState, IsShowCreateAccountModalContent: true });
+        setModalState({ ...modalState, isShowCreateAccountModalContent: true });
     }
 
     const hideCreateAccount = function (): void {
-        setModalState({ ...modalState, IsShowCreateAccountModalContent: false })
+        setModalState({ ...modalState, isShowCreateAccountModalContent: false })
     }
     // #endregion
 
@@ -43,7 +43,7 @@ const AuthorizationModal: React.FC<AuthorizationModalProps> = function (props) {
     return (
         <Modal show={true} onHide={closeModal}>
             <Modal.Header className="p-2">
-                {!modalState.IsShowCreateAccountModalContent ?
+                {!modalState.isShowCreateAccountModalContent ?
                     <>
                         <Modal.Title>{LocalizeService.localize("Authorization_In")}</Modal.Title>
                         <Button variant="secondary" onClick={closeModal}>
@@ -60,7 +60,7 @@ const AuthorizationModal: React.FC<AuthorizationModalProps> = function (props) {
                 }
             </Modal.Header>
             <Modal.Body className="p-3 pb-1">
-                {!modalState.IsShowCreateAccountModalContent ?
+                {!modalState.isShowCreateAccountModalContent ?
                     <SignInForm id="signIn-form" showRegistrationForm={showCreateAccount} sendSignIn={sendSignIn}/>
                     :
                     <RegistrationForm id="registration-form" sendRegistration={sendRegistration}/>
@@ -69,14 +69,14 @@ const AuthorizationModal: React.FC<AuthorizationModalProps> = function (props) {
             <Modal.Footer className="p-2 d-block">
                 <Row className="justify-content-end">
                     <Col md={4}>
-                        {/* <Button className="w-100" type="submit" form={!modalState.IsShowCreateAccountModalContent ? "signIn-form" : "registration-form"} variant="primary">
-                            {!modalState.IsShowCreateAccountModalContent ?
+                        {/* <Button className="w-100" type="submit" form={!modalState.isShowCreateAccountModalContent ? "signIn-form" : "registration-form"} variant="primary">
+                            {!modalState.isShowCreateAccountModalContent ?
                                 LocalizeService.localize("Authorization_In")
                                 :
                                 LocalizeService.localize("Authorization_Registration_Create")
                             }
                         </Button> */}
-                        {!modalState.IsShowCreateAccountModalContent ?
+                        {!modalState.isShowCreateAccountModalContent ?
                                 <Button className="w-100" type="submit" form="signIn-form" variant="primary">{LocalizeService.localize("Authorization_In")}</Button>
                                 :
                                 <Button className="w-100" type="submit" form="registration-form" variant="primary">{LocalizeService.localize("Authorization_Registration_Create")}</Button>
