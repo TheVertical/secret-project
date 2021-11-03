@@ -1,7 +1,68 @@
 @import url('./variables.less');
+.pr {
+
+    &-0 {
+        padding-right: 0;
+    }
+
+    &-1 {
+        padding-right: 0.25rem !important;
+    }
+
+    &-2 {
+        padding-right: 0.5rem !important;
+    }
+
+    &-3 {
+        padding-right: 1rem !important;
+    }
+
+    &-4 {
+        padding-right: 1.5rem !important;
+    }
+
+    &-5 {
+        padding-right: 3rem !important;
+    }
+
+    &-auto {
+        padding-right: auto !important;
+    }
+}
+
+.pl {
+
+    &-0 {
+        padding-left: 0;
+    }
+
+    &-1 {
+        padding-left: 0.25rem !important;
+    }
+
+    &-2 {
+        padding-left: 0.5rem !important;
+    }
+
+    &-3 {
+        padding-left: 1rem !important;
+    }
+
+    &-4 {
+        padding-left: 1.5rem !important;
+    }
+
+    &-5 {
+        padding-left: 3rem !important;
+    }
+
+    &-auto {
+        padding-left: auto !important;
+    }
+}
 
 .mr {
-    
+
     &-0 {
         margin-right: 0;
     }
@@ -32,7 +93,7 @@
 }
 
 .ml {
-    
+
     &-0 {
         margin-left: 0;
     }
@@ -64,10 +125,17 @@
 
 //Redefenition the deffault bootstrap styles for some elements
 @primary-background: #83bde5;
+@primary-color: white;
+
 @secondary-background: white;
 @secondary-background-hover: #83bde5;
+
 @btn-box-shadow-size: 0.25rem;
 @btn-border-radius: 9px;
+
+@tertiary-background: #e9eff5;
+@tertiary-background-hover: #e9eff5;
+@tertiary-color: black;
 
 .btn {
     border: none;
@@ -79,7 +147,7 @@
 
     &-primary {
 
-        color: white;
+        color: @primary-color;
         background: @primary-background;
 
         &:hover {
@@ -138,7 +206,68 @@
             box-shadow: 0 0 0 @btn-box-shadow-size lighten(@secondary-background-hover, 10%);
         }
     }
+
+    &-tertiary {
+        color: @tertiary-color;
+        background: @tertiary-background;
+
+        &:hover {
+            background: darken(@tertiary-background, 10%);
+            color: white;
+        }
+
+        &:active {
+            background: darken(@tertiary-background, 20%);
+            // box-shadow: 0 0 0 @btn-box-shadow-size darken(@tertiary-background, 5%);
+            transform: scale(1.1);
+        }
+
+        &:focus {
+            background: darken(@tertiary-background, 20%);
+            border-color: @primary-background;
+            // box-shadow: 0 0 0 @btn-box-shadow-size darken(@tertiary-background, 5%);
+            box-shadow: none;
+        }
+    }
+
+    &-group.counter {
+        input {
+            border: none;
+            max-width: 50px;
+            width: 100%;
+
+            &.primary {
+                background: @primary-background;
+                color: @primary-color;
+            }
+
+            &.tertiary {
+                background: @tertiary-background;
+                color: @tertiary-color;
+            }
+
+            &:focus-visible{
+                box-shadow: none;
+                outline: none;
+            }
+
+            &:focus {
+                box-shadow: none;
+            }
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            &[type=number] {
+                -moz-appearance: textfield;
+            }
+        }
+    }
 }
+
+
 
 @default-nav-link-color: white;
 
@@ -215,7 +344,7 @@
 
         .card-name {
             font-family: inherit;
-            
+
             display: inline-block;
             overflow: hidden;
             text-overflow: ellipsis;
