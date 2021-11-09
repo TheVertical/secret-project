@@ -6,6 +6,23 @@ import ToastItem, { ToastType } from '@/models/toast-item';
 
 const MockService = {
     Visual: {
+        getBanners(count: number): ShortProduct[] {
+            const shortProducts: ShortProduct[] = [];
+
+            for (let i = 0; i < count; i++) {
+                const shortProduct: ShortProduct = {
+                    Id: 'sp-' + i,
+                    Name: 'Лампа полимеризационная с принадлежностями LED.L (WOODPECKER)',
+                    ImageUrl: '/Images/Dbaner.jpg',
+                    Cost: Math.round(Math.abs(Math.random() * 1000)),
+                    InStock: Math.random() > 0.5 ? true : false
+                };
+
+                shortProducts.push(shortProduct);
+            }
+
+            return shortProducts;
+        },
         getToasts(count: number): ToastItem[] {
             const toastItems: ToastItem[] = [];
 

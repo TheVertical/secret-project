@@ -53,5 +53,8 @@
         Toolbar_Education,
 
         ContactForm_RequestCallBack,
+
+        ProductCard_Buy,
+        ProductCard_Description
     }
 }

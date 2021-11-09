@@ -41,3 +41,5 @@ EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Header_Reviews', N
 EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Toolbar_Catalog', N'Каталог';
 EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'Toolbar_Education', N'Образование';
 EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'ContactForm_RequestCallBack', N'Обратный звонок';
+EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'ProductCard_Buy', N'Купить';
+EXEC dbo.uspLocalize '38C104DC-6A5D-4D8D-8819-5EC2CCAAA425', 'ProductCard_Description', N'Описание';

@@ -11,6 +11,12 @@ body {
     background: @main-body-background;
 }
 
+.home-page {
+    .carousel-item-img {
+        height: 50%;
+    }
+}
+
 @header-logo: white;
 @header-background: @blue-sky;
 @header-contrast-color: @oceanic-dark;
@@ -88,6 +94,7 @@ body {
 @product-card-body-background: white;
 @product-card-border-radius: 20px;
 @product-card-product-code-color: #cccccc;
+
 .product-card {
 
     &-body {
@@ -102,7 +109,7 @@ body {
             font-size: 12.5px;
         }
 
-        .product-cost{
+        .product-cost {
             font-size: 80px;
             font-weight: bold;
         }

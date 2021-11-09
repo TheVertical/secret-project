@@ -1,2 +1,2 @@
-Start-Process (powershell.exe -WindowStyle minimized -NoExit -Command "npm run watch")
-Start-Process (powershell.exe -WindowStyle minimized -NoExit -Command "npm run less-watch")
+start-process -filepath "powershell.exe" -WindowStyle minimized -argumentlist  @("-Command", "npm run less-watch");
+powershell -WindowStyle minimized -Command "npm run watch";

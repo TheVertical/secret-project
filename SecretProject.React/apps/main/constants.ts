@@ -3,6 +3,9 @@ const ActionUrls = {
 }
 
 export const VisualConstants = {
+    Carousel: {
+        MaxShortProductCardCount: 4
+    },
     MainColors: {
         OCEANIC_DARK: "#3A5466",
         WHITE_SKY: "#e9eff5",
