@@ -1,4 +1,75 @@
+@import url(variables.less);
+
 .loader-wrapper {
     height: 100%;
     width: 100%;
+}
+
+.hierarchy {
+    position: relative;
+
+    .hierarchy-btn {
+        &.location {
+            &-bottom {
+                border-end-end-radius: 0;
+                border-end-start-radius: 0;
+            }
+        }
+    }
+
+    .after-hierarchy-button {
+        display: none;
+        position: absolute;
+        background: white;
+        width: 100%;
+        left: 0;
+        height: 0.5rem;
+        bottom: -0.5rem;
+        &.show {
+            display: block;
+        }
+    }
+
+    .hierarchy-menu {
+        display: none;
+        z-index: 100;
+        position: absolute;
+        box-shadow: 0px 6px 5px -4px black;
+        background: white;
+        border-radius: @default-border-radius;
+        overflow: hidden;
+        min-width: 307px;
+
+        &.root-menu {
+            border-start-start-radius: 0;
+        }
+
+        &.location {
+            &-bottom {
+                margin-top: 0.5rem;
+                top: 100%;
+            }
+
+            &-left {
+                top: 0;
+                right: 0;
+            }
+
+            &-top {
+                margin-top: -0.5rem;
+                top: -100%;
+            }
+        }
+
+        &.show {
+            display: block;
+        }
+
+        .hierarchy-item {
+            &>.btn {
+                border-radius: 0;
+                width: 100%;
+            }
+        }
+    }
 }

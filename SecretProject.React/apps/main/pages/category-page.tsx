@@ -1,24 +1,27 @@
 import CategoryViewModel from '@/models/category';
 import ShortProductViewModel from '@/models/short-product';
 import React from 'react';
-import { Breadcrumb, Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Breadcrumb, Col, Container, Row } from 'react-bootstrap';
 import ShortProductCard from '@/apps/main/common-components/short-product-card';
 
-const CategoryPage: React.FC<CategoryViewModel> = (props) => {
+interface CategoryPageProps {
+    categoryViewModel: CategoryViewModel
+}
+
+const CategoryPage: React.FC<CategoryPageProps> = (props) => {
     const { 
-        Name,
-        ShortProducts 
+        categoryViewModel
     } = props;
 
     const renderCard = function(shortProduct: ShortProductViewModel) {
         return (
-            <Col key={shortProduct.Id} md={3} className="d-flex justify-content-center">
+            <Col key={shortProduct.Id} md={3} className="d-flex justify-content-center mb-2">
                 <ShortProductCard shortProductViewModel={shortProduct} />
             </Col>
         );
     }
-    var cards = ShortProducts.map(p => renderCard(p));
 
+    var cards = categoryViewModel.ShortProducts.map(p => renderCard(p));
     return(
         <div className="category-page-container">
             <Container>
@@ -31,7 +34,7 @@ const CategoryPage: React.FC<CategoryViewModel> = (props) => {
                 <Row>
                     <Col md={12}>
                         <h1 className="category-name">
-                            {Name}
+                            {categoryViewModel.Name}
                         </h1>
                     </Col>
                 </Row>

@@ -1,9 +1,9 @@
 import ShortProduct from "./short-product";
 
-interface Category {
+interface CategoryViewModel {
     Id: string,
     Name: string,
     ShortProducts: ShortProduct[],
 }
 
-export default Category;
+export default CategoryViewModel;

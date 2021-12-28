@@ -1,4 +1,5 @@
 @import url('./variables.less');
+
 .pr {
 
     &-0 {
@@ -246,7 +247,7 @@
                 color: @tertiary-color;
             }
 
-            &:focus-visible{
+            &:focus-visible {
                 box-shadow: none;
                 outline: none;
             }
@@ -260,6 +261,7 @@
                 -webkit-appearance: none;
                 margin: 0;
             }
+
             &[type=number] {
                 -moz-appearance: textfield;
             }
@@ -280,10 +282,11 @@
 }
 
 
-@default-card-width: 264px;
-@default-card-height: 300px;
-@default-card-img-width: 154px;
-@default-card-img-height: 154px;
+@default-card-width: 360px;
+@default-card-height: 340px;
+@default-card-border-radius: 17px;
+@default-card-img-width: 360px;
+@default-card-img-height: 240px;
 @default-card-border-color: @blue-sky;
 @default-card-not-in-stock-color: #8c99a3;
 @default-card-image-color: @white-sky;
@@ -291,7 +294,7 @@
 
 .card {
     border: 2px solid white;
-    border-radius: 1.5rem;
+    border-radius: @default-card-border-radius;
     overflow: hidden;
     font-family: MyriadPro;
     box-sizing: border-box;
@@ -332,8 +335,8 @@
         border-image: none;
         border-radius: 20px;
         background: @default-card-image-color;
-        width: @default-card-img-width;
-        height: @default-card-img-height;
+        max-width: @default-card-img-width;
+        max-height: @default-card-img-height;
     }
 
     .card-body {

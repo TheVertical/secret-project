@@ -31,7 +31,7 @@ exports.getConfig = (env) => {
             ]
         },
         watchOptions: {
-            ignored: /node_modeules/
+            ignored: /node_modules/
         },
         optimization: {
             minimize: devMode ? false : true,

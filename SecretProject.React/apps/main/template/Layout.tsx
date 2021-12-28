@@ -27,7 +27,7 @@ const Layout: React.FC = () => {
                     </Route>
                     <Route path="/Catalog/Category">
                         {/* //TODO: Only on develop! */}
-                        <CategoryPage {...MockService.getCategory(4)}
+                        <CategoryPage categoryViewModel={MockService.getCategory(100)}
                         />
                     </Route>
                     <Route path="/Catalog/Product/:id">

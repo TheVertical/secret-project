@@ -1,6 +1,6 @@
 import ShortProductViewModel from '@/models/short-product';
 import React from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import CurencyService from '@/shared/curency-service';
 import LocalizeService from '@/shared/localization-service';
 
@@ -26,11 +26,13 @@ const ShortProductCard: React.FC<ShortProductCardProps> = (props) => {
                     <span className="not-in-stock">{LocalizeService.localize("Not_InStock")}</span>
                     }
                 </Card.Header>
-            <Row>
-                <Col className="d-flex justify-content-center">
-                    <Card.Img variant="top" src={ImageUrl}/>
-                </Col>
-            </Row>
+            <Container>
+                <Row>
+                    <Col className="d-flex justify-content-center">
+                        <Card.Img variant="top" src={ImageUrl}/>
+                    </Col>
+                </Row>
+            </Container>
             <Card.Body className="p-0">
                 <div className="card-name">{Name}</div>
             </Card.Body>

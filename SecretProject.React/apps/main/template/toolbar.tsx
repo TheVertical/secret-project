@@ -1,8 +1,10 @@
 import LocalizeService from '@/shared/localization-service';
+import MockService from '@/shared/mock-service';
 import React from 'react';
 import { Button, Col, Container, Row, Image } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import HirarchyButton from '../common-components/hierarchy-button';
 import { toggleAuthorizationModal } from '../store/reducers/layout-modals-reducer';
 
 interface ToolbarProps {
@@ -31,9 +33,9 @@ const Toolbar: React.FC<ToolbarProps> = () => {
                             </div>
                         </Link>
                         &emsp;
-                        <Button variant="secondary">
-                            {LocalizeService.localize('Toolbar_Catalog')}
-                        </Button>
+                        <HirarchyButton root={MockService.Visual.getHierarchyButton(3, 2)} actionToElement={function (id: string, parent: boolean): void {
+                            throw new Error('Function not implemented.');
+                        } } applyActoinOnlyToEndChildren={false} location={'bottom'} />
                         &emsp;
                         <Button variant="secondary">
                             {LocalizeService.localize('Toolbar_Education')}

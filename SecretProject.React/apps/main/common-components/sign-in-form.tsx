@@ -66,7 +66,7 @@ const SignInForm: React.FC<InAuthorizationProps> = (props) => {
                     </Form.Group>
                     <Form.Group className="mb-0 d-flex justify-content-center">
                         <Button
-                            type="button"
+                            type="submit"
                             variant="outline-primary"
                             size="sm"
                             onClick={showRegistrationForm}>

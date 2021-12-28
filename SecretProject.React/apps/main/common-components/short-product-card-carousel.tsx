@@ -1,7 +1,6 @@
 import ShortProductViewModel from '@/models/short-product';
 import React from 'react';
 import { Carousel, CarouselItemProps, Col, Container, Row } from 'react-bootstrap';
-import { BsPrefixComponent, BsPrefixRefForwardingComponent } from 'react-bootstrap/esm/helpers';
 import { VisualConstants } from '../constants';
 import ShortProductCard from './short-product-card';
 
@@ -26,7 +25,7 @@ const ShortProductCardCarousel: React.FC<ShortProductCardCarouselProps> = (props
 
         for (let i = 0; i < shortCards.length - 4; i++) {
             var element = (
-                <Carousel.Item>
+                <Carousel.Item key={shortCards[i].Id}>
                     <Container>
                         <Row>
                             <Col key={shortCards[i].Id} md={3} className="d-flex justify-content-center">
@@ -53,7 +52,7 @@ const ShortProductCardCarousel: React.FC<ShortProductCardCarouselProps> = (props
     }
 
     return (
-        <Carousel>
+        <Carousel variant='dark'>
             {renderCarouselItems(shortProducts)}
         </Carousel>
     );
