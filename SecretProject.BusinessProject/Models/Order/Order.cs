@@ -79,7 +79,7 @@ namespace SecretProject.BusinessProject.Models.Order
         #endregion
 
         #region Foreign keys
-        public int OrderDetailsId { get; set; } = default;
+        public Guid OrderDetailsId { get; set; } = default;
         /// <summary>
         /// Id применяемой акции
         /// </summary>

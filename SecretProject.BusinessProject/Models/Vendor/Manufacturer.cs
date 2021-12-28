@@ -1,9 +1,6 @@
-﻿using SecretProject.BusinessProject.Models.Good;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace SecretProject.BusinessProject.Models
 {
@@ -15,7 +12,6 @@ namespace SecretProject.BusinessProject.Models
         /// <summary>
         /// Ид
         /// </summary>
-        [Display(Name = "Ид")]
         public virtual Guid Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
@@ -26,13 +22,11 @@ namespace SecretProject.BusinessProject.Models
         /// <summary>
         /// Название произовдителя
         /// </summary>
-        [Display(Name = "Название произовдителя")]
         [StringLength(50)]
         public virtual string Name { get; set; }
         /// <summary>
         /// Описание производителя
         /// </summary>
-        [Display(Name = "Описание производителя")]
         [StringLength(50)]
         public virtual string Description { get; set; }
 
@@ -42,12 +36,6 @@ namespace SecretProject.BusinessProject.Models
         #endregion
 
         #region Special Property
-        ///// <summary>
-        ///// Связанный 1с объект
-        ///// <summary>
-        //[Display(Name = "1с guid")]
-        //public virtual Guid OcObject { get; set; }
-
         #endregion
 
     }

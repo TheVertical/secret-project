@@ -18,7 +18,6 @@ namespace SecretProject.BusinessProject.Models.Good
         /// <summary>
         /// Ид
         /// </summary>
-        [Display(Name = "Ид")]
         public virtual Guid Id { get; set; }
         /// <summary>
         /// Специальный байтовый код для параллельных запросов к бд
@@ -28,53 +27,44 @@ namespace SecretProject.BusinessProject.Models.Good
         /// <summary>
         /// Название номенклатуры
         /// </summary>
-        [Display(Name = "Название номенклатуры")]
         [StringLength(100)]
         public virtual string Name { get; set; }
         /// <summary>
         /// Описание
         /// </summary>
-        [Display(Name = "Описание")]
         public virtual string Description { get; set; }
-        public virtual int? NomenclatureGroupId { get; set; }
+        public virtual Guid NomenclatureGroupId { get; set; }
         /// <summary>
         /// Группа номенклатуры
         /// </summary>
-        [Display(Name = "Группа номенклатуры")]
         [ForeignKey(nameof(NomenclatureGroupId))]
         public virtual NomenclatureGroup NomenclatureGroup { get; set; }
         /// <summary>
         /// Url картинки
         /// </summary>
-        [Display(Name = "Url картинки")]
         public virtual string ImageUrl { get; set; }
-        public virtual int? ManufacturerId { get; set; }
+        public virtual Guid ManufacturerId { get; set; }
         /// <summary>
         /// Производитель
         /// </summary>
-        [Display(Name = "Производитель")]
         [ForeignKey(nameof(ManufacturerId))]
         public virtual Manufacturer Manufacturer { get; set; }
         /// <summary>
         /// Свойства номенклатуры
         /// </summary>
-        [Display(Name = "Свойства номенклатуры")]
         public virtual List<NomenclatureProperty> Properties { get; set; }
         /// <summary>
         /// Измерение номенклатуры (еденица измерения и т.д.)
         /// </summary>
-        [Display(Name = "Измерение номенклатуры (еденица измерения и т.д.)")]
         public virtual Measurement Measurement { get; set; }
         /// <summary>
         /// Количество
         /// </summary>
-        [Display(Name = "Количество")]
         public virtual int Amount { get; set; }
         private float cost;
         /// <summary>
         /// Оригинальная цена по номенклатуре
         /// </summary>
-        [Display(Name = "Оригинальная цена по номенклатуре")]
         public virtual float Cost
         {
             get
@@ -97,21 +87,18 @@ namespace SecretProject.BusinessProject.Models.Good
         /// <summary>
         /// Цена со скидкой
         /// </summary>
-        [Display(Name = "Цена со скидкой")]
         public virtual float DiscountedCost { get; set; }
         [NotMapped]
         //QUESTION Может ценовую политику перенести в заказ?
         /// <summary>
         /// Ценовая политика номенклатуры
         /// </summary>
-        [Display(Name = "Ценовая политика номенклатуры")]
         public CostPolicy CostPolicy { get; set; }
         [NotMapped]
         public bool IsDiscounted { get; set; }
         /// <summary>
         /// Статус видимости
         /// </summary>
-        [Display(Name = "Статус видимости")]
         public VisibleStatus Status { get; set; }
         #endregion
 
@@ -155,7 +142,6 @@ namespace SecretProject.BusinessProject.Models.Good
         ///// <summary>
         ///// Связанный 1с объект
         ///// <summary>
-        //[Display(Name = "1с guid"),]
         //public virtual Guid OcObject { get; set; }
 
         #endregion

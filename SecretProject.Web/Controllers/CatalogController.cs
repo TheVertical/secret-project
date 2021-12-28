@@ -80,8 +80,8 @@ namespace SecretProject.Web.Controllers
         [Route("product")]
         public async Task<IActionResult> GetProducts (
             [FromQuery]bool? needTotalCount,
-            [FromQuery]int? manufacturerId,
-            [FromQuery]int? categoryId,
+            [FromQuery]Guid manufacturerId,
+            [FromQuery]Guid categoryId,
             [FromQuery]int? count,
             [FromQuery]int? from,
             [FromQuery]float? minValue,
