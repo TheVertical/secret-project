@@ -29,7 +29,7 @@ const Home: React.FC<Props> = (props) => {
         <div className="home-page">
             <Container>
                 <Row>
-                    <ShortProductCardCarousel shortProducts={specialOfferProducts} maxShortProductCardCount={4} />
+                    <ShortProductCardCarousel shortProducts={specialOfferProducts} maxShortProductCardCount={3} />
                 </Row>
             </Container>
         </div>

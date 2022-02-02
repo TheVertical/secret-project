@@ -8,15 +8,6 @@
 .hierarchy {
     position: relative;
 
-    .hierarchy-btn {
-        &.location {
-            &-bottom {
-                border-end-end-radius: 0;
-                border-end-start-radius: 0;
-            }
-        }
-    }
-
     .after-hierarchy-button {
         display: none;
         position: absolute;
@@ -30,6 +21,17 @@
         }
     }
 
+    .hierarchy-item {
+        &.location {
+            &-bottom {
+                border-end-end-radius: 0;
+                border-end-start-radius: 0;
+            }
+        }
+
+        &:extend(.btn);
+    }
+
     .hierarchy-menu {
         display: none;
         z-index: 100;
@@ -37,27 +39,45 @@
         box-shadow: 0px 6px 5px -4px black;
         background: white;
         border-radius: @default-border-radius;
-        overflow: hidden;
         min-width: 307px;
 
         &.root-menu {
             border-start-start-radius: 0;
+
+            &.location {
+
+                &-bottom {
+                    margin-top: 0.5rem !important;
+                    top: 100% !important;
+                }
+    
+                &-left {
+                    top: 0% !important;
+                    left: 100% !important;
+                }
+    
+                &-top {
+                    margin-top: -0.5rem !important;
+                    top: -100% !important;
+                }
+            }
         }
 
         &.location {
+
             &-bottom {
                 margin-top: 0.5rem;
-                top: 100%;
+                top: 105%;
             }
 
             &-left {
-                top: 0;
-                right: 0;
+                top: 5%;
+                left: 105%;
             }
 
             &-top {
                 margin-top: -0.5rem;
-                top: -100%;
+                top: -105%;
             }
         }
 

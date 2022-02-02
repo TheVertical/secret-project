@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject;
@@ -12,7 +11,6 @@ using SecretProject.BusinessProject.Models;
 using SecretProject.BusinessProject.Models.Other;
 using SecretProject.DAL.Contexts;
 using SecretProject.DAL.DataAccess.Repository;
-using SecretProject.Web.Infrastructure.Authentication;
 using SecretProject.Web.Services.Interfaces;
 
 namespace SecretProject.Web.Services

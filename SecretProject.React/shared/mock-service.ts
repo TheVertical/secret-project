@@ -4,28 +4,29 @@ import ProductViewModel from '@/models/product-card-view-model';
 import ShortProduct from '@/models/short-product';
 import ToastItem, { ToastType } from '@/models/toast-item';
 import { number } from 'yup/lib/locale';
-import HierarchyElement from './models/HierarchyElement';
+import HierarchyElement from './models/hierarchy-element';
 
 const MockService = {
 
     Visual: {
         getHierarchyButton(childrenCount: number, deep: number): HierarchyElement {
-            const getChild = function (childrenCount: number, deep: number): HierarchyElement[] {
+            const getChild = function (childrenCount: number, deep: number, parent?: HierarchyElement): HierarchyElement[] {
                 const levels: HierarchyElement[] = [];
-
-                console.log(deep)
+                
                 if (deep < 0) {
                     return [];
                 }
 
                 for (let i = 0; i < childrenCount; i++) {
                     const level: HierarchyElement = {
-                        Id: "d-" + deep + "-l-" + i,
+                        Id: parent?.Id + "-" + i,
                         Name: "Level " + i,
                         IsRoot: false,
-                        Children: getChild(childrenCount, --deep)
+                        Parent: parent,
+                        Children: []   
                     };
-
+                    
+                    level.Children = getChild(childrenCount, --deep, level);
                     levels.push(level);
                 }
 
@@ -33,11 +34,12 @@ const MockService = {
             };
 
             const root: HierarchyElement = {
-                Id: "00000000-0000-0000-0000-000000000000",
+                Id: "n-0",
                 Name: "Root",
                 IsRoot: true,
-                Children: getChild(childrenCount, --deep)
+                Children: []
             };
+            root.Children = getChild(childrenCount, --deep, root);
 
             return root;
         },

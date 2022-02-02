@@ -4,14 +4,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SecretProject.BusinessProject.ViewModels.UserData;
 using System.Threading.Tasks;
-using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using SecretProject.BusinessProject.Models;
 using SecretProject.Web.Infrastructure;
-using SecretProject.Web.Services;
 using SecretProject.Web.Services.Interfaces;
 
 namespace SecretProject.Web.Controllers

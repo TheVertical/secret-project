@@ -1,4 +1,5 @@
-@import url('./variables.less');
+@import "variables.less";
+@import "images.less";
 
 * {
     font-size: 14.5px;
@@ -112,6 +113,61 @@ body {
         .product-cost {
             font-size: 80px;
             font-weight: bold;
+        }
+    }
+}
+
+.carousel {
+
+    &-blue {
+        .carousel-indicators {
+            &>button {
+                background-color: @blue-sky;
+                border: 1px solid @blue-sky;
+            }
+        }
+    }
+
+    .carousel-indicators {
+        bottom: -3rem;
+
+        &>button {
+            border-radius: 279px;
+            width: 8px;
+            height: 8px;
+            margin: auto 10px;
+        }
+    }
+
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+        filter: none;
+    }
+
+
+    .carousel-control-next {
+        width: auto;
+        background: none;
+
+        &-icon {
+            background-color: white;
+            border-radius: 20px;
+            background-image: url("@{next-svg-url}");
+            background-size: 40%;
+            background-position: 60%;
+        }
+    }
+
+    .carousel-control-prev {
+        width: auto;
+        background: none;
+
+        &-icon {
+            background-color: white;
+            border-radius: 20px;
+            background-image: url("@{prev-svg-url}");
+            background-size: 40%;
+            background-position: 40%;
         }
     }
 }

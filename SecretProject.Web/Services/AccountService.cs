@@ -4,13 +4,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using SecretProject.BusinessProject;
 using SecretProject.BusinessProject.Models;
 using SecretProject.BusinessProject.ViewModels.UserData;
-using SecretProject.DAL.Infrastructure;
 using SecretProject.Web.Services.Interfaces;
-using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace SecretProject.Web.Services
 {

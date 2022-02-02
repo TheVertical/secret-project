@@ -1,57 +1,135 @@
-import HierarchyElement from '@/shared/models/HierarchyElement';
-import React from 'react';
-import { Button, Dropdown } from 'react-bootstrap';
-import { DropdownMenuProps } from 'react-bootstrap/esm/DropdownMenu';
+import HierarchyElement from "@/shared/models/hierarchy-element";
+import classNames from "classnames";
+import React, { Fragment, useState } from "react";
+import { Button, ButtonProps, Dropdown } from "react-bootstrap";
 
-interface HirarchyButtonProps {
-    root: HierarchyElement,
-    location: 'top' | 'bottom' | 'left' | 'right',
-    actionToElement: (id: string, parent: boolean) => void,
-    applyActoinOnlyToEndChildren: boolean
-};
+interface HirarchyButtonProps extends ButtonProps {
+    node: HierarchyElement;
+    location: "top" | "bottom" | "left" | "right";
+    locationToNext?: "top" | "bottom" | "left" | "right";
+    applyActoinOnlyToEndChildren: boolean;
+    showMenu?: boolean;
+
+    actionToElement?: (id: string, parent: boolean) => void;
+    setActiveNodeId?: (id: string) => void;
+}
+
+interface HierarchyButtonState {
+    showMenu: boolean;
+    currentActiveId: string;
+}
 
 const HirarchyButton: React.FC<HirarchyButtonProps> = (props) => {
     const {
-        root,
+        node,
         location,
-        actionToElement,
-        applyActoinOnlyToEndChildren } = props;
+        locationToNext,
+        applyActoinOnlyToEndChildren,
+        showMenu,
 
-    const renderNode = function (node: HierarchyElement): any {
-        if (node.Children.length == 0) {
-            return (
-                <div className="hierarchy-item">
-                    <Button variant='secondary'>{node.Name}</Button>
-                </div>
-            );
-        }
+        actionToElement,
+        setActiveNodeId,
+    } = props;
+
+    const nextMenuLocation = locationToNext ?? "left";
+
+    const [state, setState] = useState<HierarchyButtonState>({
+        showMenu: false,
+        currentActiveId: "",
+    });
+
+    const toggleRootMenu = () => {
+        setState({ ...state, showMenu: !state.showMenu });
 
         return (
-            <div className="hierarchy-item">
-                <Button variant='secondary'>{node.Name}</Button>
-                <div className={"hierarchy-menu location-" + location}>
-                    {node.Children.map(n => renderNode(n))}
-                </div>
+            <div className={classNames({ hierarchy: node.IsRoot })}>
+                <Button
+                    variant="secondary"
+                    className={classNames(
+                        "hierarchy-item",
+                        state.showMenu ? "location-" + location : ""
+                    )}
+                    onClick={toggleRootMenu}
+                >
+                    {node.Name}
+                </Button>
+                {state.showMenu && (
+                    <>
+                        <div className="show after-hierarchy-button" />
+                        <div
+                            className={classNames(
+                                "hierarchy-menu node-menu pb-3 pt-3 show",
+                                state.showMenu ? "location-" + location : ""
+                            )}
+                        >
+                            {node.Children.map((n) => (
+                                <HirarchyButton
+                                    key={n.Id}
+                                    node={n}
+                                    location={location}
+                                    actionToElement={actionToElement}
+                                    showMenu={state.currentActiveId == n.Id}
+                                    setActiveNodeId={() =>
+                                        setState({
+                                            ...state,
+                                            currentActiveId: n.Id,
+                                        })
+                                    }
+                                    active={
+                                        props.node.Id == state.currentActiveId
+                                    }
+                                    applyActoinOnlyToEndChildren={
+                                        applyActoinOnlyToEndChildren
+                                    }
+                                />
+                            ))}
+                        </div>
+                    </>
+                )}
             </div>
         );
     };
 
     return (
-        <div className="hierarchy">
-            <Button variant="secondary" className={"hierarchy-btn location-" + location}>
-                {root.Name}
-                <div className="show after-hierarchy-button"/>
-            </Button>
-            <div className={"hierarchy-menu root-menu pb-3 pt-3 show location-" + location}>
-                {root.Children.map(n => renderNode(n))}
+        <>
+            <div
+                className={classNames(
+                    "hierarchy-item",
+                    state.showMenu ? "location-" + nextMenuLocation : ""
+                )}
+            >
+                <Button
+                    variant="secondary"
+                    onClick={() => setActiveNodeId && setActiveNodeId(node.Id)}
+                >
+                    {node.Name}
+                </Button>
             </div>
-        </div>
+            {showMenu && (
+                <div
+                    className={classNames(
+                        "hierarchy-menu pb-3 pt-3 show",
+                        state.showMenu ? "location-" + nextMenuLocation : ""
+                    )}
+                >
+                    {node.Children.map((n) => (
+                        <HirarchyButton
+                            key={n.Id}
+                            node={n}
+                            location={location}
+                            actionToElement={actionToElement}
+                            showMenu={state.currentActiveId == n.Id}
+                            setActiveNodeId={setActiveNodeId}
+                            active={props.node.Id == state.currentActiveId}
+                            applyActoinOnlyToEndChildren={
+                                applyActoinOnlyToEndChildren
+                            }
+                        />
+                    ))}
+                </div>
+            )}
+        </>
     );
 };
-
-
-interface MenuProps {
-    location: 'top' | 'bottom' | 'left' | 'right'
-}
 
 export default HirarchyButton;

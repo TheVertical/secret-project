@@ -1,4 +1,5 @@
 import ShortProductViewModel from '@/models/short-product';
+import classNames from "classnames";
 import React from 'react';
 import { Carousel, CarouselItemProps, Col, Container, Row } from 'react-bootstrap';
 import { VisualConstants } from '../constants';
@@ -23,23 +24,29 @@ const ShortProductCardCarousel: React.FC<ShortProductCardCarouselProps> = (props
     const renderCarouselItems = function (shortCards: ShortProductViewModel[]): JSX.Element[] {
         const items: JSX.Element[] = [];
 
-        for (let i = 0; i < shortCards.length - 4; i++) {
+        const renderCarouselItemsIternal = function (index: number, take: number, count: number) {
+            const items = [];
+
+            while (index < count && take > 0) {
+                items.push(
+                    <Col key={shortCards[index].Id} md={3} className="d-flex justify-content-center">
+                        <ShortProductCard shortProductViewModel={shortCards[index]} />
+                    </Col>
+                );
+                index++;
+                take--;
+            }
+
+            return items;
+        }
+
+
+        for (let i = 0; i < shortCards.length - maxShortProductCardCount; i++) {
             var element = (
                 <Carousel.Item key={shortCards[i].Id}>
                     <Container>
-                        <Row>
-                            <Col key={shortCards[i].Id} md={3} className="d-flex justify-content-center">
-                                <ShortProductCard shortProductViewModel={shortCards[i]} />
-                            </Col>
-                            <Col key={shortCards[i + 1].Id} md={3} className="d-flex justify-content-center">
-                                <ShortProductCard shortProductViewModel={shortCards[i + 1]} />
-                            </Col>
-                            <Col key={shortCards[i + 2].Id} md={3} className="d-flex justify-content-center">
-                                <ShortProductCard shortProductViewModel={shortCards[i + 2]} />
-                            </Col>
-                            <Col key={shortCards[i + 3].Id} md={3} className="d-flex justify-content-center">
-                                <ShortProductCard shortProductViewModel={shortCards[i + 3]} />
-                            </Col>
+                        <Row className="justify-content-around">
+                            {renderCarouselItemsIternal(i, maxShortProductCardCount, shortCards.length)}
                         </Row>
                     </Container>
                 </Carousel.Item>
@@ -52,7 +59,8 @@ const ShortProductCardCarousel: React.FC<ShortProductCardCarouselProps> = (props
     }
 
     return (
-        <Carousel variant='dark'>
+        // @ts-ignore
+        <Carousel variant='blue' slide={false} className="short-product-card-carousel">
             {renderCarouselItems(shortProducts)}
         </Carousel>
     );
