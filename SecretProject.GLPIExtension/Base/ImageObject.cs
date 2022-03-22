@@ -10,7 +10,7 @@ namespace SecretProject.GLPIExtension.Base
         /// <summary>
         /// path to image
         /// </summary>
-        [XmlAttribute("path")]
+        [XmlElement]
         [JsonPropertyName("path")]
         public string Path;
     }

@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "SecretProject.DevTools": {
+      "commandName": "Project"
+    }
+  }
+}

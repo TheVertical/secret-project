@@ -13,7 +13,7 @@ namespace SecretProject.GLPIExtension.Base
     }
 
     [XmlType(TypeName = "Select")]
-    public class SelectObject : DataObject
+    public class SelectObject<T> : DataObject<SelectObjectItem<T>>
     {
         [XmlEnum("type")]
         [JsonPropertyName("type")]
@@ -21,13 +21,11 @@ namespace SecretProject.GLPIExtension.Base
 
         [XmlArray]
         [JsonPropertyName("children")]
-        public List<SelectObjectItem> Children;
+        public List<SelectObjectItem<T>> Children;
     }
 
     [XmlType(TypeName = "SelectItem")]
-    public class SelectObjectItem
+    public class SelectObjectItem<T> : DataObject<T>
     {
-        [XmlArray]
-        public List<DataObject> Children;
     }
 }

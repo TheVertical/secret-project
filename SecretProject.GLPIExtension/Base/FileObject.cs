@@ -9,14 +9,14 @@ namespace SecretProject.GLPIExtension.Base
         /// <summary>
         /// max size in MB
         /// </summary>
-        [XmlAttribute("maxSize")]
+        [XmlElement]
         [JsonPropertyName("maxSize")]
         public int MaxSize;
 
         /// <summary>
         /// min size in MB
         /// </summary>
-        [XmlAttribute("minSize")]
+        [XmlElement]
         [JsonPropertyName("minSize")]
         public int MinSize;
     }

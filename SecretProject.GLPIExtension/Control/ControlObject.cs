@@ -7,27 +7,19 @@ namespace SecretProject.GLPIExtension.Control
 {
     public abstract class ControlObject
     {
-        [XmlAttribute("id")]
+        [XmlElement]
         [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [XmlAttribute("order")]
+        [XmlElement]
         [JsonPropertyName("order")]
         public int Order { get; set; }
 
         [XmlArray]
         [
             XmlArrayItem(typeof(TextObject)),
-            XmlArrayItem(typeof(ImageObject))
+            XmlArrayItem(typeof(ImageObject)),
         ]
-        [JsonPropertyName("children")]
         public DataObject[] Children { get; set; }
-
-        [XmlArray]
-        [
-            XmlArrayItem(Type = typeof(RequestControl)),
-            XmlArrayItem(Type = typeof(AnswerControl))
-        ]
-        public ControlObject[] ControlChildren { get; set; }
     }
 }

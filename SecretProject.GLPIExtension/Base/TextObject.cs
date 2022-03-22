@@ -5,9 +5,7 @@ using SecretProject.GLPIExtension.Base;
 namespace SecretProject.VisualElements.Elements.Base
 {
     [Serializable]
-    public class TextObject : RangeObject
+    public class TextObject : RangeObject<string>
     {
-        [XmlElement]
-        public string Value;
     }
 }

@@ -19,14 +19,22 @@ namespace SecretProject.GLPIExtension.Base
         Request
     }
 
-    public class Scenario : ControlObject
+    public class Scenario
     {
-        [XmlAttribute("type")]
+        // [XmlElement]
+        [XmlAttribute(typeof())]
         [JsonPropertyName("type")]
         public ScenarioType ScenarioType;
 
-        [XmlAttribute("category")]
+        [XmlElement]
         [JsonPropertyName("category")]
         public string Category { get; set; }
+
+        [XmlArray]
+        [
+            XmlArrayItem(typeof(RequestControl)),
+            XmlArrayItem(typeof(AnswerControl)),
+        ]
+        public ControlObject[] Children { get; set; }
     }
 }

@@ -2,8 +2,7 @@ using System;
 
 namespace SecretProject.DevTools.LocaliazationExtension.Commands
 {
-    public class UpdateStrings : IComand
+    public class UpdateStrings
     {
     }
 }
-ё

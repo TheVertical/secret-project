@@ -1,16 +1,22 @@
+using System;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace SecretProject.GLPIExtension.Base
 {
-    public abstract class RangeObject : DataObject
+    public abstract class RangeObject<T> : DataObject<T>
     {
-        [XmlAttribute("max")]
+        [XmlElement]
         [JsonPropertyName("max")]
-        public int Max;
+        public T Max;
 
-        [XmlAttribute("min")]
+        [XmlElement]
         [JsonPropertyName("min")]
-        public int Min;
+        public T Min;
+
+        [XmlElement]
+        public bool? IsRange { get; set; }
+
+        public virtual bool IsValueOutOfRange { get => throw new NotImplementedException(); }
     }
 }

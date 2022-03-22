@@ -1,33 +1,54 @@
 <?xml version="1.0"?>
-<Scenario>
-  <ControlChildren>
-    <Request id="0" order="0">
+<Scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ScenarioType>incident</ScenarioType>
+  <Category>1c</Category>
+  <Children>
+    <Request>
+      <Id>0</Id>
+      <Order>0</Order>
       <Children>
-        <TextObject id="0" max="0" min="0">
+        <TextObject>
+          <Id xsi:nil="true" />
           <Value>Опишите поломку, а таже общие видимые наблюдения.</Value>
+          <IsRange xsi:nil="true" />
         </TextObject>
-        <Image id="0" maxSize="0" minSize="0" />
+        <Image>
+          <Id xsi:nil="true" />
+          <MaxSize>0</MaxSize>
+          <MinSize>0</MinSize>
+        </Image>
       </Children>
-      <ControlChildren>
-        <Answer id="1" order="0">
-          <Children>
-            <TextObject id="0" max="0" min="0">
-              <Value>Мы принили в рассмотрение вашу заявку. Статус заявки можно узнать нажав на кнопку "Статус", также в автоматическом порядке статус вашей заявки будет обновляться каждый час. Благодарим за обращение!</Value>
-            </TextObject>
-          </Children>
-        </Answer>
-      </ControlChildren>
     </Request>
-    <Answer id="1" order="1">
+    <Answer>
+      <Id>1</Id>
+      <Order>0</Order>
       <Children>
-        <TextObject id="0" max="0" min="0">
+        <TextObject>
+          <Id xsi:nil="true" />
+          <Value>Мы принили в рассмотрение вашу заявку. Статус заявки можно узнать нажав на кнопку "Статус", также в автоматическом порядке статус вашей заявки будет обновляться каждый час. Благодарим за обращение!</Value>
+          <IsRange xsi:nil="true" />
+        </TextObject>
+      </Children>
+    </Answer>
+    <Answer>
+      <Id>1</Id>
+      <Order>1</Order>
+      <Children>
+        <TextObject>
+          <Id xsi:nil="true" />
           <Value>Пока вы ожидаете подтверждения. Вы можете, придерживаясь четких правил применить данную инструкцию.
 1. Отсоедените фритурницу от электропитания.
 2. Откройте крышку и потяните за рычаг.
 3. Найдите, фильтр и замените его на новый. (Где находится новый фильтр спросить у зам-начальника столовой).</Value>
+          <IsRange xsi:nil="true" />
         </TextObject>
-        <Image id="0" maxSize="0" minSize="0" path="/Images/Friture.png" />
+        <Image>
+          <Id xsi:nil="true" />
+          <MaxSize>0</MaxSize>
+          <MinSize>0</MinSize>
+          <Path>/Images/Friture.png</Path>
+        </Image>
       </Children>
     </Answer>
-  </ControlChildren>
+  </Children>
 </Scenario>

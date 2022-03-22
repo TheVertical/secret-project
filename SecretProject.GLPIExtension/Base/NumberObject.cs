@@ -4,10 +4,11 @@ using System.Xml.Serialization;
 namespace SecretProject.GLPIExtension.Base
 {
     [XmlType(TypeName = "Number")]
-    public class NumberObject : RangeObject
+    public class NumberObject : RangeObject<int?>
     {
-        [XmlAttribute("isRange")]
-        [JsonPropertyName("isRange")]
-        public bool IsRange { get; set; }
+        public override bool IsValueOutOfRange
+        {
+            get => Value != null && Max != null && Min != null && Value > Min && Value < Max;
+        }
     }
 }
