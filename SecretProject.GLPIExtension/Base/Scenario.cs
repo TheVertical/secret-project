@@ -22,7 +22,7 @@ namespace SecretProject.GLPIExtension.Base
     public class Scenario
     {
         // [XmlElement]
-        [XmlAttribute(typeof())]
+        // [XmlAttribute(typeof())]
         [JsonPropertyName("type")]
         public ScenarioType ScenarioType;
 

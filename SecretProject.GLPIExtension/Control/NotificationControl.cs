@@ -21,6 +21,6 @@ namespace SecretProject.GLPIExtension.Control
 
         public Frequency Frequency { get; set; }
 
-        public  MyProperty { get; set; }
+        // public  MyProperty { get; set; }
     }
 }
