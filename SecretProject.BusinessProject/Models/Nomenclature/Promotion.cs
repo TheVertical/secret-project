@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
+using SecretProject.BusinessProject.Models.Common;
 
-namespace SecretProject.BusinessProject.Models.Good
+namespace SecretProject.BusinessProject.Models.Nomenclature
 {
     public class Promotion : IDomainObject
     {

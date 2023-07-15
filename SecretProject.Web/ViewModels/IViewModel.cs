@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SecretProject.WebApi.ViewModels
+namespace SecretProject.Web.ViewModels
 {
     public interface IViewModel
     {

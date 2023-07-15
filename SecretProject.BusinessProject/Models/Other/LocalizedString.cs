@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using SecretProject.BusinessProject.Models.Common;
 
 namespace SecretProject.BusinessProject.Models.Other
 {

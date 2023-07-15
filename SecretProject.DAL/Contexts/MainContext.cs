@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using SecretProject.BusinessProject.Measurements;
 using SecretProject.BusinessProject.Models;
 using SecretProject.BusinessProject.Models.Common;
-using SecretProject.BusinessProject.Models.Good;
 using SecretProject.BusinessProject.Models.Order;
 using SecretProject.BusinessProject.Models.UserData;
 using SecretProject.VisualElements.Elements;
@@ -11,7 +9,10 @@ using SecretProject.VisualElements.Pages;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SecretProject.BusinessProject.Models.Measurements;
+using SecretProject.BusinessProject.Models.Nomenclature;
 using SecretProject.BusinessProject.Models.Other;
+using SecretProject.BusinessProject.Models.Vendor;
 
 namespace SecretProject.DAL.Contexts
 {

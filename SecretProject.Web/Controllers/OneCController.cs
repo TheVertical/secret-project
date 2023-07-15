@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using SecretProject.Web.Services;
 
-namespace SecretProject.WebApi.Controllers
+namespace SecretProject.Web.Controllers
 {
     [ApiController]
     [Authorize(AuthenticationSchemes = "Basic")]

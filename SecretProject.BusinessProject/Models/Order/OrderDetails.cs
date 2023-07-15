@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using SecretProject.BusinessProject.Models.Common;
 
 namespace SecretProject.BusinessProject.Models.Order
 {

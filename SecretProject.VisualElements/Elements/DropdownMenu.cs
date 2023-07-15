@@ -12,13 +12,4 @@ namespace SecretProject.VisualElements.Elements
         //TODO Убрать mock данные
         public List<DropdownItem> Items { get; set; } = new List<DropdownItem>();
     }
-
-    public class DropdownItem
-    {
-        public string Title { get; set; }
-        public string Route { get; set; }
-        public List<DropdownItem> Items { get; set; } = new List<DropdownItem>();
-
-    }
-
 }

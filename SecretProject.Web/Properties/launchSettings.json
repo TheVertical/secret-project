@@ -1,22 +1,43 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iis": {
-      "applicationUrl": "http://localhost",
-      "sslPort": 44301
-    }
-  },
-  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "SecretProfile": {
+    "local-backend": {
       "commandName": "Project",
-      "launchUrl": "Home",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:81",
-      "sslPort": "44301"
+        "ASPNETCORE_ENVIRONMENT": "local"
+      }
+    },
+    "local-debug": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "roles": "debug",
+        "env": "local"
+      }
+    },
+    "dev-backend": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "dev"
+      }
+    },
+    "dev-debug": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "roles": "debug",
+        "env": "dev"
+      }
+    },
+    "prod-backend": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "prod"
+      }
+    },
+    "prod-debug": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "roles": "debug",
+        "env": "prod"
+      }
     }
   }
 }

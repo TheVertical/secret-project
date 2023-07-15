@@ -1,4 +1,5 @@
 ﻿using SecretProject.BusinessProject.Models;
+using SecretProject.BusinessProject.Models.Vendor;
 
 namespace SecretProject.Web.ViewModels
 {

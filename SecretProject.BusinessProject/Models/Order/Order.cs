@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using SecretProject.BusinessProject.Models.Common;
 using SecretProject.BusinessProject.Models.UserData;
 
 namespace SecretProject.BusinessProject.Models.Order
@@ -104,22 +105,5 @@ namespace SecretProject.BusinessProject.Models.Order
             RecalculateFullCost();
         }
         #endregion
-    }
-    public enum OrderState
-    {
-        Confirmed,
-        Payed,
-        Canceled,
-        //На будущее, доставлен
-        Delivered
-    }
-    public enum PaymentMethod
-    {
-        Cash,
-        Card,
-        /// <summary>
-        /// Выставленный счёт для оплаты
-        /// </summary>
-        Bill
     }
 }

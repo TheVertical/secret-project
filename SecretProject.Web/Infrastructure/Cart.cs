@@ -1,13 +1,9 @@
-﻿using SecretProject.BusinessProject.Models.Good;
-using SecretProject.WebApi.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using SecretProject.BusinessProject.Models.Nomenclature;
 
-namespace SecretProject.WebApi.Infrastructure
+namespace SecretProject.Web.Infrastructure
 {
     [Serializable]
     public class Cart
@@ -46,25 +42,5 @@ namespace SecretProject.WebApi.Infrastructure
             return list;
         }
         #endregion
-    }
-    /// <summary>
-    /// Строка в корзине
-    /// </summary>
-    [Serializable]
-    public class CartLine
-    {
-        public Guid NomenclatureId { get; set; }
-        public float NomenclatureCost { get; set; }
-        public int Amount { get; set; }
-
-        public override string ToString()
-        {
-            string line = "-------------------\n";
-            line += "NomId:" + NomenclatureId.ToString() + "\n";
-            line += "Amount:" + Amount.ToString() + "\n";
-            line += "-------------------\n";
-            return line;
-
-        }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject.DataAccess;
 using SecretProject.BusinessProject.Models;
+using SecretProject.BusinessProject.Models.Common;
 
 namespace SecretProject.DAL.DataAccess.Repository
 {

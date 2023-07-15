@@ -1,4 +1,4 @@
-﻿namespace SecretProject.VisualElements.Elements
+﻿namespace SecretProject.VisualElements.Elements.Common
 {
     public interface IButton
     {

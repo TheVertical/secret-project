@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SecretProject.VisualElements;
 
-namespace SecretProject.Controllers
+namespace SecretProject.Web.Controllers
 {
     [Controller]
     public class HomeController : Controller

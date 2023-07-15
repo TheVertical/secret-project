@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using SecretProject.BusinessProject.Models.Good;
+using Microsoft.Extensions.Logging;
+using SecretProject.BusinessProject.Models.Nomenclature;
 using SecretProject.Web.Services;
 
-namespace SecretProject.WebApi.Infrastructure
+namespace SecretProject.Web.Infrastructure
 {
     [Serializable]
     public class SessionCart : Cart

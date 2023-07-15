@@ -27,10 +27,4 @@ namespace SecretProject.Web.Infrastructure
             Data = data;
         }
     }
-
-    public enum ExtraInformationType {
-        Info,
-        Warning,
-        Error
-    }
 }

@@ -1,11 +1,7 @@
-﻿using SecretProject.VisualElements.Elements.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using SecretProject.VisualElements.Elements.Common;
 
-namespace SecretProject.VisualElements.Elements
+namespace SecretProject.VisualElements.Elements.Buttons
 {
     public class Button : VisualElement,IVisualElement, IColumnable
     {

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace QS.Utilities.Numeric
+namespace SecretProject.BusinessProject.Helpers
 {
 	/// <summary>
 	/// Класс, предоставляет меотды для обработки любого номера телефона в корректный вид
@@ -120,39 +119,5 @@ namespace QS.Utilities.Numeric
 				return Result;
 		}
 
-	}
-
-	class SeparatorPosition
-	{
-		public int position;
-		public string separator;
-
-		public SeparatorPosition(int position, string separator)
-		{
-			this.position = position;
-			this.separator = separator;
-		}
-	}
-
-	/// <summary>
-	/// Форматы телефонов
-	/// </summary>
-	public enum PhoneFormat
-	{
-		/// <summary>
-		/// +7-XXX-XXX-XX-XX
-		/// </summary>
-		[Display(Name = "+7-XXX-XXX-XX-XX")]
-		RussiaOnlyHyphenated,
-		/// <summary>
-		/// (XXX) XXX - XX - XX
-		/// </summary>
-		[Display(Name = "(XXX) XXX - XX - XX")]
-		BracketWithWhitespaceLastTen,
-		/// <summary>
-		/// XXXXXXXXXX
-		/// </summary>
-		[Display(Name = "XXXXXXXXXX")]
-		DigitsTen
 	}
 }

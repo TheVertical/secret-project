@@ -1,4 +1,4 @@
-﻿using QS.Utilities.Numeric;
+﻿using SecretProject.BusinessProject.Helpers;
 
 namespace SecretProject.BusinessProject.Models.UserData
 {

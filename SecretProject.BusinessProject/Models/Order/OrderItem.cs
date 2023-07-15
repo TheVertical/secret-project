@@ -1,9 +1,9 @@
-﻿using SecretProject.BusinessProject.Models.Good;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using SecretProject.BusinessProject.Models.Common;
 
 namespace SecretProject.BusinessProject.Models.Order
 {
@@ -16,7 +16,7 @@ namespace SecretProject.BusinessProject.Models.Order
         public OrderItem()
         {
         }
-        public OrderItem(Nomenclature nomenclature,int actualCount)
+        public OrderItem(Nomenclature.Nomenclature nomenclature,int actualCount)
         {
             Nomenclature = nomenclature;
             ActualCount = actualCount;
@@ -30,13 +30,13 @@ namespace SecretProject.BusinessProject.Models.Order
         /// </summary>
         [Timestamp]
         public virtual byte[] Timestamp { get; set; }
-        private Nomenclature nomenclature;
+        private Nomenclature.Nomenclature nomenclature;
         /// <summary>
         /// Связанная номенклатура
         /// </summary>
         [Display(Name = "Связанная номенклатура")]
         [Required]
-        public virtual Nomenclature Nomenclature
+        public virtual Nomenclature.Nomenclature Nomenclature
         {
             get => nomenclature;
             set

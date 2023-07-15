@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SecretProject.BusinessProject.Models.Common;
 
-namespace SecretProject.BusinessProject.Models
+namespace SecretProject.BusinessProject.Models.Vendor
 {
     [Table("Manufacturers")]
     public class Manufacturer : IDomainObject

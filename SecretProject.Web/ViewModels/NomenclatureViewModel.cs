@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SecretProject.BusinessProject.Models.Good;
-using SecretProject.WebApi.ViewModels;
+using SecretProject.BusinessProject.Models.Nomenclature;
 
 namespace SecretProject.Web.ViewModels
 {

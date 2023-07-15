@@ -1,11 +1,9 @@
-﻿using SecretProject.BusinessProject.Models.Good;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using SecretProject.BusinessProject.Models.Common;
 
-namespace SecretProject.BusinessProject.Models
+namespace SecretProject.BusinessProject.Models.Nomenclature
 {
     public class NomenclatureGroup : IDomainObject
     {

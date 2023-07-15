@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
-using System.Text;
 
-namespace SecretProject.BusinessProject.Models
+namespace SecretProject.BusinessProject.Models.Common
 {
     public interface IDomainObject
     {

@@ -1,10 +1,10 @@
-﻿using System;
-using SecretProject.BusinessProject.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SecretProject.BusinessProject.Models;
+using SecretProject.BusinessProject.Models.Nomenclature;
 
-namespace SecretProject.WebApi.ViewModels
+namespace SecretProject.Web.ViewModels
 {
     public class NomenclatureGroupViewModel : IViewModel
     {

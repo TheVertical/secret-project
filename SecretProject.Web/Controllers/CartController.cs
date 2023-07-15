@@ -1,19 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using SecretProject.BusinessProject.DataAccess;
-using SecretProject.BusinessProject.Models.Good;
-using SecretProject.VisualElements;
-using SecretProject.WebApi.Infrastructure;
-using SecretProject.WebApi.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using SecretProject.BusinessProject.DataAccess;
+using SecretProject.BusinessProject.Models.Nomenclature;
+using SecretProject.VisualElements;
+using SecretProject.Web.Infrastructure;
 using SecretProject.Web.ViewModels;
 
-namespace SecretProject.WebApi.Controllers
+namespace SecretProject.Web.Controllers
 {
     [ApiController]
     [Route("[controller]/")]

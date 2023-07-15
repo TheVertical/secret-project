@@ -1,17 +1,13 @@
-﻿using SecretProject.BusinessProject.Measurements;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using SecretProject.BusinessProject.Models.Common;
+using SecretProject.BusinessProject.Models.Measurements;
+using SecretProject.BusinessProject.Models.Vendor;
 
-namespace SecretProject.BusinessProject.Models.Good
+namespace SecretProject.BusinessProject.Models.Nomenclature
 {
-    public enum VisibleStatus
-    {
-        Visible,Hidden
-    }
-
     public class Nomenclature : IDomainObject
     {
         #region Base Properties

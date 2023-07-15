@@ -1,11 +1,8 @@
-﻿using SecretProject.BusinessProject.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using SecretProject.BusinessProject.Models.Common;
 
-namespace SecretProject.BusinessProject.Measurements
+namespace SecretProject.BusinessProject.Models.Measurements
 {
     /// <summary>
     /// Класс описывает еденицу измерения (пример: "штука"/"пара" и тд.)

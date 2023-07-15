@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SecretProject.BusinessProject.DataAccess;
-using SecretProject.BusinessProject.Models.Good;
+using SecretProject.BusinessProject.Models.Nomenclature;
 using SecretProject.VisualElements;
 
 namespace SecretProject.Web.Controllers
